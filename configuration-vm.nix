@@ -95,7 +95,6 @@
       brave
       vscodium
       kitty
-      thunderbird
       webcord-vencord
     ];
   };

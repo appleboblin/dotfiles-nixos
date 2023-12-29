@@ -19,13 +19,21 @@
     in
     {
     
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = {
+        main = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [ 
             ./configuration.nix
-            inputs.home-manager.nixosModules.default
+            # inputs.home-manager.nixosModules.main
           ];
         };
-
+        vm = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [ 
+            ./configuration-vm.nix
+            # inputs.home-manager.nixosModules.vm
+          ];
+        };
+      };
     };
 }
