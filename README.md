@@ -1,0 +1,2 @@
+# dotfiles-nixos
+NixOS dotfiles
