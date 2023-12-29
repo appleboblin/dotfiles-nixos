@@ -18,7 +18,6 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-    
       nixosConfigurations = {
         main = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
@@ -30,7 +29,28 @@
         vm = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [ 
+                      inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.appleboblin = {
+                imports = [ 
+                  # common home-manager configuration
+                  #./home.nix
+                  # host specific home-manager configuration
+                  ./hosts/vm/home.nix
+                ];
+
+                home = {
+                  homeDirectory = "/home/appleboblin";
+                };
+              };
+            };
+          }
             ./configuration-vm.nix
+            ./hosts/vm/configuration.nix
+            ./hosts/vm/hardware-configuration.nix
             # inputs.home-manager.nixosModules.vm
           ];
         };
