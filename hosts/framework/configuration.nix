@@ -2,21 +2,22 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, user, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
-  # imports =
-    # [ # Include the results of the hardware scan.
-      # /hardware-configuration.nix
-      # inputs.home-manager.nixosModules.default
-    # ];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      # inputs.home-manager.nixosModules.vm
+    ];
 
   # Bootloader.
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.device = "/dev/vda";
-  # boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  boot.initrd.luks.devices."luks-a5871d24-a3ec-48e4-813d-c2514a9cbea1".device = "/dev/disk/by-uuid/a5871d24-a3ec-48e4-813d-c2514a9cbea1";
+
+  networking.hostName = "framework"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -28,32 +29,14 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Asia/Taipei";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "zh_TW.UTF-8";
-    LC_IDENTIFICATION = "zh_TW.UTF-8";
-    LC_MEASUREMENT = "zh_TW.UTF-8";
-    LC_MONETARY = "zh_TW.UTF-8";
-    LC_NAME = "zh_TW.UTF-8";
-    LC_NUMERIC = "zh_TW.UTF-8";
-    LC_PAPER = "zh_TW.UTF-8";
-    LC_TELEPHONE = "zh_TW.UTF-8";
-    LC_TIME = "zh_TW.UTF-8";
-  };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.cinnamon.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -62,7 +45,7 @@
   };
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -80,6 +63,10 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  
+  nixpkgs.config.permittedInsecurePackages = [
+       "electron-25.9.0"
+  ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -90,13 +77,17 @@
     description = "appleboblin";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
-      librewolf
-      brave
-      vscodium
-      kitty
-      thunderbird
+      webcord-vencord
+      obsidian
     ];
+  };
+
+  home-manager = {
+    # inputs to home-manager module
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+    "appleboblin" = import ./home.nix;
+   };
   };
 
   # Allow unfree packages
@@ -106,14 +97,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     nano
-     neovim
-     wget
-     curl
-     git
-     xfce.thunar
-     xfce.thunar-volman
-     xfce.thunar-archive-plugin
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

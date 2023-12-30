@@ -19,10 +19,31 @@
     in
     {
       nixosConfigurations = {
-        main = nixpkgs.lib.nixosSystem {
+        framework = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [ 
+                      inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.appleboblin = {
+                imports = [ 
+                  # common home-manager configuration
+                  #./home.nix
+                  # host specific home-manager configuration
+                  ./hosts/vm/home.nix
+                ];
+
+                home = {
+                  homeDirectory = "/home/appleboblin";
+                };
+              };
+            };
+          }
             ./configuration.nix
+            ./hosts/framework/configuration.nix
+            ./hosts/framework/hardware-configuration.nix
             # inputs.home-manager.nixosModules.main
           ];
         };
