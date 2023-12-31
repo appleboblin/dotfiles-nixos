@@ -67,6 +67,10 @@
   nixpkgs.config.permittedInsecurePackages = [
        "electron-25.9.0"
   ];
+  
+  nixpkgs.overlays = [
+    inputs.nur.overlay
+  ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;

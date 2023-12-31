@@ -32,7 +32,7 @@
                   # common home-manager configuration
                   #./home.nix
                   # host specific home-manager configuration
-                  ./hosts/vm/home.nix
+                  #./hosts/framework/home.nix
                 ];
 
                 home = {
