@@ -74,4 +74,9 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  
+  # git
+  programs.git.userEmail = "appleboblin@proton.me";
+  programs.git.userName = "appleboblin";
+
 }

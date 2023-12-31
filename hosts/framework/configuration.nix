@@ -33,10 +33,10 @@
   services.xserver.enable = true;
 
   # Enable the Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
+  # services.xserver.desktopManager.cinnamon.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -69,7 +69,7 @@
   ];
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.appleboblin = {

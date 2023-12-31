@@ -54,6 +54,7 @@
   services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -90,12 +91,46 @@
     description = "appleboblin";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      # Browser
       firefox
       librewolf
       brave
+      chromium
+
+      # Programming
       vscodium
+      python3
+
+      # Terminal
       kitty
+      eza
+      zsh
+      htop
+
+      # Window Manager
+      rofi
+      bluez
+
+      # Daily
       thunderbird
+      protonmail-bridge
+      protonvpn-gui
+      obsidian
+      libreoffice
+      vlc
+      ncspot
+      pcloud
+
+      # Other
+      webcord
+      betaflight-configurator
+      prusa-slicer
+      openscad
+      freecad
+      filezilla
+      inkscape
+      transmission
+
     ];
   };
 
@@ -107,13 +142,19 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      nano
+     micro
      neovim
      wget
      curl
      git
-     xfce.thunar
-     xfce.thunar-volman
-     xfce.thunar-archive-plugin
+     pavucontrol
+
+    # virtual machine
+     virt-manager
+     virtiofsd
+    #  xfce.thunar
+    #  xfce.thunar-volman
+    #  xfce.thunar-archive-plugin
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
