@@ -100,7 +100,7 @@
   #
   home.sessionVariables = {
     EDITOR = "neovim";
-    BROWSER = "librewolf";
+    BROWSER = "firefox";
     TERMINAL = "kitty";
   };
 

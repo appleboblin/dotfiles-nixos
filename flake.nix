@@ -42,7 +42,7 @@
                   # common home-manager configuration
                   ./home.nix
                   # host specific home-manager configuration
-                  # ./hosts/${host}/home.nix
+                  ./hosts/${host}/home.nix
                 ];
               };
             };
