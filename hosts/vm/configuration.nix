@@ -18,11 +18,11 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable the Desktop Environment.
-  services.xserver.displayManager.sddm.enable = lib.mkForce false;
-  services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
+  # services.xserver.displayManager.sddm.enable = lib.mkForce false;
+  # services.xserver.displayManager.gdm.enable = true;
+  # # services.xserver.desktopManager.gnome.enable = true;
+  # # services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.cinnamon.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -32,21 +32,14 @@
     isNormalUser = true;
     description = "appleboblin";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      firefox
-      neovim
-      librewolf
-      brave
-      vscodium
-      kitty
-      obsidian
-      webcord-vencord
-    ];
+    # packages = with pkgs; [
+    #   # firefox
+    # ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; lib.mkForce [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     curl
@@ -55,4 +48,5 @@
     xfce.thunar-volman
     xfce.thunar-archive-plugin
   ];
+
 }
