@@ -24,7 +24,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
+  home.packages = with pkgs; lib.mkIf (host != "vm") [
     # Browser
     # firefox
     librewolf
