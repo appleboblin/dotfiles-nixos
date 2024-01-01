@@ -5,9 +5,9 @@
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
         arcticicestudio.nord-visual-studio-code
-        bbenoist.Nix
+        bbenoist.nix
         njpwerner.autodocstring
-        EditorConfig.EditorConfig
+        editorconfig.editorconfig
         donjayamanne.githistory
         codezombiech.gitignore
         eamodio.gitlens
@@ -15,9 +15,12 @@
         ms-python.python
         ms-python.vscode-pylance
         oderwat.indent-rainbow
+        pkief.material-product-icons
     ];
     userSettings = {
-        "editor.fontSize": 16;
+        "editor.fontSize" = 16;
+        "workbench.colorTheme" = "Nord"
+        "workbench.productIconTheme" = "material-product-icons"
     };
     };
   };
