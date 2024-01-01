@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  # home.packages = with pkgs; lib.mkForce [
-  #   vscodium
-  # ];
+  home.packages = with pkgs; lib.mkForce [
+    vscodium
+  ];
 }
