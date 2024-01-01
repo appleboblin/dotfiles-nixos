@@ -6,23 +6,58 @@
         profiles."appleboblin" = {
         isDefault = true;
         settings = {
-            # "browser.display.background_color" = "#bdbdbd";
-            "browser.download.dir" = "$HOME/downloads";
-            "browser.search.suggest.enabled" = false;
-            "browser.startup.page" = 3;
+            # Keep the reader button enabled at all times; really don't
+            # care if it doesn't work 20% of the time, most websites are
+            # crap and unreadable without this
+            "reader.parse-on-load.force-enabled" = true;
+
+            # Hide the "sharing indicator", it's especially annoying
+            # with tiling WMs on wayland
+            "privacy.webrtc.legacyGlobalIndicator" = false;
+
+            # Actual settings
+            "app.shield.optoutstudies.enabled" = false;
+            "app.update.auto" = false;
+            "browser.bookmarks.restore_default_bookmarks" = false;
+            "browser.contentblocking.category" = "strict";
+            "browser.ctrlTab.recentlyUsedOrder" = false;
+            "browser.discovery.enabled" = false;
+            "browser.download.dir" = "$HOME/Downloads";
+            "browser.laterrun.enabled" = false;
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
+            "browser.newtabpage.activity-stream.feeds.snippets" = false;
+            "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "";
+            "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
+            "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+            "browser.newtabpage.activity-stream.showSponsored" = false;
+            "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+            "browser.newtabpage.pinned" = false;
+            "browser.protections_panel.infoMessage.seen" = true;
+            "browser.quitShortcut.disabled" = true;
+            "browser.shell.checkDefaultBrowser" = false;
+            "browser.ssb.enabled" = true;
+            "browser.toolbars.bookmarks.visibility" = "newtab";
             "browser.urlbar.placeholderName" = "DuckDuckGo";
-            "devtools.theme" = "dark";
-            "experiments.activeExperiment" = false;
-            "experiments.enabled" = false;
-            "experiments.supported" = false;
+            "browser.urlbar.suggest.openpage" = false;
+            "datareporting.healthreport.uploadEnabled" = false;
+            "datareporting.policy.dataSubmissionEnable" = false;
+            "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
+            "dom.security.https_only_mode" = true;
+            "dom.security.https_only_mode_ever_enabled" = true;
+            "extensions.getAddons.showPane" = false;
+            "extensions.htmlaboutaddons.recommendations.enabled" = false;
             "extensions.pocket.enabled" = false;
-            "general.smoothScroll" = false;
-            "layout.css.devPixelsPerPx" = "1";
-            "media.videocontrols.picture-in-picture.enabled" = false;
-            "network.IDN_show_punycode" = true;
-            "network.allow-experiments" = false;
-            "signon.rememberSignons" = false;
-            "widget.content.gtk-theme-override" = "Adwaita:dark";
+            "geo.enabled" = false;
+            "identity.fxaccounts.enabled" = false;
+            "media.navigator.enabled" = false;
+            "privacy.firstparty.isolate" = true;
+            "privacy.resistFingerprinting" = true;
+            "privacy.trackingprotection.enabled" = true;
+            "privacy.trackingprotection.cryptomining.enabled" = true;
+            "privacy.trackingprotection.fingerprinting.enabled" = true;
+            "privacy.trackingprotection.socialtracking.enabled" = true;
+            "webgl.disabled" = true;
         };
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             bitwarden
@@ -36,6 +71,8 @@
             sponsorblock
             enhancer-for-youtube
             user-agent-string-switcher
+            clearurls
+            theme-nord-polar-night
         ];
         };
     };
