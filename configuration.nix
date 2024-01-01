@@ -1,15 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, inputs, user, ... }:
-
 {
-  # imports =
-    # [ # Include the results of the hardware scan.
-      # /hardware-configuration.nix
-      # inputs.home-manager.nixosModules.default
-    # ];
+  config,
+  pkgs,
+  lib,
+  inputs,
+  user,
+  ...
+}: {
+  imports = [];
 
   # Bootloader.
   # boot.loader.grub.enable = true;
@@ -19,7 +19,7 @@
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -63,7 +63,7 @@
   };
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -89,7 +89,7 @@
   users.users.appleboblin = {
     isNormalUser = true;
     description = "appleboblin";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       # Browser
       firefox
@@ -130,28 +130,32 @@
       filezilla
       inkscape
       transmission
-
     ];
   };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+  nixpkgs.overlays = [
+    inputs.nur.overlay
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     nano
-     micro
-     neovim
-     wget
-     curl
-     git
-     pavucontrol
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    nano
+    micro
+    neovim
+    wget
+    curl
+    git
+    pavucontrol
 
     # virtual machine
-     virt-manager
-     virtiofsd
+    virt-manager
+    virtiofsd
     #  xfce.thunar
     #  xfce.thunar-volman
     #  xfce.thunar-archive-plugin
@@ -166,6 +170,8 @@
   # };
 
   # List services that you want to enable:
+  # allow /bin and /usr/bin shebangs to work
+  services.envfs.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -183,5 +189,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
