@@ -30,9 +30,10 @@
             darkreader
             proton-vpn
             # bypass-paywalls-clean
+            unpaywall
             canvasblocker
             decentraleyes
-            #sponsorblock
+            sponsorblock
             enhancer-for-youtube
             user-agent-string-switcher
         ];

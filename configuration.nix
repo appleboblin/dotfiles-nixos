@@ -91,45 +91,46 @@
     description = "appleboblin";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-      # Browser
-      firefox
-      librewolf
-      brave
-      chromium
+      # # Browser
+      # # firefox
+      # librewolf
+      # brave
+      # chromium
 
-      # Programming
-      vscodium
-      python3
+      # # Programming
+      # vscodium
+      # python3
 
-      # Terminal
-      kitty
-      eza
-      zsh
-      htop
+      # # Terminal
+      # kitty
+      # eza
+      # zsh
+      # htop
 
-      # Window Manager
-      rofi
-      bluez
+      # # Window Manager
+      # rofi
+      # bluez
 
-      # Daily
-      thunderbird
-      protonmail-bridge
-      protonvpn-gui
-      obsidian
-      libreoffice
-      vlc
-      ncspot
-      pcloud
+      # # Daily
+      # thunderbird
+      # protonmail-bridge
+      # protonvpn-gui
+      # obsidian
+      # libreoffice
+      # vlc
+      # ncspot
+      # pcloud
+      # obsidian
 
-      # Other
-      webcord
-      betaflight-configurator
-      prusa-slicer
-      openscad
-      freecad
-      filezilla
-      inkscape
-      transmission
+      # # Other
+      # webcord
+      # betaflight-configurator
+      # prusa-slicer
+      # openscad
+      # freecad
+      # filezilla
+      # inkscape
+      # transmission
     ];
   };
 
