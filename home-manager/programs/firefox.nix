@@ -35,6 +35,9 @@
             "browser.newtabpage.pinned" = false;
             "browser.protections_panel.infoMessage.seen" = true;
             "browser.quitShortcut.disabled" = true;
+            "browser.search.geoip.url" = "";
+            "browser.send_pings.require_same_host" = true;
+            "browser.send_pings" = false;
             "browser.shell.checkDefaultBrowser" = false;
             "browser.ssb.enabled" = true;
             "browser.toolbars.bookmarks.visibility" = "newtab";
@@ -43,21 +46,28 @@
             "datareporting.healthreport.uploadEnabled" = false;
             "datareporting.policy.dataSubmissionEnable" = false;
             "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
-            "dom.security.https_only_mode" = true;
+            "dom.battery.enabled" = false;
+            "dom.event.clipboardevents.enabled" = false;
             "dom.security.https_only_mode_ever_enabled" = true;
+            "dom.security.https_only_mode" = true;
             "extensions.getAddons.showPane" = false;
             "extensions.htmlaboutaddons.recommendations.enabled" = false;
             "extensions.pocket.enabled" = false;
             "geo.enabled" = false;
+            "geo.wifi.uri" = "";
             "identity.fxaccounts.enabled" = false;
             "media.navigator.enabled" = false;
+            "network.cookie.alwaysAcceptSessionCookies" = false;
+            "network.http.referer.spoofSource" = false;
+            "network.http.sendRefererHeader" = 0;
+            "network.http.sendSecureXSiteReferrer" = false;
+            "plugins.enumerable_names" = "";
             "privacy.firstparty.isolate" = true;
             "privacy.resistFingerprinting" = true;
-            "privacy.trackingprotection.enabled" = true;
             "privacy.trackingprotection.cryptomining.enabled" = true;
+            "privacy.trackingprotection.enabled" = true;
             "privacy.trackingprotection.fingerprinting.enabled" = true;
             "privacy.trackingprotection.socialtracking.enabled" = true;
-            "webgl.disabled" = true;
         };
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             bitwarden
