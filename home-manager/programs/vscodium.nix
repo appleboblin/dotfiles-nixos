@@ -19,8 +19,8 @@
     ];
     userSettings = {
         "editor.fontSize" = 16;
-        "workbench.colorTheme" = "Nord"
-        "workbench.productIconTheme" = "material-product-icons"
+        "workbench.colorTheme" = "Nord";
+        "workbench.productIconTheme" = "material-product-icons";
     };
     };
   };
