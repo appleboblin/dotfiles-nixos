@@ -155,8 +155,8 @@
     pavucontrol
 
     # virtual machine
-    virt-manager
-    virtiofsd
+    # virt-manager
+    # virtiofsd
     #  xfce.thunar
     #  xfce.thunar-volman
     #  xfce.thunar-archive-plugin
