@@ -24,6 +24,7 @@
         "markdown.preview.fontSize" = 16;
         "workbench.colorTheme" = "Nord";
         "workbench.productIconTheme" = "material-product-icons";
+        "editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
       };
     };
   };
