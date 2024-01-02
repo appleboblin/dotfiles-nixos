@@ -33,14 +33,12 @@
     chromium
 
     # Programming
-    vscodium
+    # vscodium
     python3
 
     # Terminal
-    kitty
-    eza
+    # kitty
     zsh
-    htop
 
     # Window Manager
     rofi

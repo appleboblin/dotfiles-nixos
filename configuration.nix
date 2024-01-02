@@ -152,6 +152,9 @@
     wget
     curl
     git
+    htop
+    eza
+    neofetch
     pavucontrol
 
     # virtual machine
