@@ -7,5 +7,6 @@
     imports = [
         ./plasma.nix
         ./fonts.nix
+        ./transmission.nix
     ];
 }

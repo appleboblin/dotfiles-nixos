@@ -55,6 +55,9 @@
   # services.xserver.desktopManager.gnome.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   # services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.excludePackages = with pkgs; [
+    xterm
+  ];
 
   # Configure keymap in X11
   services.xserver = {
@@ -90,6 +93,7 @@
     isNormalUser = true;
     description = "appleboblin";
     extraGroups = ["networkmanager" "wheel"];
+    # shell = pkgs.zsh;
     packages = with pkgs; [
       # # Browser
       # # firefox

@@ -4,11 +4,8 @@
     lib,
     ...
 }: {
-    programs.xxx = {
+    services.transmission = {
         enable = true; # optional
-        
-        settings = {
-        
-        };
+        package = pkgs.transmission_4;
     };
 }
