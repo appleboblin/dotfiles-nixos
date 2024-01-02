@@ -25,6 +25,7 @@
   users.users.appleboblin = {
     packages = with pkgs; [
       # webcord-vencord
+      # zsh-fzf-history-search
     ];
   };
 

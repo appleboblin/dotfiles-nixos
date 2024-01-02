@@ -8,6 +8,6 @@
         ./firefox.nix
         ./vscodium.nix
         ./kitty.nix
-        ./zsh.nix
+        ./zsh/zsh.nix
     ];
 }

@@ -158,6 +158,10 @@
     git
     htop
     eza
+    zsh
+    zsh-powerlevel10k
+    zsh-fzf-history-search
+    fzf
     neofetch
     pavucontrol
 
