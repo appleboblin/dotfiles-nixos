@@ -48,6 +48,7 @@
             };
           }
           ./configuration.nix
+          ./nixos
           ./hosts/${host}/configuration.nix
           ./hosts/${host}/hardware-configuration.nix
           # inputs.home-manager.nixosModules.main

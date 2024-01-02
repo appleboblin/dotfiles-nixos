@@ -10,8 +10,7 @@
   home.homeDirectory = "/home/${user}";
 
   imports = [
-    ./home-manager/programs/firefox.nix
-    ./home-manager/programs/vscodium.nix
+    ./home-manager
   ];
 
   # This value determines the Home Manager release that your configuration is
