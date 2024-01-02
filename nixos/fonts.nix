@@ -1,12 +1,13 @@
 {
+    config,
     pkgs,
     lib,
     ...
 }: {
-    fonts.packages = witn pkgs; [
+    fonts.packages = with pkgs; [
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
-        (nerdfonts.oderride {fonts = [ "MesloLGS" ]; })
+        (nerdfonts.override {fonts = [ "Meslo" ]; })
     ];
-};
+}
