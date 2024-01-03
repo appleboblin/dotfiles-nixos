@@ -2,9 +2,12 @@
     config,
     pkgs,
     lib,
-    hosts,
+    host,
+    user,
     ...
-}: {
+}: let
+    dotDir = ".config/zsh";
+in {
     # home.packages = with pkgs; [
     #     oh-my-zsh
     # ];
@@ -19,18 +22,17 @@
         enableAutosuggestions = true;
         enableCompletion = true;
         syntaxHighlighting.enable = true;
-        dotDir = ".config/zsh";
+        dotDir = dotDir;
 
         history = {
             save = 10000;
             size = 10000;
-            path = "home/.cache/zsh_history";
+            path = "/home/${user}/${dotDir}/zsh_history";
         };
 
         shellAliases = {
             ls = "eza -a --icons";
-            sz = "source ~/.config/zsh/.zshrc";
-            rebuild = "echo 'hi'";
+            rebuild = "sudo nixos-rebuild switch --flake .#${host}";
         };
         # oh-my-zsh = {
         #     enable = true;

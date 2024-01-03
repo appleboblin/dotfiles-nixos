@@ -20,11 +20,12 @@
       userSettings = {
         "editor.fontSize" = 16;
         "window.zoomLevel" = 0;
-        "terminal.integratec.fontSize" = 16;
+        "terminal.integrated.fontSize" = 16;
         "markdown.preview.fontSize" = 16;
         "workbench.colorTheme" = "Nord";
         "workbench.productIconTheme" = "material-product-icons";
         "editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
+        "terminal.integrated.defaultProfile.linux" = "zsh"; 
       };
     };
   };
