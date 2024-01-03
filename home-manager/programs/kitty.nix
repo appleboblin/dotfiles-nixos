@@ -34,7 +34,7 @@
             tab_bar_style = "fade";
             tab_fade = "0 1 1 1";
 
-            shell = "zsh";
+            shell = "fish";
         };
     };
 }

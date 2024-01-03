@@ -38,7 +38,6 @@
 
     # Terminal
     # kitty
-    zsh
 
     # Window Manager
     rofi

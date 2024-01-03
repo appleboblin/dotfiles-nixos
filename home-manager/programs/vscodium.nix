@@ -25,7 +25,7 @@
         "workbench.colorTheme" = "Nord";
         "workbench.productIconTheme" = "material-product-icons";
         "editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
-        "terminal.integrated.defaultProfile.linux" = "zsh"; 
+        "terminal.integrated.defaultProfile.linux" = "fish"; 
       };
     };
   };
