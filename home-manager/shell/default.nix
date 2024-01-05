@@ -8,5 +8,6 @@
         ./starship.nix
         ./fish.nix
         ./shell.nix
+        ./bash.nix
     ];
 }

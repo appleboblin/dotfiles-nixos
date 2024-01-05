@@ -55,9 +55,7 @@
   # services.xserver.desktopManager.gnome.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   # services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.excludePackages = with pkgs; [
-    xterm
-  ];
+  services.xserver.excludePackages = with pkgs; [ xterm ];
 
   # Configure keymap in X11
   services.xserver = {
@@ -153,13 +151,14 @@
     nano
     micro
     neovim
+    killall
     wget
     curl
+    gzip
     git
     htop
     eza
     neofetch
-    pavucontrol
 
     # virtual machine
     # virt-manager
@@ -168,6 +167,10 @@
     #  xfce.thunar-volman
     #  xfce.thunar-archive-plugin
   ];
+
+    systemd.tmpfiles.rules = [
+      "d /home/${user}/github 0770 ${user} users -"
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -3,6 +3,7 @@
     pkgs,
     lib,
     host,
+    user,
     ...
 }: {
     # Aliases
@@ -26,6 +27,10 @@
 
         #NixOS
         rebuild = "sudo nixos-rebuild switch --flake .#${host}";
+        delete = "sudo nix-collect-garbage -d";
+        garbage = "sudo nix-collect-garbage --delete-older-than 14d";
+        update = "nix flake update; sudo nixos-rebuild switch --flake .#${host}";
+        config = "cd /home/${user}/dotfiles-nixos";
 
         # cd
         ".." = "cd ..";

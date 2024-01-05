@@ -8,6 +8,5 @@
         ./firefox.nix
         ./vscodium.nix
         ./kitty.nix
-        ./shell
     ];
 }

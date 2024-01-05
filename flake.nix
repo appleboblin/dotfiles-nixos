@@ -40,14 +40,13 @@
               users.${user} = {
                 imports = [
                   # common home-manager configuration
-                  ./home.nix
+                  ./home-manager
                   # host specific home-manager configuration
                   ./hosts/${host}/home.nix
                 ];
               };
             };
           }
-          ./configuration.nix
           ./nixos
           ./hosts/${host}/configuration.nix
           ./hosts/${host}/hardware-configuration.nix
