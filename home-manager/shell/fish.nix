@@ -45,8 +45,8 @@
         #     complete -c gt --exclusive -a "(__fish_complete_directories ($HOME/dotfiles-nixos/))"
         # '';
         "/home/${user}/.config/fish/completions/gt.fish".text = ''
-            function _gt --description 'cd into GitHub directories'
-            find "$HOME/github/" -maxdepth 1 -type d -not -wholename "$HOME/dotfiles-nixos/" -exec basename {} \; 
+            function _gt --description 'complete GitHub directories'
+                find "$HOME/github/" -maxdepth 1 -type d -not -wholename "$HOME/github/" -exec basename {} \; 
             end
             complete --no-files --command gt --arguments "(_gt)"
         '';
