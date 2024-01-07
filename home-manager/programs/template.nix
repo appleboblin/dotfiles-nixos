@@ -5,7 +5,7 @@
     ...
 }: {
     programs.xxx = {
-        enable = true; # optional
+        enable = true / host != "vm"; # optional
         
         settings = {
         

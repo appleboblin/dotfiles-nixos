@@ -2,6 +2,9 @@
     config,
     pkgs,
     user,
+    host,
+    lib,
+    inputs,
     ...
 }: {
     # Home Manager needs a bit of information about you and the paths it should
@@ -12,6 +15,7 @@
     imports = [
         ./programs
         ./shell
+        ./hyprland
     ];
 
     # This value determines the Home Manager release that your configuration is
@@ -26,6 +30,7 @@
     # The home.packages option allows you to install Nix packages into your
     # environment.
     # home.packages = with pkgs; lib.mkIf (host != "vm") [
+
     home.packages = with pkgs; [
         # Browser
         # firefox

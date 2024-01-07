@@ -25,7 +25,6 @@
           inherit (nixpkgs) lib;
           inherit inputs host user;
         };
-
         modules = [
           inputs.home-manager.nixosModules.home-manager
           {
@@ -35,6 +34,8 @@
 
               extraSpecialArgs = {
                 inherit inputs host user;
+                isLaptop = host == "framework";
+                isVm = host == "vm";
               };
 
               users.${user} = {
@@ -47,6 +48,7 @@
               };
             };
           }
+          (nixpkgs.lib.mkAliasOptionModule ["hm"] ["home-manager" "users" "appleboblin"])
           ./nixos
           ./hosts/${host}/configuration.nix
           ./hosts/${host}/hardware-configuration.nix

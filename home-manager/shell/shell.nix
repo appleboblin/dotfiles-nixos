@@ -26,7 +26,7 @@
         c = "clear";
 
         #NixOS
-        rebuild = "sudo nixos-rebuild switch --flake .#${host}";
+        rebuild = "git add .; sudo nixos-rebuild switch --flake .#${host}";
         delete = "sudo nix-collect-garbage -d";
         garbage = "sudo nix-collect-garbage --delete-older-than 14d";
         update = "nix flake update; sudo nixos-rebuild switch --flake .#${host}";

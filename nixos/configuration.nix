@@ -20,7 +20,6 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -48,19 +47,39 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.autorun = true;
 
   # Enable the Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
+  # services.xserver.displayManager.defaultSession = "hyprland";
+  # services.xserver.displayManager.session = [
+  #   {
+  #     manage = "desktop";
+  #     name = "hyprland";
+  #     start = "exec Hyprland";
+  #   }
+  # ];
+
   # services.xserver.desktopManager.gnome.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   # services.xserver.desktopManager.xfce.enable = true;
+
   services.xserver.excludePackages = with pkgs; [ xterm ];
 
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
-    xkbVariant = "";
+    xkbVariant = "colemak_dh_ortho";
+  };
+
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-gtk
+      fcitx5-chewing
+    ];
   };
 
   # Enable CUPS to print documents.

@@ -9,5 +9,6 @@
         ./plasma.nix
         ./fonts.nix
         ./transmission.nix
+        ./hyprland.nix
     ];
 }
