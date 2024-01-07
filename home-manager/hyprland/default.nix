@@ -146,6 +146,8 @@
                     "wl-paste --type text --watch cliphist store"
                     "wl-paste --type image --watch cliphist store"
 
+                    # Desktop dependency
+                    "hyprpaper"
                     "webcord & thunderbird & kitty ncspot & kitty --class scratchpad & obsidian"
                 ];
             };

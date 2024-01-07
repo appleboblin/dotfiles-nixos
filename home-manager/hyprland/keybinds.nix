@@ -17,7 +17,7 @@
             "ALT, S, togglespecialworkspace, ncspot"
 
             # Switch input
-            "$mod ALT, SPACE, hyprctl switchxkblayout at-translated-set-2-keyboard next"
+            "$mod ALT, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
 
             # Quit Hyprland
             "$mod ALT, F4, exit"

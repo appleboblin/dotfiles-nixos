@@ -187,9 +187,9 @@
     #  xfce.thunar-archive-plugin
   ];
 
-    systemd.tmpfiles.rules = [
-      "d /home/${user}/github 0770 ${user} users -"
-    ];
+  systemd.tmpfiles.rules = [
+    "d /home/${user}/github 0770 ${user} users -"
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

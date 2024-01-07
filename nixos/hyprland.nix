@@ -30,19 +30,4 @@
         GTK_USE_PORTAL = "1";
         NIXOS_XDG_OPEN_USE_PORTAL = "1";
     };
-    # programs.wayland = lib.mkIf ( host != "vm" ) {
-    #     enable = true;
-    # };
-    # set here as legacy linux won't be able to set these
-    # wayland.windowManager.hyprland = {
-    #     enable = true;
-    #     package = inputs.hyprland.packages.pkgs.hyprland;
-    # };
-
-    # xdg.portal = {
-    #     enable = true;
-    #     extraPortals = [
-    #     pkgs.xdg-desktop-portal-gtk
-    #     ];
-    # };
 }
