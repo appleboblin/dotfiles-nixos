@@ -24,8 +24,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.appleboblin = {
     packages = with pkgs; [
-      # webcord-vencord
-      # zsh-fzf-history-search
+      fw-ectool
     ];
   };
 
@@ -41,4 +40,29 @@
   hm.xdg.configFile."hypr/hyprpaper.conf".text = lib.mkIf config.programs.hyprland.enable ''
     wallpaper = eDP-1,${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
   '';
+
+  # Hyprland settings
+  hm.wayland.windowManager.hyprland.settings = lib.mkIf config.programs.hyprland.enable {
+      monitor = [
+      "eDP-1, 2256x1504, 0x0, 1"
+      ];
+
+      workspace = [
+          "1, monitor:eDP-1, default:true"
+          "2, monitor:eDP-1"
+          "3, monitor:eDP-1"
+          "4, monitor:eDP-1"
+          "5, monitor:eDP-1"
+          "6, monitor:eDP-1"
+          "7, monitor:eDP-1"
+          "8, monitor:eDP-1"
+          "9, monitor:eDP-1"
+          "10, monitor:eDP-1"
+      ];
+
+      exec-once = [
+          # brightness on startup
+          "${lib.getExe pkgs.brightnessctl} s 25%"
+      ];
+  };
 }

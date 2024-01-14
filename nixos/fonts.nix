@@ -11,6 +11,6 @@
         source-han-sans
         source-han-serif
         jetbrains-mono
-        (nerdfonts.override {fonts = [ "Meslo" ]; })
+        (nerdfonts.override {fonts = [ "Meslo" "FiraCode"]; })
     ];
 }

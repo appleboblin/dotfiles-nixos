@@ -36,7 +36,7 @@
             # Switch workspace
             "$mod, 1, workspace, 1"
             "$mod, 2, workspace, 2"
-            "$mod, 2, workspace, 3"
+            "$mod, 3, workspace, 3"
             "$mod, 4, workspace, 4"
             "$mod, 5, workspace, 5"
             "$mod, 6, workspace, 6"
@@ -44,11 +44,15 @@
             "$mod, 8, workspace, 8"
             "$mod, 9, workspace, 9"
             "$mod, 0, workspace, 10"
+            "$mod, left, workspace, -1"
+            "$mod, right, workspace, +1"
+            "$mod, up, workspace, m+1"
+            "$mod, down, workspace, m-1"
 
             # Move to workspace
             "$mod SHIFT, 1, movetoworkspace, 1"
             "$mod SHIFT, 2, movetoworkspace, 2"
-            "$mod SHIFT, 2, movetoworkspace, 3"
+            "$mod SHIFT, 3, movetoworkspace, 3"
             "$mod SHIFT, 4, movetoworkspace, 4"
             "$mod SHIFT, 5, movetoworkspace, 5"
             "$mod SHIFT, 6, movetoworkspace, 6"

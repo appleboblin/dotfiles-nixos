@@ -3,29 +3,88 @@
     pkgs,
     lib,
     host,
+    home,
     ...
-}: {
-    wayland.windowManager.hyprland.settings = {
-        monitor = [
-        "eDP-1, 2256x1504, 0x0, 1"
-        ];
+}: {  
+    # Waybar settings
+    programs.waybar = lib.mkIf config.programs.waybar.enable {
+        settings = [
+            {
+                layer = "top";
+                position = "top";
+                height = 20;
+                margin-top = 0;
+                margin-left = 0;
+                margin-right = 0;
+                spacing = 10;
+                output = [
+                "eDP-1"
+                ];
+                modules-left = [ "hyprland/workspaces" ];
+                modules-center = [ "hyprland/window" ];
+                modules-right = [ "pulseaudio" "tray" "custom/wifi" "network" "battery" "clock" ];
 
-        workspace = [
-            "1, monitor:eDP-1, default:true"
-            "2, monitor:eDP-1"
-            "3, monitor:eDP-1"
-            "4, monitor:eDP-1"
-            "5, monitor:eDP-1"
-            "6, monitor:eDP-1"
-            "7, monitor:eDP-1"
-            "8, monitor:eDP-1"
-            "9, monitor:eDP-1"
-            "10, monitor:eDP-1"
-        ];
-
-        exec-once = [
-            # brightness on startup
-            "${lib.getExe pkgs.brightnessctl} s 25%"
+                "wlr/workspaces" = {
+                    format = "{name}";
+                    disable-scroll-wraparound = true;
+                    on-click = "activate";
+                    sort-by-number = true;
+                };
+                "clock" = {
+                    format = "{:%H:%M}";
+                    locale = "en_US.UTF-8";
+                    # format-alt = "{:%a %d %b %H:%M}";
+                    tooltip-format = "<big>{:%A %D}</big>\n<tt><small>{calendar}</small></tt>";
+                    interval = 60;
+                };
+                "pulseaudio" = {
+                    # format = "{volume}% {icon} {format_source}";
+                    format = "󰕾 {volume}%";
+                    # format-bluetooth = "{volume}% {icon} {format_source}";
+                    # format-bluetooth-muted = " {icon} {format_source}";
+                    # format-muted = " {format_source}";
+                    # format-source = "{volume}% ";
+                    # format-source-muted = "";
+                    # format-icons = {
+                    #     headphone = "";
+                    #     hands-free = "󱠡";
+                    #     headset = "󰋎";
+                    #     phone = "";
+                    #     portable = "";
+                    #     car = "";
+                    #     default = ["" "" ""];
+                    # };
+                    on-click = "pavucontrol";
+                };
+                "tray" = {
+                    spacing = 10;
+                };
+                "battery" = {
+                    states = {
+                        good = 95;
+                        warning =  30;
+                        critical = 15;
+                    };
+                    format = "{capacity}% {icon}";
+                    format-charging = "{capacity}% 󰂄";
+                    format-plugged = "{capacity}% ";
+                    format-alt = "{time} {icon}";
+                    format-icons = ["󰁺" "󰁼" "󰁿" "󰂁" "󰁹"];
+                };
+                "network" = {
+                    #  "interface": "wlp2*", // (Optional) To force the use of this interface
+                    format-wifi = "{essid}";
+                    format-ethernet = "{ipaddr}/{cidr}";
+                    tooltip-format = "{ifname} via {gwaddr}";
+                    format-linked = "{ifname} (No IP)";
+                    format-disconnected = "Disconnected";
+                    format-alt = "{ifname}: {ipaddr}/{cidr}";
+                };
+                "custom/wifi" = {
+                    format = " ";
+                    on-click = "systemsettings5";
+                };
+            }
         ];
     };
 }
