@@ -15,14 +15,22 @@
         #     enable = true;
         #     platformTheme = "qt5ct";
         #     style = "adwaita-dark";
+        #     # theme = {
+        #     #     name = "Nordic";
+        #     #     package = pkgs.nordic;
+        #     # };
         # };
         # gtk = {
         #     enable = true;
         #     theme = {
-        #         name = "Adwaita-dark";
-        #         package = pkgs.gnome.gnome-themes-extra;
+        #         name = "Nordic";
+        #         package = pkgs.nordic;
         #     };
         # };
         # programs.dconf.enable = true;
+
+        environment.systemPackages = with pkgs; [
+            nordic
+        ];
     };
 }

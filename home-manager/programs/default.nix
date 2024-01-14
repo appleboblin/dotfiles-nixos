@@ -8,5 +8,6 @@
         ./firefox.nix
         ./vscodium.nix
         ./kitty.nix
+        ./gtk.nix
     ];
 }
