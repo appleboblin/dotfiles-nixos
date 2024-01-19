@@ -9,10 +9,10 @@
     # Aliases
     home.shellAliases = {
         # Eza
-        ls = "eza --icons";
-        la = "eza -a --icons";
-        ll = "eza -lah --icons";
-        t = "eza --tree";
+        # ls = "eza --icons";
+        # la = "eza -a --icons";
+        # ll = "eza -lah --icons";
+        # t = "eza --tree";
 
         # Color grep
         grep = "grep --color=auto";
@@ -35,6 +35,10 @@
         # cd
         ".." = "cd ..";
         "..." = "cd ../..";
+    };
 
+    programs.eza = {
+        enable = true;
+        enableAliases = true;
     };
 }
