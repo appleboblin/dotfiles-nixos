@@ -9,5 +9,6 @@
         ./vscodium.nix
         ./kitty.nix
         ./gtk.nix
+        ./dunst.nix
     ];
 }

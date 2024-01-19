@@ -38,11 +38,11 @@
     LC_IDENTIFICATION = "zh_TW.UTF-8";
     LC_MEASUREMENT = "zh_TW.UTF-8";
     LC_MONETARY = "zh_TW.UTF-8";
-    LC_NAME = "zh_TW.UTF-8";
+    LC_NAME = "en_US.UTF-8";
     LC_NUMERIC = "zh_TW.UTF-8";
     LC_PAPER = "zh_TW.UTF-8";
-    LC_TELEPHONE = "zh_TW.UTF-8";
-    LC_TIME = "zh_TW.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
   };
 
   # Enable the X11 windowing system.

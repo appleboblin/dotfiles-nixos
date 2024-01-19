@@ -8,5 +8,6 @@
         ./hyprland.nix
         ./hyprpaper.nix
         ./bar.nix
-    ];
+        ./dunst.nix
+    ];        
 }
