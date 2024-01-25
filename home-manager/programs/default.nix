@@ -10,5 +10,6 @@
         ./kitty.nix
         ./gtk.nix
         ./dunst.nix
+        ./nixvim.nix
     ];
 }

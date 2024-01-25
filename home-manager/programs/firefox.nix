@@ -45,11 +45,6 @@
             "browser.shell.checkDefaultBrowser" = false;
             "browser.ssb.enabled" = true;
             "browser.toolbars.bookmarks.visibility" = "newtab";
-            "browser.urlbar.placeholderName" = "DuckDuckGo";
-            "browser.urlbar.suggest.openpage" = false;
-            "browser.startup.homepage" = "https://duckduckgo.com/";
-            "browser.search.defaultenginename" = "DuckDuckGo";
-            "browser.search.order.1" = "DuckDuckGo";
             "datareporting.healthreport.uploadEnabled" = false;
             "datareporting.policy.dataSubmissionEnable" = false;
             "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
