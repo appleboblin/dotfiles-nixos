@@ -30,4 +30,25 @@
         GTK_USE_PORTAL = "1";
         NIXOS_XDG_OPEN_USE_PORTAL = "1";
     };
+
+    # Enable bar
+    hm.programs.waybar = lib.mkIf config.programs.hyprland.enable {
+        enable = true;
+    };
+
+    # Enable notification
+    hm.services.dunst = lib.mkIf config.programs.hyprland.enable {
+        enable = true;
+    };
+
+    # Wallpaper
+    users.users.appleboblin = {
+        packages = with pkgs; lib.mkIf config.programs.hyprland.enable[
+        hyprpaper
+        ];
+    };
+
+    hm.xdg.configFile."hypr/hyprpaper.conf".text = lib.mkIf config.programs.hyprland.enable ''
+        preload = ${../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
+    '';
 }

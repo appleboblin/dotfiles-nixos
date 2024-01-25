@@ -5,6 +5,10 @@
         package=pkgs.firefox.override {cfg.enableTridactyNative = true;};
         profiles."appleboblin" = {
         isDefault = true;
+        search = {
+          default = "DuckDuckGo";
+          privateDefault = "DuckDuckGo";
+        };
         settings = {
             # Keep the reader button enabled at all times; really don't
             # care if it doesn't work 20% of the time, most websites are
@@ -43,6 +47,9 @@
             "browser.toolbars.bookmarks.visibility" = "newtab";
             "browser.urlbar.placeholderName" = "DuckDuckGo";
             "browser.urlbar.suggest.openpage" = false;
+            "browser.startup.homepage" = "https://duckduckgo.com/";
+            "browser.search.defaultenginename" = "DuckDuckGo";
+            "browser.search.order.1" = "DuckDuckGo";
             "datareporting.healthreport.uploadEnabled" = false;
             "datareporting.policy.dataSubmissionEnable" = false;
             "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
