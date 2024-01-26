@@ -38,7 +38,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
+  # unlock gnome keyring
+  # security.pam.services.sddm.enableGnomeKeyring = true;
   # Set your time zone.
   time.timeZone = "Asia/Taipei";
 
@@ -77,6 +78,7 @@
   # services.xserver.desktopManager.gnome.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   # services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.desktopManager.cinnamon.enable = true;
 
   services.xserver.excludePackages = with pkgs; [ xterm ];
 
@@ -97,6 +99,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -172,7 +175,7 @@
       # transmission
     ];
   };
-
+  # programs.nm-applet.enable = true;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
@@ -200,9 +203,9 @@
     # virtual machine
     # virt-manager
     # virtiofsd
-    #  xfce.thunar
-    #  xfce.thunar-volman
-    #  xfce.thunar-archive-plugin
+    # xfce.thunar
+    # xfce.thunar-volman
+    # xfce.thunar-archive-plugin
   ];
 
   systemd.tmpfiles.rules = [

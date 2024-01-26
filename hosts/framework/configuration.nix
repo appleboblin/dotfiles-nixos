@@ -27,6 +27,17 @@
       fw-ectool
     ];
   };
+  # qmk for linux
+  services.keyd = {
+    enable = true;
+    keyboards.true = {
+      ids = ["*"];
+      settings.main = {
+        leftalt = "leftmeta";
+        leftmeta = "leftalt";
+      };
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

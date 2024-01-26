@@ -14,11 +14,10 @@
         # qt = {
         #     enable = true;
         #     platformTheme = "qt5ct";
-        #     style = "adwaita-dark";
-        #     # theme = {
-        #     #     name = "Nordic";
-        #     #     package = pkgs.nordic;
-        #     # };
+        #     style = {
+        #         name = "Nordic";
+        #         package = pkgs.nordic;
+        #     };
         # };
         # gtk = {
         #     enable = true;

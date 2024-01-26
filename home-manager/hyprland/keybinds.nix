@@ -22,13 +22,13 @@
             # Quit Hyprland
             "$mod ALT, F4, exit"
             # Mode focus
-            "$mod, H, movefocus, l"
+            "$mod, M, movefocus, l"
             "$mod, N, movefocus, d"
             "$mod, E, movefocus, u"
             "$mod, I, movefocus, r"
 
             # Move window
-            "$mod SHIFT, H, movewindow, l"
+            "$mod SHIFT, M, movewindow, l"
             "$mod SHIFT, N, movewindow, d"
             "$mod SHIFT, E, movewindow, u"
             "$mod SHIFT, I, movewindow, r"

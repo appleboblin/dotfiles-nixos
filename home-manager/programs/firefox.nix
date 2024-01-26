@@ -1,7 +1,13 @@
-{pkgs, inputs, ...}: {
+{
+  pkgs, 
+  lib, 
+  inputs, 
+  ...
+}: {
   config = {
       programs.firefox = {
         enable = true;
+        # home.file.".mozilla/firefox/appleboblin/search.json.mozlz4".force = lib.mkForce true;
         package=pkgs.firefox.override {cfg.enableTridactyNative = true;};
         profiles."appleboblin" = {
         isDefault = true;

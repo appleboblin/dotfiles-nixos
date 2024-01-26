@@ -12,11 +12,12 @@
                 follow = "none";
 
                 # Geometry
-                width = 300;
-                height = 300;
-                origin = "top-right";
+                # width = 300;
+                # height = 300;
+                # origin = "top-right";
+                geometry = "450x5-10+0";
                 # offset = "3x23";
-                # scale = 2;
+                scale = 0;
                 notification_limit = 0;
 
                 # Progress bar
@@ -29,7 +30,7 @@
                 indicate_hidden = "yes";
                 transparency = 0;
                 separator_height = 0;
-                # padding = 8;
+                padding = 8;
                 horizontal_padding = 8;
                 text_icon_padding = 0;
                 frame_width = 3;
@@ -40,6 +41,7 @@
                 sort = "yes";
 
                 # Text
+                font = "MesloLGS Nerd Font 12";
                 line_height = 0;
                 markup = "full";
                 format = "<b>%s</b>\n%b";
@@ -88,6 +90,12 @@
             };
 
             urgency_low = {
+                background = "#2E3440FF";
+                foreground = "#E5E0F0FF";
+                timeout = 10;
+            };
+
+            urgency_normal = {
                 background = "#2E3440FF";
                 foreground = "#E5E0F0FF";
                 timeout = 10;

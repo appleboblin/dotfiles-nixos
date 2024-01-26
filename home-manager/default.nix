@@ -123,4 +123,7 @@
     # git
     programs.git.userEmail = "appleboblin@proton.me";
     programs.git.userName = user;
+
+    # networkmanager remember password
+    # services.gnome-keyring.enable = true;
 }

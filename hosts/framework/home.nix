@@ -22,7 +22,7 @@
                 ];
                 modules-left = [ "hyprland/workspaces" ];
                 modules-center = [ "hyprland/window" ];
-                modules-right = [ "pulseaudio" "tray" "custom/wifi" "network" "battery" "clock" ];
+                modules-right = [ "tray" "pulseaudio" "custom/wifi" "network" "battery" "clock" ];
 
                 "wlr/workspaces" = {
                     format = "{name}";
@@ -80,11 +80,19 @@
                     format-disconnected = "Disconnected";
                     format-alt = "{ifname}: {ipaddr}/{cidr}";
                 };
-                "custom/wifi" = {
-                    format = " ";
-                    on-click = "systemsettings5";
-                };
+                # "custom/wifi" = {
+                #     format = " ";
+                #     on-click = "nmtui";
+                # };
             }
+        ];
+    };
+
+    # hyprland config
+    wayland.windowManager.hyprland = {
+        settings.exec-once = [
+            # "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
+            # "nm-applet --indicator & disown"
         ];
     };
 }

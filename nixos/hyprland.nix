@@ -17,6 +17,12 @@
         enable = true;
     };
 
+    # enable kwallet
+    # security.pam.services.hyprland = {
+    #     name = "kwallet";
+    #     enableKwallet = true;
+    # };
+    
     # Hint electron apps to use wayland
     environment.sessionVariables = lib.mkIf config.programs.hyprland.enable {
         NIXOS_OZONE_WL = "1";
