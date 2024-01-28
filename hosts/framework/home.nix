@@ -42,7 +42,7 @@
                     format = "󰕾 {volume}%";
                     # format-bluetooth = "{volume}% {icon} {format_source}";
                     # format-bluetooth-muted = " {icon} {format_source}";
-                    # format-muted = " {format_source}";
+                    format-muted = "󰝟 {format_source}";
                     # format-source = "{volume}% ";
                     # format-source-muted = "";
                     # format-icons = {
@@ -54,7 +54,8 @@
                     #     car = "";
                     #     default = ["" "" ""];
                     # };
-                    on-click = "pavucontrol";
+                    on-click = "${lib.getExe pkgs.pamixer} -t";
+                    on-click-right = "pavucontrol";
                 };
                 "tray" = {
                     spacing = 10;
@@ -90,9 +91,11 @@
 
     # hyprland config
     wayland.windowManager.hyprland = {
-        settings.exec-once = [
-            # "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
-            # "nm-applet --indicator & disown"
-        ];
+        settings = {
+            exec-once = [
+                # "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
+                # "nm-applet --indicator & disown"
+            ];
+        };
     };
 }

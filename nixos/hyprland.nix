@@ -17,11 +17,6 @@
         enable = true;
     };
 
-    # enable kwallet
-    # security.pam.services.hyprland = {
-    #     name = "kwallet";
-    #     enableKwallet = true;
-    # };
     
     # Hint electron apps to use wayland
     environment.sessionVariables = lib.mkIf config.programs.hyprland.enable {
@@ -42,15 +37,27 @@
         enable = true;
     };
 
+    # Enable swaylock
+    hm.programs.swaylock = lib.mkIf config.programs.hyprland.enable {
+        enable = true;
+    };
+
+    # locking with swaylock
+    security.pam.services.swaylock = lib.mkIf config.programs.hyprland.enable {
+        text = "auth include login";
+    };
+
     # Enable notification
     hm.services.dunst = lib.mkIf config.programs.hyprland.enable {
         enable = true;
     };
 
-    # Wallpaper
+    # Wallpaper, brightness
     users.users.appleboblin = {
         packages = with pkgs; lib.mkIf config.programs.hyprland.enable[
         hyprpaper
+        # brightnessctl
+        playerctl
         ];
     };
 
