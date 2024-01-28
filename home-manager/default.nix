@@ -121,9 +121,27 @@
     programs.home-manager.enable = true;
 
     # git
-    programs.git.userEmail = "appleboblin@proton.me";
-    programs.git.userName = user;
-
+    # programs.git.userEmail = "appleboblin@proton.me";
+    # programs.git.userName = user;
+    programs.git = {
+        enable = true;
+        includes = [
+        { # personal
+            condition = "gitdir:~/";
+            contents.user = {
+            email = "appleboblin@proton.me";
+            name = user;
+            };
+        }
+        # { # work
+        #     condition = "gitdir:~/Work/";
+        #     contents.user = {
+        #     email = "work@email.com";
+        #     name = "My Name";
+        #     };
+        # }
+        ];
+    };
     # networkmanager remember password
     # services.gnome-keyring.enable = true;
 }
