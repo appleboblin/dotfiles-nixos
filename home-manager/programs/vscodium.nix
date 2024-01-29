@@ -6,7 +6,6 @@
       extensions = with pkgs.vscode-extensions; [
         arcticicestudio.nord-visual-studio-code
         bbenoist.nix
-        njpwerner.autodocstring
         editorconfig.editorconfig
         donjayamanne.githistory
         codezombiech.gitignore
@@ -15,6 +14,7 @@
         ms-python.python
         ms-python.vscode-pylance
         oderwat.indent-rainbow
+        naumovs.color-highlight
         pkief.material-product-icons
       ];
       userSettings = {

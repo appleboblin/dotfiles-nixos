@@ -227,6 +227,16 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # default browser
+  # environment.sessionVariables.DEFAULT_BROWSER = "${lib.getExe pkgs.firefox}";
+  # default stuff
+  # xdg.mime.defaultApplications = {
+  #   "text/html" = "firefox.desktop";
+  #   "x-scheme-handler/http" = "firefox.desktop";
+  #   "x-scheme-handler/https" = "firefox.desktop";
+  #   "x-scheme-handler/about" = "firefox.desktop";
+  #   "x-scheme-handler/unknown" = "firefox.desktop";
+  # };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

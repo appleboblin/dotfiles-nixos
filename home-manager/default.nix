@@ -18,6 +18,16 @@
         ./hyprland
     ];
 
+    # default stuff
+    # home.sessionVariables.BROWSER = "${lib.getExe pkgs.firefox}";
+    xdg.mimeApps.defaultApplications = {
+      "application/xhtml+xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+      "text/html" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+      "text/xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+      "x-scheme-handler/ftp" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+      "x-scheme-handler/http" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+      "x-scheme-handler/https" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+    };
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
     # introduces backwards incompatible changes.
@@ -112,9 +122,9 @@
     #  /etc/profiles/per-user/appleboblin/etc/profile.d/hm-session-vars.sh
     #
     home.sessionVariables = {
-        EDITOR = "neovim";
-        BROWSER = "firefox";
-        TERMINAL = "kitty";
+        EDITOR = "${lib.getExe pkgs.neovim}";
+        BROWSER = "${lib.getExe pkgs.firefox}";
+        TERMINAL = "${lib.getExe pkgs.kitty}";
     };
 
     # Let Home Manager install and manage itself.
