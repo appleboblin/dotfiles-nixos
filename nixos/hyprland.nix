@@ -47,6 +47,11 @@
         text = "auth include login";
     };
 
+    # Enable auto lock
+    hm.services.swayidle = lib.mkIf config.programs.hyprland.enable {
+        enable = true;
+    };
+
     # Enable notification
     hm.services.dunst = lib.mkIf config.programs.hyprland.enable {
         enable = true;

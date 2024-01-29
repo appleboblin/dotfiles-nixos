@@ -11,5 +11,6 @@
         ./gtk.nix
         ./dunst.nix
         ./nixvim.nix
+        ./rofi.nix
     ];
 }

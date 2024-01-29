@@ -14,6 +14,7 @@
         ./windowrule.nix
         ./bar.nix
         ./lock.nix
+        ./swayidle.nix
     ];
     
     # home = lib.mkIf wayland.windowManager.hyprland.enable {

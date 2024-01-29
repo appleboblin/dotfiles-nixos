@@ -203,9 +203,9 @@
     # virtual machine
     # virt-manager
     # virtiofsd
-    # xfce.thunar
-    # xfce.thunar-volman
-    # xfce.thunar-archive-plugin
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-archive-plugin
   ];
 
   systemd.tmpfiles.rules = [
