@@ -28,7 +28,7 @@
     };
     gc = {
       automatic = true;
-      dates = "weekely";
+      dates = "daily";
       options = "--delete-older-than 7d";
     };
   };
@@ -138,6 +138,7 @@
       # librewolf
       # brave
       # chromium
+      floorp
 
       # # Programming
       # vscodium

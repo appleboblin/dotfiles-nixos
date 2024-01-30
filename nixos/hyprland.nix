@@ -30,8 +30,6 @@
         XDG_SESSION_TYPE = "wayland";
         GTK_USE_PORTAL = "1";
         NIXOS_XDG_OPEN_USE_PORTAL = "1";
-        GDK_BACKEND = "wayland.x11";
-        QT_QPA_PLATFORM = "wayland;xcb";
     };
 
     # Enable bar

@@ -150,9 +150,13 @@
                     "wl-paste --type image --watch cliphist store"
                     # "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
                     # "nm-applet --indicator"
+
                     # Desktop dependency
                     "hyprpaper & waybar"
                     "webcord & thunderbird & kitty ncspot & kitty --class scratchpad & obsidian"
+                    
+                    # Default browser fix
+                    "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
                 ];
             };
         };
