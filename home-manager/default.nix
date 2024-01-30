@@ -20,14 +20,36 @@
 
     # default stuff
     # home.sessionVariables.BROWSER = "${lib.getExe pkgs.firefox}";
-    xdg.mimeApps.defaultApplications = {
-        "application/xhtml+xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-        "text/html" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-        "text/xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-        "x-scheme-handler/ftp" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-        "x-scheme-handler/http" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-        "x-scheme-handler/https" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+    # xdg.mimeApps = {
+    #     enable = true;
+    #     defaultApplications = {
+    #         # "application/xhtml+xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+    #         # "text/html" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+    #         # "text/xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+    #         # "x-scheme-handler/ftp" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+    #         # "x-scheme-handler/http" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+    #         # "x-scheme-handler/https" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+    #         "application/xhtml+xml" = "firefox.desktop";
+    #         "text/html" = "firefox.desktop";
+    #         "text/xml" = "firefox.desktop";
+    #         "x-scheme-handler/ftp" = "firefox.desktop";
+    #         "x-scheme-handler/http" = "firefox.desktop";
+    #         "x-scheme-handler/https" = "firefox.desktop";
+    #     };
+    # };
+
+    xdg.mimeApps = {
+        enable                              =  true;
+        defaultApplications = {
+            "default-web-browser"           = [ "firefox.desktop" ];
+            "text/html"                     = [ "firefox.desktop" ];
+            "x-scheme-handler/http"         = [ "firefox.desktop" ];
+            "x-scheme-handler/https"        = [ "firefox.desktop" ];
+            "x-scheme-handler/about"        = [ "firefox.desktop" ];
+            "x-scheme-handler/unknown"      = [ "firefox.desktop" ];
+        };
     };
+
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
     # introduces backwards incompatible changes.
@@ -44,7 +66,7 @@
     home.packages = with pkgs; [
         # Browser
         # firefox
-        librewolf
+        # librewolf
         brave
         chromium
 

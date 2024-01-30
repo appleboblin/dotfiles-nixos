@@ -10,10 +10,19 @@
     wayland.windowManager.hyprland.settings = {
         # press and hold
         binde = [
+            # Adjust volume
             ", XF86AudioRaiseVolume, exec, ${lib.getExe pkgs.pamixer} -i 5"
             ", XF86AudioLowerVolume, exec, ${lib.getExe pkgs.pamixer} -d 5"
+
+            # Adjust screen brightness
             ", XF86MonBrightnessUp, exec, ${lib.getExe pkgs.brightnessctl} set 5%+"
             ", XF86MonBrightnessDown, exec, ${lib.getExe pkgs.brightnessctl} set 5%-"
+
+            # Resize window
+            "$mod SHIFT, right, resizeactive, 10 0"
+            "$mod SHIFT, left, resizeactive, -10 0"
+            "$mod SHIFT, up, resizeactive, 0 -10"
+            "$mod SHIFT, down, resizeactive, 0 10"
         ];
 
         # Laptop lid
