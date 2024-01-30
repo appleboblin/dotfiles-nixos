@@ -7,6 +7,7 @@
   lib,
   inputs,
   user,
+  host,
   ...
 }: {
   imports = [];
@@ -98,7 +99,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
   
   # Enable sound with pipewire.
   sound.enable = true;
@@ -130,7 +130,7 @@
   users.users.appleboblin = {
     isNormalUser = true;
     description = "appleboblin";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "libvirtd"];
     # shell = pkgs.zsh;
     packages = with pkgs; [
       # # Browser
@@ -173,6 +173,7 @@
       # filezilla
       # inkscape
       # transmission
+      remmina
     ];
   };
   # programs.nm-applet.enable = true;
@@ -203,15 +204,25 @@
     # virtual machine
     # virt-manager
     # virtiofsd
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
+    # xfce.thunar
+    # xfce.thunar-volman
+    # xfce.thunar-archive-plugin
   ];
 
   systemd.tmpfiles.rules = [
     "d /home/${user}/github 0770 ${user} users -"
   ];
 
+  # Thunar
+  programs.thunar.enable = true;
+  programs.xfconf.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+  ];
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -226,6 +237,14 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # QEMU/KVM
+  virtualisation.libvirtd = {
+    enable = host != "vm";
+  };
+  programs.virt-manager = {
+    enable = host != "vm";
+  };
 
   # default browser
   # environment.sessionVariables.DEFAULT_BROWSER = "${lib.getExe pkgs.firefox}";

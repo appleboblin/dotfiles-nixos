@@ -21,12 +21,12 @@
     # default stuff
     # home.sessionVariables.BROWSER = "${lib.getExe pkgs.firefox}";
     xdg.mimeApps.defaultApplications = {
-      "application/xhtml+xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-      "text/html" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-      "text/xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-      "x-scheme-handler/ftp" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-      "x-scheme-handler/http" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-      "x-scheme-handler/https" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+        "application/xhtml+xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+        "text/html" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+        "text/xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+        "x-scheme-handler/ftp" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+        "x-scheme-handler/http" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
+        "x-scheme-handler/https" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
     };
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
@@ -81,6 +81,7 @@
         filezilla
         inkscape
         libtransmission
+        # quickemu
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -129,6 +130,14 @@
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
+
+    # KVM
+    dconf.settings = lib.mkIf (host != "vm") {
+    "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+    };
+    };
 
     # git
     # programs.git.userEmail = "appleboblin@proton.me";
