@@ -30,9 +30,9 @@
             ",switch:Lid Switch, exec, swaylock"
         ];
 
-        # rofi
+        # Activate when release
         bindr = [
-            "$mod, Space, exec, pkill rofi || ${lib.getExe pkgs.rofi} -show drun"
+            
         ];
         bind = [
             # Media keys
@@ -48,6 +48,15 @@
 
             # Switch input
             "$mod ALT, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
+
+            # toggle Menu
+            "CTRL SHIFT, Delete, exec, pkill rofi || rofi-power-menu"
+            "$mod, V, exec, pkill rofi || cliphist list | rofi -dmenu -p 'Select to copy' | cliphist decode | wl-copy" # Select from history
+            "$mod SHIFT, V, exec, pkill rofi || cliphist list | rofi -dmenu -p 'Select to delete' | cliphist delete" # Select history to delete
+            "$mod, Space, exec, pkill rofi || ${lib.getExe pkgs.rofi} -show drun"
+
+            # Delete last entry from cliphist history
+            "$mod, Delete, exec, cliphist list | cliphist delete "
 
             # Quit Hyprland
             "$mod ALT, F4, exit"

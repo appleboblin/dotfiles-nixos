@@ -201,6 +201,8 @@
     htop
     eza
     neofetch
+    procps
+    bash-completion
 
     # virtual machine
     # virt-manager

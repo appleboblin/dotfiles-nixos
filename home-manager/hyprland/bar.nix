@@ -73,6 +73,15 @@
         color: #a3be8c;
         }
 
+        #battery.warning:not(.charging) {
+        color: #ebcb8b;
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        }
+
         #battery.critical:not(.charging) {
         color: #bf616a;
         animation-name: blink;

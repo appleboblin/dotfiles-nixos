@@ -76,6 +76,7 @@
 
         # Terminal
         # kitty
+        alacritty
         rar
 
         # Window Manager

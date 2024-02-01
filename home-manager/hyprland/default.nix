@@ -146,8 +146,8 @@
 
                 exec-once = [
                     # clipboard manager
-                    "wl-paste --type text --watch cliphist store"
-                    "wl-paste --type image --watch cliphist store"
+                    "wl-paste --type text --watch cliphist store --max-len 50"
+                    "wl-paste --type image --watch cliphist store --max-len 10"
                     # "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
                     # "nm-applet --indicator"
 

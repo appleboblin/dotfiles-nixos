@@ -6,6 +6,11 @@
     ...
 }: let
     inherit (config.lib.formats.rasi) mkLiteral;
+    rofi-power-menu = pkgs.writeShellApplication {
+        name = "rofi-power-menu";
+        runtimeInputs = with pkgs; [ rofi ];
+        text = lib.readFile ./rofi-power-menu.sh;
+    };
 in {
     programs.rofi = {
         enable = host != "vm";
@@ -41,6 +46,8 @@ in {
                 fg = mkLiteral "@nord9";
                 backlight = mkLiteral "#ccffeedd";
                 background-color = mkLiteral "transparent";
+
+                background-alt = mkLiteral "#383e4a";
                 
                 highlight = mkLiteral "underline bold #eceff4";
 
@@ -116,4 +123,5 @@ in {
             };
         };
     };
+    home.packages = [ rofi-power-menu ];
 }
