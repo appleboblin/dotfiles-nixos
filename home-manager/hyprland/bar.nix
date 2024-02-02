@@ -7,7 +7,7 @@
     programs.waybar = {
         # settings = {
         # };
-
+        # Only style of bar, define individual bars in each host
         style =
         ''
         * {

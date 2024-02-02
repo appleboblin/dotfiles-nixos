@@ -71,6 +71,7 @@
                     touchpad = {
                         natural_scroll = true;
                         disable_while_typing = true;
+                        scroll_factor = 0.7;
                     };
                 };
 
@@ -82,6 +83,7 @@
                 gestures = lib.mkIf isLaptop {
                     # See https://wiki.hyprland.org/Configuring/Variables/ for more
                     workspace_swipe = true;
+                    workspace_swipe_fingers = 4;
                 };
 
                 misc = {

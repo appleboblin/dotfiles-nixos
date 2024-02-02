@@ -22,13 +22,18 @@
                 ];
                 modules-left = [ "hyprland/workspaces" ];
                 modules-center = [ "hyprland/window" ];
-                modules-right = [ "tray" "pulseaudio" "custom/wifi" "network" "battery" "clock" ];
+                modules-right = [ "tray" "idle_inhibitor" "pulseaudio" "custom/wifi" "network" "battery" "clock" ];
 
                 "wlr/workspaces" = {
                     format = "{name}";
                     disable-scroll-wraparound = true;
                     on-click = "activate";
                     sort-by-number = true;
+                };
+                "hyprland/window" = {
+                        max-length = 50;
+                        format = "{}";
+                        separate-outputs = true;
                 };
                 "clock" = {
                     format = "{:%H:%M}";
@@ -81,10 +86,17 @@
                     format-disconnected = "Disconnected";
                     format-alt = "{ifname}: {ipaddr}/{cidr}";
                 };
-                # "custom/wifi" = {
-                #     format = " ";
-                #     on-click = "nmtui";
-                # };
+                "idle_inhibitor" = {
+                    format = "{icon}";
+                    format-icons = {
+                        activated = "󰅶 ";
+                        deactivated = "󰾪 ";
+                    };
+                };
+                "custom/wifi" = {
+                    format = " ";
+                    on-click = "kitty nmtui";
+                };
             }
         ];
     };
