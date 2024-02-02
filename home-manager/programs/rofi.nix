@@ -8,7 +8,7 @@
     inherit (config.lib.formats.rasi) mkLiteral;
     rofi-power-menu = pkgs.writeShellApplication {
         name = "rofi-power-menu";
-        runtimeInputs = with pkgs; [ rofi ];
+        runtimeInputs = with pkgs; [ rofi procps ];
         text = lib.readFile ./rofi-power-menu.sh;
     };
 in {
