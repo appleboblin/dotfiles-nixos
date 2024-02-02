@@ -37,18 +37,28 @@
     #         "x-scheme-handler/https" = "firefox.desktop";
     #     };
     # };
-
-    xdg.mimeApps = {
-        enable                              =  true;
-        defaultApplications = {
-            "default-web-browser"           = [ "firefox.desktop" ];
-            "text/html"                     = [ "firefox.desktop" ];
-            "x-scheme-handler/http"         = [ "firefox.desktop" ];
-            "x-scheme-handler/https"        = [ "firefox.desktop" ];
-            "x-scheme-handler/about"        = [ "firefox.desktop" ];
-            "x-scheme-handler/unknown"      = [ "firefox.desktop" ];
+    xdg = {
+        mimeApps = {
+            enable                              =  true;
+            defaultApplications = {
+                "default-web-browser"           = [ "firefox.desktop" ];
+                "text/html"                     = [ "firefox.desktop" ];
+                "x-scheme-handler/http"         = [ "firefox.desktop" ];
+                "x-scheme-handler/https"        = [ "firefox.desktop" ];
+                "x-scheme-handler/about"        = [ "firefox.desktop" ];
+                "x-scheme-handler/unknown"      = [ "firefox.desktop" ];
+            };
+        };
+        userDirs = {
+            enable = true;
+            createDirectories = true;
+            extraConfig = {
+                XDG_GITHUB_DIR = "${config.home.homeDirectory}/github";
+                XDG_SCREENSHOT_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
+            };
         };
     };
+
 
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
@@ -69,6 +79,7 @@
         # librewolf
         brave
         chromium
+        floorp
 
         # Programming
         # vscodium
@@ -83,17 +94,14 @@
         rofi
         bluez
         pavucontrol
+        grimblast
+        xfce.ristretto
 
         # Daily
         thunderbird
-        protonmail-bridge
-        protonvpn-gui
-        obsidian
         libreoffice
         vlc
         ncspot
-        pcloud
-        obsidian
 
         # Other
         webcord
@@ -105,6 +113,18 @@
         inkscape
         libtransmission
         # quickemu
+        remmina
+        gimp
+
+        (assert (lib.assertMsg (obsidian.version != "1.4.16")
+            "obsidian: has wayland crash been fixed?");
+            obsidian.override {
+                electron = electron_24.overrideAttrs (_: {
+                preFixup =
+                    "patchelf --add-needed ${libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
+                meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
+                });
+            })
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -124,8 +144,11 @@
 
     # home.directories = {
     #     extra = [
+    #     # {
+    #     #     path = "/home/${user}/github";
+    #     # }
     #     {
-    #         path = "/home/${user}/github";
+    #         path = "/home/${user}/Pictures/Screenshot";
     #     }
     #     ];
     # };
@@ -184,6 +207,7 @@
         # }
         ];
     };
-    # networkmanager remember password
+    # enable keyring daemon protonmail-bridge
     # services.gnome-keyring.enable = true;
+
 }

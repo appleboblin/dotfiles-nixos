@@ -46,6 +46,11 @@
             "ALT, SPACE, togglespecialworkspace, scratchpad"
             "ALT, S, togglespecialworkspace, ncspot"
 
+            # Screenshot
+            "$mod SHIFT, S, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"
+            ", Print, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"
+
+
             # Switch input
             "$mod ALT, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
 

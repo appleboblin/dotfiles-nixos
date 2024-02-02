@@ -132,55 +132,22 @@
     description = "appleboblin";
     extraGroups = ["networkmanager" "wheel" "libvirtd"];
     # shell = pkgs.zsh;
-    packages = with pkgs; [
-      # # Browser
-      # # firefox
-      # librewolf
-      # brave
-      # chromium
-      floorp
-
-      # # Programming
-      # vscodium
-      # python3
-
-      # # Terminal
-      # kitty
-      # eza
-      # zsh
-      # htop
-
-      # # Window Manager
-      # rofi
-      # bluez
-
-      # # Daily
-      # thunderbird
-      # protonmail-bridge
-      # protonvpn-gui
-      # obsidian
-      # libreoffice
-      # vlc
-      # ncspot
-      # pcloud
-      # obsidian
-
-      # # Other
-      # webcord
-      # betaflight-configurator
-      # prusa-slicer
-      # openscad
-      # freecad
-      # filezilla
-      # inkscape
-      # transmission
-      remmina
+    packages = with pkgs; lib.mkIf ( host != "vm" )[
+      # Broken apps
+      protonmail-bridge
+      protonvpn-gui
+      pcloud
+      # gthumb
+      # (gthumb.overrideAttrs (o: {
+      #     buildInputs = o.buildInputs ++ [gvfs];
+      # }))
     ];
   };
   # programs.nm-applet.enable = true;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
+    "electron-24.8.0"
   ];
   nixpkgs.overlays = [
     inputs.nur.overlay
@@ -212,9 +179,10 @@
     # xfce.thunar-archive-plugin
   ];
 
-  systemd.tmpfiles.rules = [
-    "d /home/${user}/github 0770 ${user} users -"
-  ];
+  # Better way in home-manager
+  # systemd.tmpfiles.rules = [
+  #   "d /home/${user}/github 0770 ${user} users -"
+  # ];
 
   # Thunar
   programs.thunar.enable = true;
@@ -225,7 +193,6 @@
   ];
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
-  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
