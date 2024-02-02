@@ -85,8 +85,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "colemak_dh_ortho";
+    xkb = {
+      layout = "us";
+      variant = "colemak_dh_ortho";
+    };
   };
 
   i18n.inputMethod = {
