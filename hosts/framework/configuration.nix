@@ -71,7 +71,7 @@
 
       exec-once = [
           # brightness on startup
-          "${lib.getExe pkgs.brightnessctl} s 25%"
+          "${lib.getExe pkgs.brightnessctl} s 40%"
       ];
   };
 }

@@ -12,5 +12,6 @@
         ./dunst.nix
         ./nixvim.nix
         ./rofi.nix
+        ./pcloud.nix
     ];
 }

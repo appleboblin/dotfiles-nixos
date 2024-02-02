@@ -138,11 +138,6 @@
       # Broken apps
       protonmail-bridge
       protonvpn-gui
-      pcloud
-      # gthumb
-      # (gthumb.overrideAttrs (o: {
-      #     buildInputs = o.buildInputs ++ [gvfs];
-      # }))
     ];
   };
   # programs.nm-applet.enable = true;
