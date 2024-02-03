@@ -45,6 +45,8 @@
             "$mod, W, killactive"
             "ALT, SPACE, togglespecialworkspace, scratchpad"
             "ALT, S, togglespecialworkspace, music"
+            "$mod SHIFT CTRL, SPACE, exec, hyprctl switchxkblayout wlr_virtual_keyboard_v1 next"
+            "$mod SHIFT CTRL, Z, exec, hyprctl switchxkblayout keyd-virtual-keyboard next"
 
             # Screenshot
             "$mod SHIFT, S, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"

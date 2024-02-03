@@ -61,8 +61,8 @@
                 env = "XCURSOR_SIZE,24";
 
                 input = {
-                    kb_layout = "us,us";
-                    kb_variant = "colemak_dh_ortho,";
+                    kb_layout = "us";
+                    # kb_variant = "colemak_dh_ortho";
                     follow_mouse = 1;
 
                     numlock_by_default = true;
