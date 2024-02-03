@@ -155,7 +155,7 @@
 
                     # Desktop dependency
                     "hyprpaper & waybar"
-                    "webcord & thunderbird & spotify & kitty --class scratchpad & obsidian"
+                    "webcord & spotify & kitty --class scratchpad & obsidian & pcloud"
                     # kitty ncspot
                     
                     # Default browser fix

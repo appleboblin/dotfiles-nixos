@@ -12,13 +12,13 @@
                 follow = "none";
 
                 # Geometry
-                # width = 300;
-                # height = 300;
-                # origin = "top-right";
-                geometry = "450x5-10+0";
-                # offset = "3x23";
-                scale = 0;
-                notification_limit = 0;
+                width = 450;
+                height = 300;
+                origin = "top-right";
+                # geometry = "450x5-0+0";
+                offset = "0x0";
+                # scale = 0;
+                notification_limit = 5;
 
                 # Progress bar
                 progress_bar = true;
@@ -27,7 +27,7 @@
                 progress_bar_min_width = 150;
                 progress_bar_max_width = 300;
 
-                indicate_hidden = "yes";
+                indicate_hidden = true;
                 transparency = 0;
                 separator_height = 0;
                 padding = 8;
@@ -38,7 +38,7 @@
                 frame_color = "#81A1C1FF";
                 gap_size = 0;
                 separator_color = "frame";
-                sort = "yes";
+                sort = true;
 
                 # Text
                 font = "MesloLGS Nerd Font 12";
@@ -49,10 +49,10 @@
                 vertical_alignment = "center";
                 show_age_threshold = 60;
                 ellipsize = "middle";
-                ignore_newline = "no";
+                ignore_newline = false;
                 stack_duplicates = true;
                 hide_duplicate_count = false;
-                show_indicators = "yes";
+                show_indicators = true;
 
                 # Icons
                 enable_recursive_icon_lookup = true;
@@ -62,7 +62,7 @@
                 max_icon_size = 128;
 
                 # History
-                sticky_history = "yes";
+                sticky_history = true;
                 history_length = 20;
 
                 # Misc/Advanced

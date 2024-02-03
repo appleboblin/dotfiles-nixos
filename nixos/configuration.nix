@@ -163,6 +163,7 @@
     gzip
     git
     htop
+    btop
     eza
     neofetch
     procps
