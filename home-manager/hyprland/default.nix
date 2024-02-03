@@ -155,7 +155,8 @@
 
                     # Desktop dependency
                     "hyprpaper & waybar"
-                    "webcord & thunderbird & kitty ncspot & kitty --class scratchpad & obsidian"
+                    "webcord & thunderbird & spotify & kitty --class scratchpad & obsidian"
+                    # kitty ncspot
                     
                     # Default browser fix
                     "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"

@@ -11,6 +11,11 @@
         runtimeInputs = with pkgs; [ rofi procps ];
         text = lib.readFile ./rofi-power-menu.sh;
     };
+    rofi-wifi-menu = pkgs.writeShellApplication {
+        name = "rofi-wifi-menu";
+        runtimeInputs = with pkgs; [ rofi libnotify networkmanager ];
+        text = lib.readFile ./rofi-wifi-menu.sh;
+    };
 in {
     programs.rofi = {
         enable = host != "vm";
@@ -123,5 +128,13 @@ in {
             };
         };
     };
-    home.packages = [ rofi-power-menu ];
+    home.packages = [ rofi-power-menu rofi-wifi-menu];
+
+    # xdg.configFile = {
+    #     "rofi/rofi-wifi-menu" = {
+    #     # https://github.com/ericmurphyxyz/rofi-wifi-menu/blob/master/rofi-wifi-menu.sh
+    #     source = ./rofi-wifi-menu.sh;
+    #     executable = true;
+    #     };
+    # };
 }

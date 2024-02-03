@@ -14,14 +14,15 @@
             "idleinhibit fullscreen, class:^(firefox)$"
             "idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$"
             "idleinhibit focus,mpv"
-            "workspace 9 silent, WebCord"
+            # "workspace 9 silent, WebCord"
         ];
 
         windowrulev2 = [
-            "workspace special:ncspot silent, class:(kitty),title:(ncspot)"
+            # "workspace special:ncspot silent, class:(kitty),title:(ncspot)"
+            "workspace special:music silent, title:(Spotify Premium)"
             "workspace special:scratchpad silent, class:(scratchpad)"
-            "workspace 1 silent, class(obsidian), title:(Obsidian)(.*)$"
-            "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
+            # "workspace 1 silent, class(obsidian), title:(Obsidian)(.*)$"
+            # "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
         ];
 
     };

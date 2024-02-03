@@ -44,7 +44,7 @@
             "$mod, Return, exec, kitty"
             "$mod, W, killactive"
             "ALT, SPACE, togglespecialworkspace, scratchpad"
-            "ALT, S, togglespecialworkspace, ncspot"
+            "ALT, S, togglespecialworkspace, music"
 
             # Screenshot
             "$mod SHIFT, S, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"

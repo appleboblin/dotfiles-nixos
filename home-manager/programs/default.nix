@@ -13,5 +13,6 @@
         ./nixvim.nix
         ./rofi.nix
         ./pcloud.nix
+        ./spicetify.nix
     ];
 }

@@ -22,7 +22,7 @@
                 ];
                 modules-left = [ "hyprland/workspaces" ];
                 modules-center = [ "hyprland/window" ];
-                modules-right = [ "tray" "idle_inhibitor" "pulseaudio" "custom/wifi" "network" "battery" "clock" ];
+                modules-right = [ "tray" "idle_inhibitor" "pulseaudio" "network" "battery" "clock" ];
 
                 "wlr/workspaces" = {
                     format = "{name}";
@@ -79,12 +79,15 @@
                 };
                 "network" = {
                     #  "interface": "wlp2*", // (Optional) To force the use of this interface
-                    format-wifi = "{essid}";
+                    format = "󰖩 ";
+                    format-wifi = "󰖩 {essid}";
                     format-ethernet = "{ipaddr}/{cidr}";
-                    tooltip-format = "{ifname} via {gwaddr}";
+                    tooltip-format = "{ifname} via {gwaddr}/{cidr}";
                     format-linked = "{ifname} (No IP)";
-                    format-disconnected = "Disconnected";
-                    format-alt = "{ifname}: {ipaddr}/{cidr}";
+                    format-disconnected = "󰖪 Disconnected";
+                    # format-alt = "{ifname}: {ipaddr}/{cidr}";
+                    on-click = "rofi-wifi-menu";
+                    on-click-right = "${lib.getExe pkgs.kitty} nmtui";
                 };
                 "idle_inhibitor" = {
                     format = "{icon}";
@@ -93,10 +96,11 @@
                         deactivated = "󰾪 ";
                     };
                 };
-                "custom/wifi" = {
-                    format = " ";
-                    on-click = "kitty nmtui";
-                };
+                # "custom/wifi" = {
+                #     format = " ";
+                #     on-click = "${config.xdg.configHome}/rofi/rofi-wifi-menu";
+                #     on-click-right = "${lib.getExe pkgs.kitty} nmtui";
+                # };
             }
         ];
     };
@@ -107,6 +111,15 @@
             exec-once = [
                 # "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
                 # "nm-applet --indicator & disown"
+            ];
+
+            windowrule = [
+                "workspace 9 silent, WebCord"
+            ];
+
+            windowrulev2 = [
+                "workspace 8 silent, class(obsidian), title:(Obsidian)(.*)$"
+                "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
             ];
         };
     };

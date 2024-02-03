@@ -101,7 +101,7 @@
         thunderbird
         libreoffice
         vlc
-        ncspot
+        # ncspot
 
         # Other
         webcord
