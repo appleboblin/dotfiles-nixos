@@ -6,6 +6,11 @@
     home,
     ...
 }: {  
+    # swaylock image
+    programs.swaylock.settings = {
+        image = "${./framework_wallpaper.png}";
+    };
+
     # Waybar settings
     programs.waybar = lib.mkIf config.programs.waybar.enable {
         settings = [
@@ -96,11 +101,6 @@
                         deactivated = "󰾪 ";
                     };
                 };
-                # "custom/wifi" = {
-                #     format = " ";
-                #     on-click = "${config.xdg.configHome}/rofi/rofi-wifi-menu";
-                #     on-click-right = "${lib.getExe pkgs.kitty} nmtui";
-                # };
             }
         ];
     };
@@ -114,7 +114,7 @@
             ];
 
             windowrule = [
-                "workspace 9 silent, WebCord"
+                "workspace 9 silent, vesktop"
             ];
 
             windowrulev2 = [

@@ -14,5 +14,6 @@
         ./rofi.nix
         ./pcloud.nix
         ./spicetify.nix
+        ./obs-studio.nix
     ];
 }

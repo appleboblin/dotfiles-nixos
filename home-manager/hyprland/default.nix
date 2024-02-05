@@ -36,13 +36,6 @@
             ];
         };
 
-        # xdg.desktopEntries = {
-        #     hyprland = {
-        #         name = "hyprland";
-        #         exec = "Hyprland";
-        #         type = "Application";
-        #     };
-        # };
 
         xdg.portal = {
             enable = true;
@@ -154,8 +147,8 @@
                     # "nm-applet --indicator"
 
                     # Desktop dependency
-                    "hyprpaper & waybar"
-                    "webcord & spotify & kitty --class scratchpad & obsidian & pcloud"
+                    "hyprpaper & waybar & fcitx5"
+                    "vesktop & spotify & kitty --class scratchpad & obsidian & pcloud"
                     # kitty ncspot
                     
                     # Default browser fix

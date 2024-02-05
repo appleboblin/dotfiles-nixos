@@ -95,16 +95,20 @@
         bluez
         pavucontrol
         grimblast
-        xfce.ristretto
+        # xfce.ristretto
 
         # Daily
         thunderbird
         libreoffice
         vlc
+        # xwaylandvideobridge
         # ncspot
+        # fcitx5
 
         # Other
-        webcord
+        # webcord
+        # discord
+        vesktop
         betaflight-configurator
         prusa-slicer
         openscad
@@ -115,6 +119,7 @@
         # quickemu
         remmina
         gimp
+        qalculate-gtk
 
         (assert (lib.assertMsg (obsidian.version != "1.4.16")
             "obsidian: has wayland crash been fixed?");
@@ -169,9 +174,9 @@
     #  /etc/profiles/per-user/appleboblin/etc/profile.d/hm-session-vars.sh
     #
     home.sessionVariables = {
-        EDITOR = "${lib.getExe pkgs.neovim}";
-        BROWSER = "${lib.getExe pkgs.firefox}";
-        TERMINAL = "${lib.getExe pkgs.kitty}";
+        EDITOR = "neovim";
+        BROWSER = "firefox";
+        TERMINAL = "kitty";
     };
 
     # Let Home Manager install and manage itself.

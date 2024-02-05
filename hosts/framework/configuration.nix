@@ -19,6 +19,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
+  # Set lightdm wallpaper
+  services.xserver.displayManager.lightdm.greeters.gtk.extraConfig = ''
+    font-name = Inter 16
+    background=${./framework_wallpaper.png}
+  '';
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.appleboblin = {
     packages = with pkgs; [
@@ -34,7 +40,7 @@
         main = {
           leftalt = "leftmeta";
           leftmeta = "leftalt";
-          # esc = "layer(esc)";
+
           # Colemak
           s = "r";
           e = "f";
