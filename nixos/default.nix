@@ -10,6 +10,5 @@
         ./fonts.nix
         ./transmission.nix
         ./hyprland.nix
-        ./rofi.nix
     ];
 }
