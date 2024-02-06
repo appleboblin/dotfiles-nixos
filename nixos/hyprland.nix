@@ -37,7 +37,6 @@
         enable = true;
     };
 
-    # Enable swaylock
     hm.programs.swaylock = lib.mkIf config.programs.hyprland.enable {
         enable = true;
     };

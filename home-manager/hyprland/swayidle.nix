@@ -5,7 +5,9 @@
     ...
 }: {
     services.swayidle = {
-        
+        # enable = true;
+        # package = pkgs.swayidle;
+        systemdTarget = "hyprland-session.target";
         events = [
             {
                 event = "before-sleep";
@@ -22,12 +24,16 @@
         ];
         timeouts = [
             {
-                timeout = 600;
+                timeout = 300;
                 command = "${lib.getExe config.programs.swaylock.package} -f";
             }
             {
-                timeout = 1200;
+                timeout = 600;
                 command = "${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms off";
+            }
+            {
+                timeout = 1200;
+                command = "${pkgs.systemd}/bin/systemctl suspend";
             }
         ];
     };
