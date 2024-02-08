@@ -123,6 +123,9 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  # Proton mail and vpn fix
+  # services.passSecretService.enable = true;
   
   # Enable sound with pipewire.
   sound.enable = true;
@@ -164,9 +167,7 @@
     extraGroups = ["networkmanager" "wheel" "libvirtd"];
     # shell = pkgs.zsh;
     packages = with pkgs; lib.mkIf ( host != "vm" )[
-      # Broken apps
-      protonmail-bridge
-      protonvpn-gui
+
     ];
   };
   # programs.nm-applet.enable = true;

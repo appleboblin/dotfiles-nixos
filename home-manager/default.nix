@@ -53,9 +53,9 @@
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
-    # home.packages = with pkgs; lib.mkIf (host != "vm") [
+    home.packages = with pkgs; lib.mkIf (host != "vm") [
 
-    home.packages = with pkgs; [
+    # home.packages = with pkgs; [
         # Browser
         # firefox
         # librewolf
@@ -102,6 +102,10 @@
         remmina
         gimp
         qalculate-gtk
+        # Broken apps
+        # protonmail-bridge
+        # protonvpn-gui
+        # pass
 
         (assert (lib.assertMsg (obsidian.version != "1.4.16")
             "obsidian: has wayland crash been fixed?");
@@ -166,11 +170,17 @@
 
     # KVM
     dconf.settings = lib.mkIf (host != "vm") {
-    "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
+        "org/virt-manager/virt-manager/connections" = {
+            autoconnect = ["qemu:///system"];
+            uris = ["qemu:///system"];
+        };
     };
-    };
+
+    # Proton mail fix
+    # services.pass-secret-service = {
+    #     enable = true;
+    #     package = pkgs.libsecret;
+    # };
 
     # git
     # programs.git.userEmail = "appleboblin@proton.me";

@@ -15,5 +15,6 @@
         ./pcloud.nix
         ./spicetify.nix
         ./obs-studio.nix
+        ./mpv.nix
     ];
 }

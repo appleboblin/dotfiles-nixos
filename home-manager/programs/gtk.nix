@@ -8,7 +8,7 @@
         # disable dconf first use warning
         "ca/desrt/dconf-editor" = {show-warning = false;};
         # set dark theme for gtk 4
-        "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
+        # "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
     };
     gtk = {
         enable = true;
@@ -21,7 +21,7 @@
             package = pkgs.nordic;
         };
         font = {
-            name = "Inter";
+            name = "Inter Regular";
             package = pkgs.inter;
             size = 16;
         };
