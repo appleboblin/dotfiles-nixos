@@ -98,7 +98,7 @@
                     # See https://wiki.hyprland.org/Configuring/Variables/ for more
                     blur = {
                         enabled = true;
-                        size = 3 ;
+                        size = 5 ;
                         passes = 1 ;
                         new_optimizations = true;
                     };
