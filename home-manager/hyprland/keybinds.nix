@@ -65,6 +65,10 @@
             # Delete last entry from cliphist history
             "$mod, Delete, exec, cliphist list | cliphist delete "
 
+            # float and full
+            "$mod, F, togglefloating"
+            "$mod SHIFT, F, fullscreen"
+
             # Quit Hyprland
             "$mod ALT, F4, exit"
             # Mode focus

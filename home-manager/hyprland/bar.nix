@@ -123,7 +123,17 @@
         #custom-powermenu {
         color: #b3616a;
         margin-right: 16px;
-        }  
+        } 
+
+        #bluetooth.off {
+        color: #b3616a;
+        margin-right: 8px;
+        }
+
+        #bluetooth.on {
+        color: #81a1ca;
+        margin-right: 8px;
+        }
         '';
     };
 }

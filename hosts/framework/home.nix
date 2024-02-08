@@ -27,7 +27,7 @@
                 ];
                 modules-left = [ "hyprland/workspaces" ];
                 modules-center = [ "hyprland/window" ];
-                modules-right = [ "tray" "idle_inhibitor" "pulseaudio" "network" "battery" "clock" ];
+                modules-right = [ "tray" "idle_inhibitor" "bluetooth" "pulseaudio" "network" "battery" "clock" ];
 
                 "wlr/workspaces" = {
                     format = "{name}";
@@ -48,13 +48,13 @@
                     interval = 60;
                 };
                 "pulseaudio" = {
-                    # format = "{volume}% {icon} {format_source}";
+                    # format = "{icon} {volume}% {format_source}";
                     format = "󰕾 {volume}%";
-                    # format-bluetooth = "{volume}% {icon} {format_source}";
-                    # format-bluetooth-muted = " {icon} {format_source}";
-                    format-muted = "󰝟 {format_source}";
-                    # format-source = "{volume}% ";
-                    # format-source-muted = "";
+                    # format-bluetooth = "{icon} {volume}% {format_source}";
+                    # format-bluetooth-muted = "󰝟 {icon} {format_source}";
+                    # format-muted = "󰝟 {format_source}";
+                    # format-source = " {volume}%";
+                    # format-source-muted = "󰝟";
                     # format-icons = {
                     #     headphone = "";
                     #     hands-free = "󱠡";
@@ -76,21 +76,23 @@
                         warning =  30;
                         critical = 15;
                     };
+                    interval = 5;
                     format = "{capacity}% {icon}";
                     format-charging = "{capacity}% 󰂄";
-                    format-plugged = "{capacity}% ";
+                    format-plugged = "{capacity}%  ";
                     format-alt = "{time} {icon}";
                     format-icons = ["󰁺" "󰁼" "󰁿" "󰂁" "󰁹"];
                 };
                 "network" = {
                     #  "interface": "wlp2*", // (Optional) To force the use of this interface
-                    format = "󰖩 ";
+                    format = "󰖩 Wifi";
                     format-wifi = "󰖩 {essid}";
-                    format-ethernet = "{ipaddr}/{cidr}";
+                    format-ethernet = "󰈀 {bandwidthTotalBits}";
                     tooltip-format = "{ifname} via {gwaddr}/{cidr}";
                     format-linked = "{ifname} (No IP)";
                     format-disconnected = "󰖪 Disconnected";
                     # format-alt = "{ifname}: {ipaddr}/{cidr}";
+                    interval = 5;
                     on-click = "rofi-wifi-menu";
                     on-click-right = "${lib.getExe pkgs.kitty} nmtui";
                 };
@@ -100,6 +102,18 @@
                         activated = "󰅶 ";
                         deactivated = "󰾪 ";
                     };
+                };
+                "bluetooth" = {
+                    # // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+                    format-on = "󰂯";
+                    format-off = "󰂲";
+                    format-disabled = ""; # an empty format will hide the module
+                    format-connected = "󰂯 {num_connections}";
+                    tooltip-format = "{controller_alias}\t{controller_address}";
+                    tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+                    tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+                    on-click = "bluetoothctl power on";
+                    on-click-right = "bluetoothctl power off";
                 };
             }
         ];

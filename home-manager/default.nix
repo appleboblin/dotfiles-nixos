@@ -19,24 +19,6 @@
     ];
 
     # default stuff
-    # home.sessionVariables.BROWSER = "${lib.getExe pkgs.firefox}";
-    # xdg.mimeApps = {
-    #     enable = true;
-    #     defaultApplications = {
-    #         # "application/xhtml+xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-    #         # "text/html" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-    #         # "text/xml" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-    #         # "x-scheme-handler/ftp" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-    #         # "x-scheme-handler/http" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-    #         # "x-scheme-handler/https" = "${lib.getExe pkgs.firefox}/share/applications/firefox.desktop";
-    #         "application/xhtml+xml" = "firefox.desktop";
-    #         "text/html" = "firefox.desktop";
-    #         "text/xml" = "firefox.desktop";
-    #         "x-scheme-handler/ftp" = "firefox.desktop";
-    #         "x-scheme-handler/http" = "firefox.desktop";
-    #         "x-scheme-handler/https" = "firefox.desktop";
-    #     };
-    # };
     xdg = {
         mimeApps = {
             enable                              =  true;

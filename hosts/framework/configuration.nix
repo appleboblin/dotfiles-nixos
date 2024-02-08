@@ -12,6 +12,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.luks.devices."luks-3bb4afd9-e078-4721-a7d0-74697ab2c4a5".device = "/dev/disk/by-uuid/3bb4afd9-e078-4721-a7d0-74697ab2c4a5";
   
   networking.hostName = host; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -20,10 +21,18 @@
   services.xserver.libinput.enable = true;
 
   # Set lightdm wallpaper
-  services.xserver.displayManager.lightdm.greeters.gtk.extraConfig = ''
-    font-name = Inter 16
-    background=${./framework_wallpaper.png}
-  '';
+  # services.xserver.displayManager.lightdm.greeters.gtk.extraConfig = ''
+  #   font-name = Inter 16
+  #   background=${./framework_wallpaper.png}
+  # '';
+
+  # bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
+  # bluetooth audio
+  # hardware.pulseaudio.enable = true;
+  # hardware.bluetooth.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.appleboblin = {
