@@ -148,7 +148,7 @@
 
                     # Desktop dependency
                     "hyprpaper & waybar & fcitx5"
-                    "vesktop & spotify & kitty --class scratchpad & obsidian & pcloud"
+                    "vesktop & spotify & kitty --class scratchpad & obsidian & pcloud & floorp"
                     # kitty ncspot
                     # "${lib.getExe pkgs.swayidle} -w timeout 300 'swaylock -f' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1200 'systemctl suspend'"
                     # Default browser fix

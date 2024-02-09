@@ -129,6 +129,7 @@
 
             windowrule = [
                 "workspace 9 silent, vesktop"
+                "workspace 9 silent, floorp"
             ];
 
             windowrulev2 = [

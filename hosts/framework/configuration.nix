@@ -27,8 +27,11 @@
   # '';
 
   # bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth = {
+    enable = true; # enables support for Bluetooth
+    powerOnBoot = lib.mkForce false; # powers up the default Bluetooth controller on boot
+  };
+
   services.blueman.enable = true;
   # bluetooth audio
   # hardware.pulseaudio.enable = true;
@@ -49,6 +52,7 @@
         main = {
           leftalt = "leftmeta";
           leftmeta = "leftalt";
+          capslock = "backspace";
 
           # Colemak
           s = "r";
@@ -74,6 +78,7 @@
           p = ";";
           ";" = "o";
         };
+
         qwerty = {
           # Qwerty
           s = "s";
@@ -99,8 +104,13 @@
           p = "p";
           ";" = ";";
         };
+
         "control+shift" = {
           space = "toggle(qwerty)";
+        };
+
+        "meta" = {
+          capslock = "capslock";
         };
 
       };
