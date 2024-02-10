@@ -16,5 +16,6 @@
         ./spicetify.nix
         ./obs-studio.nix
         ./mpv.nix
+        ./btop.nix
     ];
 }

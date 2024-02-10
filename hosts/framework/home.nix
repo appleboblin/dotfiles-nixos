@@ -49,12 +49,12 @@
                 };
                 "pulseaudio" = {
                     # format = "{icon} {volume}% {format_source}";
-                    format = "󰕾 {volume}%";
+                    # format = "󰕾 {volume}%";
                     # format-bluetooth = "{icon} {volume}% {format_source}";
                     # format-bluetooth-muted = "󰝟 {icon} {format_source}";
-                    format-muted = "󰝟 ";
-                    # format-source = " {volume}%";
-                    # format-source-muted = "󰝟";
+                    # format-muted = "󰝟 ";
+                    format-source = " {volume}%";
+                    format-source-muted = "󰝟 ";
                     # format-icons = {
                     #     headphone = "";
                     #     hands-free = "󱠡";
@@ -130,12 +130,12 @@
 
             windowrule = [
                 "workspace 9 silent, vesktop"
-                "workspace 10 silent, floorp"
+                # "workspace 10 silent, floorp"
             ];
 
             windowrulev2 = [
                 "workspace 8 silent, class(obsidian), title:(Obsidian)(.*)$"
-                # "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
+                "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
             ];
         };
     };

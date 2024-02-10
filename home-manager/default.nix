@@ -73,7 +73,7 @@
         rar
 
         # Window Manager
-        rofi
+        # rofi
         bluez
         pavucontrol
         grimblast
@@ -83,6 +83,7 @@
         thunderbird
         libreoffice
         vlc
+        protonmail-bridge
         # xwaylandvideobridge
         # ncspot
         # fcitx5
@@ -103,8 +104,7 @@
         gimp
         qalculate-gtk
         # Broken apps
-        # protonmail-bridge
-        # protonvpn-gui
+        protonvpn-gui
         # pass
 
         (assert (lib.assertMsg (obsidian.version != "1.4.16")

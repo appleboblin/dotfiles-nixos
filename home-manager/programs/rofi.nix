@@ -26,6 +26,9 @@ in {
             show-icons = true;
             modi = "window,run,drun";
         };
+        plugins = with pkgs; [
+            rofi-calc
+        ];
         theme = {
             "*" = {
                 nord0 = mkLiteral "#2e3440";
