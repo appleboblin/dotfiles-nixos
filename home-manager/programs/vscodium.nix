@@ -18,10 +18,10 @@
         pkief.material-product-icons
       ];
       userSettings = {
-        "editor.fontSize" = 16;
-        "window.zoomLevel" = 1;
-        "terminal.integrated.fontSize" = 16;
-        "markdown.preview.fontSize" = 16;
+        "editor.fontSize" = 15;
+        "window.zoomLevel" = 2;
+        "terminal.integrated.fontSize" = 14;
+        "markdown.preview.fontSize" = 15;
         "workbench.colorTheme" = "Nord";
         "workbench.productIconTheme" = "material-product-icons";
         "editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
