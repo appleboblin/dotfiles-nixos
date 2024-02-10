@@ -43,7 +43,7 @@
 
             "$mod, Return, exec, kitty"
             "$mod, W, killactive"
-            "ALT, SPACE, togglespecialworkspace, scratchpad"
+            "ALT, Return, togglespecialworkspace, scratchpad"
             "ALT, S, togglespecialworkspace, music"
             "$mod SHIFT CTRL, SPACE, exec, hyprctl switchxkblayout wlr_virtual_keyboard_v1 next"
             "$mod SHIFT CTRL, Z, exec, hyprctl switchxkblayout keyd-virtual-keyboard next"

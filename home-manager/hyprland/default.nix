@@ -57,6 +57,7 @@
                     kb_layout = "us";
                     # kb_variant = "colemak_dh_ortho";
                     follow_mouse = 1;
+                    natural_scroll = true;
 
                     numlock_by_default = true;
                     sensitivity = 0;

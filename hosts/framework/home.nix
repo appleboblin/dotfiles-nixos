@@ -52,7 +52,7 @@
                     format = "󰕾 {volume}%";
                     # format-bluetooth = "{icon} {volume}% {format_source}";
                     # format-bluetooth-muted = "󰝟 {icon} {format_source}";
-                    # format-muted = "󰝟 {format_source}";
+                    format-muted = "󰝟 ";
                     # format-source = " {volume}%";
                     # format-source-muted = "󰝟";
                     # format-icons = {
@@ -123,18 +123,19 @@
     wayland.windowManager.hyprland = {
         settings = {
             exec-once = [
-                # "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
+                # switch alt and mod
+                "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
                 # "nm-applet --indicator & disown"
             ];
 
             windowrule = [
                 "workspace 9 silent, vesktop"
-                "workspace 9 silent, floorp"
+                "workspace 10 silent, floorp"
             ];
 
             windowrulev2 = [
                 "workspace 8 silent, class(obsidian), title:(Obsidian)(.*)$"
-                "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
+                # "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
             ];
         };
     };
