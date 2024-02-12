@@ -49,10 +49,10 @@
                 };
                 "pulseaudio" = {
                     # format = "{icon} {volume}% {format_source}";
-                    # format = "󰕾 {volume}%";
+                    format = "󰕾 {volume}%";
                     # format-bluetooth = "{icon} {volume}% {format_source}";
                     # format-bluetooth-muted = "󰝟 {icon} {format_source}";
-                    # format-muted = "󰝟 ";
+                    format-muted = "󰝟 ";
                     format-source = " {volume}%";
                     format-source-muted = "󰝟 ";
                     # format-icons = {
