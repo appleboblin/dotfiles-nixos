@@ -50,10 +50,6 @@
             "$mod SHIFT, S, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"
             ", Print, exec, pkill rofi || rofi-screenshot-menu"
 
-
-            # Switch input
-            "$mod ALT, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
-
             # toggle Menu
             "CTRL SHIFT, Delete, exec, pkill rofi || rofi-power-menu"
             "$mod, V, exec, pkill rofi || cliphist list | ${lib.getExe pkgs.rofi} -dmenu -p 'Select to copy' | cliphist decode | wl-copy" # Select from history
