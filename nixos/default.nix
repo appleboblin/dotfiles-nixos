@@ -10,5 +10,6 @@
         ./fonts.nix
         ./transmission.nix
         ./hyprland.nix
+        ./docker.nix
     ];
 }

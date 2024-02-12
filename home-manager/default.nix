@@ -71,6 +71,7 @@
         # kitty
         alacritty
         rar
+        distrobox
 
         # Window Manager
         # rofi

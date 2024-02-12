@@ -27,7 +27,7 @@
 
         # Laptop lid
         bindl = lib.mkIf isLaptop [
-            ",switch:Lid Switch, exec, swaylock"
+            ",switch:Lid Switch, exec, ${pkgs.systemd}/bin/systemctl suspend"
         ];
 
         # Activate when release
@@ -45,12 +45,10 @@
             "$mod, W, killactive"
             "ALT, Return, togglespecialworkspace, scratchpad"
             "ALT, S, togglespecialworkspace, music"
-            "$mod SHIFT CTRL, SPACE, exec, hyprctl switchxkblayout wlr_virtual_keyboard_v1 next"
-            "$mod SHIFT CTRL, Z, exec, hyprctl switchxkblayout keyd-virtual-keyboard next"
 
             # Screenshot
             "$mod SHIFT, S, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"
-            ", Print, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"
+            ", Print, exec, pkill rofi || rofi-screenshot-menu"
 
 
             # Switch input

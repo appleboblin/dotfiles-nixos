@@ -93,7 +93,7 @@
                     format-disconnected = "󰖪 Disconnected";
                     # format-alt = "{ifname}: {ipaddr}/{cidr}";
                     interval = 5;
-                    on-click = "rofi-wifi-menu";
+                    on-click = "pkill rofi || rofi-wifi-menu";
                     on-click-right = "${lib.getExe pkgs.kitty} nmtui";
                 };
                 "idle_inhibitor" = {
@@ -124,7 +124,7 @@
         settings = {
             exec-once = [
                 # switch alt and mod
-                "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
+                # "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
                 # "nm-applet --indicator & disown"
             ];
 

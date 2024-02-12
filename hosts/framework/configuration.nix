@@ -43,6 +43,21 @@
       fw-ectool
     ];
   };
+
+  # ectool on start up
+  systemd.services.ectool = {          
+    description = "Run ECTool on start up to swap left alt and left super";          
+    enable = true;
+    path = [ pkgs.fw-ectool ];
+    serviceConfig = {
+      Type = "simple";
+      User = "root";
+      Group = "root";
+      };
+    script = "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11";
+    wantedBy = [ "multi-user.target" ];
+  };
+
   # qmk for linux
   services.keyd = {
     enable = true;

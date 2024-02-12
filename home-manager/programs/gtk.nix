@@ -8,8 +8,9 @@
         # disable dconf first use warning
         "ca/desrt/dconf-editor" = {show-warning = false;};
         # set dark theme for gtk 4
-        # "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
+        "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
     };
+    fonts.fontconfig.enable = true;
     gtk = {
         enable = true;
         theme = {
