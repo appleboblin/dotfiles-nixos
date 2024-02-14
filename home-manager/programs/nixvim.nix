@@ -15,6 +15,11 @@
             lualine.enable = true;
             treesitter.enable = true;
             telescope.enable = true;
+            # neo-tree.enable = true;
+            nvim-tree.enable = true;
+            bufferline.enable = true;
+            barbecue.enable = true;
+            which-key.enable = true;
             lsp = {
                 enable = true;
                 servers = {
@@ -38,43 +43,23 @@
             relativenumber = true;
             shiftwidth = 4;
         };
+        globals.mapleader = ",";
         keymaps = [
-            # {
-            #     key = "";
-            #     action = "";
-            # }
-            {
-                key = ";";
-                action = ":";
-            }
-            {
-                key = "m";
-                action = "h";
-            }
-            {
-                key = "n";
-                action = "j";
-            }
-            {
-                key = "e";
-                action = "k";
-            }
-            {
-                key = "i";
-                action = "l";
-            }
-            {
-                key = "u";
-                action = "i";
-            }
-            {
-                key = "U";
-                action = "I";
-            }
-            {
-                key = "l";
-                action = "u";
-            }
+            # { key = ""; action = ""; }
+            { key = ";"; action = ":"; }
+            { key = "m"; action = "h"; }
+            { key = "n"; action = "j"; }
+            { key = "e"; action = "k"; }
+            { key = "i"; action = "l"; }
+            { key = "u"; action = "i"; }
+            { key = "U"; action = "I"; }
+            { key = "l"; action = "u"; }
+            { key = "k"; action = "n"; }
+            { key = "K"; action = "N"; }
+            { key = "<S-Z>"; action = "<cmd>:NvimTreeToggle<CR>"; }
+            # { key = "<S-Z>"; action = "<cmd>:Neotree<CR>"; }
+            { key = "<S-m>"; action = "<cmd>:bprev<CR>"; }
+            { key = "<S-i>"; action = "<cmd>:bnext<CR>"; }
         ];
         highlight = {
             Comment.fg = "#ff00ff";

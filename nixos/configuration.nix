@@ -153,6 +153,8 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  # mpd stuff
+  hardware.pulseaudio.extraConfig = "load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1";
 
   xdg.portal = {
       enable = true;
@@ -176,7 +178,8 @@
     extraGroups = ["networkmanager" "wheel" "libvirtd"];
     # shell = pkgs.zsh;
     packages = with pkgs; lib.mkIf ( host != "vm" )[
-
+      # mpd
+      mpc_cli
     ];
   };
   # programs.nm-applet.enable = true;

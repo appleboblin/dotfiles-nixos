@@ -17,5 +17,6 @@
         ./obs-studio.nix
         ./mpv.nix
         ./btop.nix
+        ./ncmpcpp.nix
     ];
 }

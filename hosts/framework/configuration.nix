@@ -19,6 +19,8 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
+  services.xserver.libinput.touchpad.disableWhileTyping = lib.mkForce true;
+  # services.xserver.libinput.touchpad.horizontalScrolling = lib.mkForce false;
 
   # Set lightdm wallpaper
   # services.xserver.displayManager.lightdm.greeters.gtk.extraConfig = ''
@@ -54,12 +56,13 @@
       User = "root";
       Group = "root";
       Restart = "always";
+      After = ["suspend.target" "hibernate.target"];
       };
     script = ''
       ectool raw 0x3E0C d1,d1,b1,b3,wE01F
       ectool raw 0x3E0C d1,d1,b3,b1,w11
       '';
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" "suspend.target" "hibernate.target" ];
   };
 
   # qmk for linux

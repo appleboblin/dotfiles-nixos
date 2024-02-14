@@ -11,5 +11,6 @@
         ./transmission.nix
         ./hyprland.nix
         ./docker.nix
+        ./mpd.nix
     ];
 }
