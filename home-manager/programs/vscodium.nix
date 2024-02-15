@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: {
+{lib, pkgs, inputs, ...}: {
   config = {
     programs.vscode = {
       enable = true;
@@ -17,9 +17,9 @@
         naumovs.color-highlight
         pkief.material-product-icons
       ];
-      userSettings = {
+      userSettings = lib.mkDefault {
         "editor.fontSize" = 15;
-        "window.zoomLevel" = 2;
+        "window.zoomLevel" = 1;
         "terminal.integrated.fontSize" = 14;
         "markdown.preview.fontSize" = 15;
         "workbench.colorTheme" = "Nord";

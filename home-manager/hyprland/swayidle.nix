@@ -4,7 +4,7 @@
     lib,
     ...
 }: {
-    services.swayidle = {
+    services.swayidle = lib.mkDefault {
         # enable = true;
         # package = pkgs.swayidle;
         systemdTarget = "hyprland-session.target";

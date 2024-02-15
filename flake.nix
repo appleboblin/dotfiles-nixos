@@ -43,6 +43,7 @@
                 inherit inputs host user;
                 isLaptop = host == "framework";
                 isVm = host == "vm";
+                isDesktop = host == "desktop";
               };
 
               users.${user} = {
@@ -66,6 +67,7 @@
     nixosConfigurations = {
       framework = mkHost "framework";
       vm = mkHost "vm";
+      desktop = mkHost "desktop";
     };
   };
 }

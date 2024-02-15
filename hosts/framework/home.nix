@@ -29,7 +29,7 @@
                 modules-center = [ "hyprland/window" ];
                 modules-right = [ "tray" "idle_inhibitor" "bluetooth" "pulseaudio" "network" "battery" "clock" ];
 
-                "wlr/workspaces" = {
+                "hyprland/workspaces" = {
                     format = "{name}";
                     disable-scroll-wraparound = true;
                     on-click = "activate";
@@ -129,14 +129,20 @@
             ];
 
             windowrule = [
-                "workspace 9 silent, vesktop"
-                # "workspace 10 silent, floorp"
+                "workspace 10 silent, vesktop"
+                # "workspace 8 silent, floorp"
             ];
 
             windowrulev2 = [
-                "workspace 8 silent, class(obsidian), title:(Obsidian)(.*)$"
-                "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
+                "workspace 9 silent, class(obsidian), title:(Obsidian)(.*)$"
+                "workspace 8 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
             ];
+        };
+    };
+
+    programs.vscode = {
+        userSettings = {
+            "window.zoomLevel" = 2;
         };
     };
 }

@@ -148,7 +148,7 @@
                     # "nm-applet --indicator"
 
                     # Desktop dependency
-                    "hyprpaper & waybar & fcitx5"
+                    "hyprpaper & waybar & fcitx5 -d"
                     "vesktop & spotify & kitty --class scratchpad & obsidian & pcloud & thunderbird"
                     # kitty ncspot
                     # "${lib.getExe pkgs.swayidle} -w timeout 300 'swaylock -f' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1200 'systemctl suspend'"
