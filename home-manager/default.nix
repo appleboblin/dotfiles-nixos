@@ -100,12 +100,13 @@
         filezilla
         inkscape
         libtransmission
-        # quickemu
+        quickemu
+        quickgui
         remmina
         gimp
         qalculate-gtk
         # Broken apps
-        protonvpn-gui
+        # protonvpn-gui
         # pass
 
         (assert (lib.assertMsg (obsidian.version != "1.4.16")

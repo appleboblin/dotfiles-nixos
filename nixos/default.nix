@@ -12,5 +12,6 @@
         ./hyprland.nix
         ./docker.nix
         ./mpd.nix
+        ./greetd.nix
     ];
 }

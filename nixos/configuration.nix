@@ -60,8 +60,8 @@
 
   # Enable the Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.displayManager.sddm.wayland.enable = true;
   #services.xserver.displayManager = {
   #  defaultSession = "hyprland";
   #  autoLogin = {
