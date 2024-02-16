@@ -21,7 +21,8 @@
             # "workspace special:ncspot silent, class:(kitty),title:(ncspot)"
             "opacity 0.8 0.8, workspace:-97"
             "workspace special:music silent, title:(Spotify Premium)"
-            "workspace special:scratchpad silent, class:(scratchpad)"
+            # "workspace special:scratchpad silent, class:(scratchpad)"
+            "workspace special:scratchpad silent, class:(scratch)"
             # "workspace 1 silent, class(obsidian), title:(Obsidian)(.*)$"
             # "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
         ];

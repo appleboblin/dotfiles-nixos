@@ -9,5 +9,6 @@
         ./fish.nix
         ./shell.nix
         ./bash.nix
+        ./zoxide.nix
     ];
 }

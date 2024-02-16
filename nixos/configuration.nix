@@ -207,6 +207,7 @@
     htop
     btop
     eza
+    fzf
     neofetch
     procps
     bash-completion

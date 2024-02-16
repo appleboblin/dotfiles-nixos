@@ -18,5 +18,6 @@
         ./mpv.nix
         ./btop.nix
         ./ncmpcpp.nix
+        ./foot.nix
     ];
 }

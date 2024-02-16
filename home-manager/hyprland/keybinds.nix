@@ -41,7 +41,8 @@
             ", XF86AudioPlay, exec, playerctl play-pause"
             ", XF86AudioNext, exec, playerctl next"
 
-            "$mod, Return, exec, kitty"
+            # "$mod, Return, exec, kitty"
+            "$mod, Return, exec, footclient"
             "$mod, W, killactive"
             "ALT, Return, togglespecialworkspace, scratchpad"
             "ALT, S, togglespecialworkspace, music"
