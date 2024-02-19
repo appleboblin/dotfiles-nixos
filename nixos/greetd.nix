@@ -7,7 +7,8 @@
     ...
 }: let
     tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-    session = "${config.programs.hyprland.package}/bin/Hyprland";
+    hyprland = "${config.programs.hyprland.package}/bin/Hyprland";
+    xfce4 = "${pkgs .xfce.xfce4-session}/bin/startxfce4";
 in {
     services.greetd = {
         enable = false;
@@ -18,8 +19,8 @@ in {
         #     user = "${user}";
         # };
         default_session = {
-            command = "${tuigreet} -g 'Please Login :)' --asterisks --remember --remember-user-session --time --cmd ${session}";
-            user = "${user}";
+            command = "${tuigreet} -g 'Please Login :)' --asterisks --remember --remember-user-session --time --cmd ${hyprland}";
+            user = "greeter";
         };
         };
     };

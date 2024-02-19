@@ -60,40 +60,53 @@
 
   # Enable the Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  #services.xserver.displayManager = {
-  #  defaultSession = "hyprland";
-  #  autoLogin = {
-  #    enable = false;
-  #    user = "appleboblin";
-  #  };
-  #  lightdm = {
-  #    enable = true;
-  #    greeters = {
-  #      gtk = {
-  #        enable = true;
-  #        theme = {
-  #          package = pkgs.nordic;
-  #          name = "Nordic";
-  #        };
-  #        cursorTheme = {
-  #          name = "Nordic";
-  #          size = 32;
-  #        };
-  #        iconTheme.name = "Nordic";
-  #        extraConfig = lib.mkDefault ''
-  #        font-name = Inter 30
-  #        background = ${./nordic_wall.jpg}
-  #        '';
-  #        # background=${pkgs.nordic}/share/wallpapers/Nordic/nordic-wall.jpg
-  #      };
-  #    };
-  #  };
-  #};
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+  };
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.displayManager.sddm.wayland.enable = true;
+  # services.xserver.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  #   # theme = "Nordic";
+  #   # {
+  #   #   package = pkgs.nordic;
+  #   #   name = "Nordic";
+  #   # };
+  # };
+  # services.xserver.displayManager = {
+  #   defaultSession = "hyprland";
+  #   autoLogin = {
+  #     enable = false;
+  #     user = "appleboblin";
+  #   };
+  #   lightdm = {
+  #     enable = true;
+  #     greeters = {
+  #       gtk = {
+  #         enable = true;
+  #         theme = {
+  #           package = pkgs.nordic;
+  #           name = "Nordic";
+  #         };
+  #         cursorTheme = {
+  #           name = "Nordic";
+  #           size = 32;
+  #         };
+  #         iconTheme.name = "Nordic";
+  #         extraConfig = lib.mkDefault ''
+  #         font-name = Inter 30
+  #         background = ${./nordic_wall.jpg}
+  #         '';
+  #         # background=${pkgs.nordic}/share/wallpapers/Nordic/nordic-wall.jpg
+  #       };
+  #     };
+  #   };
+  #   };
 
   # services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
   # services.xserver.desktopManager.cinnamon.enable = true;
 
