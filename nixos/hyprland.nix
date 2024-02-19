@@ -13,11 +13,12 @@
         # portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
 
+    # environment.systemPackages = lib.mkIf config.programs.hyprland.enable [ pkgs.xwaylandvideobridge ];
+
     hm.wayland.windowManager.hyprland = lib.mkIf config.programs.hyprland.enable {
         enable = true;
     };
 
-    
     # Hint electron apps to use wayland
     environment.sessionVariables = lib.mkIf config.programs.hyprland.enable {
         NIXOS_OZONE_WL = "1";

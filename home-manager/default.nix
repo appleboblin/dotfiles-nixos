@@ -90,8 +90,8 @@
         # fcitx5
 
         # Other
-        # webcord
-        # discord
+        webcord
+        discord
         vesktop
         betaflight-configurator
         prusa-slicer
@@ -164,7 +164,7 @@
     home.sessionVariables = {
         EDITOR = "neovim";
         BROWSER = "firefox";
-        TERMINAL = "kitty";
+        TERMINAL = "footclient";
     };
 
     # Let Home Manager install and manage itself.

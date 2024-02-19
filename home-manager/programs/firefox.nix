@@ -78,7 +78,8 @@
             "privacy.trackingprotection.socialtracking.enabled" = true;
         };
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-            bitwarden
+            # Bitwarden seems to break when rebuilding, will see if not updating it every build fixes it
+            # bitwarden
             ublock-origin
             darkreader
             proton-vpn

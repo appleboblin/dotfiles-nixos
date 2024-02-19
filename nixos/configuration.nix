@@ -60,8 +60,8 @@
 
   # Enable the Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.displayManager.sddm.wayland.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
   #services.xserver.displayManager = {
   #  defaultSession = "hyprland";
   #  autoLogin = {
@@ -161,6 +161,15 @@
       wlr.enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
+  # Obs virtual camera
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+  boot.kernelModules = [
+    "v4l2loopback"
+  ];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+  '';
+  security.polkit.enable = true;
   
   # OpenGL
   # hardware.opengl = {

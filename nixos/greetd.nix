@@ -10,7 +10,7 @@
     session = "${config.programs.hyprland.package}/bin/Hyprland";
 in {
     services.greetd = {
-        enable = true;
+        enable = false;
         settings = {
         # Auto login
         # initial_session = {
