@@ -171,6 +171,7 @@
       exec-once = [
           # brightness on startup
           "${lib.getExe pkgs.brightnessctl} s 40%"
+          "sleep 3;hyprctl dispatch workspace 8;hyprctl dispatch workspace 9;hyprctl dispatch workspace 10;hyprctl dispatch workspace 1"
       ];
   };
 }

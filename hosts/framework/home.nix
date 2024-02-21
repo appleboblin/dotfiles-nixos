@@ -6,6 +6,9 @@
     home,
     ...
 }: {  
+    # font size
+    gtk.font.size = 20;
+    
     # swaylock image
     programs.swaylock.settings = {
         image = "${./framework_wallpaper.png}";

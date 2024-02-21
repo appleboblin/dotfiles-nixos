@@ -24,7 +24,7 @@
         font = {
             name = "Inter Regular";
             package = pkgs.inter;
-            size = 16;
+            size = lib.mkDefault 16;
         };
         gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
         gtk3 = {
