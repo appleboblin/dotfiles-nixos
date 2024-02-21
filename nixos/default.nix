@@ -13,5 +13,6 @@
         ./docker.nix
         ./mpd.nix
         ./greetd.nix
+        ./syncthing.nix
     ];
 }
