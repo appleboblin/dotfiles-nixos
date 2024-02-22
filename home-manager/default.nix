@@ -37,7 +37,7 @@
             extraConfig = {
                 XDG_GITHUB_DIR = "${config.home.homeDirectory}/github";
                 XDG_SCREENSHOT_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
-                XDG_SHARE_DIR = "${config.home.homeDirectory}/share";
+                XDG_SHARE_DIR = "${config.home.homeDirectory}/Share";
             };
         };
     };
