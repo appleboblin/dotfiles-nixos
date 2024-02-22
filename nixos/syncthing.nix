@@ -10,8 +10,8 @@
         enable = true; 
         user = "${user}";
         openDefaultPorts = true;
-        dataDir = "/home/${user}/Documents";
-        configDir = "/home/${user}/.config/syncthing";
+        dataDir = "${config.home.homeDirectory}/Documents";
+        configDir = "${config.home.homeDirectory}/.config/syncthing";
         overrideDevices = false;     # overrides any devices added or deleted through the WebUI
         overrideFolders = false;     # overrides any folders added or deleted through the WebUI
         settings = {
