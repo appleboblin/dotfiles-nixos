@@ -30,6 +30,10 @@
                     path = "/home/${user}/Share";
                     devices = [ "desktop" "framework" ];
                 };
+                "Obsidian" = {
+                    path = "/home/${user}/Documents/obsidian";
+                    devices = [ "desktop" "framework" ];
+                };
             };
         };
 
