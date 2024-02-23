@@ -105,10 +105,12 @@
         quickgui
         remmina
         gimp
+        okular
         qalculate-gtk
         # Broken apps
         # protonvpn-gui
         # pass
+        amdgpu_top
 
         (assert (lib.assertMsg (obsidian.version != "1.4.16")
             "obsidian: has wayland crash been fixed?");
