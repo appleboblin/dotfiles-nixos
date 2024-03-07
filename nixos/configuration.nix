@@ -209,6 +209,7 @@
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
     "electron-24.8.0"
+    "electron-19.1.9"
   ];
   nixpkgs.overlays = [
     inputs.nur.overlay
@@ -233,6 +234,7 @@
     neofetch
     procps
     bash-completion
+    virtiofsd # vm
     # xwaylandvideobridge
     # nordic
   ];
@@ -264,6 +266,7 @@
   # QEMU/KVM
   virtualisation.libvirtd = {
     enable = host != "vm";
+    qemu.ovmf.enable = host != "vm";
   };
   programs.virt-manager = {
     enable = host != "vm";
@@ -278,6 +281,16 @@
   # networking.firewall.allowedUDPPorts = [ 22000 21027 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.firewall = {
+    allowedTCPPortRanges = [
+      # spice
+      { from = 5900; to = 5999; }
+    ];
+    allowedTCPPorts = [
+      # libvirt
+      16509
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
