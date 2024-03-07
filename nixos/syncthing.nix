@@ -13,8 +13,8 @@
         openDefaultPorts = true;
         dataDir = "/home/${user}";
         configDir = "/home/${user}/.config/syncthing";
-        overrideDevices = false;     # overrides any devices added or deleted through the WebUI
-        overrideFolders = false;     # overrides any folders added or deleted through the WebUI
+        overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+        overrideFolders = true;     # overrides any folders added or deleted through the WebUI
         settings = {
             gui = {
                 user = "${user}";
@@ -24,15 +24,16 @@
             devices = {
                 "desktop" = { id = "4BJ2S6E-FUSNAIZ-36GD7J6-46EV7SI-XZFBLMH-NAC4LY5-ANTUJGE-ABQWQAY" ;};
                 "framework" = { id = "QPHXHHN-PXJ2Z7H-SS3FAA4-UERSJEQ-5QJXVK2-V2ZPHDP-UHIRROZ-AR463Q6" ;};
+                "pixel8" = { id = "JZTSEZL-4BP62F2-5THXJHA-T7NHMXZ-CI26FMQ-T5747GG-7BUPB6U-JY56IAI" ;};
             };
             folders = {
                 "Share" = {
                     path = "/home/${user}/Share";
-                    devices = [ "desktop" "framework" ];
+                    devices = [ "desktop" "framework" "pixel8" ];
                 };
                 "Obsidian" = {
                     path = "/home/${user}/Documents/obsidian";
-                    devices = [ "desktop" "framework" ];
+                    devices = [ "desktop" "framework" "pixel8" ];
                 };
             };
         };

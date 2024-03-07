@@ -71,7 +71,7 @@
       ];
 
       exec-once = [
-        "sleep 3;hyprctl dispatch workspace 1;hyprctl dispatch workspace 9;hyprctl dispatch workspace 10;hyprctl dispatch workspace 4"
+        "sleep 3;hyprctl dispatch workspace 1;hyprctl dispatch workspace 10;hyprctl dispatch workspace 9;hyprctl dispatch workspace 4"
       ];
   };
 }

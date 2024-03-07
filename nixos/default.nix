@@ -14,5 +14,6 @@
         ./mpd.nix
         ./greetd.nix
         ./syncthing.nix
+        ./steam.nix
     ];
 }

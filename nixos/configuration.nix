@@ -208,8 +208,9 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
-    "electron-24.8.0"
+    #"electron-24.8.0"
     "electron-19.1.9"
+    "openssl-1.1.1w"
   ];
   nixpkgs.overlays = [
     inputs.nur.overlay
