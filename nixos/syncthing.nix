@@ -35,6 +35,22 @@
                     path = "/home/${user}/Documents/obsidian";
                     devices = [ "desktop" "framework" "pixel8" ];
                 };
+                "Pictures" = {
+                    path = "/home/${user}/Pictures";
+                    devices = [ "desktop" "framework" ];
+                };
+                "Documents" = {
+                    path = "/home/${user}/Documents";
+                    devices = [ "desktop" "framework" ];
+                };
+                "Music" = {
+                    path = "/home/${user}/Music";
+                    devices = [ "desktop" "framework" ];
+                };
+                "Videos" = {
+                    path = "/home/${user}/Videos";
+                    devices = [ "desktop" "framework" ];
+                };
             };
         };
 
