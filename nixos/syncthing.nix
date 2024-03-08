@@ -51,6 +51,10 @@
                     path = "/home/${user}/Videos";
                     devices = [ "desktop" "framework" ];
                 };
+                "vm" = {
+                    path = "/home/${user}/vm";
+                    devices = [ "desktop" "framework" ];
+                };
             };
         };
 
