@@ -225,6 +225,7 @@
     neovim
     killall
     wget
+    usbutils
     curl
     gzip
     git
@@ -260,6 +261,25 @@
   # List services that you want to enable:
   # allow /bin and /usr/bin shebangs to work
   services.envfs.enable = true;
+
+# Udev rules
+  services.udev.extraRules = ''
+
+  '';
+services.udev.packages = [
+      (pkgs.writeTextFile {
+        name = "qflipper_udev";
+        text = ''
+          #Flipper Zero serial port
+          SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", ATTRS{manufacturer}=="Flipper Devices Inc.", TAG+="uaccess"
+          #Flipper Zero DFU
+          SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", ATTRS{manufacturer}=="STMicroelectronics", TAG+="uaccess"
+          #Flipper ESP32s2 BlackMagic
+          SUBSYSTEMS=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="40??", ATTRS{manufacturer}=="Flipper Devices Inc.", TAG+="uaccess"
+        '';
+        destination = "/etc/udev/rules.d/42-flipperzero.rules";
+      })
+    ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
