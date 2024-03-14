@@ -36,9 +36,11 @@
   networking.networkmanager.enable = true;
   # unlock gnome keyring
   # security.pam.services.sddm.enableGnomeKeyring = true;
+  
   # Set your time zone.
-  time.timeZone = "Asia/Taipei";
-
+  # time.timeZone = "Asia/Taipei";
+  services.automatic-timezoned.enable = true;
+  
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
