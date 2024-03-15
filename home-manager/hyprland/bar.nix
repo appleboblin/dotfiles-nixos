@@ -109,7 +109,7 @@
         }
 
         #network.disconnected {
-        color: #f53c3c;
+        color: #b3616a;
         }
 
         #pulseaudio {
@@ -117,7 +117,7 @@
         }
 
         #wireplumber.muted {
-        background-color: #f53c3c;
+        background-color: #b3616a;
         }
 
         #custom-powermenu {
@@ -134,6 +134,10 @@
         color: #81a1ca;
         margin-right: 8px;
         }
+
+        #custom-wireguard {
+        margin-right: 5px;
+        } 
         '';
     };
 }

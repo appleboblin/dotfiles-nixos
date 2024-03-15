@@ -30,7 +30,7 @@
                 ];
                 modules-left = [ "hyprland/workspaces" ];
                 modules-center = [ "hyprland/window" ];
-                modules-right = [ "tray" "idle_inhibitor" "bluetooth" "pulseaudio" "network" "battery" "clock" ];
+                modules-right = [ "tray" "custom/wireguard" "idle_inhibitor" "bluetooth" "pulseaudio" "network" "battery" "clock" ];
 
                 "hyprland/workspaces" = {
                     format = "{name}";
@@ -72,6 +72,8 @@
                 };
                 "tray" = {
                     spacing = 10;
+                    show-passive-items = false;
+                    reverse-direction = true;
                 };
                 "battery" = {
                     states = {
@@ -118,6 +120,14 @@
                     on-click = "bluetoothctl power on";
                     on-click-right = "bluetoothctl power off";
                 };
+                "custom/wireguard" = {
+                    format = "{}";
+                    format-disconnected = "󰖪 Disconnected";
+                    exec = "/home/appleboblin/dotfiles-nixos/home-manager/programs/vpn-wg.sh";
+                    on-click = "rofi -modi 'WireGuard:/home/appleboblin/dotfiles-nixos/home-manager/programs/rofi-wireguard-menu.sh' -show WireGuard";
+                    interval = 1;
+                    return-type = "json";
+                };
             }
         ];
     };
@@ -126,14 +136,10 @@
     wayland.windowManager.hyprland = {
         settings = {
             exec-once = [
-                # switch alt and mod
-                # "ectool raw 0x3E0C d1,d1,b1,b3,wE01F & ectool raw 0x3E0C d1,d1,b3,b1,w11"
-                # "nm-applet --indicator & disown"
             ];
 
             windowrule = [
                 "workspace 10 silent, vesktop"
-                # "workspace 8 silent, floorp"
             ];
 
             windowrulev2 = [

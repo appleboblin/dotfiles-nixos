@@ -12,9 +12,6 @@
 }: {
   imports = [];
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
     # Nix Package Manager
   nix = {
     settings = {
@@ -34,9 +31,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  # unlock gnome keyring
-  # security.pam.services.sddm.enableGnomeKeyring = true;
-  
+
   # Set your time zone.
   # time.timeZone = "Asia/Taipei";
   services.automatic-timezoned.enable = true;
@@ -61,56 +56,12 @@
   services.xserver.autorun = true;
 
   # Enable the Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm = {
     enable = true;
     wayland = true;
   };
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.displayManager.sddm.wayland.enable = true;
-  # services.xserver.displayManager.sddm = {
-  #   enable = true;
-  #   wayland.enable = true;
-  #   # theme = "Nordic";
-  #   # {
-  #   #   package = pkgs.nordic;
-  #   #   name = "Nordic";
-  #   # };
-  # };
-  # services.xserver.displayManager = {
-  #   defaultSession = "hyprland";
-  #   autoLogin = {
-  #     enable = false;
-  #     user = "appleboblin";
-  #   };
-  #   lightdm = {
-  #     enable = true;
-  #     greeters = {
-  #       gtk = {
-  #         enable = true;
-  #         theme = {
-  #           package = pkgs.nordic;
-  #           name = "Nordic";
-  #         };
-  #         cursorTheme = {
-  #           name = "Nordic";
-  #           size = 32;
-  #         };
-  #         iconTheme.name = "Nordic";
-  #         extraConfig = lib.mkDefault ''
-  #         font-name = Inter 30
-  #         background = ${./nordic_wall.jpg}
-  #         '';
-  #         # background=${pkgs.nordic}/share/wallpapers/Nordic/nordic-wall.jpg
-  #       };
-  #     };
-  #   };
-  #   };
 
-  # services.xserver.desktopManager.gnome.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
-  # services.xserver.desktopManager.cinnamon.enable = true;
 
   services.xserver.excludePackages = with pkgs; [ xterm ];
 
@@ -239,8 +190,7 @@
     procps
     bash-completion
     virtiofsd # vm
-    # xwaylandvideobridge
-    # nordic
+    wireguard-tools # vpn
   ];
 
   # Thunar
@@ -265,9 +215,9 @@
   services.envfs.enable = true;
 
 # Udev rules
-  services.udev.extraRules = ''
+  # services.udev.extraRules = ''
 
-  '';
+  # '';
 services.udev.packages = [
       (pkgs.writeTextFile {
         name = "qflipper_udev";
@@ -313,7 +263,20 @@ services.udev.packages = [
       # libvirt
       16509
     ];
+    # if packets are still dropped, they will show up in dmesg
+    logReversePathDrops = true;
+    # wireguard trips rpfilter up
+    extraCommands = ''
+      ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
+      ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
+    '';
+    extraStopCommands = ''
+      ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
+      ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
+    '';
   };
+  # wireguard
+  networking.wireguard.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

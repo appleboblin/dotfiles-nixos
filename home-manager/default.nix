@@ -55,17 +55,12 @@
     # The home.packages option allows you to install Nix packages into your
     # environment.
     home.packages = with pkgs; lib.mkIf (host != "vm") [
-
-    # home.packages = with pkgs; [
         # Browser
-        # firefox
-        # librewolf
         brave
         chromium
         floorp
 
         # Programming
-        # vscodium
         python3
 
         # Terminal
@@ -75,7 +70,6 @@
         distrobox
 
         # Window Manager
-        # rofi
         bluez
         pavucontrol
         grimblast
@@ -86,9 +80,6 @@
         libreoffice
         vlc
         protonmail-bridge
-        # xwaylandvideobridge
-        # ncspot
-        # fcitx5
 
         # Other
         webcord
@@ -107,9 +98,7 @@
         gimp
         okular
         qalculate-gtk
-        # Broken apps
         # protonvpn-gui
-        # pass
         amdgpu_top
         etcher
         rpi-imager
@@ -185,12 +174,6 @@
         };
     };
 
-    # Proton mail fix
-    # services.pass-secret-service = {
-    #     enable = true;
-    #     package = pkgs.libsecret;
-    # };
-
     # git
     # programs.git.userEmail = "appleboblin@proton.me";
     # programs.git.userName = user;
@@ -213,7 +196,4 @@
         # }
         ];
     };
-    # enable keyring daemon protonmail-bridge
-    # services.gnome-keyring.enable = true;
-
 }
