@@ -104,6 +104,8 @@
         rpi-imager
         sublime4
         qflipper
+        jetbrains.pycharm-community
+        parsec-bin
 
         (assert (lib.assertMsg (obsidian.version != "1.4.16")
             "obsidian: has wayland crash been fixed?");

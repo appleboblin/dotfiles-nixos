@@ -71,10 +71,10 @@
             "network.http.sendSecureXSiteReferrer" = false;
             "plugins.enumerable_names" = "";
             "privacy.firstparty.isolate" = true;
-            "privacy.resistFingerprinting" = true;
+            "privacy.resistFingerprinting" = false;
             "privacy.trackingprotection.cryptomining.enabled" = true;
             "privacy.trackingprotection.enabled" = true;
-            "privacy.trackingprotection.fingerprinting.enabled" = true;
+            "privacy.trackingprotection.fingerprinting.enabled" = false;
             "privacy.trackingprotection.socialtracking.enabled" = true;
         };
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [

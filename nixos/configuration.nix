@@ -62,8 +62,10 @@
   };
 
   services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
-  services.xserver.excludePackages = with pkgs; [ xterm ];
+  # services.xserver.excludePackages = with pkgs; [ xterm ];
 
   # Configure keymap in X11
   services.xserver = {
@@ -157,6 +159,20 @@
       mpc_cli
     ];
   };
+  # NFS home mount
+  # fileSystems =
+  #     [ { mountPoint = "/home/${user}/nfs-share";
+  #         device = "192.168.2.16:/mnt/zimablade/share";
+  #         fsType = "nfs";
+  #         options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+  #       }
+  #     ];
+  # fileSystems."/home/${user}/nfs-share" = {
+  #   device = "192.168.2.16:/mnt/zimablade/share";
+  #   fsType = "nfs";
+  #   options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+  # };
+
   # programs.nm-applet.enable = true;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
@@ -191,16 +207,35 @@
     bash-completion
     virtiofsd # vm
     wireguard-tools # vpn
+    nfs-utils # nfs file share
+    cifs-utils
+    openmpi
+    ior
+    lxqt.lxqt-policykit
+    libimobiledevice
+    ifuse # optional, to mount using 'ifuse'
+    libheif
+    ffmpeg
   ];
 
+  # iPhone mount
+  services.usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+};
+
   # Thunar
-  programs.thunar.enable = true;
+  # programs.thunar.enable = true;
   programs.xfconf.enable = true;
-  programs.thunar.plugins = with pkgs.xfce; [
-    thunar-archive-plugin
-    thunar-volman
-  ];
-  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  # programs.thunar.plugins = with pkgs.xfce; [
+  #   thunar-archive-plugin
+  #   thunar-volman
+  # ];
+  # services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.gvfs = {
+    enable = true;
+    package = lib.mkForce pkgs.gnome3.gvfs;
+  };
   services.tumbler.enable = true; # Thumbnail support for images
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -255,6 +290,7 @@ services.udev.packages = [
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   networking.firewall = {
+    enable = true;
     allowedTCPPortRanges = [
       # spice
       { from = 5900; to = 5999; }
@@ -269,6 +305,7 @@ services.udev.packages = [
     extraCommands = ''
       ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
       ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
+      iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
     '';
     extraStopCommands = ''
       ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
