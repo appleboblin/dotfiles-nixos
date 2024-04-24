@@ -44,7 +44,7 @@
                 font = "MesloLGS Nerd Font 12";
                 line_height = 0;
                 markup = "full";
-                format = "<b>%s</b>\n%b";
+                format = "<b>%s-%a</b>\n%b";
                 alignment = "left";
                 vertical_alignment = "center";
                 show_age_threshold = 60;

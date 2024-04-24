@@ -6,7 +6,7 @@
     # nixpkgs.url = "github:nixos/nixpkgs/23.11";
     nixpkgs_22_11.url = "github:nixos/nixpkgs/nixos-22.11";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
-    nur.url = "github:nix-community/NUR";
+    # nur.url = "github:nix-community/NUR";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixvim = {
       url = "github:nix-community/nixvim";

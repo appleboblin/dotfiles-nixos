@@ -177,13 +177,13 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
-    #"electron-24.8.0"
+    "electron-24.8.6"
     "electron-19.1.9"
     "openssl-1.1.1w"
   ];
-  nixpkgs.overlays = [
-    inputs.nur.overlay
-  ];
+  # nixpkgs.overlays = [
+  #   inputs.nur.overlay
+  # ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -198,6 +198,7 @@
     curl
     gzip
     git
+    git-lfs
     htop
     btop
     eza
@@ -216,6 +217,10 @@
     ifuse # optional, to mount using 'ifuse'
     libheif
     ffmpeg
+    imagemagick
+    zip
+    unzip
+    rsync
   ];
 
   # iPhone mount

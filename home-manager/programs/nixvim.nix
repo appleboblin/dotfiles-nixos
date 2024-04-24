@@ -20,6 +20,10 @@
             bufferline.enable = true;
             barbecue.enable = true;
             which-key.enable = true;
+            cmp.enable = true;
+            cmp-buffer.enable = true;
+            cmp-nvim-lsp.enable = true;
+            cmp-path.enable = true;
             lsp = {
                 enable = true;
                 servers = {
@@ -28,17 +32,8 @@
                     pyright.enable = true;
                 };
             };
-            nvim-cmp = {
-                enable = true;
-                autoEnableSources = true;
-                sources = [
-                    {name = "nvim_lsp";}
-                    {name = "path";}
-                    {name = "buffer";}
-                ];
-            };
         };
-        options = {
+        opts = {
             number = true;
             relativenumber = true;
             shiftwidth = 4;

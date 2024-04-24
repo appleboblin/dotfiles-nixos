@@ -9,6 +9,7 @@
         enable = host != "vm"; # optional
         scripts = with pkgs; [
             mpvScripts.uosc
+            mpvScripts.sponsorblock
         ];
     };
 }

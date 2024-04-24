@@ -53,10 +53,10 @@
 
             # toggle Menu
             "CTRL SHIFT, Delete, exec, pkill rofi || rofi-power-menu"
-            "$mod, V, exec, pkill rofi || cliphist list | ${lib.getExe pkgs.rofi} -dmenu -p 'Select to copy' | cliphist decode | wl-copy" # Select from history
-            "$mod SHIFT, V, exec, pkill rofi || cliphist list | ${lib.getExe pkgs.rofi} -dmenu -p 'Select to delete' | cliphist delete" # Select history to delete
-            "$mod, Space, exec, pkill rofi || ${lib.getExe pkgs.rofi} -show drun"
-            "$mod, C, exec, pkill rofi || rofi -show calc -modi calc -no-show-match -no-sort"
+            "$mod, V, exec, pkill rofi || cliphist list | ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to copy' | cliphist decode | wl-copy" # Select from history
+            "$mod SHIFT, V, exec, pkill rofi || cliphist list | ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to delete' | cliphist delete" # Select history to delete
+            "$mod, Space, exec, pkill rofi || ${lib.getExe pkgs.rofi-wayland} -show drun"
+            "$mod, C, exec, pkill rofi || ${lib.getExe pkgs.rofi-wayland} -show calc -modi calc -no-show-match -no-sort"
 
             # Delete last entry from cliphist history
             "$mod, Delete, exec, cliphist list | cliphist delete "

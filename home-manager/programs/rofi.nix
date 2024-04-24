@@ -8,22 +8,23 @@
     inherit (config.lib.formats.rasi) mkLiteral;
     rofi-power-menu = pkgs.writeShellApplication {
         name = "rofi-power-menu";
-        runtimeInputs = with pkgs; [ rofi procps ];
+        runtimeInputs = with pkgs; [ rofi-wayland procps ];
         text = lib.readFile ./rofi-power-menu.sh;
     };
     rofi-wifi-menu = pkgs.writeShellApplication {
         name = "rofi-wifi-menu";
-        runtimeInputs = with pkgs; [ rofi libnotify networkmanager ];
+        runtimeInputs = with pkgs; [ rofi-wayland libnotify networkmanager ];
         text = lib.readFile ./rofi-wifi-menu.sh;
     };
     rofi-screenshot-menu = pkgs.writeShellApplication {
         name = "rofi-screenshot-menu";
-        runtimeInputs = with pkgs; [ rofi libnotify grimblast ];
+        runtimeInputs = with pkgs; [ rofi-wayland libnotify grimblast ];
         text = lib.readFile ./rofi-screenshot-menu.sh;
     };
 in {
     programs.rofi = {
         enable = host != "vm";
+        package = pkgs.rofi-wayland;
         font = "MesloLGS Nerd Font 16";
         extraConfig = {
             display-drun = "Application";

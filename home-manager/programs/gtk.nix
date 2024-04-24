@@ -38,4 +38,17 @@
             };
         };
     };
+    home = {
+        pointerCursor = {
+            package = pkgs.nordzy-cursor-theme;
+            name = "Nordzy-cursors";
+            size = 28;
+            gtk.enable = true;
+            x11.enable = true;
+        };
+
+        sessionVariables = {
+            XCURSOR_SIZE = config.home.pointerCursor.size;
+        };
+    };
 }

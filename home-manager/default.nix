@@ -91,7 +91,7 @@
         freecad
         filezilla
         inkscape
-        libtransmission
+        # libtransmission
         quickemu
         quickgui
         remmina
@@ -100,12 +100,17 @@
         qalculate-gtk
         # protonvpn-gui
         amdgpu_top
-        etcher
         rpi-imager
         sublime4
         qflipper
         jetbrains.pycharm-community
         parsec-bin
+        supersonic-wayland
+        freetube
+        youtube-dl
+        youtube-tui
+        direnv
+        element-desktop
 
         (assert (lib.assertMsg (obsidian.version != "1.4.16")
             "obsidian: has wayland crash been fixed?");
@@ -115,7 +120,18 @@
                     "patchelf --add-needed ${libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
                 meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
                 });
-            })
+        })
+
+        # (feishin.overrideAttrs (o: let
+        #     pname = "feishin";
+        #     version = "0.6.1";
+        #     appname = "Feishin";
+        # in {
+        #     src = fetchurl {
+        #         url = "https://github.com/jeffvli/feishin/releases/download/v${version}/${appname}-${version}-linux-x64.tar.xz";
+        #         hash = "sha256-u9tHlif61yvgcU+1noGVn3sm6Tm6tvwwj0vH2qBQMQg=";
+        #     };
+        # }))
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage

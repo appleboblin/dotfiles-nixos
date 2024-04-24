@@ -72,27 +72,32 @@
             "plugins.enumerable_names" = "";
             "privacy.firstparty.isolate" = true;
             "privacy.resistFingerprinting" = false;
+            "privacy.fingerprintingProtection" = true;
             "privacy.trackingprotection.cryptomining.enabled" = true;
             "privacy.trackingprotection.enabled" = true;
-            "privacy.trackingprotection.fingerprinting.enabled" = false;
+            "privacy.trackingprotection.fingerprinting.enabled" = true;
             "privacy.trackingprotection.socialtracking.enabled" = true;
+            "security.insecure_field_warning.contextual.enabled" = false;
+            "security.certerrors.permanentOverride" = false;
+            "network.stricttransportsecurity.preloadlist" = false;
+            "security.enterprise_roots.enabled" = true;
         };
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-            # Bitwarden seems to break when rebuilding, will see if not updating it every build fixes it
-            # bitwarden
-            ublock-origin
-            darkreader
-            proton-vpn
-            # bypass-paywalls-clean
-            unpaywall
-            canvasblocker
-            decentraleyes
-            sponsorblock
-            enhancer-for-youtube
-            user-agent-string-switcher
-            clearurls
-            theme-nord-polar-night
-        ];
+        # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        #     # Bitwarden seems to break when rebuilding, will see if not updating it every build fixes it
+        #     # bitwarden
+        #     ublock-origin
+        #     darkreader
+        #     proton-vpn
+        #     # bypass-paywalls-clean
+        #     unpaywall
+        #     canvasblocker
+        #     decentraleyes
+        #     sponsorblock
+        #     enhancer-for-youtube
+        #     user-agent-string-switcher
+        #     clearurls
+        #     theme-nord-polar-night
+        # ];
         };
     };
   };
