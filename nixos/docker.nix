@@ -1,7 +1,9 @@
 {
     config,
-    pkgs,
+    host,
     lib,
+    pkgs,
+    inputs,
     user,
     ...
 }: {
@@ -9,6 +11,5 @@
 
     virtualisation.docker = {
         enable = true;
-        storageDriver = "btrfs";
     };
 }

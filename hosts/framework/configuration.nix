@@ -61,6 +61,9 @@
 		wantedBy = [ "multi-user.target" "suspend.target" "hibernate.target" ];
 	};
 
+	# docker
+    virtualisation.docker.storageDriver = "btrfs";
+
 	# qmk for linux
 	services.keyd = {
 		enable = false;

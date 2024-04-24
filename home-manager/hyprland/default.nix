@@ -163,7 +163,7 @@
                     "foot --server"
                     "sleep 5;footclient -a scratch"
                     "hyprpaper & waybar & fcitx5 -d"
-                    "vesktop & spotify & obsidian & pcloud & thunderbird"
+                    "flatpak run dev.vencord.Vesktop & spotify & obsidian & pcloud & thunderbird"
                     # kitty ncspot kitty --class scratchpad
                     # "${lib.getExe pkgs.swayidle} -w timeout 300 'swaylock -f' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1200 'systemctl suspend'"
                     # Default browser fix

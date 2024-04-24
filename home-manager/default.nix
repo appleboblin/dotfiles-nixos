@@ -82,9 +82,9 @@
         protonmail-bridge
 
         # Other
-        webcord
-        discord
-        vesktop
+        # webcord
+        # discord
+        # vesktop
         betaflight-configurator
         prusa-slicer
         openscad
@@ -104,7 +104,7 @@
         sublime4
         qflipper
         jetbrains.pycharm-community
-        parsec-bin
+        # parsec-bin
         supersonic-wayland
         freetube
         youtube-dl
