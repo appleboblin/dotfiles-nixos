@@ -108,7 +108,7 @@
                 ];
                 modules-left = [ "custom/launcher" "hyprland/workspaces" ];
                 modules-center = [ "hyprland/window" ];
-                modules-right = [ "idle_inhibitor" "tray" "clock" ];
+                modules-right = [ "tray" "clock" ];
                 "hyprland/workspaces" = {
                     format = "{name}";
                     disable-scroll-wraparound = true;
