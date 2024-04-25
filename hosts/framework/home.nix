@@ -26,7 +26,7 @@
                 margin-right = 0;
                 spacing = 10;
                 output = [
-                "DP-4"
+                "eDP-1"
                 ];
                 modules-left = [ "hyprland/workspaces" ];
                 modules-center = [ "hyprland/window" ];

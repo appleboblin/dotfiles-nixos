@@ -61,12 +61,9 @@
 		wantedBy = [ "multi-user.target" "suspend.target" "hibernate.target" ];
 	};
 
-	# docker
-    virtualisation.docker.storageDriver = "btrfs";
-
 	# qmk for linux
 	services.keyd = {
-		enable = false;
+		enable = true;
 		keyboards.true = {
 		ids = ["*"];
 		settings = {
@@ -150,38 +147,38 @@
 
 	# wallpaper = eDP-1,${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
 	hm.xdg.configFile."hypr/hyprpaper.conf".text = lib.mkIf config.programs.hyprland.enable ''
-		wallpaper = DP-4,${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
+		wallpaper = eDP-1,${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
 	'';
 
 	# Hyprland settings
 	hm.wayland.windowManager.hyprland.settings = lib.mkIf config.programs.hyprland.enable {
 		monitor = [
-		# "eDP-1, 2256x1504, 0x0, 1"
-		"DP-3, 2560x1440@165, 0x0, 1"
-		"DP-4, 2560x1440@165, 2560x0, 1"
+		"eDP-1, 2256x1504, 0x0, 1"
+		# "DP-3, 2560x1440@165, 0x0, 1"
+		# "DP-4, 2560x1440@165, 2560x0, 1"
 		];
 
 		workspace = [
-			# "1, monitor:eDP-1, default:true"
-			# "2, monitor:eDP-1"
-			# "3, monitor:eDP-1"
-			# "4, monitor:eDP-1"
-			# "5, monitor:eDP-1"
-			# "6, monitor:eDP-1"
-			# "7, monitor:eDP-1"
-			# "8, monitor:eDP-1"
-			# "9, monitor:eDP-1"
-			# "10, monitor:eDP-1"
-			"1, monitor:DP-4, default:true"
-			"2, monitor:DP-4"
-			"3, monitor:DP-4"
-			"4, monitor:DP-4"
-			"5, monitor:DP-4"
-			"6, monitor:DP-4"
-			"7, monitor:DP-4"
-			"8, monitor:DP-4"
-			"9, monitor:DP-4"
-			"10, monitor:DP-4"
+			"1, monitor:eDP-1, default:true"
+			"2, monitor:eDP-1"
+			"3, monitor:eDP-1"
+			"4, monitor:eDP-1"
+			"5, monitor:eDP-1"
+			"6, monitor:eDP-1"
+			"7, monitor:eDP-1"
+			"8, monitor:eDP-1"
+			"9, monitor:eDP-1"
+			"10, monitor:eDP-1"
+			# "1, monitor:DP-4, default:true"
+			# "2, monitor:DP-4"
+			# "3, monitor:DP-4"
+			# "4, monitor:DP-4"
+			# "5, monitor:DP-4"
+			# "6, monitor:DP-4"
+			# "7, monitor:DP-4"
+			# "8, monitor:DP-4"
+			# "9, monitor:DP-4"
+			# "10, monitor:DP-4"
 		];
 
 		exec-once = [

@@ -290,6 +290,13 @@
 		enable = host != "vm";
 	};
 
+	# Scrub btrfs
+	services.btrfs.autoScrub = {
+	enable = true;
+	interval = "monthly";
+	fileSystems = [ "/" ];
+	};
+
 	# Open ports in the firewall.
 	# Syncthing ports: 8384 for remote access to GUI
 	# 22000 TCP and/or UDP for sync traffic
