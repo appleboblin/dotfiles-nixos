@@ -66,7 +66,6 @@
         # Terminal
         # kitty
         alacritty
-        rar
         distrobox
 
         # Window Manager
@@ -104,13 +103,14 @@
         sublime4
         qflipper
         jetbrains.pycharm-community
-        # parsec-bin
+        parsec-bin
         supersonic-wayland
         freetube
         youtube-dl
         youtube-tui
         direnv
         element-desktop
+        prismlauncher
 
         (assert (lib.assertMsg (obsidian.version != "1.4.16")
             "obsidian: has wayland crash been fixed?");
@@ -122,16 +122,25 @@
                 });
         })
 
-        # (feishin.overrideAttrs (o: let
-        #     pname = "feishin";
-        #     version = "0.6.1";
-        #     appname = "Feishin";
+        # (vesktop.overrideAttrs (o: let
+        #     pname = "vesktop";
+        #     version = "1.5.1";
+        #     appname = "vesktop";
         # in {
         #     src = fetchurl {
-        #         url = "https://github.com/jeffvli/feishin/releases/download/v${version}/${appname}-${version}-linux-x64.tar.xz";
-        #         hash = "sha256-u9tHlif61yvgcU+1noGVn3sm6Tm6tvwwj0vH2qBQMQg=";
+        #         url = "https://github.com/Vencord/Vesktop/releases/tag/v${version}/${appname}-${version}.tar.gz";
+        #         hash = "sha256-6kxUVRsUOe7rTgCyEnAP9su+ZMNRM1YCvbKmRgDcHNM=";
         #     };
         # }))
+
+        (vesktop.overrideAttrs (o: {
+        src = pkgs.fetchFromGitHub {
+            owner = "Vencord";
+            repo = "Vesktop";
+            rev = "v1.5.1";
+            hash = "sha256-OyAGzlwwdEKBbJJ7h3glwx/THy2VvUn/kA/Df3arWQU=";
+        };
+        }))
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -214,4 +223,7 @@
         # }
         ];
     };
+
+	# kde connect
+	# services.kdeconnect.enable = true;
 }

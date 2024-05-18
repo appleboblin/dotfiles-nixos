@@ -175,7 +175,7 @@
 	# };
 
 	# Flatpak
-	services.flatpak.enable = true;
+	# services.flatpak.enable = true;
 	# https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
 
 	# programs.nm-applet.enable = true;
@@ -206,6 +206,7 @@
 		git-lfs
 		htop
 		btop
+		nvtopPackages.full
 		eza
 		fzf
 		neofetch
@@ -224,7 +225,9 @@
 		ffmpeg
 		imagemagick
 		zip
+		rar
 		unzip
+		p7zip
 		rsync
 	];
 
@@ -309,12 +312,14 @@
 	networking.firewall = {
 		enable = true;
 		allowedTCPPortRanges = [
-		# spice
-		{ from = 5900; to = 5999; }
+		{ from = 5900; to = 5999; } # spice
+		# { from = 1714; to = 1764; } # KDE Connect
 		];
+		allowedUDPPortRanges = [ 
+		# { from = 1714; to = 1764; } # KDE Connect
+		]; 
 		allowedTCPPorts = [
-		# libvirt
-		16509
+		16509 		# libvirt
 		];
 		# if packets are still dropped, they will show up in dmesg
 		logReversePathDrops = true;

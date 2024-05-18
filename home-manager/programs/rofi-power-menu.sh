@@ -15,6 +15,6 @@ case $chosen in
     "$hibernate") systemctl hibernate ;;
     "$lock") swaylock -f ;;
     "$suspend") systemctl suspend ;;
-    "$logout") loginctl kill-user "$(whoami)" ;;
+    "$logout") pkill Hyprland ;;
     *) exit 1 ;;
 esac
