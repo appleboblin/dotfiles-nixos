@@ -14,6 +14,7 @@
         search = {
           default = "DuckDuckGo";
           privateDefault = "DuckDuckGo";
+          force = true;
         };
         settings = {
             # Keep the reader button enabled at all times; really don't

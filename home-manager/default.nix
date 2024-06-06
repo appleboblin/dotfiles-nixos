@@ -20,8 +20,9 @@
 
     # default stuff
     xdg = {
+        configFile."mimeapps.list".force = true;
         mimeApps = {
-            enable                              =  true;
+            enable                              = true;
             defaultApplications = {
                 "default-web-browser"           = [ "firefox.desktop" ];
                 "text/html"                     = [ "firefox.desktop" ];
@@ -83,7 +84,7 @@
         # Other
         # webcord
         # discord
-        # vesktop
+        vesktop
         betaflight-configurator
         prusa-slicer
         openscad
@@ -122,26 +123,6 @@
                 meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
                 });
         })
-
-        # (vesktop.overrideAttrs (o: let
-        #     pname = "vesktop";
-        #     version = "1.5.1";
-        #     appname = "vesktop";
-        # in {
-        #     src = fetchurl {
-        #         url = "https://github.com/Vencord/Vesktop/releases/tag/v${version}/${appname}-${version}.tar.gz";
-        #         hash = "sha256-6kxUVRsUOe7rTgCyEnAP9su+ZMNRM1YCvbKmRgDcHNM=";
-        #     };
-        # }))
-
-        (vesktop.overrideAttrs (o: {
-        src = pkgs.fetchFromGitHub {
-            owner = "Vencord";
-            repo = "Vesktop";
-            rev = "v1.5.1";
-            hash = "sha256-OyAGzlwwdEKBbJJ7h3glwx/THy2VvUn/kA/Df3arWQU=";
-        };
-        }))
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
