@@ -18,9 +18,9 @@
 	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 	# Enable touchpad support (enabled default in most desktopManager).
-	services.xserver.libinput.enable = true;
-	services.xserver.libinput.touchpad.disableWhileTyping = lib.mkForce true;
-	# services.xserver.libinput.touchpad.horizontalScrolling = lib.mkForce false;
+	services.libinput.enable = true;
+	services.libinput.touchpad.disableWhileTyping = lib.mkForce true;
+	# services.libinput.touchpadservices.xserver.libinput.touchpad.horizontalScrolling = lib.mkForce false;
 
 	# Set lightdm wallpaper
 	# services.xserver.displayManager.lightdm.greeters.gtk.extraConfig = ''
@@ -38,28 +38,28 @@
 	# Define a user account. Don't forget to set a password with ‘passwd’.
 	users.users.appleboblin = {
 		packages = with pkgs; [
-		fw-ectool
+		# fw-ectool
 		];
 	};
 
-	# ectool on start up
-	systemd.services.ectool = {          
-		description = "Run ECTool on start up to swap left alt and left super";          
-		enable = true;
-		path = [ pkgs.fw-ectool ];
-		serviceConfig = {
-		Type = "simple";
-		User = "root";
-		Group = "root";
-		Restart = "always";
-		After = ["suspend.target" "hibernate.target"];
-		};
-		script = ''
-		ectool raw 0x3E0C d1,d1,b1,b3,wE01F
-		ectool raw 0x3E0C d1,d1,b3,b1,w11
-		'';
-		wantedBy = [ "multi-user.target" "suspend.target" "hibernate.target" ];
-	};
+	# # ectool on start up
+	# systemd.services.ectool = {          
+	# 	description = "Run ECTool on start up to swap left alt and left super";          
+	# 	enable = true;
+	# 	path = [ pkgs.fw-ectool ];
+	# 	serviceConfig = {
+	# 	Type = "simple";
+	# 	User = "root";
+	# 	Group = "root";
+	# 	Restart = "always";
+	# 	After = ["suspend.target" "hibernate.target"];
+	# 	};
+	# 	script = ''
+	# 	ectool raw 0x3E0C d1,d1,b1,b3,wE01F
+	# 	ectool raw 0x3E0C d1,d1,b3,b1,w11
+	# 	'';
+	# 	wantedBy = [ "multi-user.target" "suspend.target" "hibernate.target" ];
+	# };
 
 	# qmk for linux
 	services.keyd = {
