@@ -68,8 +68,8 @@
 		ids = ["*"];
 		settings = {
 			main = {
-			# leftalt = "leftmeta";
-			# leftmeta = "leftalt";
+			leftalt = "leftmeta";
+			leftmeta = "leftalt";
 			capslock = "backspace";
 
 			# Colemak
@@ -98,6 +98,8 @@
 			};
 
 			qwerty = {
+			leftalt = "leftmeta";
+			leftmeta = "leftalt";
 			# Qwerty
 			s = "s";
 			e = "e";

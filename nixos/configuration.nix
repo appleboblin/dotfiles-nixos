@@ -213,6 +213,7 @@
 		procps
 		bash-completion
 		virtiofsd # vm
+		spice-gtk
 		wireguard-tools # vpn
 		nfs-utils # nfs file share
 		cifs-utils
@@ -230,6 +231,8 @@
 		p7zip
 		rsync
 	];
+
+	virtualisation.spiceUSBRedirection.enable = true;
 
 	# iPhone mount
 	services.usbmuxd = {
