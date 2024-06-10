@@ -167,7 +167,7 @@
     #  /etc/profiles/per-user/appleboblin/etc/profile.d/hm-session-vars.sh
     #
     home.sessionVariables = {
-        EDITOR = "neovim";
+        EDITOR = "nvim";
         BROWSER = "firefox";
         TERMINAL = "footclient";
     };

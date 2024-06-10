@@ -19,5 +19,6 @@
         ./btop.nix
         ./ncmpcpp.nix
         ./foot.nix
+        ./beets.nix
     ];
 }
