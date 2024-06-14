@@ -114,15 +114,16 @@
         prismlauncher
         v4l-utils
 
-        (assert (lib.assertMsg (obsidian.version != "1.4.16")
-            "obsidian: has wayland crash been fixed?");
-            obsidian.override {
-                electron = electron_24.overrideAttrs (_: {
-                preFixup =
-                    "patchelf --add-needed ${libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
-                meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
-                });
-        })
+        obsidian
+        # (assert (lib.assertMsg (obsidian.version != "1.4.16")
+        #     "obsidian: has wayland crash been fixed?");
+        #     obsidian.override {
+        #         electron = electron_24.overrideAttrs (_: {
+        #         preFixup =
+        #             "patchelf --add-needed ${libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
+        #         meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
+        #         });
+        # })
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage

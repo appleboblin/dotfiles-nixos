@@ -7,9 +7,13 @@
     inputs,
     ...
 }: {
+    # Override xdg.portal.wlr.enable, theres conflict
+	xdg.portal = {
+		wlr.enable = lib.mkForce false;
+	};
     programs.hyprland = lib.mkIf ( host != "vm" ) {
         enable = true;
-        xwayland.enable = true;
+        # xwayland.enable = true;
         # portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
 
