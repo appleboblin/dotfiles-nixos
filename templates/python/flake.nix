@@ -11,7 +11,7 @@
             systems = nixpkgs.lib.systems.flakeExposed;
 
             perSystem =
-                { config, self', inputs', pkgs, system, ...}:
+            { config, self', inputs', pkgs, system, ...}:
                 {
                 # template from iynaix
                 # Per-system attributes can be defined here. The self' and inputs'
@@ -24,7 +24,7 @@
                     dotenv.disableHint = true;
                     languages.python = {
                         enable = true;
-                        # Change pemplate if needed
+                        # Change version if needed
                         package = pkgs.python3.withPackages (
                             ps: with ps; [
                             flake8
