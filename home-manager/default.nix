@@ -82,7 +82,7 @@
         protonmail-bridge
 
         # Other
-        # webcord
+        webcord
         # discord
         vesktop
         betaflight-configurator
@@ -113,6 +113,9 @@
         element-desktop
         prismlauncher
         v4l-utils
+        file
+        ffmpeg
+        yt-dlp
 
         obsidian
         # (assert (lib.assertMsg (obsidian.version != "1.4.16")
