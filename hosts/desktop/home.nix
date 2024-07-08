@@ -147,7 +147,7 @@
                 ];
                 modules-left = [ "hyprland/workspaces" ];
                 modules-center = [ "hyprland/window" ];
-                modules-right = [ "idle_inhibitor" ];
+                modules-right = [ "bluetooth" "idle_inhibitor" ];
                 "hyprland/workspaces" = {
                     format = "{name}";
                     disable-scroll-wraparound = true;
@@ -166,6 +166,18 @@
                         deactivated = "󰾪 ";
                     };
                 };
+                "bluetooth" = {
+                    # // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+                    format-on = "󰂯";
+                    format-off = "󰂲";
+                    format-disabled = ""; # an empty format will hide the module
+                    format-connected = "󰂯 {num_connections}";
+                    tooltip-format = "{controller_alias}\t{controller_address}";
+                    tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+                    tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+                    on-click = "bluetoothctl power on";
+                    on-click-right = "bluetoothctl power off";
+                };
             }
         ];
     };
@@ -173,12 +185,18 @@
     # hyprland config
     wayland.windowManager.hyprland = {
         settings = {
+                input = {
+                    natural_scroll = false;
+                    sensitivity = -3;
+                    scroll_factor = 0.5;
+                };
+
             exec-once = [
 
             ];
 
             windowrule = [
-                "workspace 10 silent, vesktop"
+                "workspace 10 silent, webcord"
                 "workspace 10 silent, discord"
                 # "workspace 10 silent, floorp"
             ];

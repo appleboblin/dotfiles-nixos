@@ -24,11 +24,11 @@
 	# '';
 
 	# bluetooth
-	# hardware.bluetooth = {
-	#   enable = true; # enables support for Bluetooth
-	#   powerOnBoot = lib.mkForce false; # powers up the default Bluetooth controller on boot
-	# };
-	# services.blueman.enable = true;
+	hardware.bluetooth = {
+		enable = true; # enables support for Bluetooth
+		powerOnBoot = lib.mkForce true; # powers up the default Bluetooth controller on boot
+	};
+	services.blueman.enable = true;
 
 	# Define a user account. Don't forget to set a password with ‘passwd’.
 	users.users.appleboblin = {

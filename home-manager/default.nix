@@ -83,7 +83,7 @@
 
         # Other
         webcord
-        # discord
+        discord
         vesktop
         betaflight-configurator
         prusa-slicer
@@ -116,7 +116,7 @@
         file
         ffmpeg
         yt-dlp
-
+        mysql-workbench
         obsidian
         # (assert (lib.assertMsg (obsidian.version != "1.4.16")
         #     "obsidian: has wayland crash been fixed?");

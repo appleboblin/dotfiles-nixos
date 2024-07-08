@@ -135,6 +135,11 @@
     # hyprland config
     wayland.windowManager.hyprland = {
         settings = {
+            input = {
+                    natural_scroll = true;
+                    sensitivity = 0;
+                };
+
             exec-once = [
             ];
 

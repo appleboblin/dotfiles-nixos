@@ -69,10 +69,7 @@
                     kb_layout = "us";
                     # kb_variant = "colemak_dh_ortho";
                     follow_mouse = 1;
-                    natural_scroll = true;
-
                     numlock_by_default = true;
-                    sensitivity = 0;
 
                     touchpad = {
                         natural_scroll = true;
@@ -164,7 +161,7 @@
                     "sleep 5;footclient -a scratch"
                     "hyprpaper & waybar & fcitx5 -d"
                     # "flatpak run dev.vencord.Vesktop; sleep 10; latpak run dev.vencord.Vesktop"
-                    "vesktop & spotify & obsidian & pcloud & thunderbird"
+                    "discord & spotify & obsidian & pcloud & thunderbird"
                     # kitty ncspot kitty --class scratchpad
                     # "${lib.getExe pkgs.swayidle} -w timeout 300 'swaylock -f' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1200 'systemctl suspend'"
                     # Default browser fix
