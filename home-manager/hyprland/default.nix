@@ -144,7 +144,7 @@
 
                 master = {
                     # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-                    new_is_master = true;
+                    new_status = "slave";
                     orientation = "left";
                     new_on_top = false;
                 };
@@ -161,7 +161,7 @@
                     "sleep 5;footclient -a scratch"
                     "hyprpaper & waybar & fcitx5 -d"
                     # "flatpak run dev.vencord.Vesktop; sleep 10; latpak run dev.vencord.Vesktop"
-                    "discord & spotify & obsidian & pcloud & thunderbird"
+                    "vesktop & spotify & obsidian & pcloud & thunderbird"
                     # kitty ncspot kitty --class scratchpad
                     # "${lib.getExe pkgs.swayidle} -w timeout 300 'swaylock -f' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1200 'systemctl suspend'"
                     # Default browser fix

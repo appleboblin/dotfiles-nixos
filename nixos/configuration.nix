@@ -99,7 +99,7 @@
 		description = "Protonmail Bridge";          
 		enable = true;          
 		script = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive --log-level info";          
-		path = [ pkgs.gnome3.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176          
+		path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176          
 		wantedBy = [ "graphical-session.target" ];          
 		partOf = [ "graphical-session.target" ];
 	};
@@ -230,6 +230,9 @@
 		unzip
 		p7zip
 		rsync
+		r2modman
+		nextcloud-client
+		gnome-disk-utility
 	];
 
 	virtualisation.spiceUSBRedirection.enable = true;

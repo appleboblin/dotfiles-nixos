@@ -198,6 +198,7 @@
             windowrule = [
                 "workspace 10 silent, webcord"
                 "workspace 10 silent, discord"
+                "workspace 10 silent, vesktop"
                 # "workspace 10 silent, floorp"
             ];
 
