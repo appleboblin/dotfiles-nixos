@@ -233,6 +233,7 @@
 		r2modman
 		nextcloud-client
 		gnome-disk-utility
+		rawtherapee
 	];
 
 	virtualisation.spiceUSBRedirection.enable = true;
@@ -246,10 +247,10 @@
 	# Thunar
 	# programs.thunar.enable = true;
 	programs.xfconf.enable = true;
-	# programs.thunar.plugins = with pkgs.xfce; [
-	#   thunar-archive-plugin
-	#   thunar-volman
-	# ];
+	programs.thunar.plugins = with pkgs.xfce; [
+		thunar-archive-plugin
+		thunar-media-tags-plugin
+	];
 	# services.gvfs.enable = true; # Mount, trash, and other functionalities
 	services.gvfs = {
 		enable = true;
