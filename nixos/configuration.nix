@@ -234,6 +234,7 @@
 		nextcloud-client
 		gnome-disk-utility
 		rawtherapee
+		digikam
 	];
 
 	virtualisation.spiceUSBRedirection.enable = true;
