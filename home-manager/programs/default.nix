@@ -20,5 +20,6 @@
         ./ncmpcpp.nix
         ./foot.nix
         ./beets.nix
+        ./nemo.nix
     ];
 }
