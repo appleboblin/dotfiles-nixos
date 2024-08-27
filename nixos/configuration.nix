@@ -235,6 +235,7 @@
 		gnome-disk-utility
 		rawtherapee
 		digikam
+		darktable
 	];
 
 	virtualisation.spiceUSBRedirection.enable = true;
