@@ -10,8 +10,15 @@
     gtk.font.size = 20;
     
     # swaylock image
-    programs.swaylock.settings = {
-        image = "${./framework_wallpaper.png}";
+    # programs.swaylock.settings = {
+    #     image = "${./framework_wallpaper.png}";
+    # };
+
+    # hyprlock image
+    programs.hyprlock.settings = {
+        background = {
+            path = "${./framework_wallpaper.png}";
+        };
     };
 
     # Waybar settings

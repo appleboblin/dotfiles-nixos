@@ -4,46 +4,83 @@
     lib,
     ...
 }: {
-    programs.swaylock = {
-        package = pkgs.swaylock-effects;
+    programs.hyprlock = {
+        # Adapted from iynaix's config
         settings = {
-            image = lib.mkDefault "${./WP_Laser_Up-2560x1440_00229.jpg}";
-            ignore-empty-password = true;
-            show-failed-attempts = true;
-            indicator-caps-lock = true;
-            clock = true;
+            general = {
+                disable_loading_bar = false;
+                grace = 0;
+                hide_cursor = false;
+            };
 
-            font = "MesloLGS Nerd Font";
-            font-size = 16;
+            background = {
+                monitor = "";
+                path = lib.mkDefault "${./WP_Laser_Up-2560x1440_00229.jpg}";
+                blur_passes = 0;
+                noise = 0.0117;
+                contrast = 0.8916;
+                brightness = 0.8172;
+                vibrancy = 0.1696;
+                vibrancy_darkness = 0.0;
+            };
 
-            color = "1d1f21";
-            indicator-idle-visible = true;
-            indicator-radius = 150;
-            indicator-thickness = 30;
+            input-field = {
+                monitor = "";
+                size = "300, 50";
+                outline_thickness = 2;
+                dots_size = 0.33;
+                dots_spacing = 0.15;
+                dots_center = true;
+                outer_color = "rgb(129, 162, 190)";
+                inner_color = "rgba(29, 31, 33, 0.7)";
+                font_color = "rgb(229,233,240)";
+                fade_on_empty = false;
+                placeholder_text = "";
+                hide_input = false;
 
-            inside-color = "1d1f21bb";
-            inside-clear-color = "1d1f21bb";
-            inside-ver-color = "1d1f21bb";
-            inside-wrong-color = "1d1f21bb";
+                position = "0, -20";
+                halign = "center";
+                valign = "center";
+            };
 
-            key-hl-color = "7aa6daaa";
-            bs-hl-color = "d54e53aa";
+            label = [
+                {
+                    monitor = "";
+                    text = ''cmd[update:1000] echo "<b><big>$(date +"%H:%M")</big></b>"'';
+                    color = "rgb(229,233,240)";
+                    font_size = 150;
+                    font_family = "Inter Regular";
 
-            separator-color = "55555555";
+                    # shadow makes it more readable on light backgrounds
+                    shadow_passes = 1;
+                    shadow_size = 4;
 
-            line-color = "1d1f21";
-            line-uses-ring = true;
+                    position = "0, 190";
+                    halign = "center";
+                    valign = "center";
+                }
+                {
+                    monitor = "";
+                    text = ''cmd[update:1000] echo "<b><big>$(date +"%A, %B %-d")</big></b>"'';
+                    color = "rgb(229,233,240)";
+                    font_size = 40;
+                    font_family = "Inter Regular";
 
-            text-color = "e5e9f0";
-            text-clear-color = "b5bd68";
-            text-caps-lock-color = "f0c674";
-            text-ver-color = "e5e9f0";
-            text-wrong-color = "cc6666";
+                    # shadow makes it more readable on light backgrounds
+                    shadow_passes = 1;
+                    shadow_size = 2;
 
-            ring-color = "81a2be55";
-            ring-ver-color = "81a2be";
-            ring-clear-color = "b5bd6811";
-            ring-wrong-color = "cc6666";
+                    position = "0, 60";
+                    halign = "center";
+                    valign = "center";
+                }
+            ];
         };
+
     };
+
+    wayland.windowManager.hyprland.settings = {
+        bind = [ "$mod_SHIFT, x, exec, loginctl lock-session" ];
+    };
+
 }

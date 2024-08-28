@@ -42,17 +42,31 @@
         enable = true;
     };
 
-    hm.programs.swaylock = lib.mkIf config.programs.hyprland.enable {
+    # hm.programs.swaylock = lib.mkIf config.programs.hyprland.enable {
+    #     enable = true;
+    # };
+
+    # # locking with swaylock
+    # security.pam.services.swaylock = lib.mkIf config.programs.hyprland.enable {
+    #     text = "auth include login";
+    # };
+
+    # # Enable auto lock
+    # hm.services.swayidle = lib.mkIf config.programs.hyprland.enable {
+    #     enable = true;
+    # };
+
+    # locking with hyprlock
+    hm.programs.hyprlock = lib.mkIf config.programs.hyprland.enable {
         enable = true;
     };
 
-    # locking with swaylock
-    security.pam.services.swaylock = lib.mkIf config.programs.hyprland.enable {
+    security.pam.services.hyprlock = lib.mkIf config.programs.hyprland.enable {
         text = "auth include login";
     };
 
     # Enable auto lock
-    hm.services.swayidle = lib.mkIf config.programs.hyprland.enable {
+    hm.services.hypridle = lib.mkIf config.programs.hyprland.enable {
         enable = true;
     };
 

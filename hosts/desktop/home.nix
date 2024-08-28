@@ -12,19 +12,37 @@
     #};
 
     # sawyidle time
-    services.swayidle = {
-        timeouts = [
+    # services.swayidle = {
+    #     timeouts = [
+    #         {
+    #             timeout = 600;
+    #             command = "${lib.getExe config.programs.swaylock.package} -f";
+    #         }
+    #         {
+    #             timeout = 1200;
+    #             command = "${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms off";
+    #         }
+    #         {
+    #             timeout = 1800;
+    #             command = "${pkgs.systemd}/bin/systemctl suspend";
+    #         }
+    #     ];
+    # };
+
+    services.hypridle.settings = {
+        listener = lib.mkDefault [
             {
-                timeout = 600;
-                command = "${lib.getExe config.programs.swaylock.package} -f";
+            timeout = 10 * 60;
+            on-timeout = "loginctl lock-session";
             }
             {
-                timeout = 1200;
-                command = "${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms off";
+            timeout = 20 * 60;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
             }
             {
-                timeout = 1800;
-                command = "${pkgs.systemd}/bin/systemctl suspend";
+            timeout = 30 * 60;
+            on-timeout = "systemctl suspend";
             }
         ];
     };
