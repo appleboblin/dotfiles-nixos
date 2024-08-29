@@ -236,6 +236,7 @@
 		rawtherapee
 		digikam
 		darktable
+		calibre
 	];
 
 	virtualisation.spiceUSBRedirection.enable = true;
