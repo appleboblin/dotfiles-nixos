@@ -305,9 +305,15 @@
 
 	# Scrub btrfs
 	services.btrfs.autoScrub = {
-	enable = true;
-	interval = "monthly";
-	fileSystems = [ "/" ];
+		enable = true;
+		interval = "weekly";
+		fileSystems = [ "/" ];
+	};
+
+	# fstrim
+	services.fstrim = {
+		enable = true;
+		interval = "weekly";
 	};
 
 	# Open ports in the firewall.

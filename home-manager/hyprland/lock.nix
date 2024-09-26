@@ -61,7 +61,7 @@
                 }
                 {
                     monitor = "";
-                    text = ''cmd[update:1000] echo "<b><big>$(date +"%A, %B %-d")</big></b>"'';
+                    text = ''cmd[update:1000] echo "<b><big>$(date +"%A, %-d %B")</big></b>"'';
                     color = "rgb(229,233,240)";
                     font_size = 40;
                     font_family = "Inter Regular";
