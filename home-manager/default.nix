@@ -92,8 +92,8 @@
         filezilla
         inkscape
         # libtransmission
-        quickemu
-        quickgui
+        # quickemu
+        # quickgui
         remmina
         gimp
         okular
@@ -107,8 +107,6 @@
         parsec-bin
         supersonic-wayland
         freetube
-        youtube-dl
-        youtube-tui
         direnv
         element-desktop
         prismlauncher

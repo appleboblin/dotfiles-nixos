@@ -20,6 +20,7 @@
             bufferline.enable = true;
             barbecue.enable = true;
             which-key.enable = true;
+            web-devicons.enable = true;
             cmp.enable = true;
             cmp-buffer.enable = true;
             cmp-nvim-lsp.enable = true;
@@ -27,8 +28,8 @@
             lsp = {
                 enable = true;
                 servers = {
-                    tsserver.enable = true;
-                    lua-ls.enable = true;
+                    ts_ls.enable = true;
+                    lua_ls.enable = true;
                     pyright.enable = true;
                 };
             };
