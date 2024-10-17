@@ -33,7 +33,7 @@
                     devices = [ "desktop" "framework" "pixel8" ];
                 };
                 "Obsidian" = {
-                    path = "/home/${user}/Documents/obsidian";
+                    path = "/home/${user}/Documents/obsidian/";
                     devices = [ "desktop" "TrueNAS" "framework" "pixel8" ];
                 };
                 "Pictures" = {

@@ -175,7 +175,7 @@
 	# };
 
 	# Flatpak
-	# services.flatpak.enable = true;
+	services.flatpak.enable = true;
 	# https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
 
 	# programs.nm-applet.enable = true;
@@ -237,7 +237,15 @@
 		digikam
 		darktable
 		calibre
+		jflap
+		texliveFull
+		httrack
+		hugin
+		# (texlive.withPackages (ps: [
+		# 	ps.latex
+		# ]))
 	];
+
 
 	virtualisation.spiceUSBRedirection.enable = true;
 

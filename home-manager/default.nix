@@ -196,7 +196,7 @@
         { # personal
             condition = "gitdir:~/";
             contents.user = {
-            email = "appleboblin@proton.me";
+            email = "github@appleboblin.com";
             name = user;
             };
         }

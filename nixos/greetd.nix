@@ -8,7 +8,7 @@
 }: let
     tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
     hyprland = "${config.programs.hyprland.package}/bin/Hyprland";
-    xfce4 = "${pkgs .xfce.xfce4-session}/bin/startxfce4";
+    xfce4 = "${pkgs.xfce.xfce4-session}/bin/startxfce4";
 in {
     services.greetd = {
         enable = false;
