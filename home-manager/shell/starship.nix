@@ -35,9 +35,9 @@
             # right_format = "$cmd_duration$time";
 
             character = {
-                error_symbol = "[](red)";
-                success_symbol = "[](green)";#fg:46
-                vimcmd_symbol = "[](green)";
+                error_symbol = "[❯](red)";
+                success_symbol = "[❯](green)";#fg:46
+                vimcmd_symbol = "[❮](green)";
             };
             cmd_duration = {
                 format = "[$duration]($style) ";

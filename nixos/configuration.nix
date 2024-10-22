@@ -238,6 +238,8 @@
 		rawtherapee
 		digikam
 		darktable
+		# bluez
+        # bluez-tools
 		# calibre
 		jflap
 		texliveFull
@@ -267,7 +269,7 @@
 	# services.gvfs.enable = true; # Mount, trash, and other functionalities
 	services.gvfs = {
 		enable = true;
-		package = lib.mkForce pkgs.gnome3.gvfs;
+		package = lib.mkForce pkgs.gnome.gvfs;
 	};
 	services.tumbler.enable = true; # Thumbnail support for images
 	# Some programs need SUID wrappers, can be configured further or are

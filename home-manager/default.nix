@@ -70,7 +70,6 @@
         distrobox
 
         # Window Manager
-        bluez
         pavucontrol
         grimblast
         # xfce.ristretto
