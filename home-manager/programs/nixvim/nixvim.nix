@@ -14,25 +14,66 @@
         plugins = {
             lualine.enable = true;
             treesitter.enable = true;
-            telescope.enable = true;
+            lazygit.enable = true;
             # neo-tree.enable = true;
             nvim-tree.enable = true;
             bufferline.enable = true;
             barbecue.enable = true;
             which-key.enable = true;
-            web-devicons.enable = true;
-            cmp.enable = true;
-            cmp-buffer.enable = true;
-            cmp-nvim-lsp.enable = true;
-            cmp-path.enable = true;
-            lsp = {
+            nvim-autopairs.enable = true;
+            # web-devicons.enable = true;
+            telescope = {
                 enable = true;
-                servers = {
-                    ts_ls.enable = true;
-                    lua_ls.enable = true;
-                    pyright.enable = true;
+                keymaps = {
+                "<leader>fg" = "live_grep";
+                "<C-p>" = {
+                    action = "git_files";
+                    options = {
+                    desc = "Telescope Git Files";
+                    };
+                };
+                };
+                extensions.fzf-native = { enable = true; };
+            };
+            toggleterm = {
+                enable = true;
+                settings = {
+                open_mapping = "[[<C-t>]]";
                 };
             };
+            wilder = {
+                enable = true;
+                modes = [ ":" "/" "?" ];
+            };
+            auto-save = {
+                enable = true;
+                settings.enabled = true;
+            };
+            indent-blankline = {
+                enable = true;
+                settings = {
+                indent = {
+                    smart_indent_cap = true;
+                    char = " ";
+                };
+                scope = {
+                    enabled = true;
+                    char = "│";
+                };
+                };
+            };
+            # cmp.enable = true;
+            # cmp-buffer.enable = true;
+            # cmp-nvim-lsp.enable = true;
+            # cmp-path.enable = true;
+            # lsp = {
+            #     enable = true;
+            #     servers = {
+            #         ts_ls.enable = true;
+            #         lua_ls.enable = true;
+            #         pyright.enable = true;
+            #     };
+            # };
         };
         opts = {
             number = true;
@@ -40,7 +81,7 @@
             shiftwidth = 4;
             clipboard = "unnamedplus";
         };
-        globals.mapleader = ",";
+        globals.mapleader = " ";
         keymaps = [
             # { key = ""; action = ""; }
             # Movements
@@ -70,6 +111,14 @@
             # Mark
             { key = "h"; action = "m"; }
             { key = "H"; action = "M"; }
+
+            # Matching pairs
+            # { key = "("; action = "()<Left>"; mode = "i"; }
+            # { key = "["; action = "[]<Left>"; mode = "i"; }
+            # { key = "{"; action = "{}<Left>"; mode = "i"; }
+            # { key = "'"; action = "''<Left>"; mode = "i"; }
+            # { key = "\""; action = "\"\"<Left>"; mode = "i"; }
+            # { key = "`"; action = "``<Left>"; mode = "i"; }
 
             # Commands
             { key = "<S-Z>"; action = "<cmd>:NvimTreeToggle<CR>"; }

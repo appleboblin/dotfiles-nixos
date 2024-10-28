@@ -10,7 +10,7 @@
         ./kitty.nix
         ./gtk.nix
         ./dunst.nix
-        ./nixvim.nix
+        ./nixvim/default.nix
         ./rofi.nix
         ./pcloud.nix
         ./spicetify.nix
