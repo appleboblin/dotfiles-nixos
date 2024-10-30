@@ -24,12 +24,22 @@
         mimeApps = {
             enable                              = true;
             defaultApplications = {
-                "default-web-browser"           = [ "firefox.desktop" ];
-                "text/html"                     = [ "firefox.desktop" ];
-                "x-scheme-handler/http"         = [ "firefox.desktop" ];
-                "x-scheme-handler/https"        = [ "firefox.desktop" ];
-                "x-scheme-handler/about"        = [ "firefox.desktop" ];
-                "x-scheme-handler/unknown"      = [ "firefox.desktop" ];
+                # desktop files from environment.systemPackages are located in 
+                # /run/current-system/sw/share/applications/
+                # desktof files from home-manager are located in
+                # /nix/store/hash-home-manager-path/share/applications
+                # MIME types https://www.sitepoint.com/mime-types-complete-list/
+                "default-web-browser"           = [ "floorp.desktop" ];
+                "text/html"                     = [ "floorp.desktop" ];
+                "x-scheme-handler/http"         = [ "floorp.desktop" ];
+                "x-scheme-handler/https"        = [ "floorp.desktop" ];
+                "x-scheme-handler/about"        = [ "floorp.desktop" ];
+                "x-scheme-handler/unknown"      = [ "floorp.desktop" ];
+
+                "application/pdf" = [ "okular.desktop" ];
+
+                "image/jpeg" = [ "org.xfce.ristretto.desktop" ];
+                "image/png" = [ "org.xfce.ristretto.desktop" ];
             };
         };
         userDirs = {
@@ -113,7 +123,19 @@
         file
         ffmpeg
         yt-dlp
-        mysql-workbench
+        # mysql-workbench
+		r2modman
+		nextcloud-client
+		gnome-disk-utility
+		rawtherapee
+		digikam
+		darktable
+
+		# calibre
+		jflap
+		texliveFull
+		httrack
+		hugin
         obsidian
         # (assert (lib.assertMsg (obsidian.version != "1.4.16")
         #     "obsidian: has wayland crash been fixed?");
@@ -169,7 +191,7 @@
     #
     home.sessionVariables = {
         EDITOR = "nvim";
-        BROWSER = "firefox";
+        BROWSER = "floorp";
         TERMINAL = "footclient";
     };
 

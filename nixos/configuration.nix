@@ -15,13 +15,13 @@
 		# Nix Package Manager
 	nix = {
 		settings = {
-		auto-optimise-store = true;
-		experimental-features = ["nix-command" "flakes"];
+			auto-optimise-store = true;
+			experimental-features = ["nix-command" "flakes"];
 		};
 		gc = {
-		automatic = true;
-		dates = "daily";
-		options = "--delete-older-than 7d";
+			automatic = true;
+			dates = "daily";
+			options = "--delete-older-than 7d";
 		};
 	};
 	
@@ -232,22 +232,8 @@
 		unzip
 		p7zip
 		rsync
-		r2modman
-		nextcloud-client
-		gnome-disk-utility
-		rawtherapee
-		digikam
-		darktable
 		# bluez
         # bluez-tools
-		# calibre
-		jflap
-		texliveFull
-		httrack
-		hugin
-		# (texlive.withPackages (ps: [
-		# 	ps.latex
-		# ]))
 	];
 
 
