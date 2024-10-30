@@ -9,13 +9,13 @@
         # nur.url = "github:nix-community/NUR";
         nixos-hardware.url = "github:NixOS/nixos-hardware";
         nixvim = {
-        url = "github:nix-community/nixvim";
-        # inputs.nixpkgs.follows = "nixpkgs";
+            url = "github:nix-community/nixvim";
+            # inputs.nixpkgs.follows = "nixpkgs";
         };
         home-manager = {
-        url = "github:nix-community/home-manager";
-        # url = "github:nix-community/home-manager/release-23.11";
-        inputs.nixpkgs.follows = "nixpkgs";
+            url = "github:nix-community/home-manager";
+            # url = "github:nix-community/home-manager/release-23.11";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
@@ -29,11 +29,11 @@
         nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = {
-            inherit (nixpkgs) lib;
-            inherit inputs host user;
+                inherit (nixpkgs) lib;
+                inherit inputs host user;
             };
             modules = [
-            inputs.home-manager.nixosModules.home-manager
+                inputs.home-manager.nixosModules.home-manager
             {
                 home-manager = {
                 useGlobalPkgs = true;
@@ -65,9 +65,9 @@
         };
     in {
         nixosConfigurations = {
-        framework = mkHost "framework";
-        vm = mkHost "vm";
-        desktop = mkHost "desktop";
+            framework = mkHost "framework";
+            vm = mkHost "vm";
+            desktop = mkHost "desktop";
         };
     };
 }

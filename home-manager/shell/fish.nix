@@ -17,10 +17,10 @@
         functions = {
             gt = {
                 body = ''
-                cd $HOME/github/
-                if test (count $argv) -eq 1
-                    cd $argv[1]
-                end
+                    cd $HOME/github/
+                    if test (count $argv) -eq 1
+                        cd $argv[1]
+                    end
                 '';
                 description = "cd into GitHub directories";
             };

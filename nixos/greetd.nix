@@ -13,15 +13,15 @@ in {
     services.greetd = {
         enable = false;
         settings = {
-        # Auto login
-        # initial_session = {
-        #     command = "${session}";
-        #     user = "${user}";
-        # };
-        default_session = {
-            command = "${tuigreet} -g 'Please Login :)' --asterisks --remember --remember-user-session --time --cmd ${hyprland}";
-            user = "greeter";
-        };
+            # Auto login
+            # initial_session = {
+            #     command = "${session}";
+            #     user = "${user}";
+            # };
+            default_session = {
+                command = "${tuigreet} -g 'Please Login :)' --asterisks --remember --remember-user-session --time --cmd ${hyprland}";
+                user = "greeter";
+            };
         };
     };
 }

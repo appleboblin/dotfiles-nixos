@@ -9,11 +9,11 @@
 let
 
     pkgs_22_11 = (import inputs.nixpkgs_22_11 {
-    inherit (pkgs) system;
-    config.allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) (map lib.getName [
-        pkgs_22_11.pcloud
-        ]);
+        inherit (pkgs) system;
+        config.allowUnfreePredicate = pkg:
+            builtins.elem (lib.getName pkg) (map lib.getName [
+            pkgs_22_11.pcloud
+            ]);
     });
     # https://github.com/NixOS/nixpkgs/issues/226339
     pcloud = pkgs_22_11.pcloud.overrideAttrs (prev:

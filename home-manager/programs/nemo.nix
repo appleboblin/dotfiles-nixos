@@ -22,8 +22,7 @@
         "application/x-bzip2-compressed-tar" = "org.gnome.FileRoller.desktop";
         };
 
-        configFile =
-        {
+        configFile = {
             "mimeapps.list".force = true;
         };
     };
@@ -31,27 +30,27 @@
     dconf.settings = {
         # fix open in terminal
         "org/gnome/desktop/applications/terminal" = {
-        exec = "footclient";
+            exec = "footclient";
         };
         "org/cinnamon/desktop/applications/terminal" = {
-        exec = "footclient";
+            exec = "footclient";
         };
         "org/nemo/preferences" = {
-        default-folder-viewer = "list-view";
-        show-hidden-files = true;
-        start-with-dual-pane = true;
-        date-format-monospace = true;
-        # needs to be a uint64!
-        thumbnail-limit = lib.hm.gvariant.mkUint64 (100 * 1024 * 1024); # 100 mb
+            default-folder-viewer = "list-view";
+            show-hidden-files = true;
+            start-with-dual-pane = true;
+            date-format-monospace = true;
+            # needs to be a uint64!
+            thumbnail-limit = lib.hm.gvariant.mkUint64 (100 * 1024 * 1024); # 100 mb
         };
         "org/nemo/window-state" = {
-        sidebar-bookmark-breakpoint = 0;
-        sidebar-width = 180;
+            sidebar-bookmark-breakpoint = 0;
+            sidebar-width = 180;
         };
         "org/nemo/preferences/menu-config" = {
-        selection-menu-make-link = true;
-        selection-menu-copy-to = true;
-        selection-menu-move-to = true;
+            selection-menu-make-link = true;
+            selection-menu-copy-to = true;
+            selection-menu-move-to = true;
         };
     };
 }

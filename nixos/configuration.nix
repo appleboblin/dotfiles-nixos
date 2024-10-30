@@ -326,26 +326,26 @@
 	networking.firewall = {
 		enable = true;
 		allowedTCPPortRanges = [
-		{ from = 5900; to = 5999; } # spice
-		# { from = 1714; to = 1764; } # KDE Connect
+			{ from = 5900; to = 5999; } # spice
+			# { from = 1714; to = 1764; } # KDE Connect
 		];
 		allowedUDPPortRanges = [ 
-		# { from = 1714; to = 1764; } # KDE Connect
+			# { from = 1714; to = 1764; } # KDE Connect
 		]; 
 		allowedTCPPorts = [
-		16509 		# libvirt
+			16509 		# libvirt
 		];
 		# if packets are still dropped, they will show up in dmesg
 		logReversePathDrops = true;
 		# wireguard trips rpfilter up
 		extraCommands = ''
-		ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
-		ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
-		iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
+			ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
+			ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
+			iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
 		'';
 		extraStopCommands = ''
-		ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
-		ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
+			ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
+			ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
 		'';
 	};
 	# wireguard

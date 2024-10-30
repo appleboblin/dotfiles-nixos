@@ -61,16 +61,16 @@
 			];
 
 			workspace = [
-					"1, monitor:DP-2, layoutopt:orientation:left, default:true"
-					"2, monitor:DP-2, layoutopt:orientation:left"
-					"3, monitor:DP-2, layoutopt:orientation:left"
-					"4, monitor:DP-1, layoutopt:orientation:left, default:true"
-					"5, monitor:DP-1, layoutopt:orientation:left"
-					"6, monitor:DP-1, layoutopt:orientation:left"
-					"7, monitor:DP-1, layoutopt:orientation:left"
-					"8, monitor:HDMI-A-1, layoutopt:orientation:top"
-					"9, monitor:HDMI-A-1, layoutopt:orientation:top"
-					"10, monitor:HDMI-A-1, layoutopt:orientation:top, default:true"
+				"1, monitor:DP-2, layoutopt:orientation:left, default:true"
+				"2, monitor:DP-2, layoutopt:orientation:left"
+				"3, monitor:DP-2, layoutopt:orientation:left"
+				"4, monitor:DP-1, layoutopt:orientation:left, default:true"
+				"5, monitor:DP-1, layoutopt:orientation:left"
+				"6, monitor:DP-1, layoutopt:orientation:left"
+				"7, monitor:DP-1, layoutopt:orientation:left"
+				"8, monitor:HDMI-A-1, layoutopt:orientation:top"
+				"9, monitor:HDMI-A-1, layoutopt:orientation:top"
+				"10, monitor:HDMI-A-1, layoutopt:orientation:top, default:true"
 			];
 
 			exec-once = [
