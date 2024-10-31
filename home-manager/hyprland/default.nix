@@ -87,6 +87,12 @@
                     };
                 };
 
+                device = {
+                    name = "kensington-slimblade-pro(2.4ghz-receiver)-kensington-slimblade-pro-trackball(2.4ghz-receiver)";
+                    sensitivity = 0.1;
+                    accel_profile = "adaptive";
+                };
+
                 "$mod" =
                     if isVm
                     then "ALT"
