@@ -36,7 +36,7 @@
                 "x-scheme-handler/about"        = [ "floorp.desktop" ];
                 "x-scheme-handler/unknown"      = [ "floorp.desktop" ];
 
-                "application/pdf" = [ "okular.desktop" ];
+                "application/pdf" = [ "okularApplication_pdf.desktop" ];
 
                 "image/jpeg" = [ "org.xfce.ristretto.desktop" ];
                 "image/png" = [ "org.xfce.ristretto.desktop" ];
@@ -131,7 +131,7 @@
 		digikam
 		darktable
 
-		# calibre
+		calibre
 		jflap
 		texliveFull
 		httrack
