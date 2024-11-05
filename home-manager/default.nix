@@ -24,7 +24,7 @@
         mimeApps = {
             enable                              = true;
             defaultApplications = {
-                # desktop files from environment.systemPackages are located in 
+                # desktop files from environment.systemPackages are located in
                 # /run/current-system/sw/share/applications/
                 # desktof files from home-manager are located in
                 # /nix/store/hash-home-manager-path/share/applications
@@ -136,6 +136,9 @@
 		texliveFull
 		httrack
 		hugin
+        evince
+        zed-editor
+        nixd
         obsidian
         # (assert (lib.assertMsg (obsidian.version != "1.4.16")
         #     "obsidian: has wayland crash been fixed?");
