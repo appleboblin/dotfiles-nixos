@@ -1,11 +1,6 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
-}: {
     programs.kitty = {
-        enable = true; 
+        enable = true;
         themeFile = "Nord";
         font = {
             name = "MesloLGS Nerd Font Mono";

@@ -1,13 +1,11 @@
 {
-    config,
     pkgs,
-    lib,
     host,
     ...
 }: {
     programs.obs-studio = {
         enable = host != "vm";
-        
+
         plugins = with pkgs.obs-studio-plugins; [
         wlrobs
         # obs-backgroundremoval

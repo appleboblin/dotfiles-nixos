@@ -1,7 +1,6 @@
 {
     config,
     pkgs,
-    lib,
     ...
 }: {
     services.transmission = {
@@ -10,7 +9,7 @@
         settings = {
             download-dir = "${config.services.transmission.home}/Downloads";
         };
-        
+
     };
     environment.systemPackages = with pkgs; [ transmission_4-gtk ];
 }

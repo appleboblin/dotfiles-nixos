@@ -2,13 +2,11 @@
     config,
     pkgs,
     lib,
-    host,
-    home,
     ...
-}: {  
+}: {
     # font size
     gtk.font.size = 20;
-    
+
     # swaylock image
     # programs.swaylock.settings = {
     #     image = "${./framework_wallpaper.png}";
@@ -170,7 +168,7 @@
             "workbench.colorTheme" = "Nord";
             "workbench.productIconTheme" = "material-product-icons";
             "editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
-            "terminal.integrated.defaultProfile.linux" = "fish"; 
+            "terminal.integrated.defaultProfile.linux" = "fish";
         };
     };
 }

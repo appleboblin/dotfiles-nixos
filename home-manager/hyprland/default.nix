@@ -1,12 +1,8 @@
 {
-    config,
     pkgs,
     lib,
-    host,
     isLaptop,
     isVm,
-    inputs,
-    osConfig,
     ...
 }: {
     imports =  [
@@ -16,7 +12,7 @@
         ./lock.nix
         ./idle.nix
     ];
-    
+
     # home = lib.mkIf wayland.windowManager.hyprland.enable {
     #     XCURSOR_SIZE = "24";
     #     HYPR_LOG = "/tmp/hypr/$(command ls -t /tmp/hypr/ | grep -v lock | head -n 1)/hyprland.log";
@@ -25,8 +21,8 @@
     # shellAliases = lib.mkIf wayland.windowManager.hyprland.enable{
     #     hypr-log = "less /tmp/hypr/$(command ls -t /tmp/hypr/ | grep -v lock | head -n 1)/hyprland.log";
     # };
-    # lib.mkIf config.wayland.windowManager.hyprland.enable 
-    # lib.mkIf osConfig.programs.hyprland.enable 
+    # lib.mkIf config.wayland.windowManager.hyprland.enable
+    # lib.mkIf osConfig.programs.hyprland.enable
     config = {
         home = {
             packages = with pkgs; [

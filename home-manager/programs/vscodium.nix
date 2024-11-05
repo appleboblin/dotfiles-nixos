@@ -1,4 +1,8 @@
-{lib, pkgs, inputs, ...}: {
+{
+    lib,
+    pkgs,
+    ...
+}: {
 	config = {
 		programs.vscode = {
 			enable = true;
@@ -28,7 +32,7 @@
 				"workbench.iconTheme" = "simple-icons";
 				"workbench.productIconTheme" = "material-product-icons";
 				"editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
-				"terminal.integrated.defaultProfile.linux" = "fish"; 
+				"terminal.integrated.defaultProfile.linux" = "fish";
 				"editor.indentSize" = "tabSize";
 				"editor.tabSize" = 4;
 			};

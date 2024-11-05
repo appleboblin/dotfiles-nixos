@@ -1,11 +1,6 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
-}: {
     programs.foot = {
-        enable = true; 
+        enable = true;
         settings = {
             main = {
                 term = "foot";

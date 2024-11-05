@@ -1,10 +1,8 @@
 {
     config,
     host,
-    isLaptop,
     lib,
     pkgs,
-    inputs,
     ...
 }: {
     # Override xdg.portal.wlr.enable, theres conflict

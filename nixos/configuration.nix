@@ -5,8 +5,6 @@
 	config,
 	pkgs,
 	lib,
-	inputs,
-	user,
 	host,
 	...
 }: {
@@ -24,7 +22,7 @@
 			options = "--delete-older-than 7d";
 		};
 	};
-	
+
 	# Configure network proxy if necessary
 	# networking.proxy.default = "http://user:password@proxy:port/";
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -35,7 +33,7 @@
 	# Set your time zone.
 	# time.timeZone = "Asia/Taipei";
 	services.automatic-timezoned.enable = true;
-	
+
 	# Select internationalisation properties.
 	i18n.defaultLocale = "en_US.UTF-8";
 
@@ -97,15 +95,15 @@
 	# Proton mail and vpn fix
 	# services.passSecretService.enable = true;
 	services.gnome.gnome-keyring.enable = true;
-	systemd.user.services.protonmail-bridge = {          
-		description = "Protonmail Bridge";          
-		enable = true;          
-		script = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive --log-level info";          
-		path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176          
-		wantedBy = [ "graphical-session.target" ];          
+	systemd.user.services.protonmail-bridge = {
+		description = "Protonmail Bridge";
+		enable = true;
+		script = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive --log-level info";
+		path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176
+		wantedBy = [ "graphical-session.target" ];
 		partOf = [ "graphical-session.target" ];
 	};
-	
+
 	# Enable sound with pipewire.
 	# sound.enable = true;
 	# hardware.pulseaudio.enable = false;
@@ -141,7 +139,7 @@
 		options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
 	'';
 	security.polkit.enable = true;
-	
+
 	# OpenGL
 	# hardware.opengl = {
 	#   enable = true;
@@ -330,9 +328,9 @@
 			{ from = 5900; to = 5999; } # spice
 			# { from = 1714; to = 1764; } # KDE Connect
 		];
-		allowedUDPPortRanges = [ 
+		allowedUDPPortRanges = [
 			# { from = 1714; to = 1764; } # KDE Connect
-		]; 
+		];
 		allowedTCPPorts = [
 			16509 		# libvirt
 		];

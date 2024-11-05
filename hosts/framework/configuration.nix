@@ -4,7 +4,6 @@
 {
 	config,
 	host,
-	inputs,
 	lib,
 	pkgs,
 	...
@@ -13,7 +12,7 @@
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
 	boot.initrd.luks.devices."luks-7b176329-e104-4d94-8f4c-574571e27aa5".device = "/dev/disk/by-uuid/7b176329-e104-4d94-8f4c-574571e27aa5";
-	
+
 	networking.hostName = host; # Define your hostname.
 	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -43,8 +42,8 @@
 	};
 
 	# # ectool on start up
-	# systemd.services.ectool = {          
-	# 	description = "Run ECTool on start up to swap left alt and left super";          
+	# systemd.services.ectool = {
+	# 	description = "Run ECTool on start up to swap left alt and left super";
 	# 	enable = true;
 	# 	path = [ pkgs.fw-ectool ];
 	# 	serviceConfig = {

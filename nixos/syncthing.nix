@@ -1,14 +1,9 @@
 {
-    config,
-    pkgs,
-    lib,
-    host,
     user,
-    home,
     ...
 }: {
     services.syncthing = {
-        enable = true; 
+        enable = true;
         user = "${user}";
         openDefaultPorts = true;
         dataDir = "/home/${user}";

@@ -1,9 +1,4 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
-}: {
     programs.waybar = {
         # settings = {
         # };
@@ -123,7 +118,7 @@
             #custom-powermenu {
             color: #b3616a;
             margin-right: 16px;
-            } 
+            }
 
             #bluetooth.off {
             color: #b3616a;
@@ -137,7 +132,7 @@
 
             #custom-wireguard {
             margin-right: 5px;
-            } 
+            }
             '';
     };
 }

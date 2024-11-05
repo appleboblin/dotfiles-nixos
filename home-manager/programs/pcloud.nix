@@ -1,10 +1,9 @@
 {
-    config,
     inputs,
     lib,
     pkgs,
     ...
-}: 
+}:
 # https://git.sr.ht/~r-vdp/nixos-config/tree/00076882a59b0ba2feb4d43b95a7a298ebb8bcd2/item/package-overrides.nix#L37
 let
 

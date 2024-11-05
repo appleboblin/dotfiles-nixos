@@ -1,8 +1,6 @@
 {
-    config,
     pkgs,
     lib,
-    host,
     ...
 }: {
     home.packages = with pkgs; [

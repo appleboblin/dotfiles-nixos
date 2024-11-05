@@ -1,9 +1,4 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
-}: {
     imports = [
         ./starship.nix
         ./fish.nix

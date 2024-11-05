@@ -1,7 +1,4 @@
 {
-    config,
-    pkgs,
-    lib,
     inputs,
     ...
 }: {
@@ -92,7 +89,7 @@
             options.desc = "Format the current buffer";
             }
 
-            # Git    
+            # Git
             {
             mode = "n";
             key = "<leader>g";

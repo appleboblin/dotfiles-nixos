@@ -1,7 +1,4 @@
 {
-    config,
-    pkgs,
-    lib,
     user,
     ...
 }: {
@@ -28,7 +25,7 @@
         # completions = {
         #     grr = {
         #         body = ''
-        #             find "$HOME/dotfiles-nixos/" -maxdepth 1 -type d -exec basename {} \;  
+        #             find "$HOME/dotfiles-nixos/" -maxdepth 1 -type d -exec basename {} \;
         #         '';
         #     };
         # };
@@ -46,7 +43,7 @@
         # '';
         "/home/${user}/.config/fish/completions/gt.fish".text = ''
             function _gt --description 'complete GitHub directories'
-                find "$HOME/github/" -maxdepth 1 -type d -not -wholename "$HOME/github/" -exec basename {} \; 
+                find "$HOME/github/" -maxdepth 1 -type d -not -wholename "$HOME/github/" -exec basename {} \;
             end
             complete --no-files --command gt --arguments "(_gt)"
         '';

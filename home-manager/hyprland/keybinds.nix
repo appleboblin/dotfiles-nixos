@@ -1,10 +1,7 @@
 {
-    config,
     pkgs,
     lib,
-    host,
     isLaptop,
-    inputs,
     ...
 }: {
     wayland.windowManager.hyprland.settings = {
@@ -32,7 +29,7 @@
 
         # Activate when release
         bindr = [
-            
+
         ];
         bind = [
             # Media keys

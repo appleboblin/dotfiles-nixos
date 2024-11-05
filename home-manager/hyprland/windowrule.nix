@@ -1,12 +1,4 @@
 {
-    config,
-    pkgs,
-    lib,
-    host,
-    isLaptop,
-    inputs,
-    ...
-}: {
     wayland.windowManager.hyprland.settings = {
         windowrule = [
             # do not idle while watching videos, not working for some reason

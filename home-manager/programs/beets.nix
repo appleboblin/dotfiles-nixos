@@ -1,13 +1,7 @@
 {
-    config,
-    pkgs,
-    lib,
-    host,
-    ...
-}: {
     programs.beets = {
         enable = true;
-        
+
         settings = {
             "directory" = "/home/appleboblin/Music/music/";
             "library" = "/home/appleboblin/Music/beets/musiclibrary.db";

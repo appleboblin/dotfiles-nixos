@@ -2,10 +2,8 @@
     config,
     pkgs,
     lib,
-    host,
-    home,
     ...
-}: {  
+}: {
     # swaylock image
     #programs.swaylock.settings = {
     #    image = "${./framework_wallpaper.png}";
@@ -225,7 +223,7 @@
                 "workspace 1 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
             ];
 
-            
+
             bind = [
                 # Switch workspace
                 "$mod, 1, focusmonitor, DP-2"
@@ -245,7 +243,7 @@
                 # "$mod, 9, layoutmsg, orientationtop"
                 "$mod, 0, focusmonitor, HDMI-A-1"
                 # "$mod, 0, layoutmsg, orientationtop"
-                
+
                 # Move window
                 "$mod SHIFT, 1, movecurrentworkspacetomonitor, DP-2"
                 "$mod SHIFT, 2, movecurrentworkspacetomonitor, DP-2"
