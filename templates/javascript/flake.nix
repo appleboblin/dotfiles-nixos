@@ -1,30 +1,39 @@
 {
+    description = "JavaScript development environment";
+
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-        devenv.url = "github:cachix/devenv";
+        flake-utils.url = "github:numtide/flake-utils";
     };
 
-    outputs =
-        inputs@{ flake-parts, nixpkgs, ... }:
-        flake-parts.lib.mkFlake { inherit inputs; } {
-            imports = [ inputs.devenv.flakeModule ];
-            systems = nixpkgs.lib.systems.flakeExposed;
+    outputs = { self, nixpkgs, flake-utils }:
+        flake-utils.lib.eachDefaultSystem (system:
+        let
+            pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            };
 
-            perSystem =
-                { config, self', inputs', pkgs, system, ...}:
-                {
-                # template from iynaix
-                # Per-system attributes can be defined here. The self' and inputs'
-                # module parameters provide easy access to attributes of the same
-                # system.
-                devenv.shells.default = {
-                    # https://devenv.sh/reference/options/
-                    packages = [ ];
+        in
+        {
+            devShells.default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+                # Core
+                nodejs
+                yarn
 
-                    # dotenv.disableHint = true;
-                    languages.javascript.enable = true;
-                    languages.typescript.enable = true;
-                };
-                };
-        };
+                # Development tools
+                nodePackages.prettier
+                nodePackages.eslint
+                nodePackages.typescript
+            ];
+
+            shellHook = ''
+                echo "JavaScript development environment ready!"
+                echo "Node.js version: $(node --version)"
+                echo "npm version: $(npm --version)"
+                echo "yarn version: $(yarn --version)"
+            '';
+            };
+        });
 }

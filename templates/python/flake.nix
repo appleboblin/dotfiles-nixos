@@ -1,34 +1,43 @@
 {
-    inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-        devenv.url = "github:cachix/devenv";
-    };
+	description = "Python development environment";
 
-    outputs =
-        inputs@{ flake-parts, nixpkgs, ... }:
-        flake-parts.lib.mkFlake { inherit inputs; } {
-            imports = [ inputs.devenv.flakeModule ];
-            systems = nixpkgs.lib.systems.flakeExposed;
+	inputs = {
+		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+		flake-utils.url = "github:numtide/flake-utils";
+	};
 
-            perSystem =
-            { config, self', inputs', pkgs, system, ...}:
-                {
-                # template from iynaix
-                # Per-system attributes can be defined here. The self' and inputs'
-                # module parameters provide easy access to attributes of the same
-                # system.
-                devenv.shells.default = {
-                    # https://devenv.sh/reference/options/
-                    packages = with pkgs.python3Packages; [ 
-                        flake8
-                        black
-                    ];
-                    dotenv.disableHint = true;
-                    languages.python = {
-                        enable = true;
-                        venv.enable = true;
-                    };
-                };
-                };
-    };
+	outputs = { self, nixpkgs, flake-utils }:
+		flake-utils.lib.eachDefaultSystem (system:
+		let
+			pkgs = import nixpkgs {
+			inherit system;
+			config.allowUnfree = true;
+			};
+
+			# Specify Python packages
+			pythonPackages = ps: with ps; [
+			pip
+			flake8
+			];
+
+			# Set python version
+			python = pkgs.python312.withPackages pythonPackages;
+
+		in
+		{
+			devShells.default = pkgs.mkShell {
+			buildInputs = [
+				python
+				# Add additional development tools
+				pkgs.poetry
+				pkgs.black
+				pkgs.pylint
+			];
+
+			shellHook = ''
+				echo "Python development environment ready!"
+				echo "Python version: $(python --version)"
+			'';
+			};
+		});
 }
