@@ -130,7 +130,7 @@
 		digikam
 		darktable
 
-		calibre
+		# calibre
 		jflap
 		texliveFull
 		httrack
@@ -148,6 +148,15 @@
         #         meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
         #         });
         # })
+        hyprsunset
+        # (hyprsunset.overrideAttrs (o: {
+        #     src = pkgs.fetchFromGitHub {
+        #     owner = "hyprwm";
+        #     repo = "hyprsunset";
+        #     rev = "v0.1.0";
+        #     hash = "sha256-SVkcePzX9PAlWsPSGBaxiNFCouiQmGOezhMo0+zhDIQ=";
+        #     };
+        # }))
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage

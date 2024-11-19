@@ -124,10 +124,6 @@
                         new_optimizations = true;
                     };
                     rounding = 0;
-                    drop_shadow = true;
-                    shadow_range = 4;
-                    shadow_render_power = 3;
-                    "col.shadow" = "rgba(1a1a1aee)";
                 };
 
                 animations = {
@@ -177,6 +173,7 @@
                     # "${lib.getExe pkgs.swayidle} -w timeout 300 'swaylock -f' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1200 'systemctl suspend'"
                     # Default browser fix
                     "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
+                    "systemctl --user start hyprsunset.service"
                 ];
             };
         };

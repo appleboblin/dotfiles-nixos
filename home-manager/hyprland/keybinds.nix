@@ -38,10 +38,15 @@
             ", XF86AudioPlay, exec, playerctl play-pause"
             ", XF86AudioNext, exec, playerctl next"
 
+            # hyprsunset
+            "$mod SHIFT, H, exec, killall hyprsunset ; hyprsunset -t 2500"
+            "$mod CTRL, H, exec, killall hyprsunset ; hyprsunset -t 4000"
+            "$mod, H, exec, killall hyprsunset ; hyprsunset -t 6000"
+
             # "$mod, Return, exec, kitty"
             "$mod, Return, exec, footclient"
             "$mod, W, killactive"
-            "ALT, Return, togglespecialworkspace, scratchpad"
+            "$mod SHIFT, Return, togglespecialworkspace, scratchpad"
             "ALT, S, togglespecialworkspace, music"
 
             # Screenshot
