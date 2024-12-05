@@ -11,6 +11,7 @@
         ./bar.nix
         ./lock.nix
         ./idle.nix
+        ./wlsunset.nix
     ];
 
     # home = lib.mkIf wayland.windowManager.hyprland.enable {
@@ -173,7 +174,7 @@
                     # "${lib.getExe pkgs.swayidle} -w timeout 300 'swaylock -f' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1200 'systemctl suspend'"
                     # Default browser fix
                     "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
-                    "systemctl --user start hyprsunset.service"
+                    # "systemctl --user start hyprsunset.service"
                 ];
             };
         };

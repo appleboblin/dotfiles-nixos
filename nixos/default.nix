@@ -10,6 +10,5 @@
         ./greetd.nix
         ./syncthing.nix
         ./steam.nix
-        ./systemd-timer.nix
     ];
 }

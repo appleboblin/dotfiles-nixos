@@ -10,7 +10,7 @@
 }: {
 	imports = [];
 
-		# Nix Package Manager
+	# Nix Package Manager
 	nix = {
 		settings = {
 			auto-optimise-store = true;
@@ -187,7 +187,7 @@
 		"openssl-1.1.1w"
 	];
 	# nixpkgs.overlays = [
-	#   inputs.nur.overlay
+	# 	inputs.nur.overlay
 	# ];
 
 	# List packages installed in system profile. To search, run:
@@ -210,6 +210,7 @@
 		eza
 		fzf
 		neofetch
+		fastfetch
 		procps
 		bash-completion
 		virtiofsd # vm

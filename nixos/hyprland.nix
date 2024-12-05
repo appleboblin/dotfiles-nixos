@@ -73,6 +73,11 @@
         enable = true;
     };
 
+    # Enable wlsunset
+    hm.services.wlsunset = lib.mkIf config.programs.hyprland.enable {
+        enable = true;
+    };
+
     # Wallpaper, brightness
     users.users.appleboblin = {
         packages = with pkgs; lib.mkIf config.programs.hyprland.enable[

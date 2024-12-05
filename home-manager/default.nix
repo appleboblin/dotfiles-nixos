@@ -148,7 +148,6 @@
         #         meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
         #         });
         # })
-        hyprsunset
         # (hyprsunset.overrideAttrs (o: {
         #     src = pkgs.fetchFromGitHub {
         #     owner = "hyprwm";
