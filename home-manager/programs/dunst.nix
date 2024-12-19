@@ -7,8 +7,8 @@
                 follow = "none";
 
                 # Geometry
-                width = 450;
-                height = 300;
+                # width = 450;
+                # height = 300;
                 origin = "top-right";
                 # geometry = "450x5-0+0";
                 offset = "0x0";
