@@ -231,6 +231,7 @@
 		unzip
 		p7zip
 		rsync
+		ntfs3g
 		# bluez
         # bluez-tools
 	];

@@ -11,7 +11,9 @@
             source-han-sans
             source-han-serif
             inter
-            (nerdfonts.override {fonts = [ "Meslo" "FiraCode" "JetBrainsMono"]; })
+            nerd-fonts.meslo-lg
+            nerd-fonts.fira-code
+            nerd-fonts.jetbrains-mono
         ];
 
         fontconfig = {
