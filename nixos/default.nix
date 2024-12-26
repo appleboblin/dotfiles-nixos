@@ -10,5 +10,6 @@
         ./greetd.nix
         ./syncthing.nix
         ./steam.nix
+        ./localsend.nix
     ];
 }
