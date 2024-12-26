@@ -38,11 +38,6 @@
             ", XF86AudioPlay, exec, playerctl play-pause"
             ", XF86AudioNext, exec, playerctl next"
 
-            # hyprsunset
-            "$mod SHIFT, H, exec, killall hyprsunset ; hyprsunset -t 2500"
-            "$mod CTRL, H, exec, killall hyprsunset ; hyprsunset -t 4000"
-            "$mod, H, exec, killall hyprsunset ; hyprsunset -t 6000"
-
             # "$mod, Return, exec, kitty"
             "$mod, Return, exec, footclient"
             "$mod, W, killactive"
@@ -52,16 +47,20 @@
             # Screenshot
             "$mod SHIFT, S, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"
             ", Print, exec, pkill rofi || rofi-screenshot-menu"
+            "$mod SHIFT, T, exec, pkill rofi || rofi-screenshot-menu"
 
             # toggle Menu
             "CTRL SHIFT, Delete, exec, pkill rofi || rofi-power-menu"
             "$mod, V, exec, pkill rofi || cliphist list | ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to copy' | cliphist decode | wl-copy" # Select from history
             "$mod SHIFT, V, exec, pkill rofi || cliphist list | ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to delete' | cliphist delete" # Select history to delete
-            "$mod, Space, exec, pkill rofi || ${lib.getExe pkgs.rofi-wayland} -show drun"
-            "$mod, C, exec, pkill rofi || ${lib.getExe pkgs.rofi-wayland} -show calc -modi calc -no-show-match -no-sort"
+            "$mod, Space, exec, pkill rofi || ${lib.getExe pkgs.rofi-wayland} -show drun -theme-str 'window {width: 400px;}'"
+            # "$mod, C, exec, pkill rofi || ${lib.getExe pkgs.rofi-wayland} -show calc -modi calc -no-show-match -no-sort"
 
             # Delete last entry from cliphist history
             "$mod, Delete, exec, cliphist list | cliphist delete "
+
+            # Open notification center
+            "$mod, T, exec, swaync-client -t"
 
             # float and full
             "$mod, F, togglefloating"

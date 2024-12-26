@@ -27,14 +27,14 @@ in {
         package = pkgs.rofi-wayland;
         font = "MesloLGS Nerd Font 16";
         extraConfig = {
-            display-drun = "Application";
+            display-drun = " ";
             drun-display-format = "{name}";
             show-icons = true;
             modi = "window,run,drun";
         };
-        plugins = with pkgs; [
-            rofi-calc
-        ];
+        # plugins = with pkgs; [
+        #     rofi-calc
+        # ];
         theme = {
             "*" = {
                 nord0 = mkLiteral "#2e3440";

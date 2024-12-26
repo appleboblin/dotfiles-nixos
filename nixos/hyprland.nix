@@ -69,7 +69,12 @@
     };
 
     # Enable notification
+    # Just notification
     hm.services.dunst = lib.mkIf config.programs.hyprland.enable {
+        enable = false;
+    };
+    # Notification center
+    hm.services.swaync = lib.mkIf config.programs.hyprland.enable {
         enable = true;
     };
 

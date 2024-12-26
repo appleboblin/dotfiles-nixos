@@ -13,7 +13,7 @@ case $chosen in
     "$shutdown") systemctl poweroff ;;
     "$reboot") systemctl reboot ;;
     "$hibernate") systemctl hibernate ;;
-    "$lock") swaylock -f ;;
+    "$lock") loginctl lock-session ;;
     "$suspend") systemctl suspend ;;
     "$logout") pkill Hyprland ;;
     *) exit 1 ;;

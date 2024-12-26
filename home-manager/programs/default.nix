@@ -16,5 +16,6 @@
         ./foot.nix
         ./beets.nix
         ./nemo.nix
+        ./swaync.nix
     ];
 }

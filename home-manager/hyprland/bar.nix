@@ -133,6 +133,10 @@
             #custom-wireguard {
             margin-right: 5px;
             }
+
+            #custom-notification {
+            font-family: "NotoSansMono Nerd Font";
+            }
             '';
     };
 }
