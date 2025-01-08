@@ -6,7 +6,7 @@
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
-      inputs.nixos-hardware.nixosModules.framework.13-inch.12th-gen-intel
+      inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];

@@ -64,78 +64,83 @@
 	services.keyd = {
 		enable = true;
 		keyboards.true = {
-		ids = ["*"];
-		settings = {
-			main = {
-			leftalt = "leftmeta";
-			leftmeta = "leftalt";
-			capslock = "backspace";
+			ids = ["*"];
+			settings = {
+				main = {
+					leftalt = "leftmeta";
+					leftmeta = "leftalt";
+					capslock = "leftcontrol";
 
-			# Colemak
-			s = "r";
-			e = "f";
-			d = "s";
-			r = "p";
-			f = "t";
-			v = "d";
-			t = "b";
-			g = "g";
-			b = "v";
+					# Colemak
+					s = "r";
+					e = "f";
+					d = "s";
+					r = "p";
+					f = "t";
+					v = "d";
+					t = "b";
+					g = "g";
+					b = "v";
 
-			y = "j";
-			h = "m";
-			n = "k";
-			u = "l";
-			j = "n";
-			m = "h";
-			i = "u";
-			k = "e";
-			o = "y";
-			l = "i";
-			p = ";";
-			";" = "o";
+					y = "j";
+					h = "m";
+					n = "k";
+					u = "l";
+					j = "n";
+					m = "h";
+					i = "u";
+					k = "e";
+					o = "y";
+					l = "i";
+					p = ";";
+					";" = "o";
+				};
+
+				qwerty = {
+					leftalt = "leftmeta";
+					leftmeta = "leftalt";
+					# Qwerty
+					s = "s";
+					e = "e";
+					d = "d";
+					r = "r";
+					f = "f";
+					v = "v";
+					t = "t";
+					g = "g";
+					b = "b";
+
+					y = "y";
+					h = "h";
+					n = "n";
+					u = "u";
+					j = "j";
+					m = "m";
+					i = "i";
+					k = "k";
+					o = "o";
+					l = "l";
+					p = "p";
+					";" = ";";
+				};
+
+				"control+shift" = {
+					space = "toggle(qwerty)";
+				};
+
+				"meta+alt" = {
+					capslock = "capslock";
+				};
+
+				"meta" = {
+					h = "left";
+					j = "down";
+					k = "up";
+					l = "right";
+				};
 			};
-
-			qwerty = {
-			leftalt = "leftmeta";
-			leftmeta = "leftalt";
-			# Qwerty
-			s = "s";
-			e = "e";
-			d = "d";
-			r = "r";
-			f = "f";
-			v = "v";
-			t = "t";
-			g = "g";
-			b = "b";
-
-			y = "y";
-			h = "h";
-			n = "n";
-			u = "u";
-			j = "j";
-			m = "m";
-			i = "i";
-			k = "k";
-			o = "o";
-			l = "l";
-			p = "p";
-			";" = ";";
-			};
-
-			"control+shift" = {
-			space = "toggle(qwerty)";
-			};
-
-			"meta" = {
-			capslock = "capslock";
-			};
-
-		};
 		};
 	};
-
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
