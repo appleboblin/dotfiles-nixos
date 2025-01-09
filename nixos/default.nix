@@ -11,5 +11,6 @@
         ./syncthing.nix
         ./steam.nix
         ./localsend.nix
+        ./wireshark.nix
     ];
 }

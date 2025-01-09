@@ -153,7 +153,7 @@
 	users.users.appleboblin = {
 		isNormalUser = true;
 		description = "appleboblin";
-		extraGroups = ["networkmanager" "wheel" "libvirtd"];
+		extraGroups = ["networkmanager" "wheel" "libvirtd" "wireshark"];
 		# shell = pkgs.zsh;
 		packages = with pkgs; lib.mkIf ( host != "vm" )[
 		# mpd
@@ -273,7 +273,11 @@
 
 	# Udev rules
 	# services.udev.extraRules = ''
-
+	services.udev = {
+		extraRules = ''
+		SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
+		'';
+	};
 	# '';
 	services.udev.packages = [
 		(pkgs.writeTextFile {
