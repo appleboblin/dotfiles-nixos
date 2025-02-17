@@ -10,7 +10,6 @@
     # manage.
     home.username = user;
     home.homeDirectory = "/home/${user}";
-
     imports = [
         ./programs
         ./shell
@@ -140,6 +139,9 @@
         nixd
         obsidian
         wireshark
+        android-udev-rules
+        mongodb-compass
+        kiwix
         # (assert (lib.assertMsg (obsidian.version != "1.4.16")
         #     "obsidian: has wayland crash been fixed?");
         #     obsidian.override {

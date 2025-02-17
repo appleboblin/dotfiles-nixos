@@ -106,7 +106,6 @@
 
 	# Enable sound with pipewire.
 	# sound.enable = true;
-	# hardware.pulseaudio.enable = false;
 	security.rtkit.enable = true;
 	services.pipewire = {
 		enable = true;
@@ -122,7 +121,7 @@
 		#media-session.enable = true;
 	};
 	# mpd stuff
-	hardware.pulseaudio.extraConfig = "load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1";
+	services.pulseaudio.extraConfig = "load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1";
 
 	xdg.portal = {
 		enable = true;
@@ -276,6 +275,11 @@
 	services.udev = {
 		extraRules = ''
 		SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
+		# pixel 8
+		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee2", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
+		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee7", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
+		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4eec", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
+		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee0", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
 		'';
 	};
 	# '';
