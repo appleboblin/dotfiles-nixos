@@ -165,8 +165,7 @@
                     # "nm-applet --indicator"
 
                     # Desktop dependency
-                    "foot --server"
-                    "sleep 5;footclient -a scratch"
+                    "foot --server & sleep 5 ; footclient -a scratch"
                     "hyprpaper & waybar & fcitx5 -d & swaync"
                     # "flatpak run dev.vencord.Vesktop; sleep 10; latpak run dev.vencord.Vesktop"
                     "vesktop & spotify & obsidian & pcloud & thunderbird"

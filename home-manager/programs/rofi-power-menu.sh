@@ -15,6 +15,6 @@ case $chosen in
     "$hibernate") systemctl hibernate ;;
     "$lock") loginctl lock-session ;;
     "$suspend") systemctl suspend ;;
-    "$logout") pkill Hyprland ;;
+    "$logout") hyprctl dispatch exit ;;
     *) exit 1 ;;
 esac

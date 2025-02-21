@@ -233,8 +233,13 @@
 		ntfs3g
 		# bluez
         # bluez-tools
+		yubioath-flutter
 	];
 
+	# security key
+	services.yubikey-agent.enable = true;
+	programs.yubikey-touch-detector.enable = true;
+	security.pam.u2f.enable = true;
 
 	virtualisation.spiceUSBRedirection.enable = true;
 
@@ -284,6 +289,7 @@
 	};
 	# '';
 	services.udev.packages = [
+		pkgs.yubikey-personalization
 		(pkgs.writeTextFile {
 			name = "qflipper_udev";
 			text = ''

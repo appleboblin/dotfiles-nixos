@@ -22,6 +22,9 @@
         mkdir = "mkdir -p";
         c = "clear";
 
+        # grayjay
+        gray = "cd /home/appleboblin/grayjay && nix-shell";
+
         #NixOS
         rebuild = "git add .; sudo nixos-rebuild switch --flake .#${host}";
         delete = "sudo nix-collect-garbage -d";
