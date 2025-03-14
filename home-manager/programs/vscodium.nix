@@ -23,30 +23,32 @@
 			#   simple icons
 			#   pretty formatter
 			# ];
-			userSettings = lib.mkDefault {
-				"editor.fontSize" = 15;
-				"window.zoomLevel" = 1;
-				"terminal.integrated.fontSize" = 14;
-				"markdown.preview.fontSize" = 15;
-				"workbench.colorTheme" = "Nord";
-				"workbench.iconTheme" = "simple-icons";
-				"workbench.productIconTheme" = "material-product-icons";
-				"editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
-				"terminal.integrated.defaultProfile.linux" = "fish";
-				"editor.indentSize" = "tabSize";
-				"editor.tabSize" = 4;
+			profiles.default = {
+				userSettings = lib.mkDefault {
+					"editor.fontSize" = 15;
+					"window.zoomLevel" = 1;
+					"terminal.integrated.fontSize" = 14;
+					"markdown.preview.fontSize" = 15;
+					"workbench.colorTheme" = "Nord";
+					"workbench.iconTheme" = "simple-icons";
+					"workbench.productIconTheme" = "material-product-icons";
+					"editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
+					"terminal.integrated.defaultProfile.linux" = "fish";
+					"editor.indentSize" = "tabSize";
+					"editor.tabSize" = 4;
+				};
+				keybindings = lib.mkDefault [
+					{
+						key = "ctrl+b";
+						# scope = "html";
+						command = "editor.action.insertSnippet";
+						when = "editorTextFocus && editorLangId == 'html'";
+						args = {
+							snippet = "<strong>$TM_SELECTED_TEXT</strong>$0";
+						};
+					}
+				];
 			};
-			keybindings = lib.mkDefault [
-				{
-					key = "ctrl+b";
-					# scope = "html";
-					command = "editor.action.insertSnippet";
-					when = "editorTextFocus && editorLangId == 'html'";
-					args = {
-						snippet = "<strong>$TM_SELECTED_TEXT</strong>$0";
-					};
-				}
-			];
 		};
 	};
 }
