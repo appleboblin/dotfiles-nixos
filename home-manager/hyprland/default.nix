@@ -12,6 +12,7 @@
         ./lock.nix
         ./idle.nix
         ./wlsunset.nix
+        ./swaync.nix
     ];
 
     # home = lib.mkIf wayland.windowManager.hyprland.enable {
@@ -165,10 +166,10 @@
                     # "nm-applet --indicator"
 
                     # Desktop dependency
-                    "foot --server & sleep 5 ; footclient -a scratch"
+                    "foot --server & sleep 5 && footclient -a scratch"
                     "hyprpaper & waybar & fcitx5 -d & swaync"
                     # "flatpak run dev.vencord.Vesktop; sleep 10; latpak run dev.vencord.Vesktop"
-                    "vesktop & spotify & obsidian & pcloud & thunderbird"
+                    "vesktop & spotify & obsidian & pcloud & sleep 5 && thunderbird"
                     # kitty ncspot kitty --class scratchpad
                     # "${lib.getExe pkgs.swayidle} -w timeout 300 'swaylock -f' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1200 'systemctl suspend'"
                     # Default browser fix

@@ -5,7 +5,8 @@
     host,
     lib,
     ...
-}: {
+}: 
+{
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     home.username = user;
@@ -64,7 +65,6 @@
     # The home.packages option allows you to install Nix packages into your
     # environment.
     home.packages = with pkgs; lib.mkIf (host != "vm") [
-        # Browser
         brave
         chromium
         floorp
@@ -89,13 +89,13 @@
         protonmail-bridge
 
         # Other
-        webcord
+        # webcord
         discord
         vesktop
         betaflight-configurator
         prusa-slicer
-        openscad
-        freecad
+        # openscad
+        # freecad
         filezilla
         inkscape
         # libtransmission
@@ -103,17 +103,17 @@
         # quickgui
         remmina
         gimp
-        okular
+        kdePackages.okular
         qalculate-gtk
         # protonvpn-gui
         amdgpu_top
-        rpi-imager
+        # rpi-imager
         sublime4
         qflipper
         jetbrains.pycharm-community
         parsec-bin
-        supersonic-wayland
-        freetube
+        # supersonic-wayland
+        # freetube
         direnv
         element-desktop
         prismlauncher
@@ -125,23 +125,25 @@
 		r2modman
 		nextcloud-client
 		gnome-disk-utility
-		rawtherapee
-		digikam
+		# rawtherapee
+		# digikam
 		darktable
 
 		# calibre
-		jflap
+		# jflap
 		texliveFull
-		httrack
-		hugin
-        evince
+		# httrack
+		# hugin
+        # evince
         zed-editor
-        nixd
+        # nixd
         obsidian
         wireshark
         android-udev-rules
         mongodb-compass
         kiwix
+        moonlight-qt
+        github-desktop
         # (assert (lib.assertMsg (obsidian.version != "1.4.16")
         #     "obsidian: has wayland crash been fixed?");
         #     obsidian.override {

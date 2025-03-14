@@ -101,6 +101,10 @@
                             "label" = "󰂯";
                             "command" = "blueman-manager";
                         }
+                        {
+                            "label" = "";
+                            "command" = "footclient";
+                        }
                     ];
                 };
             };

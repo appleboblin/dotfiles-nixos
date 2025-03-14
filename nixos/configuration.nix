@@ -234,6 +234,7 @@
 		# bluez
         # bluez-tools
 		yubioath-flutter
+		solo2-cli
 	];
 
 	# security key
@@ -301,6 +302,20 @@
 			SUBSYSTEMS=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="40??", ATTRS{manufacturer}=="Flipper Devices Inc.", TAG+="uaccess"
 			'';
 			destination = "/etc/udev/rules.d/42-flipperzero.rules";
+		})
+		(pkgs.writeTextFile {
+			name = "solo2_udev";
+			text = ''
+			# NXP LPC55 ROM bootloader (unmodified)
+			SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0021", TAG+="uaccess"
+			# NXP LPC55 ROM bootloader (with Solo 2 VID:PID)
+			SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="b000", TAG+="uaccess"
+			# Solo 2
+			SUBSYSTEM=="tty", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="beee", TAG+="uaccess"
+			# Solo 2
+			SUBSYSTEM=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="beee", TAG+="uaccess"
+			'';
+			destination = "/etc/udev/rules.d/70-solo2.rules";
 		})
 		];
 
