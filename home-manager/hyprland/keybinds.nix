@@ -45,7 +45,7 @@
             "ALT, S, togglespecialworkspace, music"
 
             # Screenshot
-            "$mod SHIFT, S, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"
+            "$mod SHIFT, S, exec, grimblast --notify copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"
             ", Print, exec, pkill rofi || rofi-screenshot-menu"
             "$mod SHIFT, T, exec, pkill rofi || rofi-screenshot-menu"
 

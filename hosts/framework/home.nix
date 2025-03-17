@@ -126,6 +126,7 @@
                     on-click-right = "bluetoothctl power off";
                 };
                 "custom/wireguard" = {
+                    # nm-connection-editor to open up gui editor
                     format = "{}";
                     format-disconnected = "󰖪 Disconnected";
                     exec = "/home/appleboblin/dotfiles-nixos/home-manager/programs/vpn-wg.sh";
