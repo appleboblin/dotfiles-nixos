@@ -1,142 +1,141 @@
 {
-    programs.waybar = {
-        # settings = {
-        # };
-        # Only style of bar, define individual bars in each host
-        style =
-            ''
-            * {
-            font-family: MesloLGS Nerd Font, FiraCode Nerd Font, sans-serif;
-            font-size: 24px;
-            min-height: 0;
-            border: none;
-            border-radius: 0;
-            }
-            .horizontal {
-            padding: 2px;
-            }
+  programs.waybar = {
+    # settings = {
+    # };
+    # Only style of bar, define individual bars in each host
+    style = ''
+      * {
+      font-family: MesloLGS Nerd Font, FiraCode Nerd Font, sans-serif;
+      font-size: 24px;
+      min-height: 0;
+      border: none;
+      border-radius: 0;
+      }
+      .horizontal {
+      padding: 2px;
+      }
 
-            window#waybar {
-            background-color: #2e3440;
-            color: #eceff4;
-            margin-top: 0px;
-            border-radius: 0px;
-            opacity: 0.8;
-            }
+      window#waybar {
+      background-color: #2e3440;
+      color: #eceff4;
+      margin-top: 0px;
+      border-radius: 0px;
+      opacity: 0.8;
+      }
 
-            #custom-launcher {
-            font-size: 24px;
-            padding: 5px;
-            }
+      #custom-launcher {
+      font-size: 24px;
+      padding: 5px;
+      }
 
-            button {
-            /* Avoid rounded borders under each button name */
-            border: none;
-            border-radius: 0;
-            }
+      button {
+      /* Avoid rounded borders under each button name */
+      border: none;
+      border-radius: 0;
+      }
 
-            /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-            button:hover {
-            background: transparent;
-            color: transparent;
-            }
+      /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+      button:hover {
+      background: transparent;
+      color: transparent;
+      }
 
-            #workspaces button {
-            padding: 0 5px;
-            background-color: transparent;
-            color: #eceff4;
-            }
+      #workspaces button {
+      padding: 0 5px;
+      background-color: transparent;
+      color: #eceff4;
+      }
 
-            #workspaces button.active {
-            background-color: #81a1ca;
-            }
+      #workspaces button.active {
+      background-color: #81a1ca;
+      }
 
-            #workspaces button.urgent {
-            background-color: #bf616a;
-            }
+      #workspaces button.urgent {
+      background-color: #bf616a;
+      }
 
-            #mode {
-            background-color: #2e3440;
-            }
+      #mode {
+      background-color: #2e3440;
+      }
 
-            #window,
-            #workspaces {
-            margin: 0 4px;
-            }
+      #window,
+      #workspaces {
+      margin: 0 4px;
+      }
 
-            #battery.charging, #battery.plugged {
-            color: #a3be8c;
-            }
+      #battery.charging, #battery.plugged {
+      color: #a3be8c;
+      }
 
-            #battery.warning:not(.charging) {
-            color: #ebcb8b;
-            animation-name: blink;
-            animation-duration: 0.5s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
-            }
+      #battery.warning:not(.charging) {
+      color: #ebcb8b;
+      animation-name: blink;
+      animation-duration: 0.5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      }
 
-            #battery.critical:not(.charging) {
-            color: #bf616a;
-            animation-name: blink;
-            animation-duration: 0.5s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
-            }
+      #battery.critical:not(.charging) {
+      color: #bf616a;
+      animation-name: blink;
+      animation-duration: 0.5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      }
 
-            #tray {
-            color: #eceff4;
-            margin-right: 10px;
-            }
+      #tray {
+      color: #eceff4;
+      margin-right: 10px;
+      }
 
-            #cpu {
-            color: #b08770;
-            }
+      #cpu {
+      color: #b08770;
+      }
 
-            #memory {
-            color: #b48ead;
-            }
+      #memory {
+      color: #b48ead;
+      }
 
-            #network {
-            color: #a3be8c;
-            }
+      #network {
+      color: #a3be8c;
+      }
 
-            #network.disconnected {
-            color: #b3616a;
-            }
+      #network.disconnected {
+      color: #b3616a;
+      }
 
-            #pulseaudio {
-            color: #ebcb8b;
-            }
+      #pulseaudio {
+      color: #ebcb8b;
+      }
 
-            #wireplumber.muted {
-            background-color: #b3616a;
-            }
+      #wireplumber.muted {
+      background-color: #b3616a;
+      }
 
-            #custom-powermenu {
-            color: #b3616a;
-            margin-right: 16px;
-            }
+      #custom-powermenu {
+      color: #b3616a;
+      margin-right: 16px;
+      }
 
-            #bluetooth.off {
-            color: #b3616a;
-            margin-right: 8px;
-            }
+      #bluetooth.off {
+      color: #b3616a;
+      margin-right: 8px;
+      }
 
-            #bluetooth.on {
-            color: #81a1ca;
-            margin-right: 8px;
-            }
+      #bluetooth.on {
+      color: #81a1ca;
+      margin-right: 8px;
+      }
 
-            #custom-wireguard {
-            margin-right: 5px;
-            }
+      #custom-wireguard {
+      margin-right: 5px;
+      }
 
-            #custom-notification {
-            font-family: "NotoSansMono Nerd Font";
-            }
-            '';
-    };
+      #custom-notification {
+      font-family: "NotoSansMono Nerd Font";
+      }
+    '';
+  };
 }

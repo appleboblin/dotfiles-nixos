@@ -1,10 +1,10 @@
 {
-    programs.btop = {
-        enable = true;
+  programs.btop = {
+    enable = true;
 
-        settings = {
-            color_theme = "nord";
-            theme_background = false;
-        };
+    settings = {
+      color_theme = "nord";
+      theme_background = false;
     };
+  };
 }

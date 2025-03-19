@@ -1,10 +1,13 @@
 {
-	pkgs,
-	lib,
-	...
-}: {
-	home.packages = with pkgs; lib.mkForce [
-		vscodium
-		kitty
-	];
+  pkgs,
+  lib,
+  ...
+}:
+{
+  home.packages =
+    with pkgs;
+    lib.mkForce [
+      vscodium
+      kitty
+    ];
 }

@@ -1,11 +1,12 @@
 {
-    user,
-    ...
-}: {
-    users.users.${user}.extraGroups = [ "docker" ];
+  user,
+  ...
+}:
+{
+  users.users.${user}.extraGroups = [ "docker" ];
 
-    virtualisation.docker = {
-        enable = true;
-        storageDriver = "btrfs";
-    };
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "btrfs";
+  };
 }
