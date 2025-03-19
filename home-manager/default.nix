@@ -135,7 +135,7 @@
 		# httrack
 		# hugin
         # evince
-        zed-editor
+        # zed-editor
         # nixd
         obsidian
         wireshark
