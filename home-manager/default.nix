@@ -26,19 +26,50 @@
         # desktop files from environment.systemPackages are located in
         # /run/current-system/sw/share/applications/
         # desktof files from home-manager are located in
+        # /etc/profiles/per-user/appleboblin/share/applications
         # /nix/store/hash-home-manager-path/share/applications
         # MIME types https://www.sitepoint.com/mime-types-complete-list/
-        "default-web-browser" = [ "floorp.desktop" ];
-        "text/html" = [ "floorp.desktop" ];
-        "x-scheme-handler/http" = [ "floorp.desktop" ];
-        "x-scheme-handler/https" = [ "floorp.desktop" ];
-        "x-scheme-handler/about" = [ "floorp.desktop" ];
-        "x-scheme-handler/unknown" = [ "floorp.desktop" ];
+        # "default-web-browser" = [ "floorp.desktop" ];
+        # "text/html" = [ "floorp.desktop" ];
+        # "x-scheme-handler/http" = [ "floorp.desktop" ];
+        # "x-scheme-handler/https" = [ "floorp.desktop" ];
+        # "x-scheme-handler/about" = [ "floorp.desktop" ];
+        # "x-scheme-handler/unknown" = [ "floorp.desktop" ];
+        # browser stuff
+        "default-web-browser" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/about" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/unknown" = [ "vivaldi-stable.desktop" ];
+        "text/html" = [ "vivaldi-stable.desktop" ];
+
+        # text editor
+        "text/plain" = "dev.zed.Zed.desktop";
+        "text/css" = "dev.zed.Zed.desktop";
+        "text/javascript" = "dev.zed.Zed.desktop";
+        "text/markdown" = "dev.zed.Zed.desktop";
+        "text/xml" = "dev.zed.Zed.desktop";
+        "text/csv" = "dev.zed.Zed.desktop";
+        "text/rtf" = "dev.zed.Zed.desktop";
+        "text/vtt" = "dev.zed.Zed.desktop";
+        "text/x-c" = "dev.zed.Zed.desktop";
+        "text/x-c++" = "dev.zed.Zed.desktop";
+        "text/x-java" = "dev.zed.Zed.desktop";
+        "text/x-python" = "dev.zed.Zed.desktop";
+        "text/x-php" = "dev.zed.Zed.desktop";
+        "text/x-shellscript" = "dev.zed.Zed.desktop";
+        "text/x-sql" = "dev.zed.Zed.desktop";
+        "text/x-yaml" = "dev.zed.Zed.desktop";
+        "text/x-lua" = "dev.zed.Zed.desktop";
+        "text/x-perl" = "dev.zed.Zed.desktop";
+        "text/x-ruby" = "dev.zed.Zed.desktop";
 
         "application/pdf" = [ "okularApplication_pdf.desktop" ];
 
         "image/jpeg" = [ "org.xfce.ristretto.desktop" ];
         "image/png" = [ "org.xfce.ristretto.desktop" ];
+
+        "x-scheme-handler/magnet" = "transmission.desktop";
       };
     };
     userDirs = {
@@ -208,9 +239,9 @@
   #  /etc/profiles/per-user/appleboblin/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
-    BROWSER = "floorp";
-    TERMINAL = "footclient";
+    EDITOR = "zeditor";
+    BROWSER = "vivaldi";
+    TERMINAL = "xterm-256color";
   };
 
   # Let Home Manager install and manage itself.

@@ -88,7 +88,7 @@
           program = "fish";
         };
         toolbar = {
-          title = true;
+          breadcrumbs = false;
         };
         working_directory = "current_project_directory";
       };

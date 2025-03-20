@@ -248,6 +248,7 @@
     # bluez-tools
     yubioath-flutter
     solo2-cli
+    mlocate
   ];
 
   # security key
