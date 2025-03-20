@@ -4,8 +4,8 @@
   ...
 }:
 {
-  programs.zed-editor.enable = true;
   programs.zed-editor = {
+    enable = true;
     package = pkgs.zed-editor-fhs;
     extensions = [
       "html"
@@ -15,13 +15,21 @@
       "git-firefly"
       "ruff"
       "python-lsp"
+      "fish"
     ];
+
     extraPackages = with pkgs; [
+      # nix
       nixd
       nil
       # alejandra
       nixfmt-rfc-style
+      # python
+      ruff
+      pyright
+      python3Packages.python-lsp-server
     ];
+
     ## everything inside of these brackets are Zed options.
     userSettings = {
       assistant = {
@@ -37,20 +45,22 @@
           model = "claude-3-5-sonnet-latest";
         };
       };
+
       node = {
         path = lib.getExe pkgs.nodejs;
         npm_path = lib.getExe' pkgs.nodejs "npm";
       };
-      indent_guide = {
+
+      indent_guides = {
         enabled = true;
         coloring = "indent_aware";
+        # background_coloring = "indent_aware";
       };
-      hour_format = "hour24";
-      auto_update = false;
+
       terminal = {
         alternate_scroll = "off";
         blinking = "off";
-        copy_on_select = false;
+        copy_on_select = true;
         dock = "bottom";
         detect_venv = {
           on = {
@@ -64,110 +74,82 @@
           };
         };
         env = {
-          TERM = "footclient";
+          TERM = "xterm-256color";
         };
-        # font_family = "FiraCode Nerd Font";
+        font_family = "MesloLGS Nerd Font Mono";
         # font_features = null;
-        # font_size = null;
+        font_size = 18;
         line_height = "comfortable";
+        preferred_line_length = 120;
+        remove_trailing_whitespace = true;
         option_as_meta = false;
-        button = false;
-        shell = "system";
-        #{
-        #                    program = "zsh";
-        #};
+        button = true;
+        shell = {
+          program = "fish";
+        };
         toolbar = {
           title = true;
         };
-        # working_directory = "current_project_directory";
+        working_directory = "current_project_directory";
       };
 
       languages = {
         Nix = {
+          tab_size = 2;
           language_servers = [
             "nil"
             "nixd"
           ];
           formatter = {
-            # code_actions = {
-            #   nil.pack_bindings = true;
-            # };
             external = {
               command = "nixfmt";
             };
           };
+          format_on_save = "on";
+        };
+        Python = {
+          tab_size = 4;
+          language_servers = [
+            "pylsp"
+            "pyright"
+          ];
+          formatter = {
+            external = {
+              command = "ruff";
+              arguments = [
+                "format"
+                "--stdin-filename"
+                "{buffer_path}"
+                "-"
+              ];
+            };
+          };
+          format_on_save = "on";
         };
       };
 
-      # lsp = {
-      #     # rust-analyzer = {
-
-      #     #     binary = {
-      #     #         #                        path = lib.getExe pkgs.rust-analyzer;
-      #     #         path_lookup = true;
-      #     #     };
-      #     # };
-      #     nix = {
-      #         binary = {
-      #             path_lookup = true;
-      #         };
-      #     };
-
-      #     nil = {
-      #       formatting = {
-      #         command = ["alejandra"];
-      #       };
-      #     };
-
-      #     # elixir-ls = {
-      #     #     binary = {
-      #     #         path_lookup = true;
-      #     #     };
-      #     #     settings = {
-      #     #         dialyzerEnabled = true;
-      #     #     };
-      #     # };
-      # };
-
-      # languages = {
-      #     "Elixir" = {
-      #         language_servers = ["!lexical" "elixir-ls" "!next-ls"];
-      #         format_on_save = {
-      #             external = {
-      #                 command = "mix";
-      #                 arguments = ["format" "--stdin-filename" "{buffer_path}" "-"];
-      #             };
-      #         };
-      #     };
-      #     "HEEX" = {
-      #         language_servers = ["!lexical" "elixir-ls" "!next-ls"];
-      #         format_on_save = {
-      #             external = {
-      #                 command = "mix";
-      #                 arguments = ["format" "--stdin-filename" "{buffer_path}" "-"];
-      #             };
-      #         };
-      #     };
-      # };
-
-      vim_mode = false;
       telemetry = {
         diagnostics = false;
         metrics = false;
       };
-      ## tell zed to use direnv and direnv can use a flake.nix enviroment.
-      load_direnv = "shell_hook";
-      base_keymap = "VSCode";
+
       theme = {
         mode = "system";
         light = "One Light";
         dark = "Nord";
       };
+
+      ## tell zed to use direnv and direnv can use a flake.nix enviroment.
+      load_direnv = "shell_hook";
+      base_keymap = "VSCode";
+      vim_mode = false;
+      hour_format = "hour24";
+      auto_update = false;
       show_whitespaces = "all";
+      ui_font_family = "Inter";
       ui_font_size = 19;
-      buffer_font_size = 17.0;
-
+      buffer_font_family = "MesloLGS Nerd Font Mono";
+      buffer_font_size = 18;
     };
-
   };
 }
