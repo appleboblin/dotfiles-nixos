@@ -16,6 +16,7 @@
       "ruff"
       "python-lsp"
       "fish"
+      "rainbow-csv"
     ];
 
     extraPackages = with pkgs; [
@@ -128,6 +129,14 @@
         };
       };
 
+      lsp = {
+        nil = {
+          flake = {
+            autoArchive = true;
+          };
+        };
+      };
+
       telemetry = {
         diagnostics = false;
         metrics = false;
@@ -139,10 +148,13 @@
         dark = "Nord";
       };
 
+      features = {
+        edit_prediction_provider = "zed";
+      };
+
       ## tell zed to use direnv and direnv can use a flake.nix enviroment.
       load_direnv = "shell_hook";
       base_keymap = "VSCode";
-      vim_mode = false;
       hour_format = "hour24";
       auto_update = false;
       show_whitespaces = "all";
@@ -150,6 +162,47 @@
       ui_font_size = 19;
       buffer_font_family = "MesloLGS Nerd Font Mono";
       buffer_font_size = 18;
+
+      # vim mode
+      vim_mode = false;
+      relative_line_numbers = true;
     };
+
+    userKeymaps = [
+      {
+        context = "Workspace";
+        bindings = {
+          ctrl-shift-t = "workspace::NewTerminal";
+        };
+      }
+      {
+        context = "Editor && !menu";
+        bindings = {
+          ctrl-c = "editor::Copy";
+          ctrl-v = "editor::Paste";
+          ctrl-x = "editor::Cut";
+          ctrl-z = "editor::Undo";
+          ctrl-shift-z = "editor::Redo";
+          # ctrl-f = "editor::Find";
+          ctrl-a = "editor::SelectAll";
+        };
+      }
+      {
+        context = "VimControl && !menu";
+        bindings = {
+          m = "vim::Left";
+          left = "vim::Left";
+          i = "vim::Right";
+          right = "vim::Right";
+          e = "vim::Up";
+          up = "vim::Up";
+          n = "vim::Down";
+          down = "vim::Down";
+          tab = "vim::Tab";
+          space = "vim::Space";
+          l = "vim::InsertBefore";
+        };
+      }
+    ];
   };
 }
