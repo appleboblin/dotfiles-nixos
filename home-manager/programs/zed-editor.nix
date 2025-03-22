@@ -208,7 +208,7 @@
 
       # vim mode
       vim_mode = false;
-      relative_line_numbers = true;
+      relative_line_numbers = false;
     };
 
     # User Keymaps
