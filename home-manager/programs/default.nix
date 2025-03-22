@@ -7,7 +7,7 @@
     ./dunst.nix
     ./nixvim/default.nix
     ./rofi.nix
-    ./pcloud.nix
+    # ./pcloud.nix
     ./spicetify.nix
     ./obs-studio.nix
     ./mpv.nix

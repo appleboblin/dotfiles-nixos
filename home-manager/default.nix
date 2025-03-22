@@ -160,6 +160,7 @@
       # rawtherapee
       # digikam
       darktable
+      pcloud
 
       # calibre
       # jflap
