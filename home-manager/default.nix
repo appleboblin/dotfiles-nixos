@@ -178,6 +178,7 @@
       github-desktop
       vivaldi
       vivaldi-ffmpeg-codecs
+      pdfslicer
       # (assert (lib.assertMsg (obsidian.version != "1.4.16")
       #     "obsidian: has wayland crash been fixed?");
       #     obsidian.override {
