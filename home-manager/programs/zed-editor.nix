@@ -4,34 +4,50 @@
   ...
 }:
 {
+  # https://zed.dev/
+  # https://github.com/zed-industries/zed
+  # https://wiki.nixos.org/wiki/Zed
   programs.zed-editor = {
     enable = true;
     package = pkgs.zed-editor-fhs;
+
+    # https://zed.dev/docs/extensions
+    # https://github.com/zed-industries/extensions/tree/main/extensions
     extensions = [
-      "html"
-      "toml"
-      "nix"
-      # "ron"
-      "git-firefly"
-      "ruff"
-      "python-lsp"
-      "fish"
-      "rainbow-csv"
+      "html" # https://github.com/zed-industries/zed/tree/main/extensions/html
+      "toml" # https://github.com/zed-industries/zed/tree/main/extensions/toml
+      "nix" # https://github.com/zed-extensions/nix
+      "git-firefly" # https://github.com/d1y/git_firefly
+      "ruff" # https://github.com/zed-industries/zed/tree/main/extensions/ruff
+      "python-lsp" # https://github.com/rgbkrk/python-lsp-zed-extension
+      "fish" # https://github.com/hasit/zed-fish
+      "rainbow-csv" # https://github.com/Kalmaegi/zed-rainbow-csv/tree/81bfb05d56a5302bd821230e83840230fd558c65
+      "basedpyright" # https://github.com/m1guer/basedpyright-zed
     ];
 
+    # extension and language dependencies
     extraPackages = with pkgs; [
       # nix
       nixd
       nil
       # alejandra
       nixfmt-rfc-style
+
       # python
       ruff
       pyright
+      basedpyright
       python3Packages.python-lsp-server
+
+      # javascript
+      eslint
+
+      # html
+      vscode-langservers-extracted
     ];
 
     ## everything inside of these brackets are Zed options.
+    # https://zed.dev/docs/configuring-zed
     userSettings = {
       assistant = {
         enabled = true;
@@ -58,6 +74,14 @@
         # background_coloring = "indent_aware";
       };
 
+      collaboration_panel = {
+        button = false;
+        default_width = 300;
+        dock = "right";
+      };
+
+      # Terminal
+      # https://zed.dev/docs/configuring-zed#terminal
       terminal = {
         alternate_scroll = "off";
         blinking = "off";
@@ -81,8 +105,6 @@
         # font_features = null;
         font_size = 18;
         line_height = "comfortable";
-        preferred_line_length = 120;
-        remove_trailing_whitespace = true;
         option_as_meta = false;
         button = true;
         shell = {
@@ -94,8 +116,16 @@
         working_directory = "current_project_directory";
       };
 
+      # Language-specific
+      # https://zed.dev/docs/configuring-languages
       languages = {
+        Markdown = {
+          # https://zed.dev/docs/languages/markdown
+          format_on_save = "on";
+        };
         Nix = {
+          # https://github.com/oxalica/nil
+          # https://github.com/nix-community/nixd
           tab_size = 2;
           language_servers = [
             "nil"
@@ -103,19 +133,24 @@
           ];
           formatter = {
             external = {
+              # https://github.com/NixOS/nixfmt
               command = "nixfmt";
             };
           };
           format_on_save = "on";
         };
         Python = {
+          # https://github.com/python-lsp/python-lsp-server
+          # https://github.com/microsoft/pyright
           tab_size = 4;
           language_servers = [
             "pylsp"
-            "pyright"
+            "!pyright"
+            "basedpyright"
           ];
           formatter = {
             external = {
+              # https://github.com/astral-sh/ruff
               command = "ruff";
               arguments = [
                 "format"
@@ -129,11 +164,12 @@
         };
       };
 
+      # Language servers
+      # https://zed.dev/docs/configuring-languages#configuring-language-servers
       lsp = {
-        nil = {
-          flake = {
-            autoArchive = true;
-          };
+        # https://github.com/oxalica/nil/blob/main/docs/configuration.md
+        nil.initialization_options = {
+          nix.flake.autoArchive = true;
         };
       };
 
@@ -154,6 +190,8 @@
 
       ## tell zed to use direnv and direnv can use a flake.nix enviroment.
       load_direnv = "shell_hook";
+
+      # editor settings
       base_keymap = "VSCode";
       hour_format = "hour24";
       auto_update = false;
@@ -162,12 +200,19 @@
       ui_font_size = 19;
       buffer_font_family = "MesloLGS Nerd Font Mono";
       buffer_font_size = 18;
+      always_treat_brackets_as_autoclosed = true;
+      preferred_line_length = 120;
+      soft_wrap = "preferred_line_length";
+      remove_trailing_whitespace = true;
+      tab_size = 4;
 
       # vim mode
       vim_mode = false;
       relative_line_numbers = true;
     };
 
+    # User Keymaps
+    # https://zed.dev/docs/key-bindings
     userKeymaps = [
       {
         context = "Workspace";
