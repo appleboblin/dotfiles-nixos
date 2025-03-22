@@ -2,9 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -13,19 +11,20 @@
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
-
-  boot.initrd.availableKernelModules = [
-    "ahci"
-    "xhci_pci"
-    "virtio_pci"
-    "usb_storage"
-    "sd_mod"
-    "sr_mod"
-    "virtio_blk"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules = [
+      "ahci"
+      "xhci_pci"
+      "virtio_pci"
+      "usb_storage"
+      "sd_mod"
+      "sr_mod"
+      "virtio_blk"
+    ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/e2cbcda4-bc4b-48d1-9e22-6c78168c2cdf";

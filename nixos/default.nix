@@ -6,11 +6,11 @@
     ./transmission.nix
     ./hyprland.nix
     ./docker.nix
-    ./mpd.nix
+    # ./mpd.nix
     ./greetd.nix
     ./syncthing.nix
     ./steam.nix
     ./localsend.nix
-    ./wireshark.nix
+    # ./wireshark.nix
   ];
 }

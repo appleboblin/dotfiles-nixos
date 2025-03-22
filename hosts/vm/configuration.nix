@@ -7,10 +7,12 @@
   ...
 }:
 {
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader = {
+    # Bootloader.
+    grub.enable = true;
+    grub.device = "/dev/vda";
+    grub.useOSProber = true;
+  };
 
   networking.hostName = host; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -37,10 +39,11 @@
     #   # firefox
     # ];
   };
-
-  # Enable auto login
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "appleboblin";
+  services = {
+    # Enable auto login
+    xserver.displayManager.autoLogin.enable = true;
+    xserver.displayManager.autoLogin.user = "appleboblin";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   inputs,
   ...
@@ -15,26 +14,27 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
   ];
+  boot = {
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "thunderbolt"
+      "nvme"
+      "usb_storage"
+      "sd_mod"
+    ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
 
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
-    "nvme"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+    initrd.luks.devices."luks-033c6455-bdbd-4a52-8888-2684920d1f63".device =
+      "/dev/disk/by-uuid/033c6455-bdbd-4a52-8888-2684920d1f63";
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/742f8eee-7c93-4949-8857-014cb32eb8f1";
     fsType = "btrfs";
     options = [ "subvol=@" ];
   };
-
-  boot.initrd.luks.devices."luks-033c6455-bdbd-4a52-8888-2684920d1f63".device =
-    "/dev/disk/by-uuid/033c6455-bdbd-4a52-8888-2684920d1f63";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/22D7-E45A";

@@ -12,7 +12,7 @@
     ./obs-studio.nix
     ./mpv.nix
     ./btop.nix
-    ./ncmpcpp.nix
+    # ./ncmpcpp.nix
     ./foot.nix
     ./beets.nix
     ./nemo.nix
