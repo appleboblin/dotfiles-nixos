@@ -203,7 +203,7 @@
       always_treat_brackets_as_autoclosed = true;
       preferred_line_length = 120;
       soft_wrap = "preferred_line_length";
-      remove_trailing_whitespace = true;
+      remove_trailing_whitespace_on_save = true;
       tab_size = 4;
 
       # vim mode
