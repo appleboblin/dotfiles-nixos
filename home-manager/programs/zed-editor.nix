@@ -178,6 +178,13 @@
         metrics = false;
       };
 
+      git = {
+        inline_blame = {
+          enabled = true;
+          delay_ms = 500;
+        };
+      };
+
       theme = {
         mode = "system";
         light = "One Light";
