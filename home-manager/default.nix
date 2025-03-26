@@ -177,7 +177,7 @@
     #  /etc/profiles/per-user/appleboblin/etc/profile.d/hm-session-vars.sh
     #
     sessionVariables = {
-      EDITOR = "zeditor -w";
+      EDITOR = "nano";
       BROWSER = "vivaldi";
       TERMINAL = "xterm-256color";
     };
