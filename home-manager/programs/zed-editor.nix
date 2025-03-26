@@ -211,6 +211,8 @@
       preferred_line_length = 120;
       soft_wrap = "preferred_line_length";
       remove_trailing_whitespace_on_save = true;
+      ensure_final_newline_on_save = true;
+      format_on_save = "on";
       tab_size = 4;
 
       # vim mode
