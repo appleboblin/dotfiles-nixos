@@ -44,7 +44,6 @@
 
     # # Get fcitx5 working
     inputMethod = {
-      # enabled = "fcitx5";
       enable = true;
       type = "fcitx5";
 
@@ -60,6 +59,7 @@
   services = {
     # Set your time zone.
     # time.timeZone = "Asia/Taipei";
+    # https://discourse.nixos.org/t/timezones-how-to-setup-on-a-laptop/33853/8
     automatic-timezoned.enable = true;
     geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 

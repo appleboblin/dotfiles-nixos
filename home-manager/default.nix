@@ -33,9 +33,12 @@
     packages =
       with pkgs;
       lib.mkIf (host != "vm") [
+        # browser
         brave
         chromium
         floorp
+        vivaldi
+        vivaldi-ffmpeg-codecs
 
         # Programming
         python3
@@ -113,8 +116,6 @@
         # kiwix
         moonlight-qt
         # github-desktop
-        vivaldi
-        vivaldi-ffmpeg-codecs
         pdfslicer
         # (assert (lib.assertMsg (obsidian.version != "1.4.16")
         #     "obsidian: has wayland crash been fixed?");

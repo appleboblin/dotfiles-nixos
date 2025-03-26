@@ -12,6 +12,7 @@
       line_break = {
         disabled = true;
       };
+      # https://starship.rs/config/
       format = lib.concatStringsSep "" [
         # "$username"
         # "$hostname"
