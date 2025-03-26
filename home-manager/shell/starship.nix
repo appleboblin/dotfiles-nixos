@@ -63,7 +63,7 @@
         modified = "!\($count\) ";
         renamed = "»\($count\) ";
         staged = "+\($count\) ";
-        stashed = "$\($count\) ";
+        stashed = "\\$\($count\) ";
         style = "fg:220";
         untracked = "?\($count\) ";
         ahead = "⇡\($count\) ";
