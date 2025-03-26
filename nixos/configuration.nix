@@ -61,6 +61,8 @@
     # Set your time zone.
     # time.timeZone = "Asia/Taipei";
     automatic-timezoned.enable = true;
+    geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
+
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
