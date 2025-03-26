@@ -174,7 +174,7 @@
     };
 
     vscode = {
-      userSettings = {
+      profiles.default.userSettings = {
         "editor.fontSize" = 15;
         "window.zoomLevel" = 2;
         "terminal.integrated.fontSize" = 14;
