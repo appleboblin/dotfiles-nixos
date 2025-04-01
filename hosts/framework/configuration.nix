@@ -26,6 +26,7 @@
     libinput.enable = true;
     libinput.touchpad.disableWhileTyping = lib.mkForce true;
     blueman.enable = true;
+    hardware.bolt.enable = true;
 
     # # ectool on start up
     # systemd.services.ectool = {
