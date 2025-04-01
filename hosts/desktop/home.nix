@@ -4,6 +4,9 @@
   lib,
   ...
 }:
+let
+  monitors = import ./monitors.nix;
+in
 {
   # swaylock image
   #programs.swaylock.settings = {
@@ -58,7 +61,7 @@
         margin-right = 0;
         spacing = 15;
         output = [
-          "DP-2"
+          "${monitors.left}"
         ];
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
@@ -128,7 +131,7 @@
         margin-right = 0;
         spacing = 10;
         output = [
-          "DP-1"
+          "${monitors.middle}"
         ];
         modules-left = [
           "custom/launcher"
@@ -194,7 +197,7 @@
         margin-right = 0;
         spacing = 15;
         output = [
-          "HDMI-A-1"
+          "${monitors.right}"
         ];
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
@@ -264,41 +267,41 @@
 
       bind = [
         # Switch workspace
-        "$mod, 1, focusmonitor, DP-2"
-        "$mod, 2, focusmonitor, DP-2"
-        "$mod, 3, focusmonitor, DP-2"
-        "$mod, 4, focusmonitor, DP-1"
+        "$mod, 1, focusmonitor, ${monitors.left}"
+        "$mod, 2, focusmonitor, ${monitors.left}"
+        "$mod, 3, focusmonitor, ${monitors.left}"
+        "$mod, 4, focusmonitor, ${monitors.middle}"
         # "$mod, 4, layoutmsg, orientationleft"
-        "$mod, 5, focusmonitor, DP-1"
+        "$mod, 5, focusmonitor, ${monitors.middle}"
         # "$mod, 5, layoutmsg, orientationleft"
-        "$mod, 6, focusmonitor, DP-1"
+        "$mod, 6, focusmonitor, ${monitors.middle}"
         # "$mod, 6, layoutmsg, orientationleft"
-        "$mod, 7, focusmonitor, DP-1"
+        "$mod, 7, focusmonitor, ${monitors.middle}"
         # "$mod, 7, layoutmsg, orientationleft"
-        "$mod, 8, focusmonitor, HDMI-A-1"
+        "$mod, 8, focusmonitor, ${monitors.right}"
         # "$mod, 8, layoutmsg, orientationtop"
-        "$mod, 9, focusmonitor, HDMI-A-1"
+        "$mod, 9, focusmonitor, ${monitors.right}"
         # "$mod, 9, layoutmsg, orientationtop"
-        "$mod, 0, focusmonitor, HDMI-A-1"
+        "$mod, 0, focusmonitor, ${monitors.right}"
         # "$mod, 0, layoutmsg, orientationtop"
 
         # Move window
-        "$mod SHIFT, 1, movecurrentworkspacetomonitor, DP-2"
-        "$mod SHIFT, 2, movecurrentworkspacetomonitor, DP-2"
-        "$mod SHIFT, 3, movecurrentworkspacetomonitor, DP-2"
-        "$mod SHIFT, 4, movecurrentworkspacetomonitor, DP-1"
+        "$mod SHIFT, 1, movecurrentworkspacetomonitor, ${monitors.left}"
+        "$mod SHIFT, 2, movecurrentworkspacetomonitor, ${monitors.left}"
+        "$mod SHIFT, 3, movecurrentworkspacetomonitor, ${monitors.left}"
+        "$mod SHIFT, 4, movecurrentworkspacetomonitor, ${monitors.middle}"
         # "$mod SHIFT, 4, layoutmsg, orientationleft"
-        "$mod SHIFT, 5, movecurrentworkspacetomonitor, DP-1"
+        "$mod SHIFT, 5, movecurrentworkspacetomonitor, ${monitors.middle}"
         # "$mod SHIFT, 5, layoutmsg, orientationleft"
-        "$mod SHIFT, 6, movecurrentworkspacetomonitor, DP-1"
+        "$mod SHIFT, 6, movecurrentworkspacetomonitor, ${monitors.middle}"
         # "$mod SHIFT, 6, layoutmsg, orientationleft"
-        "$mod SHIFT, 7, movecurrentworkspacetomonitor, DP-1"
+        "$mod SHIFT, 7, movecurrentworkspacetomonitor, ${monitors.middle}"
         # "$mod SHIFT, 7, layoutmsg, orientationleft"
-        "$mod SHIFT, 8, movecurrentworkspacetomonitor, HDMI-A-1"
+        "$mod SHIFT, 8, movecurrentworkspacetomonitor, ${monitors.right}"
         # "$mod SHIFT, 8, layoutmsg, orientationtop"
-        "$mod SHIFT, 9, movecurrentworkspacetomonitor, HDMI-A-1"
+        "$mod SHIFT, 9, movecurrentworkspacetomonitor, ${monitors.right}"
         # "$mod SHIFT, 9, layoutmsg, orientationtop"
-        "$mod SHIFT, 0, movecurrentworkspacetomonitor, HDMI-A-1"
+        "$mod SHIFT, 0, movecurrentworkspacetomonitor, ${monitors.right}"
         # "$mod SHIFT, 0, layoutmsg, orientationtop"
       ];
     };

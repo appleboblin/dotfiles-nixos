@@ -8,6 +8,9 @@
   pkgs,
   ...
 }:
+let
+  monitors = import ./monitors.nix;
+in
 {
   boot = {
     # Bootloader.
@@ -44,6 +47,7 @@
   };
 
   services.blueman.enable = true;
+  services.hardware.bolt.enable = true;
 
   hm = {
     # List packages installed in system profile. To search, run:
@@ -53,30 +57,30 @@
     # ];
 
     xdg.configFile."hypr/hyprpaper.conf".text = lib.mkIf config.programs.hyprland.enable ''
-      		wallpaper = DP-1,${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
-      		wallpaper = DP-2,${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
-      		wallpaper = HDMI-A-1,${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
+      		wallpaper = ${monitors.left},${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
+          wallpaper = ${monitors.middle},${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
+      		wallpaper = ${monitors.right},${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
       	'';
 
     # Hyprland settings
     wayland.windowManager.hyprland.settings = lib.mkIf config.programs.hyprland.enable {
       monitor = [
-        "DP-2, 2560x1440@165, 0x0, 1"
-        "DP-1, 2560x1440@165, 2560x0, 1"
-        "HDMI-A-1, 1920x1080@60, 5120x-133, 1, transform, 3"
+        "${monitors.left}, 2560x1440@165, 0x0, 1"
+        "${monitors.middle}, 2560x1440@165, 2560x0, 1"
+        "${monitors.right}, 1920x1080@60, 5120x-133, 1, transform, 3"
       ];
 
       workspace = [
-        "1, monitor:DP-2, layoutopt:orientation:left, default:true"
-        "2, monitor:DP-2, layoutopt:orientation:left"
-        "3, monitor:DP-2, layoutopt:orientation:left"
-        "4, monitor:DP-1, layoutopt:orientation:left, default:true"
-        "5, monitor:DP-1, layoutopt:orientation:left"
-        "6, monitor:DP-1, layoutopt:orientation:left"
-        "7, monitor:DP-1, layoutopt:orientation:left"
-        "8, monitor:HDMI-A-1, layoutopt:orientation:top"
-        "9, monitor:HDMI-A-1, layoutopt:orientation:top"
-        "10, monitor:HDMI-A-1, layoutopt:orientation:top, default:true"
+        "1, monitor:${monitors.left}, layoutopt:orientation:left, default:true"
+        "2, monitor:${monitors.left}, layoutopt:orientation:left"
+        "3, monitor:${monitors.left}, layoutopt:orientation:left"
+        "4, monitor:${monitors.middle}, layoutopt:orientation:left, default:true"
+        "5, monitor:${monitors.middle}, layoutopt:orientation:left"
+        "6, monitor:${monitors.middle}, layoutopt:orientation:left"
+        "7, monitor:${monitors.middle}, layoutopt:orientation:left"
+        "8, monitor:${monitors.right}, layoutopt:orientation:top"
+        "9, monitor:${monitors.right}, layoutopt:orientation:top"
+        "10, monitor:${monitors.right}, layoutopt:orientation:top, default:true"
       ];
 
       exec-once = [
