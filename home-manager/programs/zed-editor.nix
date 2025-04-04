@@ -44,6 +44,7 @@
 
       # html
       vscode-langservers-extracted
+      openssl
     ];
 
     ## everything inside of these brackets are Zed options.
