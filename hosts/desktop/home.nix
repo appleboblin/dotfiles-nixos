@@ -253,14 +253,6 @@ in
       ];
 
       windowrule = [
-        "workspace 10 silent, webcord"
-        "workspace 10 silent, discord"
-        "workspace 10 silent, vesktop"
-        "workspace 9 silent, obsidian"
-        # "workspace 10 silent, floorp"
-      ];
-
-      windowrulev2 = [
         # "workspace 9 silent, class(obsidian), title:(Obsidian)(.*)$" # stopped working for some reason so using windowrule
         "workspace 1 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
       ];

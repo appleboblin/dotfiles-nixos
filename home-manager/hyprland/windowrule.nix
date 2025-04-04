@@ -2,14 +2,15 @@
   wayland.windowManager.hyprland.settings = {
     windowrule = [
       # do not idle while watching videos, not working for some reason
-      "idleinhibit fullscreen, Brave-browser"
+      "idleinhibit fullscreen, class:^(Brave-browser)$"
       "idleinhibit fullscreen, class:^(firefox)$"
-      "idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$"
-      "idleinhibit focus, YouTube"
-      "idleinhibit focus, mpv"
-    ];
-
-    windowrulev2 = [
+      "idleinhibit focus, class:^(firefox)$,title:^(.*YouTube.*)$"
+      "idleinhibit focus, class:^(YouTube)$"
+      "idleinhibit focus, class:^(mpv)$"
+      "workspace 10 silent, class:^(webcord)$"
+      "workspace 10 silent, class:^(discord)$"
+      "workspace 10 silent, class:^(vesktop)$"
+      "workspace 9 silent, class:^(obsidian)$"
       "idleinhibit fullscreen, title:(.*?)" # dont block if any app is on fullscreen
       # "workspace special:ncspot silent, class:(kitty),title:(ncspot)"
       "opacity 0.8 0.8, class:(scratch)"
