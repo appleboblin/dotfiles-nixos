@@ -21,6 +21,14 @@ in
 
   networking.hostName = host;
   hardware = {
+    graphics = {
+      # opencl
+      extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+      ];
+      # vulkan
+      enable32Bit = true;
+    };
     # Define your hostname.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
