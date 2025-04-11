@@ -248,11 +248,9 @@
   };
 
   # OpenGL
-  # hardware.opengl = {
-  #   enable = true;
-  #   driSupport = true;
-  #   driSupport32Bit = true;
-  # };
+  hardware.graphics = {
+    enable = true;
+  };
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -264,7 +262,7 @@
       "networkmanager"
       "wheel"
       "libvirtd"
-      "wireshark"
+      # "wireshark"
     ];
     # shell = pkgs.zsh;
     packages =
@@ -386,10 +384,16 @@
           from = 5900;
           to = 5999;
         } # spice
-        # { from = 1714; to = 1764; } # KDE Connect
+        {
+          from = 1714;
+          to = 1764;
+        } # KDE Connect
       ];
       allowedUDPPortRanges = [
-        # { from = 1714; to = 1764; } # KDE Connect
+        {
+          from = 1714;
+          to = 1764;
+        } # KDE Connect
       ];
       allowedTCPPorts = [
         16509 # libvirt

@@ -17,5 +17,6 @@
     ./beets.nix
     ./nemo.nix
     ./zed-editor.nix
+    ./kdeconnect.nix
   ];
 }
