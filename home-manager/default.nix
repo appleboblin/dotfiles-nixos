@@ -101,7 +101,8 @@
         darktable
         pcloud
 
-        # calibre
+        calibre
+        libation
         # jflap
         texliveFull
         # httrack
