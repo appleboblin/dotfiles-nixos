@@ -22,6 +22,7 @@ in
   networking.hostName = host;
   hardware = {
     graphics = {
+      enable = true;
       # opencl
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
@@ -52,6 +53,24 @@ in
 
     # Xone kernel driver for xbox controller
     xone.enable = true;
+  };
+
+  # AMDGPU Controller
+  # https://wiki.nixos.org/wiki/AMD_GPU
+  # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix
+  environment.systemPackages = with pkgs; [
+    lact
+    amdgpu_top
+  ];
+
+  systemd.services.lact = {
+    description = "AMDGPU Control Daemon";
+    after = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.lact}/bin/lact daemon";
+    };
+    enable = true;
   };
 
   services.blueman.enable = true;
