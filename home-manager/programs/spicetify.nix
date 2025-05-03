@@ -4,7 +4,7 @@
   ...
 }:
 let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
 in
 {
   # allow spotify to be installed if you don't have unfree enabled already
@@ -12,14 +12,15 @@ in
   # 	"spotify"
   # ];
 
+  # document: https://gerg-l.github.io/spicetify-nix/usage.html
   # import the flake's module for your system
-  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
+  imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
 
   # configure spicetify :)
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.text;
-    colorScheme = "nord";
+    colorScheme = "Nord";
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay

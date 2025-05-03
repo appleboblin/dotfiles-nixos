@@ -18,7 +18,7 @@
     colorschemes.nord.enable = true;
     plugins.web-devicons.enable = true;
 
-    diagnostics = {
+    diagnostic.settings = {
       virtual_lines.only_current_line = true;
     };
 
