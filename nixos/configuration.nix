@@ -71,10 +71,6 @@
       autorun = true;
 
       # Enable the Desktop Environment.
-      displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
 
       desktopManager.xfce.enable = true;
       # services.xserver.desktopManager.plasma5.enable = true;
@@ -89,6 +85,11 @@
         # variant = "colemak_dh_ortho";
       };
 
+    };
+
+    displayManager.gdm = {
+      enable = true;
+      # wayland = true;
     };
 
     # Enable CUPS to print documents.

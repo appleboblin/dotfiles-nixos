@@ -166,8 +166,8 @@
           # "nm-applet --indicator"
 
           # Desktop dependency
-          # "foot --server & sleep 5 && footclient -a scratch"
-          "ghostty --class=com.term.scratch"
+          "foot --server & sleep 5 && footclient -a scratch"
+          # "ghostty --class=com.term.scratch"
           "hyprpaper & waybar & fcitx5 -d & swaync"
           # "flatpak run dev.vencord.Vesktop; sleep 10; latpak run dev.vencord.Vesktop"
           "vesktop & spotify & obsidian & pcloud & sleep 5 && thunderbird"

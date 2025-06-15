@@ -57,19 +57,19 @@
     ## everything inside of these brackets are Zed options.
     # https://zed.dev/docs/configuring-zed
     userSettings = {
-      assistant = {
-        enabled = true;
-        version = "2";
-        default_open_ai_model = null;
-        ### PROVIDER OPTIONS
-        ### zed.dev models { claude-3-5-sonnet-latest } requires github connected
-        ### anthropic models { claude-3-5-sonnet-latest claude-3-haiku-latest claude-3-opus-latest  } requires API_KEY
-        ### copilot_chat models { gpt-4o gpt-4 gpt-3.5-turbo o1-preview } requires github connected
-        default_model = {
-          provider = "zed.dev";
-          model = "claude-3-5-sonnet-latest";
-        };
-      };
+      # assistant = {
+      #   enabled = true;
+      #   version = "2";
+      #   default_open_ai_model = null;
+      #   ### PROVIDER OPTIONS
+      #   ### zed.dev models { claude-3-5-sonnet-latest } requires github connected
+      #   ### anthropic models { claude-3-5-sonnet-latest claude-3-haiku-latest claude-3-opus-latest  } requires API_KEY
+      #   ### copilot_chat models { gpt-4o gpt-4 gpt-3.5-turbo o1-preview } requires github connected
+      #   default_model = {
+      #     provider = "zed.dev";
+      #     model = "claude-3-5-sonnet-latest";
+      #   };
+      # };
 
       node = {
         path = lib.getExe pkgs.nodejs;
@@ -273,7 +273,7 @@
           n = "vim::Down";
           down = "vim::Down";
           tab = "vim::Tab";
-          space = "vim::Space";
+          space = "vim::WrappingRight";
           l = "vim::InsertBefore";
         };
       }
