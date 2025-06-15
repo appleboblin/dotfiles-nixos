@@ -26,13 +26,13 @@
       input-field = {
         monitor = "";
         size = "300, 50";
-        outline_thickness = 2;
+        outline_thickness = 3;
         dots_size = 0.33;
         dots_spacing = 0.15;
         dots_center = true;
-        outer_color = "rgb(129, 162, 190)";
-        inner_color = "rgba(29, 31, 33, 0.7)";
-        font_color = "rgb(229,233,240)";
+        outer_color = "rgb(245, 189, 230)";
+        inner_color = "rgba(36, 39, 58, 0.7)";
+        font_color = "rgb(202, 211, 245)";
         fade_on_empty = false;
         placeholder_text = "";
         hide_input = false;
@@ -46,7 +46,7 @@
         {
           monitor = "";
           text = ''cmd[update:1000] echo "<b><big>$(date +"%H:%M")</big></b>"'';
-          color = "rgb(229,233,240)";
+          color = "rgb(202, 211, 245)";
           font_size = 150;
           font_family = "Inter Regular";
 
@@ -61,7 +61,7 @@
         {
           monitor = "";
           text = ''cmd[update:1000] echo "<b><big>$(date +"%A, %-d %B")</big></b>"'';
-          color = "rgb(229,233,240)";
+          color = "rgb(202, 211, 245)";
           font_size = 40;
           font_family = "Inter Regular";
 

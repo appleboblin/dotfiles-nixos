@@ -111,18 +111,6 @@
       };
     };
 
-    # nord
-    # @define-color noti-border-color #81A1C1;
-    # @define-color noti-bg #4c566a;
-    # @define-color noti-bg-alt #383E4A;
-    # @define-color noti-fg #E5E9F0;
-    # @define-color noti-bg-hover #81A1C1;
-    # @define-color noti-bg-focus #A3BE8C;
-    # @define-color noti-close-bg rgba(255, 255, 255, 0.1);
-    # @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
-    # @define-color noti-urgent #BF616A;
-
-    # @define-color bg-selected #88c0d0;
     style = ''
       /* Catppuccin Macchiato Palette */
       @define-color noti-border-color #8aadf4;       /* Blue */
@@ -138,7 +126,7 @@
 
       * {
         color: @noti-fg;
-        font-family: "JetBrains Mono", "Fira Sans", sans-serif;
+        font-family: "Inter Regular", "Fira Sans", sans-serif;
       }
 
       .notification-row {
@@ -148,7 +136,7 @@
       .notification-row:focus,
       .notification-row:hover {
         background: @noti-bg-focus;
-        color: #24273a;
+        color: @noti-bg-alt;
       }
 
       .notification {

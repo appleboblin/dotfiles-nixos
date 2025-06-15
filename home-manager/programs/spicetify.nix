@@ -20,7 +20,7 @@ in
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.text;
-    colorScheme = "Nord";
+    colorScheme = "RosePineMoon";
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay

@@ -19,5 +19,6 @@
     ./zed-editor.nix
     ./kdeconnect.nix
     ./ghostty.nix
+    ./catppuccin.nix
   ];
 }

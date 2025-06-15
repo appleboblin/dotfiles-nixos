@@ -36,26 +36,26 @@
 
       character = {
         error_symbol = "[❯](red)";
-        success_symbol = "[❯](green)"; # fg:46
+        success_symbol = "[❯](green)";
         vimcmd_symbol = "[❮](green)";
       };
       cmd_duration = {
         format = "[$duration]($style) ";
-        style = "fg:108";
+        style = "sapphire";
       };
       directory = {
         truncation_length = 3;
         truncation_symbol = "…/";
         format = "[$path]($style)[$read_only]($read_only_style) ";
-        style = "fg:45";
+        style = "blue";
       };
       git_branch = {
         format = "[$branch]($style) ";
-        style = "fg:46";
+        style = "green";
       };
       git_state = {
         format = "([$state( $progress_current/$progress_total)]($style)\) ";
-        style = "fg:202";
+        style = "yellow";
       };
       git_status = {
         conflicted = "=\($count\) ";
@@ -65,7 +65,7 @@
         renamed = "»\($count\) ";
         staged = "+\($count\) ";
         stashed = "\\$\($count\) ";
-        style = "fg:220";
+        style = "yellow";
         untracked = "?\($count\) ";
         ahead = "⇡\($count\) ";
         behind = "⇣\($count\) ";
@@ -73,7 +73,7 @@
       };
       time = {
         format = "[$time]($style)";
-        style = "fg:109";
+        style = "sky";
         time_format = "%T";
         disabled = false;
       };

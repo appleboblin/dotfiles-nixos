@@ -12,6 +12,7 @@
       source-han-sans
       source-han-serif
       inter
+      inter-nerdfont
       nerd-fonts.meslo-lg
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono

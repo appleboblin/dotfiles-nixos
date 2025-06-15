@@ -1,7 +1,7 @@
 {
   programs.kitty = {
     enable = true;
-    themeFile = "Nord";
+    # themeFile = "Nord";
     font = {
       name = "MesloLGS Nerd Font Mono";
       size = 16;

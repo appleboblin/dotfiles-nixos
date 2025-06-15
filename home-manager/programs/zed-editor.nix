@@ -48,7 +48,7 @@
 
       # html
       vscode-langservers-extracted
-      openssl
+      openssl_3
 
       # texliv
       texliveFull
@@ -193,18 +193,18 @@
         };
       };
 
-      theme = {
-        mode = "dark";
-        light = "One Light";
-        # dark = "Nord";
-        dark = "Catppuccin Macchiato";
-      };
+      # theme = {
+      #   mode = "dark";
+      #   light = "One Light";
+      #   # dark = "Nord";
+      #   dark = "Catppuccin Macchiato";
+      # };
 
-      icon_theme = {
-        mode = "dark";
-        light = "Catppuccin Latte";
-        dark = "Catppuccin Macchiato";
-      };
+      # icon_theme = {
+      #   mode = "dark";
+      #   light = "Catppuccin Latte";
+      #   dark = "Catppuccin Macchiato";
+      # };
 
       features = {
         # edit_prediction_provider = "zed";

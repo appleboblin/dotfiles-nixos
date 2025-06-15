@@ -21,12 +21,14 @@
       url = "github:nix-community/poetry2nix/2024.5.939250";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      catppuccin,
       ...
     }@inputs:
     let
@@ -40,6 +42,7 @@
             inherit inputs host user;
           };
           modules = [
+            catppuccin.nixosModules.catppuccin
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -59,6 +62,8 @@
                     ./home-manager
                     # host specific home-manager configuration
                     ./hosts/${host}/home.nix
+                    # catppuccin
+                    catppuccin.homeModules.catppuccin
                   ];
                 };
               };

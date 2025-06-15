@@ -15,7 +15,16 @@
   programs.nixvim = {
     enable = true;
 
-    colorschemes.nord.enable = true;
+    colorschemes.catppuccin = {
+      enable = true;
+      settings = {
+        flavour = "macchiato"; # latte, frappe, macchiato, mocha
+        transparent_background = true;
+        # dim_inactive = true;
+        no_italic = true;
+        no_bold = true;
+      };
+    };
     plugins.web-devicons.enable = true;
 
     diagnostic.settings = {

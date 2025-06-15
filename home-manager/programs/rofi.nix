@@ -38,10 +38,12 @@ in
   programs.rofi = {
     enable = host != "vm";
     package = pkgs.rofi-wayland;
-    font = "MesloLGS Nerd Font 16";
+    font = "Inter Nerd Font 16";
     extraConfig = {
-      display-drun = " ";
+      display-drun = " ";
       drun-display-format = "{name}";
+      display-window = " ";
+      display-run = " ";
       show-icons = true;
       modi = "window,run,drun";
     };
@@ -50,58 +52,69 @@ in
     # ];
     theme = {
       "*" = {
-        nord0 = mkLiteral "#2e3440";
-        nord1 = mkLiteral "#3b4252";
-        nord2 = mkLiteral "#434c5e";
-        nord3 = mkLiteral "#4c566a";
+        rosewater = mkLiteral "#f4dbd6";
+        flamingo = mkLiteral "#f0c6c6";
+        pink = mkLiteral "#f5bde6";
+        mauve = mkLiteral "#c6a0f6";
+        red = mkLiteral "#ed8796";
+        maroon = mkLiteral "#ee99a0";
+        peach = mkLiteral "#f5a97f";
+        yellow = mkLiteral "#eed49f";
+        green = mkLiteral "#a6da95";
+        teal = mkLiteral "#8bd5ca";
+        sky = mkLiteral "#91d7e3";
+        sapphire = mkLiteral "#7dc4e4";
+        blue = mkLiteral "#8aadf4";
+        lavender = mkLiteral "#b7bdf8";
 
-        nord4 = mkLiteral "#d8dee9";
-        nord5 = mkLiteral "#e5e9f0";
-        nord6 = mkLiteral "#eceff4";
+        text = mkLiteral "#cad3f5";
+        subtext1 = mkLiteral "#b8c0e0";
+        subtext0 = mkLiteral "#a5adcb";
 
-        nord7 = mkLiteral "#8fbcbb";
-        nord8 = mkLiteral "#88c0d0";
-        nord9 = mkLiteral "#81a1c1";
-        nord10 = mkLiteral "#5e81ac";
-        nord11 = mkLiteral "#bf616a";
+        overlay2 = mkLiteral "#939ab7";
+        overlay1 = mkLiteral "#8087a2";
+        overlay0 = mkLiteral "#6e738d";
 
-        nord12 = mkLiteral "#d08770";
-        nord13 = mkLiteral "#ebcb8b";
-        nord14 = mkLiteral "#a3be8c";
-        nord15 = mkLiteral "#b48ead";
+        surface2 = mkLiteral "#5b6078";
+        surface1 = mkLiteral "#494d64";
+        surface0 = mkLiteral "#363a4f";
 
-        fg = mkLiteral "@nord9";
-        backlight = mkLiteral "#ccffeedd";
+        base = mkLiteral "#24273a";
+        mantle = mkLiteral "#1e2030";
+        crust = mkLiteral "#181926";
+
+        fg = mkLiteral "@pink";
+        backlight = mkLiteral "@maroon";
         background-color = mkLiteral "transparent";
 
-        background-alt = mkLiteral "#383e4a";
+        background-alt = mkLiteral "@surface1";
 
-        highlight = mkLiteral "underline bold #eceff4";
+        highlight = mkLiteral "underline bold #fbdbe6";
 
         transparent = mkLiteral "rgba(46,52,64,0)";
+        mauve-transparent = mkLiteral "rgba(198,160,246,0.2)";
 
-        border = mkLiteral "0";
-        margin = mkLiteral "0";
-        padding = mkLiteral "0";
-        spacing = mkLiteral "0";
       };
 
       "window" = {
         width = "30%";
         # location = mkLiteral "center";
         # anchor = mkLiteral "center";
-        background-color = mkLiteral "@nord1";
+        background-color = mkLiteral "@surface0";
+        border = mkLiteral "2";
+        border-radius = mkLiteral "10";
+        border-color = mkLiteral "@pink";
       };
 
       "mainbox" = {
         children = mkLiteral "[ inputbar, listview ]";
-        background-color = mkLiteral "@nord1";
+        background-color = mkLiteral "@surface0";
       };
 
       "inputbar" = {
-        # color = mkLiteral "@nord11";
+        color = mkLiteral "@crust";
         # padding = mkLiteral "11px";
-        background-color = mkLiteral "@nord9";
+        background-color = mkLiteral "@surface1";
         children = mkLiteral "[prompt, entry]";
       };
 
@@ -109,19 +122,19 @@ in
         # margin = mkLiteral "0px 1em 0em 0em";
         enabled = true;
         padding = mkLiteral "12 0 0 12";
-        backgrouond-color = mkLiteral "@nord1";
-        text-color = mkLiteral "@nord6";
+        backgrouond-color = mkLiteral "@surface0";
+        text-color = mkLiteral "@pink";
       };
 
       "entry" = {
         # margin = mkLiteral "0px 1em 0em 0em";
         padding = mkLiteral "12";
-        backgrouond-color = mkLiteral "@nord1";
-        text-color = mkLiteral "@nord6";
+        backgrouond-color = mkLiteral "@surface0";
+        text-color = mkLiteral "@text";
       };
 
       "listview" = {
-        background-color = mkLiteral "@nord1";
+        background-color = mkLiteral "@surface0";
         columns = 1;
         lines = 6;
       };
@@ -129,12 +142,12 @@ in
       "element" = {
         padding = mkLiteral "8 12";
         backgrouond-color = mkLiteral "@background-color";
-        text-color = mkLiteral "@nord9";
+        text-color = mkLiteral "@text";
       };
 
       "element selected" = {
-        background-color = mkLiteral "@background-color";
-        text-color = mkLiteral "@nord6";
+        background-color = mkLiteral "@mauve-transparent";
+        text-color = mkLiteral "@mauve";
       };
 
       "element-text" = {

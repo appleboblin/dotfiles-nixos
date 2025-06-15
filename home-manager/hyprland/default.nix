@@ -112,8 +112,8 @@
           # nord
           # "col.active_border" = "rgba(81a1c1ee) rgba(88c0d0ee) 45deg";
           # "col.inactive_border" = "rgba(3b4252aa)";
-          "col.active_border" = "rgba(8aadf4ee) rgba(7dc4e4ee) 45deg"; # Blue to Sapphire
-          "col.inactive_border" = "rgba(494d64aa)"; # Surface1 with transparency
+          "col.active_border" = "rgba(f5bde6cc) rgba(f5bde6cc) 45deg";
+          "col.inactive_border" = "rgba(3b4252aa)";
           layout = "master";
         };
 
