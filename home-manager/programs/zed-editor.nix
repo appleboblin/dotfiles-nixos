@@ -23,6 +23,10 @@
       "fish" # https://github.com/hasit/zed-fish
       "rainbow-csv" # https://github.com/Kalmaegi/zed-rainbow-csv/tree/81bfb05d56a5302bd821230e83840230fd558c65
       "basedpyright" # https://github.com/m1guer/basedpyright-zed
+      "latex" # https://github.com/rzukic/zed-latex/
+      "log" # https://github.com/zed-extensions/log
+      "catppuccin" # https://github.com/catppuccin/zed
+      "catppuccin-icons" # https://github.com/catppuccin/zed-icons
     ];
 
     # extension and language dependencies
@@ -45,6 +49,9 @@
       # html
       vscode-langservers-extracted
       openssl
+
+      # texliv
+      texliveFull
     ];
 
     ## everything inside of these brackets are Zed options.
@@ -187,13 +194,25 @@
       };
 
       theme = {
-        mode = "system";
+        mode = "dark";
         light = "One Light";
-        dark = "Nord";
+        # dark = "Nord";
+        dark = "Catppuccin Macchiato";
+      };
+
+      icon_theme = {
+        mode = "dark";
+        light = "Catppuccin Latte";
+        dark = "Catppuccin Macchiato";
       };
 
       features = {
-        edit_prediction_provider = "zed";
+        # edit_prediction_provider = "zed";
+        edit_prediction_provider = "copilot";
+      };
+
+      edit_predictions = {
+        mode = "subtle";
       };
 
       ## tell zed to use direnv and direnv can use a flake.nix enviroment.

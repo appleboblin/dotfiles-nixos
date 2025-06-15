@@ -56,9 +56,11 @@
       };
     };
   };
+
+  # Set your time zone.
+  # time.timeZone = "Asia/Taipei";Pacific/Tahiti.
+  # time.timeZone = "Pacific/Tahiti";
   services = {
-    # Set your time zone.
-    # time.timeZone = "Asia/Taipei";
     # https://discourse.nixos.org/t/timezones-how-to-setup-on-a-laptop/33853/8
     automatic-timezoned.enable = true;
     geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";

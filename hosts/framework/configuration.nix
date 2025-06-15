@@ -86,6 +86,8 @@
           qwerty = {
             leftalt = "leftmeta";
             leftmeta = "leftalt";
+            capslock = "leftcontrol";
+
             # Qwerty
             s = "s";
             e = "e";
@@ -119,7 +121,7 @@
             capslock = "capslock";
           };
 
-          "meta" = {
+          "alt" = {
             h = "left";
             j = "down";
             k = "up";
