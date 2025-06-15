@@ -8,7 +8,16 @@
   ];
   programs.nixvim = {
     enable = true;
-    colorschemes.nord.enable = true;
+    corschemes.catppuccin = {
+      enable = true;
+      settings = {
+        flavour = "macchiato"; # latte, frappe, macchiato, mocha
+        transparent_background = true;
+        dim_inactive = true;
+        no_italic = true;
+        no_bold = true;
+      };
+    };
     plugins = {
       lualine.enable = true;
       treesitter.enable = true;

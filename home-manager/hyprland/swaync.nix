@@ -111,327 +111,276 @@
       };
     };
 
+    # nord
+    # @define-color noti-border-color #81A1C1;
+    # @define-color noti-bg #4c566a;
+    # @define-color noti-bg-alt #383E4A;
+    # @define-color noti-fg #E5E9F0;
+    # @define-color noti-bg-hover #81A1C1;
+    # @define-color noti-bg-focus #A3BE8C;
+    # @define-color noti-close-bg rgba(255, 255, 255, 0.1);
+    # @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
+    # @define-color noti-urgent #BF616A;
+
+    # @define-color bg-selected #88c0d0;
     style = ''
-      @define-color noti-border-color #81A1C1;
-      @define-color noti-bg #4c566a;
-      @define-color noti-bg-alt #383E4A;
-      @define-color noti-fg #E5E9F0;
-      @define-color noti-bg-hover #81A1C1;
-      @define-color noti-bg-focus #A3BE8C;
-      @define-color noti-close-bg rgba(255, 255, 255, 0.1);
-      @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
-      @define-color noti-urgent #BF616A;
+      /* Catppuccin Macchiato Palette */
+      @define-color noti-border-color #8aadf4;       /* Blue */
+      @define-color noti-bg #363a4f;                 /* Surface0 */
+      @define-color noti-bg-alt #24273a;             /* Base */
+      @define-color noti-fg #cad3f5;                 /* Text */
+      @define-color noti-bg-hover #8aadf4;           /* Blue (hover) */
+      @define-color noti-bg-focus #a6da95;           /* Green (focus) */
+      @define-color noti-close-bg rgba(202, 211, 245, 0.05); /* Subtle text color */
+      @define-color noti-close-bg-hover rgba(202, 211, 245, 0.1);
+      @define-color noti-urgent #ed8796;             /* Red */
+      @define-color bg-selected #8bd5ca;             /* Teal */
 
-      @define-color bg-selected #88c0d0;
-
-      *{
-      color: @noti-fg;
+      * {
+        color: @noti-fg;
+        font-family: "JetBrains Mono", "Fira Sans", sans-serif;
       }
 
       .notification-row {
-      outline: none;
+        outline: none;
       }
 
       .notification-row:focus,
       .notification-row:hover {
-      background: @noti-bg-focus;
+        background: @noti-bg-focus;
+        color: #24273a;
       }
 
       .notification {
-      border-radius: 12px;
-      margin: 6px 12px;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
-          0 2px 6px 2px rgba(0, 0, 0, 0.3);
-      padding: 0;
+        border-radius: 12px;
+        margin: 6px 12px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3),
+                    0 1px 3px 1px rgba(0, 0, 0, 0.7),
+                    0 2px 6px 2px rgba(0, 0, 0, 0.3);
+        padding: 0;
+        background: @noti-bg;
       }
 
       .critical {
-      background: @noti-urgent;
-      padding: 2px;
-      border-radius: 12px;
+        background: @noti-urgent;
+        padding: 2px;
+        border-radius: 12px;
       }
 
-
       .notification-content {
-      background: transparent;
-      padding: 6px;
-      border-radius: 12px;
+        background: transparent;
+        padding: 6px;
+        border-radius: 12px;
       }
 
       .close-button {
-      background: @noti-close-bg;
-      color: white;
-      text-shadow: none;
-      padding: 0;
-      border-radius: 100%;
-      margin-top: 10px;
-      margin-right: 16px;
-      box-shadow: none;
-      border: none;
-      min-width: 24px;
-      min-height: 24px;
+        background: @noti-close-bg;
+        color: @noti-fg;
+        padding: 0;
+        border-radius: 100%;
+        margin-top: 10px;
+        margin-right: 16px;
+        border: none;
+        min-width: 24px;
+        min-height: 24px;
       }
 
       .close-button:hover {
-      box-shadow: none;
-      background: @noti-close-bg-hover;
-      transition: all 0.15s ease-in-out;
-      border: none;
+        background: @noti-close-bg-hover;
+        transition: all 0.15s ease-in-out;
       }
 
       .notification-default-action,
       .notification-action {
-      padding: 4px;
-      margin: 0;
-      box-shadow: none;
-      background: @noti-bg;
-      border: 1px solid @noti-border-color;
-      color: white;
+        padding: 4px;
+        margin: 0;
+        background: @noti-bg;
+        border: 1px solid @noti-border-color;
+        color: @noti-fg;
       }
 
       .notification-default-action:hover,
       .notification-action:hover {
-      -gtk-icon-effect: none;
-      background: @noti-bg-hover;
+        -gtk-icon-effect: none;
+        background: @noti-bg-hover;
       }
 
       .notification-default-action {
-      border-radius: 12px;
+        border-radius: 12px;
       }
 
-      /* When alternative actions are visible */
       .notification-default-action:not(:only-child) {
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
       }
 
       .notification-action {
-      border-radius: 0px;
-      border-top: none;
-      border-right: none;
+        border-radius: 0;
+        border-top: none;
+        border-right: none;
       }
 
-      /* add bottom border radius to eliminate clipping */
       .notification-action:first-child {
-      border-bottom-left-radius: 10px;
+        border-bottom-left-radius: 10px;
       }
 
       .notification-action:last-child {
-      border-bottom-right-radius: 10px;
-      border-right: 1px solid @noti-border-color;
+        border-bottom-right-radius: 10px;
+        border-right: 1px solid @noti-border-color;
       }
-
-      .image {}
 
       .body-image {
-      margin-top: 6px;
-      background-color: white;
-      border-radius: 12px;
+        margin-top: 6px;
+        background-color: #c6a0f6; /* Lavender */
+        border-radius: 12px;
       }
 
-      .summary {
-      font-size: 16px;
-      font-weight: bold;
-      background: transparent;
-      color: white;
-      text-shadow: none;
+      .summary,
+      .time,
+      .body,
+      .top-action-title {
+        background: transparent;
+        color: @noti-fg;
+        text-shadow: none;
       }
 
+      .summary,
       .time {
-      font-size: 16px;
-      font-weight: bold;
-      background: transparent;
-      color: white;
-      text-shadow: none;
-      margin-right: 18px;
+        font-size: 16px;
+        font-weight: bold;
       }
 
       .body {
-      font-size: 15px;
-      font-weight: normal;
-      background: transparent;
-      color: white;
-      text-shadow: none;
-      }
-
-      /* The "Notifications" and "Do Not Disturb" text widget */
-      .top-action-title {
-      color: white;
-      text-shadow: none;
+        font-size: 15px;
       }
 
       .control-center {
-      background-color: @noti-bg-alt;
+        background-color: @noti-bg-alt;
       }
 
-      .control-center-list {
-      background: transparent;
-      }
-
-      .floating-notifications {
-      background: transparent;
-      }
-
-      /* Window behind control center and on all other monitors */
+      .control-center-list,
+      .floating-notifications,
       .blank-window {
-      background: transparent;
+        background: transparent;
       }
 
       /*** Widgets ***/
 
-      /* Title widget */
       .widget-title {
-      margin: 8px;
-      font-size: 1.5rem;
+        margin: 8px;
+        font-size: 1.5rem;
       }
 
-      .widget-title>button {
-      font-size: initial;
-      color: white;
-      text-shadow: none;
-      background: @noti-bg;
-      border: 1px solid @noti-border-color;
-      box-shadow: none;
-      border-radius: 12px;
+      .widget-title > button {
+        color: @noti-fg;
+        background: @noti-bg;
+        border: 1px solid @noti-border-color;
+        border-radius: 12px;
       }
 
-      .widget-title>button:hover {
-      background: @noti-bg-hover;
+      .widget-title > button:hover {
+        background: @noti-bg-hover;
       }
 
-      /* DND widget */
       .widget-dnd {
-      margin: 8px;
-      font-size: 1.1rem;
+        margin: 8px;
+        font-size: 1.1rem;
       }
 
-      .widget-dnd>switch {
-      font-size: initial;
-      border-radius: 12px;
-      background: @noti-bg;
-      border: 1px solid @noti-border-color;
-      box-shadow: none;
+      .widget-dnd > switch {
+        border-radius: 12px;
+        background: @noti-bg;
+        border: 1px solid @noti-border-color;
       }
 
-      .widget-dnd>switch:checked {
-      background: @bg-selected;
+      .widget-dnd > switch:checked {
+        background: @bg-selected;
       }
 
-      .widget-dnd>switch slider {
-      background: @noti-bg-hover;
-      border-radius: 12px;
+      .widget-dnd > switch slider {
+        background: @noti-bg-hover;
+        border-radius: 12px;
       }
 
-      /* Label widget */
       .widget-label {
-      margin: 8px;
+        margin: 8px;
       }
 
-      .widget-label>label {
-      font-size: 1.1rem;
-      }
-
-      /* Mpris widget */
-      .widget-mpris {
-      /* The parent to all players */
+      .widget-label > label {
+        font-size: 1.1rem;
       }
 
       .widget-mpris-player {
-      padding: 8px;
-      margin: 8px;
+        padding: 8px;
+        margin: 8px;
       }
 
       .widget-mpris-title {
-      font-weight: bold;
-      font-size: 1.25rem;
+        font-weight: bold;
+        font-size: 1.25rem;
       }
 
       .widget-mpris-subtitle {
-      font-size: 1.1rem;
+        font-size: 1.1rem;
       }
 
-      /* Volume and Brightness Widget*/
-
-      .widget-volume {
-      background-color: @noti-bg;
-      padding: 4px 8px 8px 8px;
-      margin: 0px 8px 8px 8px;
-      border-bottom-left-radius: 12px;
-      border-bottom-right-radius: 12px;
-      }
-
+      .widget-volume,
       .widget-backlight {
-      background-color: @noti-bg;
-      padding: 8px 8px 4px 8px;
-      margin: 8px 8px 0px 8px;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
+        background-color: @noti-bg;
+        padding: 8px;
+        margin: 8px;
+        border-radius: 12px;
       }
 
       .KB {
-      padding: 4px 8px 4px 8px;
-      margin: 0px 8px 0px 8px;
-      border-radius: 0;
+        padding: 4px 8px;
+        margin: 0 8px;
+        border-radius: 0;
       }
 
-      .power-buttons{
-      background-color: @noti-bg;
-      padding: 8px;
-      margin: 8px;
-      border-radius: 12px;
+      .power-buttons {
+        background-color: @noti-bg;
+        padding: 8px;
+        margin: 8px;
+        border-radius: 12px;
       }
 
-
-      .power-buttons>button {
-      background: transparent;
-      border: none;
+      .power-buttons > button,
+      .powermode-buttons > button,
+      .topbar-buttons > button,
+      .widget-menubar > box > .menu-button-bar > button {
+        background: transparent;
+        border: none;
       }
 
-      .power-buttons>button:hover {
-      background: @noti-bg-hover;
+      .power-buttons > button:hover,
+      .powermode-buttons > button:hover {
+        background: @noti-bg-hover;
       }
 
-      .widget-menubar>box>.menu-button-bar>button{
-      border: none;
-      background: transparent;
+      .widget-buttons-grid {
+        padding: 8px;
+        margin: 8px;
+        border-radius: 12px;
+        background-color: @noti-bg;
       }
 
-      .topbar-buttons>button{
-      border: none;
-      background: transparent;
+      .widget-buttons-grid > flowbox > flowboxchild > button {
+        background: @noti-bg;
+        border-radius: 12px;
       }
 
-      .widget-buttons-grid{
-      padding: 8px;
-      margin: 8px;
-      border-radius: 12px;
-      background-color: @noti-bg;
+      .widget-buttons-grid > flowbox > flowboxchild > button:hover {
+        background: @noti-bg-hover;
       }
 
-      .widget-buttons-grid>flowbox>flowboxchild>button{
-      background: @noti-bg;
-      border-radius: 12px;
-      }
-
-      .widget-buttons-grid>flowbox>flowboxchild>button:hover {
-      background: @noti-bg-hover;
-      }
-
-      .powermode-buttons{
-      background-color: @noti-bg;
-      padding: 8px;
-      margin: 8px;
-      border-radius: 12px;
-      }
-
-      .powermode-buttons>button {
-      background: transparent;
-      border: none;
-      }
-
-      .powermode-buttons>button:hover {
-      background: @noti-bg-hover;
+      .powermode-buttons {
+        background-color: @noti-bg;
+        padding: 8px;
+        margin: 8px;
+        border-radius: 12px;
       }
     '';
+
   };
 }
