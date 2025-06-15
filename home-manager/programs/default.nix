@@ -18,5 +18,6 @@
     ./nemo.nix
     ./zed-editor.nix
     ./kdeconnect.nix
+    ./ghostty.nix
   ];
 }

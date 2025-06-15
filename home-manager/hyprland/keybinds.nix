@@ -41,6 +41,7 @@
 
       # "$mod, Return, exec, kitty"
       "$mod, Return, exec, footclient"
+      # "$mod, Return, exec, ghostty"
       "$mod, W, killactive"
       "$mod SHIFT, Return, togglespecialworkspace, scratchpad"
       "ALT, S, togglespecialworkspace, music"

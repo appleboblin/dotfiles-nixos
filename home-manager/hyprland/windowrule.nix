@@ -19,6 +19,7 @@
       "workspace special:music silent, title:^(Spotify)(.*)$"
       # "workspace special:scratchpad silent, class:(scratchpad)"
       "workspace special:scratchpad silent, class:(scratch)"
+      # "workspace special:scratchpad silent, class:(com.term.scratch)"
       # "workspace 1 silent, class(obsidian), title:(Obsidian)(.*)$"
       # "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
     ];
