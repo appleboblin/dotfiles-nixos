@@ -1,24 +1,11 @@
 {
-  pkgs,
-  ...
-}:
-{
   boot = {
     loader = {
+      systemd-boot.enable = true;
       timeout = 3;
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
-
-      grub = {
-        enable = true;
-        # efiInstallAsRemovable = true;
-        devices = [ "nodev" ];
-        efiSupport = true;
-        theme = pkgs.catppuccin-grub.override {
-          flavor = "macchiato";
-        };
+        efiSysMountPoint = "/boot";
       };
     };
   };
