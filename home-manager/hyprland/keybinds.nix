@@ -42,9 +42,13 @@
       # "$mod, Return, exec, kitty"
       "$mod, Return, exec, footclient"
       # "$mod, Return, exec, ghostty"
-      "$mod, W, killactive"
+      "$mod, Q, killactive"
       "$mod SHIFT, Return, togglespecialworkspace, scratchpad"
       "ALT, S, togglespecialworkspace, music"
+
+      # switch between windows
+      "$mod, TAB, cyclenext,"
+      "$mod, TAB, bringactivetotop, "
 
       # Screenshot
       "$mod SHIFT, S, exec, grimblast --notify copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"

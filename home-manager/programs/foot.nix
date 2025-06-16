@@ -1,10 +1,14 @@
 {
+  lib,
+  ...
+}:
+{
   programs.foot = {
     enable = true;
     settings = {
       main = {
-        term = "foot";
-        font = "MesloLGS Nerd Font Mono:size=16";
+        term = "xterm-256color";
+        font = lib.mkDefault "MesloLGS Nerd Font Mono:size=30";
         shell = "fish";
         pad = "8x8";
       };

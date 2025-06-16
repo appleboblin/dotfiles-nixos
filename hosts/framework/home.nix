@@ -6,8 +6,32 @@
 }:
 {
   # font size
-  gtk.font.size = 20;
+  gtk.font.size = 21;
   programs = {
+    zed-editor = {
+      userSettings = {
+        terminal = {
+          font_size = 21;
+        };
+        ui_font_size = 20;
+        buffer_font_size = 21;
+      };
+    };
+
+    foot = {
+      settings = {
+        main = {
+          font = "MesloLGS Nerd Font Mono:size=17";
+        };
+      };
+    };
+
+    ghostty = {
+      settings = {
+        font-size = "17";
+      };
+    };
+
     # swaylock image
     # programs.swaylock.settings = {
     #     image = "${./framework_wallpaper.png}";

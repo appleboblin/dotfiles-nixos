@@ -14,7 +14,7 @@
       command = "${lib.getExe pkgs.fish} --login --interactive";
 
       # theme = "nord";
-      font-size = "16";
+      font-size = lib.mkDefault "16";
       font-family = "MesloLGS Nerd Font Mono";
 
       window-padding-x = 5;

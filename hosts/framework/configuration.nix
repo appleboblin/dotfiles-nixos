@@ -25,7 +25,10 @@
     hostName = host;
   };
   services = {
-    zfs.autoScrub.enable = true;
+    zfs = {
+      autoScrub.enable = true;
+      trim.enable = true;
+    };
 
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
