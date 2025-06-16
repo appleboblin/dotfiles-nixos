@@ -11,6 +11,7 @@
     ./programs
     ./shell
     ./hyprland
+    ./themes
   ];
 
   home = {

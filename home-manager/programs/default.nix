@@ -3,7 +3,6 @@
     ./firefox.nix
     ./vscodium.nix
     ./kitty.nix
-    ./gtk.nix
     ./dunst.nix
     ./nixvim/default.nix
     ./rofi.nix
@@ -19,6 +18,5 @@
     ./zed-editor.nix
     ./kdeconnect.nix
     ./ghostty.nix
-    ./catppuccin.nix
   ];
 }

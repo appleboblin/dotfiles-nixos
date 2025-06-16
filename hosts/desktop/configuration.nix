@@ -6,7 +6,6 @@
   host,
   lib,
   pkgs,
-  user,
   ...
 }:
 let
@@ -21,10 +20,6 @@ in
   # };
 
   networking.hostName = host;
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = user;
-  };
   hardware = {
     graphics = {
       enable = true;

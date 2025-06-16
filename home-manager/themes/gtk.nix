@@ -4,6 +4,10 @@
   lib,
   ...
 }:
+let
+  variant = "macchiato";
+  accent = "pink";
+in
 {
   dconf.settings = {
     # disable dconf first use warning
@@ -21,8 +25,8 @@
     theme = {
       name = "catppuccin-macchiato-pink-compact";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ "pink" ];
-        variant = "macchiato";
+        accents = [ accent ];
+        variant = variant;
         tweaks = [
           # "black" # black tweak for oled
           # "rimless"
@@ -30,24 +34,31 @@
         size = "compact";
       };
     };
+
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
-        accent = "pink";
-        flavor = "macchiato";
+        accent = accent;
+        flavor = variant;
       };
     };
+
     font = {
       name = "Inter Regular";
       package = pkgs.inter;
       size = lib.mkDefault 16;
     };
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    gtk2 = {
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      force = true;
+    };
+
     gtk3 = {
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };
     };
+
     gtk4 = {
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;
@@ -56,8 +67,6 @@
   };
   home = {
     pointerCursor = {
-      # package = pkgs.nordzy-cursor-theme;
-      # name = "Nordzy-cursor";
       size = 28;
       gtk.enable = true;
       x11.enable = true;

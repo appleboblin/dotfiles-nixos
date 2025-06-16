@@ -6,13 +6,6 @@
   ...
 }:
 {
-  # boot.loader = {
-  #   grub.enable = true;
-  #   grub.devices = [ "nodev" ];
-  #   # grub.efiInstallAsRemovable = true;
-  #   grub.efiSupport = true;
-  #   # grub.useOSProber = true;
-  # };
   boot = {
     supportedFilesystems = [ "zfs" ];
     zfs.requestEncryptionCredentials = true;
