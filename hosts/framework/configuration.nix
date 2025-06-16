@@ -9,13 +9,18 @@
   ...
 }:
 {
-  boot = {
-    # Bootloader.
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    initrd.luks.devices."luks-7b176329-e104-4d94-8f4c-574571e27aa5".device =
-      "/dev/disk/by-uuid/7b176329-e104-4d94-8f4c-574571e27aa5";
+  boot.loader = {
+    grub.enable = true;
+    grub.devices = [ "nodev" ];
+    grub.efiInstallAsRemovable = true;
+    grub.efiSupport = true;
+    # grub.useOSProber = true;
   };
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.requestEncryptionCredentials = true;
+
+  services.zfs.autoScrub.enable = true;
+  networking.hostId = "3f4e9fd8";
 
   networking.hostName = host;
   services = {
@@ -26,7 +31,7 @@
     libinput.enable = true;
     libinput.touchpad.disableWhileTyping = lib.mkForce true;
     blueman.enable = true;
-    hardware.bolt.enable = true;
+    # hardware.bolt.enable = true;
 
     # # ectool on start up
     # systemd.services.ectool = {

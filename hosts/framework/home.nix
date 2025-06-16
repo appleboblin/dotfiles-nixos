@@ -179,7 +179,7 @@
         "window.zoomLevel" = 2;
         "terminal.integrated.fontSize" = 14;
         "markdown.preview.fontSize" = 15;
-        "workbench.colorTheme" = "Nord";
+        #"workbench.colorTheme" = "Nord";
         "workbench.productIconTheme" = "material-product-icons";
         "editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
         "terminal.integrated.defaultProfile.linux" = "fish";
