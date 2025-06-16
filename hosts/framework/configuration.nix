@@ -150,6 +150,14 @@
     powerOnBoot = lib.mkForce false; # powers up the default Bluetooth controller on boot
   };
 
+  # AMDGPU Controller
+  # https://wiki.nixos.org/wiki/AMD_GPU
+  # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix
+  environment.systemPackages = with pkgs; [
+    lact
+    amdgpu_top
+  ];
+
   hm = {
     # Define a user account. Don't forget to set a password with ‘passwd’.
     # users.users.appleboblin = {

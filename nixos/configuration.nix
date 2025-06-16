@@ -19,6 +19,11 @@
         "nix-command"
         "flakes"
       ];
+      trusted-users = [
+        "appleboblin"
+        "root"
+        "@wheel"
+      ];
     };
     gc = {
       automatic = true;
