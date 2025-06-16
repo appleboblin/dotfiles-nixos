@@ -19,12 +19,23 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Nordic";
-      package = pkgs.nordic;
+      name = "catppuccin-macchiato-pink-compact";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "pink" ];
+        variant = "macchiato";
+        tweaks = [
+          # "black" # black tweak for oled
+          # "rimless"
+        ];
+        size = "compact";
+      };
     };
     iconTheme = {
-      name = "Nordic-darker";
-      package = pkgs.nordic;
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        accent = "pink";
+        flavor = "macchiato";
+      };
     };
     font = {
       name = "Inter Regular";
