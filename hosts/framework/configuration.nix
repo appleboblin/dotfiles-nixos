@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
   host,
@@ -9,23 +6,26 @@
   ...
 }:
 {
-  boot.loader = {
-    grub.enable = true;
-    grub.devices = [ "nodev" ];
-    grub.efiInstallAsRemovable = true;
-    grub.efiSupport = true;
-    # grub.useOSProber = true;
+  # boot.loader = {
+  #   grub.enable = true;
+  #   grub.devices = [ "nodev" ];
+  #   # grub.efiInstallAsRemovable = true;
+  #   grub.efiSupport = true;
+  #   # grub.useOSProber = true;
+  # };
+  boot = {
+    supportedFilesystems = [ "zfs" ];
+    zfs.requestEncryptionCredentials = true;
   };
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.requestEncryptionCredentials = true;
+  # zram
+  zramSwap.enable = true;
 
-  services.zfs.autoScrub.enable = true;
-  networking.hostId = "3f4e9fd8";
-
-  networking.hostName = host;
+  networking = {
+    hostId = "3f4e9fd8";
+    hostName = host;
+  };
   services = {
-    # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    zfs.autoScrub.enable = true;
 
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;

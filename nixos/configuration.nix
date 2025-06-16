@@ -261,6 +261,7 @@
   users.users.appleboblin = {
     isNormalUser = true;
     description = "appleboblin";
+    initialPassword = "password";
     extraGroups = [
       "networkmanager"
       "wheel"

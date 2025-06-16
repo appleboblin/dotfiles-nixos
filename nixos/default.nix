@@ -12,5 +12,6 @@
     ./steam.nix
     ./localsend.nix
     # ./wireshark.nix
+    ./boot.nix
   ];
 }

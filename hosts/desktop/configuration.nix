@@ -6,20 +6,25 @@
   host,
   lib,
   pkgs,
+  user,
   ...
 }:
 let
   monitors = import ./monitors.nix;
 in
 {
-  boot = {
-    # Bootloader.
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    kernelPackages = pkgs.linuxPackages_latest;
-  };
+  # boot = {
+  #   # Bootloader.
+  #   loader.systemd-boot.enable = true;
+  #   loader.efi.canTouchEfiVariables = true;
+  #   kernelPackages = pkgs.linuxPackages_latest;
+  # };
 
   networking.hostName = host;
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = user;
+  };
   hardware = {
     graphics = {
       enable = true;
