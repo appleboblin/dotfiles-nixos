@@ -177,11 +177,11 @@
           # "nm-applet --indicator"
 
           # Desktop dependency
-          "foot --server & sleep 5 && footclient -a scratch"
+          "uwsm app -- foot --server & sleep 5 && uwsm app -- footclient -a scratch"
           # "ghostty --class=com.term.scratch"
-          "hyprpaper & waybar & fcitx5 -d & swaync"
+          "uwsm app -- hyprpaper & uwsm app -- waybar & uwsm app -- fcitx5 -d & uwsm app -- swaync"
           # "flatpak run dev.vencord.Vesktop; sleep 10; latpak run dev.vencord.Vesktop"
-          "vesktop & spotify & obsidian & pcloud & sleep 5 && thunderbird"
+          "uwsm app -- vesktop & uwsm app -- spotify & uwsm app -- obsidian & uwsm app -- pcloud & sleep 5 && uwsm app -- thunderbird"
           # kitty ncspot kitty --class scratchpad
           # "${lib.getExe pkgs.swayidle} -w timeout 300 'swaylock -f' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1200 'systemctl suspend'"
           # Default browser fix

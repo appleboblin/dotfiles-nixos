@@ -12,6 +12,7 @@
   };
   programs.hyprland = lib.mkIf (host != "vm") {
     enable = true;
+    withUWSM = true;
     # xwayland.enable = true;
     # portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
