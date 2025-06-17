@@ -10,6 +10,7 @@
     ./keybinds.nix
     ./windowrule.nix
     ./bar.nix
+    ./hyprpanel.nix
     ./lock.nix
     ./idle.nix
     ./wlsunset.nix
@@ -179,7 +180,8 @@
           # Desktop dependency
           "uwsm app -- foot --server & sleep 5 && uwsm app -- footclient -a scratch"
           # "ghostty --class=com.term.scratch"
-          "uwsm app -- hyprpaper & uwsm app -- waybar & uwsm app -- fcitx5 -d & uwsm app -- swaync"
+          # "uwsm app -- hyprpaper & uwsm app -- waybar & uwsm app -- fcitx5 -d & uwsm app -- swaync"
+          "uwsm app -- hyprpaper & uwsm app -- hyprpanel & uwsm app -- fcitx5 -d "
           # "flatpak run dev.vencord.Vesktop; sleep 10; latpak run dev.vencord.Vesktop"
           "uwsm app -- vesktop & uwsm app -- spotify & uwsm app -- obsidian & uwsm app -- pcloud & sleep 5 && uwsm app -- thunderbird"
           # kitty ncspot kitty --class scratchpad

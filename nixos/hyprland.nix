@@ -39,7 +39,7 @@
 
       # Enable bar
       waybar = lib.mkIf config.programs.hyprland.enable {
-        enable = true;
+        enable = false;
       };
 
       # hm.programs.swaylock = lib.mkIf config.programs.hyprland.enable {
@@ -74,7 +74,7 @@
       };
       # Notification center
       swaync = lib.mkIf config.programs.hyprland.enable {
-        enable = true;
+        enable = false;
       };
 
       # Enable wlsunset
