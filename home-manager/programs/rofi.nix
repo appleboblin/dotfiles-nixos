@@ -38,7 +38,7 @@ in
   programs.rofi = {
     enable = host != "vm";
     package = pkgs.rofi-wayland;
-    font = "Inter Nerd Font 16";
+    font = "Inter Nerd Font Regular 16";
     extraConfig = {
       display-drun = " ";
       drun-display-format = "{name}";
