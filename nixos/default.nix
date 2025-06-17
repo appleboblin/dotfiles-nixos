@@ -275,10 +275,6 @@
       # programs.nm-applet.enable = true;
       allowUnfree = true;
       permittedInsecurePackages = [
-        "electron-25.9.0"
-        "electron-24.8.6"
-        "electron-19.1.9"
-        "openssl-1.1.1w"
       ];
     };
   };
