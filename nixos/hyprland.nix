@@ -16,6 +16,11 @@
     # xwayland.enable = true;
     # portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
+
+  # enable power-profiles-daemon
+  services.power-profiles-daemon.enable = lib.mkIf (
+    config.programs.hyprland.enable && host == "framework"
+  ) true;
   hm = {
     # environment.systemPackages = lib.mkIf config.programs.hyprland.enable [ pkgs.xwaylandvideobridge ];
     # Enable hyprland
@@ -37,7 +42,7 @@
       #     NIXOS_XDG_OPEN_USE_PORTAL = "1";
       # };
 
-      # Enable bar
+      # Enable waybar
       waybar = lib.mkIf config.programs.hyprland.enable {
         enable = false;
       };

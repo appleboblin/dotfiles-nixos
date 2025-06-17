@@ -118,6 +118,7 @@
                 "hypridle"
                 "volume"
                 "network"
+                "clock"
                 "battery"
                 "notifications"
               ];
