@@ -70,7 +70,8 @@
         "$mod, Delete, exec, cliphist list | cliphist delete "
 
         # Open notification center
-        "$mod, T, ${uexec "swaync-client -t"}"
+        # "$mod, T, ${uexec "swaync-client -t"}"
+        "$mod, T, exec, hyprpanel t notificationsmenu"
 
         # float and full
         "$mod, F, togglefloating"

@@ -9,8 +9,8 @@
   imports = [
     ./keybinds.nix
     ./windowrule.nix
-    ./bar.nix
-    ./hyprpanel.nix
+    ./bar
+    # ./bar/hyprpanel.nix
     ./lock.nix
     ./idle.nix
     ./wlsunset.nix
@@ -42,6 +42,7 @@
         # vendorHash = "sha256-M5n7/QWQ5POWE4hSCMa0+GOVhEDCOILYqkSYIGoy/l0=";
         # }))
         wl-clipboard
+        hyprpicker
       ];
     };
 
