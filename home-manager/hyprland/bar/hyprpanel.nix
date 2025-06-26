@@ -9,7 +9,7 @@
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
   programs.hyprpanel = {
-    enable = true;
+    enable = false;
     systemd.enable = true;
     hyprland.enable = true;
     overwrite.enable = true;
@@ -81,7 +81,7 @@
               shortcut3 = {
                 icon = "";
                 tooltip = "nm-editor";
-                command = "uwsm app -- nm-connections-editor";
+                command = "uwsm app -- nm-connection-editor";
               };
               # shortcut2 = {
               #   icon = "󰄀";
