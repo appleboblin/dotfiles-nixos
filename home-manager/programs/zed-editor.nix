@@ -27,6 +27,7 @@
       "log" # https://github.com/zed-extensions/log
       "catppuccin" # https://github.com/catppuccin/zed
       "catppuccin-icons" # https://github.com/catppuccin/zed-icons
+      "kdl" # https://github.com/elkowar/zed-kdl
     ];
 
     # extension and language dependencies

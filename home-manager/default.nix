@@ -10,7 +10,7 @@
   imports = [
     ./programs
     ./shell
-    ./hyprland
+    ./graphical
     ./themes
   ];
 
@@ -186,6 +186,7 @@
       EDITOR = "zeditor -w";
       BROWSER = "vivaldi";
       TERMINAL = "xterm-256color";
+      DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
     };
   };
 

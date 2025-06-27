@@ -154,6 +154,18 @@
     amdgpu_top
   ];
 
+  # Desktop environment
+  # Override xdg.portal.wlr.enable, theres conflict
+  xdg.portal = {
+    wlr.enable = lib.mkForce false;
+  };
+  programs.hyprland = lib.mkIf (host != "vm") {
+    enable = true;
+    withUWSM = true;
+    # xwayland.enable = true;
+    # portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
+
   hm = {
     # Define a user account. Don't forget to set a password with ‘passwd’.
     # users.users.appleboblin = {

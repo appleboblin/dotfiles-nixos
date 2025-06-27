@@ -18,6 +18,8 @@
     ./localsend.nix
     # ./wireshark.nix
     ./boot.nix
+    ./radicale.nix
+    ./niri
   ];
 
   # Nix Package Manager
@@ -290,6 +292,8 @@
       EDITOR = "zeditor -w";
       BROWSER = "vivaldi";
       TERMINAL = "xterm-256color";
+      DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
+      ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
 
     systemPackages = with pkgs; [
@@ -336,6 +340,7 @@
       yubioath-flutter
       solo2-cli
       mlocate
+      tree
     ];
   };
   programs = {

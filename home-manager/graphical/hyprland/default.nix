@@ -9,11 +9,6 @@
   imports = [
     ./keybinds.nix
     ./windowrule.nix
-    ./bar
-    ./lock.nix
-    ./idle.nix
-    ./wlsunset.nix
-    ./swaync.nix
   ];
 
   # home = lib.mkIf wayland.windowManager.hyprland.enable {
