@@ -6,17 +6,6 @@
   ...
 }:
 {
-  # Override xdg.portal.wlr.enable, theres conflict
-  xdg.portal = {
-    wlr.enable = lib.mkForce false;
-  };
-  programs.hyprland = lib.mkIf (host != "vm") {
-    enable = true;
-    withUWSM = true;
-    # xwayland.enable = true;
-    # portalPackage = pkgs.xdg-desktop-portal-hyprland;
-  };
-
   # enable power-profiles-daemon
   services.power-profiles-daemon.enable = lib.mkIf (
     config.programs.hyprland.enable && host == "framework"
@@ -89,7 +78,7 @@
     };
 
     xdg.configFile."hypr/hyprpaper.conf".text = lib.mkIf config.programs.hyprland.enable ''
-      preload = ${../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
+      preload = ${../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg}
       splash = false
     '';
   };

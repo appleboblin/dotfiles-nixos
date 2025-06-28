@@ -10,7 +10,7 @@
   imports = [
     ./programs
     ./shell
-    ./hyprland
+    ./graphical
     ./themes
   ];
 
@@ -122,6 +122,7 @@
         direnv
         proton-pass
         grayjay
+        freetube
         # (assert (lib.assertMsg (obsidian.version != "1.4.16")
         #     "obsidian: has wayland crash been fixed?");
         #     obsidian.override {
@@ -186,6 +187,7 @@
       EDITOR = "zeditor -w";
       BROWSER = "vivaldi";
       TERMINAL = "xterm-256color";
+      DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
     };
   };
 

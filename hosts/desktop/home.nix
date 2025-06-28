@@ -63,8 +63,8 @@ in
         output = [
           "${monitors.left}"
         ];
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
+        modules-left = [ "niri/workspaces" ];
+        modules-center = [ "niri/window" ];
         modules-right = [
           "pulseaudio"
           "cpu"
@@ -73,13 +73,13 @@ in
           "clock"
           "custom/powermenu"
         ];
-        "hyprland/workspaces" = {
-          format = "{name}";
+        "niri/workspaces" = {
+          format = "{index}";
           disable-scroll-wraparound = true;
           on-click = "activate";
           sort-by-number = true;
         };
-        "hyprland/window" = {
+        "niri/window" = {
           max-length = 50;
           format = "{}";
           separate-outputs = true;
@@ -135,21 +135,21 @@ in
         ];
         modules-left = [
           "custom/launcher"
-          "hyprland/workspaces"
+          "niri/workspaces"
         ];
-        modules-center = [ "hyprland/window" ];
+        modules-center = [ "niri/window" ];
         modules-right = [
           "tray"
           "clock"
           "custom/notification"
         ];
-        "hyprland/workspaces" = {
-          format = "{name}";
+        "niri/workspaces" = {
+          format = "{index}";
           disable-scroll-wraparound = true;
           on-click = "activate";
           sort-by-number = true;
         };
-        "hyprland/window" = {
+        "niri/window" = {
           max-length = 50;
           format = "{}";
           separate-outputs = true;
@@ -199,19 +199,19 @@ in
         output = [
           "${monitors.right}"
         ];
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
+        modules-left = [ "niri/workspaces" ];
+        modules-center = [ "niri/window" ];
         modules-right = [
           "bluetooth"
           "idle_inhibitor"
         ];
-        "hyprland/workspaces" = {
-          format = "{name}";
+        "niri/workspaces" = {
+          format = "{index}";
           disable-scroll-wraparound = true;
           on-click = "activate";
           sort-by-number = true;
         };
-        "hyprland/window" = {
+        "niri/window" = {
           max-length = 50;
           format = "{}";
           separate-outputs = true;

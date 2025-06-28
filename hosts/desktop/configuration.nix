@@ -76,6 +76,18 @@ in
   services.blueman.enable = true;
   services.hardware.bolt.enable = true;
 
+  # Desktop environment
+  # Override xdg.portal.wlr.enable, theres conflict
+  xdg.portal = {
+    wlr.enable = lib.mkForce false;
+  };
+  programs.hyprland = lib.mkIf (host != "vm") {
+    enable = true;
+    withUWSM = true;
+    # xwayland.enable = true;
+    # portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
+
   hm = {
     # List packages installed in system profile. To search, run:
     # $ nix search wget
@@ -84,9 +96,9 @@ in
     # ];
 
     xdg.configFile."hypr/hyprpaper.conf".text = lib.mkIf config.programs.hyprland.enable ''
-      		wallpaper = ${monitors.left},${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
-          wallpaper = ${monitors.middle},${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
-      		wallpaper = ${monitors.right},${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
+      		wallpaper = ${monitors.left},${../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg}
+          wallpaper = ${monitors.middle},${../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg}
+      		wallpaper = ${monitors.right},${../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg}
       	'';
 
     # Hyprland settings
