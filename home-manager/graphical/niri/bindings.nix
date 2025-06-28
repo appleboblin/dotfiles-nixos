@@ -6,34 +6,52 @@
 }:
 {
   programs.niri.settings.binds = with config.lib.niri.actions; {
-    # "XF86AudioMute".action = spawn "swayosd-client" "--output-volume=mute-toggle";
-    # "XF86AudioMicMute".action = spawn "swayosd-client" "--input-volume=mute-toggle";
+    "XF86AudioMute".action = spawn "swayosd-client" "--output-volume=mute-toggle";
+    "XF86AudioMicMute".action = spawn "swayosd-client" "--input-volume=mute-toggle";
 
-    # "XF86AudioPlay".action = playerctl "play-pause";
-    # "XF86AudioStop".action = playerctl "pause";
-    # "XF86AudioPrev".action = playerctl "previous";
-    # "XF86AudioNext".action = playerctl "next";
+    "XF86AudioPlay".action.spawn = [
+      "playerctl"
+      "play-pause"
+    ];
+    "XF86AudioStop".action.spawn = [
+      "playerctl"
+      "pause"
+    ];
+    "XF86AudioPrev".action.spawn = [
+      "playerctl"
+      "previous"
+    ];
+    "XF86AudioNext".action.spawn = [
+      "playerctl"
+      "next"
+    ];
 
-    # "XF86AudioRaiseVolume".action.spawn = [
-    #   "swayosd-client"
-    #   "--output-volume=raise"
-    # ];
-    # "XF86AudioLowerVolume".action.spawn = [
-    #   "swayosd-client"
-    #   "--output-volume=lower"
-    # ];
+    "XF86AudioRaiseVolume".action.spawn = [
+      "swayosd-client"
+      "--output-volume=raise"
+    ];
+    "XF86AudioLowerVolume".action.spawn = [
+      "swayosd-client"
+      "--output-volume=lower"
+    ];
 
-    # "XF86MonBrightnessUp".action.spawn = [
-    #   "swayosd-client"
-    #   "--brightness=raise"
-    # ];
-    # "XF86MonBrightnessDown".action.spawn = [
-    #   "swayosd-client"
-    #   "--brightness=lower"
-    # ];
+    "XF86MonBrightnessUp".action.spawn = [
+      "swayosd-client"
+      "--brightness=raise"
+    ];
+    "XF86MonBrightnessDown".action.spawn = [
+      "swayosd-client"
+      "--brightness=lower"
+    ];
 
+    # screenshot
     # "Mod+Print".action = screenshot-window;
-    "Mod+Shift+S".action = screenshot;
+    # "Mod+Shift+S".action = screenshot;
+    "Mod+Shift+S".action.spawn = [
+      "sh"
+      "-c"
+      "grimblast --notify copysave area ~/Screenshots/Screenshot-from-$(date +%Y-%m-%d-%H-%M-%S).png"
+    ];
 
     "Mod+Q".action.close-window = [ ];
 
@@ -41,6 +59,7 @@
     "Mod+Shift+G".action = switch-preset-window-height;
     "Mod+Ctrl+R".action = reset-window-height;
     "Mod+F".action = maximize-column;
+    "Mod+Ctrl+F".action = toggle-window-floating;
     "Mod+Shift+F".action = fullscreen-window;
     "Mod+Space".action.spawn = [
       "sh"
@@ -48,9 +67,10 @@
       "pkill rofi || rofi -show drun -theme-str 'window {width: 400px;}'"
     ];
     "Mod+Return".action = spawn "footclient";
+    "Mod+W".action = toggle-column-tabbed-display;
 
-    "Mod+Shift+Ctrl+H".action = consume-window-into-column;
-    "Mod+Shift+Ctrl+N".action = expel-window-from-column;
+    "Mod+Shift+H".action = consume-window-into-column;
+    "Mod+Shift+K".action = expel-window-from-column;
     "Mod+C".action = center-window;
     "Mod+Tab".action = switch-focus-between-floating-and-tiling;
 
@@ -64,8 +84,12 @@
     "Mod+I".action = focus-column-or-monitor-right;
     "Mod+N".action = focus-window-or-workspace-down;
     "Mod+E".action = focus-window-or-workspace-up;
+    "Mod+Comma".action = focus-column-left-or-last;
+    "Mod+Period".action = focus-column-right-or-first;
     "Mod+Ctrl+M".action = focus-monitor-left;
     "Mod+Ctrl+I".action = focus-monitor-right;
+    "Mod+Ctrl+E".action = focus-workspace-up;
+    "Mod+Ctrl+N".action = focus-workspace-down;
     "Mod+Ctrl+1".action = focus-monitor "DP-1";
     "Mod+Ctrl+2".action = focus-monitor "DP-2";
     "Mod+Ctrl+3".action = focus-monitor "HDMI-A-1";
@@ -78,6 +102,13 @@
     "Mod+Shift+I".action = move-column-right-or-to-monitor-right;
     "Mod+Shift+E".action = move-window-up-or-to-workspace-up;
     "Mod+Shift+N".action = move-window-down-or-to-workspace-down;
+    "Mod+Shift+Ctrl+M".action = move-window-to-monitor-left;
+    "Mod+Shift+Ctrl+I".action = move-window-to-monitor-right;
+    "Mod+Shift+Ctrl+N".action = move-window-to-workspace-down;
+    "Mod+Shift+Ctrl+E".action = move-window-to-workspace-up;
+    "Mod+Shift+Ctrl+1".action.move-window-to-monitor = "DP-1";
+    "Mod+Shift+Ctrl+2".action.move-window-to-monitor = "DP-2";
+    "Mod+Shift+Ctrl+3".action.move-window-to-monitor = "HDMI-A-1";
 
     "Mod+1".action.focus-workspace = 1;
     "Mod+2".action.focus-workspace = 2;

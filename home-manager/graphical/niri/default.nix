@@ -4,7 +4,7 @@
 }:
 {
   imports = [
-    inputs.niri.homeModules.config
+    # inputs.niri.homeModules.config
     ./settings.nix
   ];
 }

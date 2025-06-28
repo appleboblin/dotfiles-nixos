@@ -1,5 +1,6 @@
 {
   programs.waybar = {
+    systemd.enable = true;
     # settings = {
     # };
 

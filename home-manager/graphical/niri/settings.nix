@@ -42,6 +42,7 @@
         command = cmd: { command = lib.lists.flatten [ cmd ]; };
       in
       [
+        # Each command is a list of strings, which will be joined with spaces
         (command (lib.getExe pkgs.xwayland-satellite))
         (command [
           "fcitx5"
@@ -52,7 +53,10 @@
           "--server"
         ])
         (command "hyprpaper")
-        (command "waybar")
+        (command "vesktop")
+        (command "thunderbird")
+        (command "spotify")
+        # (command "waybar")
         (command "swaync")
         (command [
           "wl-paste"
@@ -76,6 +80,17 @@
         ])
       ];
 
+    workspaces = {
+      "comm" = {
+        open-on-output = "HDMI-A-1";
+      };
+      "games" = {
+        open-on-output = "DP-2";
+      };
+      "media" = {
+        open-on-output = "DP-1";
+      };
+    };
     outputs = {
       "DP-1" = {
         scale = 1.0;
@@ -131,10 +146,25 @@
       border = {
         enable = true;
         width = 1;
-        active.color = "#f5c2e7";
-        inactive.color = "#313244";
+        active.color = "#f5bde6";
+        inactive.color = "#181926";
+        urgent.color = "#ed8796";
       };
-
+      background-color = "24273a";
+      default-column-display = "tabbed";
+      tab-indicator = {
+        hide-when-single-tab = true;
+        place-within-column = true;
+        width = 5;
+        gap = 0;
+        position = "left";
+        length.total-proportion = 1.0;
+        active.color = "#8aadf4";
+        urgent.color = "#ed8796";
+      };
+      # insert-hint = {
+      #   color = "#7dc4e4";
+      # };
       preset-column-widths = [
         { proportion = 1.0; }
         { proportion = 1.0 / 2.0; }
@@ -170,6 +200,6 @@
 
   xdg.portal = {
     xdgOpenUsePortal = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
   };
 }

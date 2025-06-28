@@ -18,8 +18,7 @@
     ./localsend.nix
     # ./wireshark.nix
     ./boot.nix
-    ./radicale.nix
-    ./niri
+    ./niri.nix
   ];
 
   # Nix Package Manager
@@ -293,7 +292,7 @@
       BROWSER = "vivaldi";
       TERMINAL = "xterm-256color";
       DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
-      ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+      ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
 
     systemPackages = with pkgs; [

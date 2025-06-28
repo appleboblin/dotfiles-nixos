@@ -7,9 +7,7 @@
 }:
 {
   imports = [
-    # inputs.niri.homeModules.niri
     inputs.niri.nixosModules.niri
-    # ./settings.nix
   ];
   programs.niri = {
     enable = true;

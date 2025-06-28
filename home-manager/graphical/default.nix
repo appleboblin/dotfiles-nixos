@@ -7,5 +7,6 @@
     ./hypridle.nix
     ./wlsunset.nix
     ./swaync.nix
+    ./swayosd.nix
   ];
 }

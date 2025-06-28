@@ -2,44 +2,45 @@
   programs.niri.settings.window-rules = [
     #prevent starting applications from grabbing focus
     {
-      matches = [ { app-id = ".*"; } ];
+      matches = [
+        # { app-id = ".*"; }
+        { at-startup = true; }
+      ];
       excludes = [
-        { app-id = "org.keepassxc.KeePassXC"; }
+        # { app-id = "Proton Pass"; }
       ];
       open-focused = false;
       open-floating = false;
     }
-    #disallow screencapture for keepass,etc.
     {
       matches = [
-        { app-id = "org.keepassxc.KeePassXC"; }
+        { app-id = "vesktop"; }
+        { app-id = "Element"; }
         { app-id = "thunderbird"; }
-        { app-id = "nheko"; }
+        { app-id = "obsidian"; }
+        { app-id = "spotify"; }
+      ];
+      # excludes = [
+      #     { app-id = "Proton Pass"; }
+      # ];
+      open-on-workspace = "daily";
+      open-on-output = "HDMI-A-1";
+      # default-column-width.proportion = 1.0;
+      open-maximized = true;
+      open-focused = false;
+      open-floating = false;
+      default-column-display = "tabbed";
+
+    }
+
+    {
+      matches = [
+        { app-id = "Proton Pass"; }
+        { app-id = "thunderbird"; }
+        { app-id = "vesktop"; }
+        { app-id = "Element"; }
       ];
       block-out-from = "screen-capture";
-    }
-    {
-      matches = [
-        { title = "^.+Zugriffsanfrage$"; }
-        { title = "^Datenbank+.*$"; }
-        { title = "^.+Error$"; }
-        { app-id = "thunderbird"; }
-        { app-id = "xdg-desktop-portal-gnome"; }
-      ];
-      excludes = [
-        { title = "^.*Mozilla Thunderbird$"; }
-      ];
-      open-focused = true;
-      open-floating = true;
-    }
-    {
-      matches = [
-        { app-id = "thunderbird"; }
-        { app-id = "nheko"; }
-      ];
-      open-on-workspace = "com";
-      open-on-output = "DP-3";
-      default-column-width.proportion = 1.0;
     }
     {
       matches = [
@@ -47,51 +48,23 @@
         { app-id = "org.prismlauncher.PrismLauncher"; }
       ];
       open-on-workspace = "games";
-      open-on-output = "DP-3";
       default-column-width.proportion = 1.0;
-    }
-    #mumble proportions
-    {
-      matches = [
-        { app-id = "info.mumble.Mumble"; }
-      ];
-      default-column-width.proportion = 0.18;
-      default-window-height.proportion = 0.5;
-      open-on-output = "DP-1";
-      open-on-workspace = "browser-r";
     }
     {
       matches = [
         { app-id = "FreeTube"; }
+        { title = ".*Grayjay.*"; }
+        { app-id = ".*Grayjay.*"; }
       ];
-      default-column-width.proportion = (1.0 - 0.18);
+      default-column-width.proportion = 1.0;
       default-window-height.proportion = 1.0;
       open-on-output = "DP-1";
-      open-on-workspace = "browser-r";
-    }
-    {
-      matches = [ { app-id = "librewolf"; } ];
-      open-maximized = true;
-      open-on-output = "DP-3";
-      open-on-workspace = "browser-l";
-    }
-    {
-      matches = [ { app-id = "librewolf"; } ];
-      excludes = [ { title = "^.*LibreWolf$"; } ];
-      open-floating = true;
-      open-focused = true;
-    }
-    {
-      matches = [
-        { app-id = "^MATLAB+.*$"; }
-        { app-id = "kicad"; }
-      ];
-      open-floating = true;
+      open-on-workspace = "media";
     }
   ];
   programs.niri.settings.layer-rules = [
     {
-      matches = [ { namespace = "^notifications$"; } ];
+      matches = [ { namespace = ".*syawnc.*"; } ];
       block-out-from = "screen-capture";
       opacity = 0.8;
     }
