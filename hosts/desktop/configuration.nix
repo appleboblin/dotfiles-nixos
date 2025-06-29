@@ -81,8 +81,11 @@ in
   xdg.portal = {
     wlr.enable = lib.mkForce false;
   };
+
+  # graphical.hyprland.enable = true;
+  graphical.niri.enable = true;
   programs.hyprland = lib.mkIf (host != "vm") {
-    enable = true;
+    # enable = true;
     withUWSM = true;
     # xwayland.enable = true;
     # portalPackage = pkgs.xdg-desktop-portal-hyprland;

@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  graphical,
   ...
 }:
 {
@@ -11,6 +12,9 @@
   ];
   # options.graphical.niri.enable = lib.mkEnableOption "Niri window manager";
   # programs.niri.enable = true;
+  home.packages = lib.mkIf graphical.niri.enable [
+    pkgs.xwayland-satellite
+  ];
   programs.niri.settings = {
     environment = {
       CLUTTER_BACKEND = "wayland";

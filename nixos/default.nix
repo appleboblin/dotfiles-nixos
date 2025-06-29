@@ -9,7 +9,7 @@
   imports = [
     ./fonts.nix
     ./transmission.nix
-    ./hyprland.nix
+    # ./hyprland.nix
     # ./docker.nix
     # ./mpd.nix
     # ./greetd.nix
@@ -18,7 +18,7 @@
     ./localsend.nix
     # ./wireshark.nix
     ./boot.nix
-    ./niri.nix
+    # ./niri.nix
   ];
 
   # Nix Package Manager
