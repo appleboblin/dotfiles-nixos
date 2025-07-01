@@ -35,7 +35,7 @@
       warp-mouse-to-focus.enable = true;
       workspace-auto-back-and-forth = true;
     };
-    screenshot-path = "~/Screenshots/Screenshot-from-%Y-%m-%d-%H-%M-%S.png";
+    screenshot-path = "~/Pictures/Screenshots/screenshot_%Y%m%d_%H%M%S.png";
 
     spawn-at-startup =
       let

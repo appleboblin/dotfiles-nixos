@@ -45,15 +45,20 @@
     ];
 
     # screenshot
-    # "Mod+Print".action = screenshot-window;
-    # "Mod+Shift+S".action = screenshot;
-    "Mod+Shift+S".action.spawn = [
-      "sh"
-      "-c"
-      "grimblast --notify copysave area ~/Screenshots/Screenshot-from-$(date +%Y-%m-%d-%H-%M-%S).png"
-    ];
+    "Mod+Print".action = screenshot-window;
+    "Mod+Shift+S".action = screenshot;
+    # "Mod+Shift+S".action.spawn = [
+    #   "sh"
+    #   "-c"
+    #   "grimblast --notify copysave area ~/Pictures/Screenshots/screenshot_%Y%m%d_%H%M%S).png"
+    # ];
 
     "Mod+Q".action.close-window = [ ];
+    "Shift+Ctrl+Delete".action.spawn = [
+      "sh"
+      "-c"
+      "rofi-power-menu -theme-str 'window {width: 400px;}'"
+    ];
 
     "Mod+G".action = switch-preset-column-width;
     "Mod+Shift+G".action = switch-preset-window-height;
