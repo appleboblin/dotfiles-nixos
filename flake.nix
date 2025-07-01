@@ -1,26 +1,30 @@
 {
-  description = "Nixos config flake";
+  description = "NixOS config flake";
 
   inputs = {
+    # Core
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixvim.url = "github:nix-community/nixvim";
-    catppuccin.url = "github:catppuccin/nix";
-    hyprpanel.url = "github:jas-singhfsu/hyprpanel";
 
+    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Extra modules
+    catppuccin.url = "github:catppuccin/nix";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixvim.url = "github:nix-community/nixvim";
+    # hyprpanel.url = "github:jas-singhfsu/hyprpanel";
+    niri.url = "github:sodiboo/niri-flake";
+
+    # Tools
     poetry2nix = {
       url = "github:nix-community/poetry2nix/2024.5.939250";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
   };
 
   outputs =
@@ -32,17 +36,26 @@
     }@inputs:
     let
       user = "appleboblin";
+
       mkHost =
         host:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+
           specialArgs = {
             inherit (nixpkgs) lib;
             inherit inputs host user;
           };
+
           modules = [
+            ./nixos
+            ./hosts/${host}/configuration.nix
+            ./hosts/${host}/hardware-configuration.nix
+
             catppuccin.nixosModules.catppuccin
             inputs.home-manager.nixosModules.home-manager
+            (nixpkgs.lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" user ])
+
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -57,29 +70,21 @@
 
                 users.${user} = {
                   imports = [
-                    # common home-manager configuration
                     ./home-manager
-                    # host specific home-manager configuration
                     ./hosts/${host}/home.nix
-                    # catppuccin
                     catppuccin.homeModules.catppuccin
                   ];
                 };
               };
             }
-            (nixpkgs.lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" "appleboblin" ])
-            ./nixos
-            ./hosts/${host}/configuration.nix
-            ./hosts/${host}/hardware-configuration.nix
-            # inputs.home-manager.nixosModules.main
           ];
         };
     in
     {
       nixosConfigurations = {
         framework = mkHost "framework";
-        vm = mkHost "vm";
         desktop = mkHost "desktop";
+        vm = mkHost "vm";
       };
     };
 }
