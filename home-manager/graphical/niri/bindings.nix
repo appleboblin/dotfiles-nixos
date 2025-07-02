@@ -54,10 +54,30 @@
     # ];
 
     "Mod+Q".action.close-window = [ ];
+
+    # toggle menu
     "Shift+Ctrl+Delete".action.spawn = [
       "sh"
       "-c"
       "rofi-power-menu -theme-str 'window {width: 400px;}'"
+    ];
+    # select from history
+    "Mod+v".action.spawn = [
+      "sh"
+      "-c"
+      "pkill rofi || cliphist list | rofi -dmenu -p 'Select to copy' | cliphist decode | wl-copy"
+    ];
+    # select history to delete
+    "Mod+Shift+v".action.spawn = [
+      "sh"
+      "-c"
+      "pkill rofi || cliphist list | rofi -dmenu -p 'Select to delete' | cliphist delete"
+    ];
+    # delete last entry from cliphist history
+    "Mod+Delete".action.spawn = [
+      "sh"
+      "-c"
+      "cliphist list | cliphist delete"
     ];
 
     "Mod+G".action = switch-preset-column-width;

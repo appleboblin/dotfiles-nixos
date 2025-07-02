@@ -9,7 +9,7 @@
   imports = [
     ./fonts.nix
     ./transmission.nix
-    ./hyprland.nix
+    # ./hyprland.nix
     # ./docker.nix
     # ./mpd.nix
     # ./greetd.nix

@@ -1,10 +1,7 @@
 {
-  inputs,
-  ...
-}:
-{
   imports = [
-    # inputs.niri.homeModules.config
     ./settings.nix
+    ./rules.nix
+    ./bindings.nix
   ];
 }

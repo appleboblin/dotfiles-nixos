@@ -1,12 +1,11 @@
 {
   imports = [
-    ./bar
     ./niri
-    ./hyprland
     ./hyprlock.nix
     ./hypridle.nix
     ./wlsunset.nix
     ./swaync.nix
-    ./swayosd.nix
+    ./waybar.nix
+    ./wm.nix
   ];
 }

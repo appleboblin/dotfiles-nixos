@@ -1,16 +1,9 @@
 {
-  config,
   pkgs,
   lib,
   ...
 }:
 {
-  imports = [
-    ./bindings.nix
-    ./rules.nix
-  ];
-  # options.graphical.niri.enable = lib.mkEnableOption "Niri window manager";
-  # programs.niri.enable = true;
   programs.niri.settings = {
     environment = {
       CLUTTER_BACKEND = "wayland";
@@ -91,56 +84,6 @@
         open-on-output = "DP-1";
       };
     };
-    outputs = {
-      "DP-1" = {
-        scale = 1.0;
-        mode = {
-          width = 2560;
-          height = 1440;
-          refresh = 164.998;
-        };
-        transform = {
-          rotation = 0;
-          flipped = false;
-        };
-        position = {
-          x = 0;
-          y = 0;
-        };
-      };
-      "DP-2" = {
-        scale = 1.0;
-        mode = {
-          width = 2560;
-          height = 1440;
-          refresh = 164.998;
-        };
-        transform = {
-          rotation = 0;
-          flipped = false;
-        };
-        position = {
-          x = 2560;
-          y = 0;
-        };
-      };
-      "HDMI-A-1" = {
-        scale = 1.0;
-        mode = {
-          width = 1920;
-          height = 1080;
-          refresh = 60.000;
-        };
-        transform = {
-          rotation = 270;
-          flipped = false;
-        };
-        position = {
-          x = 5120;
-          y = -133;
-        };
-      };
-    };
     layout = {
       focus-ring.enable = false;
       border = {
@@ -196,10 +139,10 @@
     hotkey-overlay.skip-at-startup = true;
   };
 
-  # niri-flake.cache.enable = false;
-
   xdg.portal = {
     xdgOpenUsePortal = true;
+    # https://github.com/YaLTeR/niri/wiki/Important-Software#portals
     extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
   };
+  services.gnome-keyring.enable = true;
 }

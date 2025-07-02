@@ -16,4 +16,8 @@
   environment.systemPackages = with pkgs; [
     xwayland-satellite
   ];
+
+  security.pam.services.hyprlock = {
+    text = "auth include login";
+  };
 }

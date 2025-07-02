@@ -8,28 +8,58 @@ let
   monitors = import ./monitors.nix;
 in
 {
-  # swaylock image
-  #programs.swaylock.settings = {
-  #    image = "${./framework_wallpaper.png}";
-  #};
-
-  # sawyidle time
-  # services.swayidle = {
-  #     timeouts = [
-  #         {
-  #             timeout = 600;
-  #             command = "${lib.getExe config.programs.swaylock.package} -f";
-  #         }
-  #         {
-  #             timeout = 1200;
-  #             command = "${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms off";
-  #         }
-  #         {
-  #             timeout = 1800;
-  #             command = "${pkgs.systemd}/bin/systemctl suspend";
-  #         }
-  #     ];
-  # };
+  programs.niri.settings = {
+    outputs = {
+      "DP-1" = {
+        scale = 1.0;
+        mode = {
+          width = 2560;
+          height = 1440;
+          refresh = 164.998;
+        };
+        transform = {
+          rotation = 0;
+          flipped = false;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
+      };
+      "DP-2" = {
+        scale = 1.0;
+        mode = {
+          width = 2560;
+          height = 1440;
+          refresh = 164.998;
+        };
+        transform = {
+          rotation = 0;
+          flipped = false;
+        };
+        position = {
+          x = 2560;
+          y = 0;
+        };
+      };
+      "HDMI-A-1" = {
+        scale = 1.0;
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 60.000;
+        };
+        transform = {
+          rotation = 270;
+          flipped = false;
+        };
+        position = {
+          x = 5120;
+          y = -133;
+        };
+      };
+    };
+  };
 
   services.hypridle.settings = {
     listener = lib.mkDefault [
@@ -115,6 +145,7 @@ in
           format-ethernet = "󰈀 {bandwidthTotalBits}";
           tooltip-format = "{ifname} via {gwaddr}/{cidr}";
           format-linked = "{ifname} (No IP)";
+          format-disconnected = "󰖪 Disconnected";
           interval = 5;
         };
         "custom/powermenu" = {

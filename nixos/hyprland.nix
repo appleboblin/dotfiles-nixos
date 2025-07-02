@@ -83,10 +83,6 @@
     '';
   };
 
-  security.pam.services.hyprlock = lib.mkIf config.programs.hyprland.enable {
-    text = "auth include login";
-  };
-
   # Wallpaper, brightness
   users.users.appleboblin = {
     packages =

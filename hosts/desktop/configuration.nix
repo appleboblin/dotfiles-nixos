@@ -10,6 +10,7 @@
 }:
 let
   monitors = import ./monitors.nix;
+  wpPath = ../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg;
 in
 {
   # boot = {
@@ -94,12 +95,14 @@ in
     # environment.systemPackages = with pkgs; [
     #   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # ];
-
-    xdg.configFile."hypr/hyprpaper.conf".text = lib.mkIf config.programs.hyprland.enable ''
-      		wallpaper = ${monitors.left},${../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg}
-          wallpaper = ${monitors.middle},${../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg}
-      		wallpaper = ${monitors.right},${../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg}
-      	'';
+    #
+    services.hyprpaper.settings = {
+      wallpaper = [
+        "${monitors.left},${wpPath}"
+        "${monitors.middle},${wpPath}"
+        "${monitors.right},${wpPath}"
+      ];
+    };
 
     # Hyprland settings
     wayland.windowManager.hyprland.settings = lib.mkIf config.programs.hyprland.enable {
