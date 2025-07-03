@@ -17,7 +17,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixvim.url = "github:nix-community/nixvim";
     # hyprpanel.url = "github:jas-singhfsu/hyprpanel";
-    niri.url = "github:sodiboo/niri-flake";
+    # niri.url = "github:sodiboo/niri-flake";
 
     # Tools
     poetry2nix = {

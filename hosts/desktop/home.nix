@@ -8,59 +8,6 @@ let
   monitors = import ./monitors.nix;
 in
 {
-  programs.niri.settings = {
-    outputs = {
-      "DP-1" = {
-        scale = 1.0;
-        mode = {
-          width = 2560;
-          height = 1440;
-          refresh = 164.998;
-        };
-        transform = {
-          rotation = 0;
-          flipped = false;
-        };
-        position = {
-          x = 0;
-          y = 0;
-        };
-      };
-      "DP-2" = {
-        scale = 1.0;
-        mode = {
-          width = 2560;
-          height = 1440;
-          refresh = 164.998;
-        };
-        transform = {
-          rotation = 0;
-          flipped = false;
-        };
-        position = {
-          x = 2560;
-          y = 0;
-        };
-      };
-      "HDMI-A-1" = {
-        scale = 1.0;
-        mode = {
-          width = 1920;
-          height = 1080;
-          refresh = 60.000;
-        };
-        transform = {
-          rotation = 270;
-          flipped = false;
-        };
-        position = {
-          x = 5120;
-          y = -133;
-        };
-      };
-    };
-  };
-
   services.hypridle.settings = {
     listener = lib.mkDefault [
       {
@@ -80,7 +27,7 @@ in
   };
 
   # Waybar settings
-  programs.waybar = lib.mkIf config.programs.waybar.enable {
+  programs.waybar = {
     settings = [
       {
         layer = "top";
@@ -93,8 +40,8 @@ in
         output = [
           "${monitors.left}"
         ];
-        modules-left = [ "niri/workspaces" ];
-        modules-center = [ "niri/window" ];
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "hyprland/window" ];
         modules-right = [
           "pulseaudio"
           "cpu"
@@ -103,13 +50,13 @@ in
           "clock"
           "custom/powermenu"
         ];
-        "niri/workspaces" = {
-          format = "{index}";
+        "hyprland/workspaces" = {
+          format = "{name}";
           disable-scroll-wraparound = true;
           on-click = "activate";
           sort-by-number = true;
         };
-        "niri/window" = {
+        "hyprland/window" = {
           max-length = 50;
           format = "{}";
           separate-outputs = true;
@@ -145,7 +92,6 @@ in
           format-ethernet = "󰈀 {bandwidthTotalBits}";
           tooltip-format = "{ifname} via {gwaddr}/{cidr}";
           format-linked = "{ifname} (No IP)";
-          format-disconnected = "󰖪 Disconnected";
           interval = 5;
         };
         "custom/powermenu" = {
@@ -166,21 +112,21 @@ in
         ];
         modules-left = [
           "custom/launcher"
-          "niri/workspaces"
+          "hyprland/workspaces"
         ];
-        modules-center = [ "niri/window" ];
+        modules-center = [ "hyprland/window" ];
         modules-right = [
           "tray"
           "clock"
           "custom/notification"
         ];
-        "niri/workspaces" = {
-          format = "{index}";
+        "hyprland/workspaces" = {
+          format = "{name}";
           disable-scroll-wraparound = true;
           on-click = "activate";
           sort-by-number = true;
         };
-        "niri/window" = {
+        "hyprland/window" = {
           max-length = 50;
           format = "{}";
           separate-outputs = true;
@@ -196,7 +142,7 @@ in
         };
         "custom/launcher" = {
           format = " ";
-          on-click = "pkill rofi || ${lib.getExe pkgs.rofi} -show drun -theme-str 'window {width: 400px;}'";
+          on-click = "pkill rofi || uwsm app -- ${lib.getExe pkgs.rofi} -show drun -theme-str 'window {width: 400px;}'";
         };
         "custom/notification" = {
           "tooltip" = false;
@@ -230,19 +176,19 @@ in
         output = [
           "${monitors.right}"
         ];
-        modules-left = [ "niri/workspaces" ];
-        modules-center = [ "niri/window" ];
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "hyprland/window" ];
         modules-right = [
           "bluetooth"
           "idle_inhibitor"
         ];
-        "niri/workspaces" = {
-          format = "{index}";
+        "hyprland/workspaces" = {
+          format = "{name}";
           disable-scroll-wraparound = true;
           on-click = "activate";
           sort-by-number = true;
         };
-        "niri/window" = {
+        "hyprland/window" = {
           max-length = 50;
           format = "{}";
           separate-outputs = true;

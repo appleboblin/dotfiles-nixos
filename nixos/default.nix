@@ -9,16 +9,9 @@
   imports = [
     ./fonts.nix
     ./transmission.nix
-    # ./hyprland.nix
-    # ./docker.nix
-    # ./mpd.nix
-    # ./greetd.nix
     ./syncthing.nix
     ./steam.nix
-    ./localsend.nix
-    # ./wireshark.nix
     ./boot.nix
-    ./niri.nix
   ];
 
   # Nix Package Manager
@@ -85,31 +78,21 @@
       enable = true;
       autorun = true;
 
-      # Enable the Desktop Environment.
-
       desktopManager.xfce.enable = true;
-      # services.xserver.desktopManager.plasma5.enable = true;
-      # services.xserver.desktopManager.gnome.enable = true;
-
-      # services.xserver.excludePackages = with pkgs; [ xterm ];
-
-      # Configure keymap in X11
 
       xkb = {
         layout = "us";
-        # variant = "colemak_dh_ortho";
       };
-
     };
 
     displayManager.gdm = {
       enable = true;
-      # wayland = true;
     };
 
     # Enable CUPS to print documents.
     printing.enable = true;
 
+    power-profiles-daemon.enable = lib.mkIf (host == "framework") true;
     # Proton mail and vpn fix
     # services.passSecretService.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -122,9 +105,6 @@
       jack.enable = true;
 
     };
-    # mpd stuff
-    pulseaudio.extraConfig = "load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1";
-
     # Flatpak
     flatpak.enable = true;
 
@@ -216,7 +196,12 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    pam.u2f.enable = true;
+    pam = {
+      u2f.enable = true;
+      services.hyprlock = {
+        text = "auth include login";
+      };
+    };
   };
 
   xdg.portal = {

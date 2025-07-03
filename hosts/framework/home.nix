@@ -32,18 +32,13 @@
       };
     };
 
-    # swaylock image
-    # programs.swaylock.settings = {
-    #     image = "${./framework_wallpaper.png}";
-    # };
-
     # hyprlock image
     hyprlock.settings.background = {
       path = "${./framework_wallpaper.png}";
     };
 
     # Waybar settings
-    waybar = lib.mkIf config.programs.waybar.enable {
+    waybar = {
       settings = [
         {
           layer = "top";

@@ -1,6 +1,6 @@
 {
   imports = [
-    ./niri
+    ./hyprland
     ./hyprlock.nix
     ./hypridle.nix
     ./wlsunset.nix

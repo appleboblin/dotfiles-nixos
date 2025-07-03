@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
   host,
@@ -13,13 +10,6 @@ let
   wpPath = ../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg;
 in
 {
-  # boot = {
-  #   # Bootloader.
-  #   loader.systemd-boot.enable = true;
-  #   loader.efi.canTouchEfiVariables = true;
-  #   kernelPackages = pkgs.linuxPackages_latest;
-  # };
-
   networking.hostName = host;
   hardware = {
     graphics = {
@@ -31,26 +21,12 @@ in
       # vulkan
       enable32Bit = true;
     };
-    # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-    # Set lightdm wallpaper
-    # services.xserver.displayManager.lightdm.greeters.gtk.extraConfig = ''
-    #   font-name = Inter 16
-    #   background=${./framework_wallpaper.png}
-    # '';
 
     # bluetooth
     bluetooth = {
       enable = true; # enables support for Bluetooth
       powerOnBoot = lib.mkForce true; # powers up the default Bluetooth controller on boot
     };
-
-    # Define a user account. Don't forget to set a password with ‘passwd’.
-    # users.users.appleboblin = {
-    #   packages = with pkgs; [
-    #   ];
-    # };
 
     # Xone kernel driver for xbox controller
     xone.enable = true;
@@ -78,24 +54,15 @@ in
   services.hardware.bolt.enable = true;
 
   # Desktop environment
-  # Override xdg.portal.wlr.enable, theres conflict
   xdg.portal = {
     wlr.enable = lib.mkForce false;
   };
-  programs.hyprland = lib.mkIf (host != "vm") {
+  programs.hyprland = {
     enable = true;
     withUWSM = true;
-    # xwayland.enable = true;
-    # portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
   hm = {
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    # environment.systemPackages = with pkgs; [
-    #   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    # ];
-    #
     services.hyprpaper.settings = {
       wallpaper = [
         "${monitors.left},${wpPath}"
@@ -105,7 +72,7 @@ in
     };
 
     # Hyprland settings
-    wayland.windowManager.hyprland.settings = lib.mkIf config.programs.hyprland.enable {
+    wayland.windowManager.hyprland.settings = {
       monitor = [
         "${monitors.left}, 2560x1440@165, 0x0, 1"
         "${monitors.middle}, 2560x1440@165, 2560x0, 1"

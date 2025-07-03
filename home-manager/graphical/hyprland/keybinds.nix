@@ -9,12 +9,12 @@
     # press and hold
     binde = [
       # Adjust volume
-      ", XF86AudioRaiseVolume, exec, ${lib.getExe pkgs.pamixer} -i 5"
-      ", XF86AudioLowerVolume, exec, ${lib.getExe pkgs.pamixer} -d 5"
+      ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume=raise"
+      ", XF86AudioLowerVolume, exec, swayosd-client --output-volume=lower"
 
       # Adjust screen brightness
-      ", XF86MonBrightnessUp, exec, ${lib.getExe pkgs.brightnessctl} set 5%+"
-      ", XF86MonBrightnessDown, exec, ${lib.getExe pkgs.brightnessctl} set 5%-"
+      ", XF86MonBrightnessUp, exec, swayosd-client --brightness=raise"
+      ", XF86MonBrightnessDown, exec, swayosd-client --brightness=lower"
 
       # Resize window
       "$mod SHIFT, right, resizeactive, 10 0"
@@ -28,17 +28,13 @@
       ",switch:Lid Switch, exec, ${pkgs.systemd}/bin/systemctl suspend"
     ];
 
-    # Activate when release
-    bindr = [
-
-    ];
     bind =
       let
         uexec = program: "exec, uwsm app -- ${program}";
       in
       [
         # Media keys
-        ", XF86AudioMute, exec, ${lib.getExe pkgs.pamixer} -t"
+        ", XF86AudioMute, exec, swayosd-client --output-volume=mute-toggle"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioNext, exec, playerctl next"
@@ -60,7 +56,7 @@
         "$mod SHIFT, T, exec, uwsm app -- pkill rofi || rofi-screenshot-menu"
 
         # toggle Menu
-        "CTRL SHIFT, Delete, exec, uwsm app -- pkill rofi || rofi-power-menu"
+        "CTRL SHIFT, Delete, uwsm app -- pkill rofi || rofi-power-menu"
         "$mod, V, exec, pkill rofi || cliphist list | uwsm app -- ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to copy' | cliphist decode | wl-copy" # Select from history
         "$mod SHIFT, V, exec, pkill rofi || cliphist list | uwsm app -- ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to delete' | cliphist delete" # Select history to delete
         "$mod, Space, exec, pkill rofi || uwsm app -- ${lib.getExe pkgs.rofi-wayland} -show drun -run-command 'uwsm app -- {cmd}' -theme-str 'window {width: 400px;}'"

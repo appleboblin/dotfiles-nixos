@@ -1,8 +1,6 @@
 {
   programs.waybar = {
     systemd.enable = true;
-    # settings = {
-    # };
 
     style = ''
       * {
@@ -129,7 +127,6 @@
         color: #8aadf4; /* blue */
         margin-right: 8px;
       }
-
       #custom-wireguard {
         margin-right: 5px;
       }

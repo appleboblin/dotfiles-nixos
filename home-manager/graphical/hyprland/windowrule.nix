@@ -12,19 +12,10 @@
       "workspace 10 silent, class:^(vesktop)$"
       "workspace 9 silent, class:^(obsidian)$"
       "idleinhibit fullscreen, title:(.*?)" # dont block if any app is on fullscreen
-      # "workspace special:ncspot silent, class:(kitty),title:(ncspot)"
       "opacity 0.8 0.8, class:(scratch)"
-      # "opacity 0.8 0.8, workspace:-98"
       "opacity 0.8 0.8, initialTitle:^(Spotify)(.*)$"
       "workspace special:music silent, title:^(Spotify)(.*)$"
-      # "workspace special:scratchpad silent, class:(scratchpad)"
       "workspace special:scratchpad silent, class:(scratch)"
-      # "workspace special:scratchpad silent, class:(com.term.scratch)"
-      # "workspace 1 silent, class(obsidian), title:(Obsidian)(.*)$"
-      # "workspace 10 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
     ];
-
-    # layerrule = [
-    # ];
   };
 }
