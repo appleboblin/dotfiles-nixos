@@ -27,7 +27,6 @@
       "log" # https://github.com/zed-extensions/log
       "catppuccin" # https://github.com/catppuccin/zed
       "catppuccin-icons" # https://github.com/catppuccin/zed-icons
-      "kdl" # https://github.com/elkowar/zed-kdl
     ];
 
     # extension and language dependencies
@@ -58,20 +57,6 @@
     ## everything inside of these brackets are Zed options.
     # https://zed.dev/docs/configuring-zed
     userSettings = {
-      # assistant = {
-      #   enabled = true;
-      #   version = "2";
-      #   default_open_ai_model = null;
-      #   ### PROVIDER OPTIONS
-      #   ### zed.dev models { claude-3-5-sonnet-latest } requires github connected
-      #   ### anthropic models { claude-3-5-sonnet-latest claude-3-haiku-latest claude-3-opus-latest  } requires API_KEY
-      #   ### copilot_chat models { gpt-4o gpt-4 gpt-3.5-turbo o1-preview } requires github connected
-      #   default_model = {
-      #     provider = "zed.dev";
-      #     model = "claude-3-5-sonnet-latest";
-      #   };
-      # };
-
       node = {
         path = lib.getExe pkgs.nodejs;
         npm_path = lib.getExe' pkgs.nodejs "npm";
@@ -80,7 +65,6 @@
       indent_guides = {
         enabled = true;
         coloring = "indent_aware";
-        # background_coloring = "indent_aware";
       };
 
       collaboration_panel = {
@@ -111,7 +95,6 @@
           TERM = "xterm-256color";
         };
         font_family = "MesloLGS Nerd Font Mono";
-        # font_features = null;
         font_size = lib.mkDefault 18;
         line_height = "comfortable";
         option_as_meta = false;
@@ -234,7 +217,7 @@
       remove_trailing_whitespace_on_save = true;
       ensure_final_newline_on_save = true;
       format_on_save = "on";
-      tab_size = 4;
+      tab_size = 2;
 
       # vim mode
       vim_mode = false;

@@ -39,9 +39,7 @@
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioNext, exec, playerctl next"
 
-        # "$mod, Return, exec, kitty"
         "$mod, Return, ${uexec "footclient"}"
-        # "$mod, Return, exec, ghostty"
         "$mod, Q, killactive"
         "$mod SHIFT, Return, togglespecialworkspace, scratchpad"
         "ALT, S, togglespecialworkspace, music"
@@ -52,21 +50,19 @@
 
         # Screenshot
         "$mod SHIFT, S, ${uexec "grimblast --notify copysave area ~/Pictures/Screenshots/screenshot_$(date '+%Y%m%d_%H%M%S').png"}"
-        ", Print, exec, uwsm app -- pkill rofi || rofi-screenshot-menu"
-        "$mod SHIFT, T, exec, uwsm app -- pkill rofi || rofi-screenshot-menu"
+        ", Print, exec, pkill rofi || uwsm app -- rofi-screenshot-menu"
+        "$mod SHIFT, T, exec, pkill rofi || uwsm app -- rofi-screenshot-menu"
 
         # toggle Menu
-        "CTRL SHIFT, Delete, uwsm app -- pkill rofi || rofi-power-menu"
+        "CTRL SHIFT, Delete, exec, pkill rofi || uwsm app -- rofi-power-menu"
         "$mod, V, exec, pkill rofi || cliphist list | uwsm app -- ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to copy' | cliphist decode | wl-copy" # Select from history
         "$mod SHIFT, V, exec, pkill rofi || cliphist list | uwsm app -- ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to delete' | cliphist delete" # Select history to delete
         "$mod, Space, exec, pkill rofi || uwsm app -- ${lib.getExe pkgs.rofi-wayland} -show drun -run-command 'uwsm app -- {cmd}' -theme-str 'window {width: 400px;}'"
-        # "$mod, C, exec, pkill rofi || ${lib.getExe pkgs.rofi-wayland} -show calc -modi calc -no-show-match -no-sort"
 
         # Delete last entry from cliphist history
         "$mod, Delete, exec, cliphist list | cliphist delete "
 
         # Open notification center
-        # "$mod, T, ${uexec "swaync-client -t"}"
         "$mod, T, exec, hyprpanel t notificationsmenu"
 
         # float and full

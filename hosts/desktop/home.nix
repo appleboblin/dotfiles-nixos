@@ -142,7 +142,7 @@ in
         };
         "custom/launcher" = {
           format = " ";
-          on-click = "pkill rofi || uwsm app -- ${lib.getExe pkgs.rofi} -show drun -theme-str 'window {width: 400px;}'";
+          on-click = "pkill rofi || ${lib.getExe pkgs.rofi} -show drun -theme-str 'window {width: 400px;}'";
         };
         "custom/notification" = {
           "tooltip" = false;
@@ -225,12 +225,7 @@ in
         scroll_factor = 0.5;
       };
 
-      exec-once = [
-
-      ];
-
       windowrule = [
-        # "workspace 9 silent, class(obsidian), title:(Obsidian)(.*)$" # stopped working for some reason so using windowrule
         "workspace 1 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
       ];
 
@@ -240,38 +235,24 @@ in
         "$mod, 2, focusmonitor, ${monitors.left}"
         "$mod, 3, focusmonitor, ${monitors.left}"
         "$mod, 4, focusmonitor, ${monitors.middle}"
-        # "$mod, 4, layoutmsg, orientationleft"
         "$mod, 5, focusmonitor, ${monitors.middle}"
-        # "$mod, 5, layoutmsg, orientationleft"
         "$mod, 6, focusmonitor, ${monitors.middle}"
-        # "$mod, 6, layoutmsg, orientationleft"
         "$mod, 7, focusmonitor, ${monitors.middle}"
-        # "$mod, 7, layoutmsg, orientationleft"
         "$mod, 8, focusmonitor, ${monitors.right}"
-        # "$mod, 8, layoutmsg, orientationtop"
         "$mod, 9, focusmonitor, ${monitors.right}"
-        # "$mod, 9, layoutmsg, orientationtop"
         "$mod, 0, focusmonitor, ${monitors.right}"
-        # "$mod, 0, layoutmsg, orientationtop"
 
         # Move window
         "$mod SHIFT, 1, movecurrentworkspacetomonitor, ${monitors.left}"
         "$mod SHIFT, 2, movecurrentworkspacetomonitor, ${monitors.left}"
         "$mod SHIFT, 3, movecurrentworkspacetomonitor, ${monitors.left}"
         "$mod SHIFT, 4, movecurrentworkspacetomonitor, ${monitors.middle}"
-        # "$mod SHIFT, 4, layoutmsg, orientationleft"
         "$mod SHIFT, 5, movecurrentworkspacetomonitor, ${monitors.middle}"
-        # "$mod SHIFT, 5, layoutmsg, orientationleft"
         "$mod SHIFT, 6, movecurrentworkspacetomonitor, ${monitors.middle}"
-        # "$mod SHIFT, 6, layoutmsg, orientationleft"
         "$mod SHIFT, 7, movecurrentworkspacetomonitor, ${monitors.middle}"
-        # "$mod SHIFT, 7, layoutmsg, orientationleft"
         "$mod SHIFT, 8, movecurrentworkspacetomonitor, ${monitors.right}"
-        # "$mod SHIFT, 8, layoutmsg, orientationtop"
         "$mod SHIFT, 9, movecurrentworkspacetomonitor, ${monitors.right}"
-        # "$mod SHIFT, 9, layoutmsg, orientationtop"
         "$mod SHIFT, 0, movecurrentworkspacetomonitor, ${monitors.right}"
-        # "$mod SHIFT, 0, layoutmsg, orientationtop"
       ];
     };
   };
