@@ -7,11 +7,8 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting ""
+      nix-your-shell fish | source
     '';
-    # shellAliases = {
-    #     ls = "eza -a --icons";
-    #     rebuild = "sudo nixos-rebuild switch --flake .#${host}";
-    # };
     functions = {
       gt = {
         body = ''
