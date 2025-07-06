@@ -13,7 +13,7 @@
   xdg = {
     # fix mimetype associations
     mimeApps.defaultApplications = {
-      "inode/directory" = "nemo.desktop";
+      "inode/directory" = "thunar.desktop";
       # wtf zathura / pqiv registers themselves to open archives
       "application/zip" = "org.gnome.FileRoller.desktop";
       "application/vnd.rar" = "org.gnome.FileRoller.desktop";
