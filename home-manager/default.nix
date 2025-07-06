@@ -82,6 +82,7 @@
         grayjay
         freetube
         nix-your-shell
+        cryptomator
       ];
 
     # home.directories = {
