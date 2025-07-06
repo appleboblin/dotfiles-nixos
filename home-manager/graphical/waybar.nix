@@ -118,6 +118,10 @@
         margin-right: 16px;
       }
 
+      #power-profiles-daemon {
+        color: #eed49f; /* yellow */
+      }
+
       #bluetooth.off {
         color: #ed8796; /* red */
         margin-right: 8px;

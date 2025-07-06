@@ -57,9 +57,10 @@
             "tray"
             "custom/wireguard"
             "idle_inhibitor"
-            "bluetooth"
+            # "bluetooth"
             "pulseaudio"
             "network"
+            "power-profiles-daemon"
             "battery"
             "clock"
             "custom/notification"
@@ -107,6 +108,17 @@
             spacing = 10;
             show-passive-items = false;
             reverse-direction = true;
+          };
+          "power-profiles-daemon" = {
+            format = "{icon}";
+            "tooltip-format" = "Power profile: {profile}\nDriver: {driver}";
+            "tooltip" = true;
+            "format-icons" = {
+              "default" = " ";
+              "performance" = " ";
+              "balanced" = " ";
+              "power-saver" = " ";
+            };
           };
           "battery" = {
             states = {

@@ -5,6 +5,9 @@
   pkgs,
   ...
 }:
+let
+  wpPath = ../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg;
+in
 {
   boot = {
     supportedFilesystems = [ "zfs" ];
@@ -182,10 +185,11 @@
     # enable battery for waybar
     # config.appleboblin.battery.enable = true;
 
-    # wallpaper = eDP-1,${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
-    xdg.configFile."hypr/hyprpaper.conf".text = lib.mkIf config.programs.hyprland.enable ''
-      		wallpaper = eDP-1,${../../home-manager/hyprland/WP_Laser_Up-2560x1440_00229.jpg}
-      	'';
+    services.hyprpaper.settings = {
+      wallpaper = [
+        "eDP-1,${wpPath}"
+      ];
+    };
 
     # Hyprland settings
     wayland.windowManager.hyprland.settings = lib.mkIf config.programs.hyprland.enable {
