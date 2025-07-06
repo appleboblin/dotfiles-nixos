@@ -1,10 +1,11 @@
 {
   pkgs,
+  lib,
   ...
 }:
 {
   programs.steam = {
-    enable = true;
+    enable = lib.mkDefault true;
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];
