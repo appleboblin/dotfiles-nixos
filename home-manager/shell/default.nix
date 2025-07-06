@@ -1,9 +1,9 @@
 {
   imports = [
-    ./starship.nix
+    ./bash.nix
     ./fish.nix
     ./shell.nix
-    ./bash.nix
+    ./starship.nix
     ./zoxide.nix
   ];
 }

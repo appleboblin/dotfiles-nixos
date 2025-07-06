@@ -8,9 +8,9 @@
 }:
 {
   imports = [
+    ./graphical
     ./programs
     ./shell
-    ./graphical
     ./themes
   ];
 

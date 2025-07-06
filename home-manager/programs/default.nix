@@ -1,22 +1,18 @@
 {
   imports = [
-    ./firefox.nix
-    ./vscodium.nix
-    ./kitty.nix
-    ./dunst.nix
-    ./nixvim/default.nix
-    ./rofi.nix
-    # ./pcloud.nix
-    ./spicetify.nix
-    ./obs-studio.nix
-    ./mpv.nix
-    ./btop.nix
-    # ./ncmpcpp.nix
-    ./foot.nix
     ./beets.nix
-    ./nemo.nix
-    ./zed-editor.nix
-    ./kdeconnect.nix
+    ./btop.nix
+    ./firefox.nix
+    ./foot.nix
     ./ghostty.nix
+    ./kdeconnect.nix
+    ./kitty.nix
+    ./nemo.nix
+    ./nixvim/default.nix
+    ./obs-studio.nix
+    ./rofi.nix
+    ./spicetify.nix
+    ./vscodium.nix
+    ./zed-editor.nix
   ];
 }

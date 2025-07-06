@@ -7,11 +7,12 @@
 }:
 {
   imports = [
-    ./fonts.nix
-    ./transmission.nix
-    ./syncthing.nix
-    ./steam.nix
     ./boot.nix
+    ./fonts.nix
+    ./localsend.nix
+    ./steam.nix
+    ./syncthing.nix
+    ./transmission.nix
   ];
 
   # Nix Package Manager
