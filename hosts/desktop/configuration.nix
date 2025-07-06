@@ -3,6 +3,7 @@
   host,
   lib,
   pkgs,
+  nix-your-shell,
   ...
 }:
 let
@@ -10,6 +11,10 @@ let
   wpPath = ../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg;
 in
 {
+  nixpkgs.overlays = [
+    nix-your-shell.overlays.default
+  ];
+
   networking.hostName = host;
   hardware = {
     graphics = {

@@ -81,7 +81,7 @@
         proton-pass
         grayjay
         freetube
-        nix-your-shell
+        # nix-your-shell
         cryptomator
       ];
 
