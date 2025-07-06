@@ -4,6 +4,7 @@
   lib,
   pkgs,
   nix-your-shell,
+  inputs,
   ...
 }:
 let
@@ -12,7 +13,7 @@ let
 in
 {
   nixpkgs.overlays = [
-    nix-your-shell.overlays.default
+    inputs.nix-your-shell.overlays.default
   ];
 
   networking.hostName = host;
@@ -43,6 +44,8 @@ in
   environment.systemPackages = with pkgs; [
     lact
     amdgpu_top
+    nix-your-shell
+
   ];
 
   systemd.services.lact = {
