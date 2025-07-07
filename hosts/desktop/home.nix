@@ -225,6 +225,10 @@ in
         scroll_factor = 0.5;
       };
 
+      exec-once = [
+        "uwsm app -- spotify"
+      ];
+
       windowrule = [
         "workspace 1 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
       ];
