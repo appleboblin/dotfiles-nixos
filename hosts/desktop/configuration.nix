@@ -3,7 +3,6 @@
   host,
   lib,
   pkgs,
-  nix-your-shell,
   inputs,
   ...
 }:
