@@ -144,7 +144,7 @@
           # Desktop dependency
           "uwsm app -- foot --server & sleep 5 && uwsm app -- footclient -a scratch"
           "uwsm app -- fcitx5 -d & uwsm app -- swaync & uwsm app -- cryptomator"
-          "uwsm app -- vesktop & uwsm app -- spotify & uwsm app -- obsidian & uwsm app -- pcloud & sleep 5 && uwsm app -- thunderbird"
+          "uwsm app -- vesktop & uwsm app -- pcloud & sleep 10 && uwsm app -- thunderbird  & uwsm app -- obsidian"
           # Default browser fix
           "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
         ];
