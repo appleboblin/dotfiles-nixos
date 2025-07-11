@@ -12,6 +12,7 @@
     ./localsend.nix
     ./steam.nix
     ./syncthing.nix
+    ./tailscale.nix
     ./transmission.nix
   ];
 
