@@ -6,7 +6,6 @@
     openFirewall = true;
     extraUpFlags = [
       "--accept-routes"
-      "--exit-node-allow-lan-access"
     ];
   };
   # Auto Login with Auth Key, chmod authkey file to 600

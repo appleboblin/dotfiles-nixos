@@ -142,14 +142,15 @@
           "network" = {
             #  "interface": "wlp2*", // (Optional) To force the use of this interface
             format = "󰖩 Wifi";
-            format-wifi = "󰖩 {essid}";
+            # format-wifi = "󰖩 {essid}";
+            format-wifi = "󰖩 {bandwidthTotalBits}";
             format-ethernet = "󰈀 {bandwidthTotalBits}";
-            tooltip-format = "{ifname} via {gwaddr}/{cidr}";
+            tooltip-format = "{ifname} via {gwaddr}/{cidr}; {ipaddr}/{cidr}";
             format-linked = "{ifname} (No IP)";
             format-disconnected = "󰖪 Disconnected";
-            # format-alt = "{ifname}: {ipaddr}/{cidr}";
+            format-alt = "󰛳 {essid}";
             interval = 5;
-            on-click = "pkill rofi || rofi-wifi-menu";
+            # on-click = "pkill rofi || rofi-wifi-menu";
             on-click-right = "${lib.getExe pkgs.kitty} nmtui";
           };
           "idle_inhibitor" = {
