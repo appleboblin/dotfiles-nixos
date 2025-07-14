@@ -50,9 +50,16 @@ in
     enable = true;
   };
 
-  services.blueman.enable = true;
-  services.hardware.bolt.enable = true;
-
+  services = {
+    blueman.enable = true;
+    hardware.bolt.enable = true;
+    # Scrub btrfs
+    btrfs.autoScrub = {
+      enable = true;
+      interval = "weekly";
+      fileSystems = [ "/" ];
+    };
+  };
   # Desktop environment
   xdg.portal = {
     wlr.enable = lib.mkForce false;

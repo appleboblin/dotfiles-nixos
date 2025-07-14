@@ -88,10 +88,12 @@ in
         };
         "network" = {
           format = "󰖩 Wifi";
-          format-wifi = "󰖩 {essid}";
+          format-wifi = "󰖩 {bandwidthTotalBits}";
           format-ethernet = "󰈀 {bandwidthTotalBits}";
-          tooltip-format = "{ifname} via {gwaddr}/{cidr}";
+          tooltip-format = "{ifname} via {gwaddr}/{cidr}; {ipaddr}/{cidr}";
           format-linked = "{ifname} (No IP)";
+          format-disconnected = "󰖪 Disconnected";
+          format-alt = "󰛳 {essid}";
           interval = 5;
         };
         "custom/powermenu" = {
@@ -227,6 +229,7 @@ in
 
       exec-once = [
         "uwsm app -- spotify"
+        "uwsm app -- vesktop & sleep 10 && uwsm app -- thunderbird"
       ];
 
       windowrule = [

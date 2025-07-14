@@ -45,7 +45,6 @@
         thunderbird
         libreoffice
         vlc
-        protonmail-bridge
 
         # Other
         discord

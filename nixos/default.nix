@@ -187,13 +187,11 @@
       interval = "weekly";
     };
   };
-  systemd.user.services.protonmail-bridge = {
-    description = "Protonmail Bridge";
+  services.protonmail-bridge = lib.mkIf (host == "desktop") {
     enable = true;
-    script = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive --log-level info";
+    package = pkgs.protonmail-bridge;
+    logLevel = "info";
     path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
   };
   security = {
     rtkit.enable = true;
