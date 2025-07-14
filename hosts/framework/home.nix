@@ -1,12 +1,21 @@
 {
   config,
-  pkgs,
+  host,
   lib,
+  pkgs,
   ...
 }:
+let
+  wpPath = ../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg;
+in
 {
+  imports = [
+    ./waybar.nix
+  ];
+
   # font size
   gtk.font.size = 21;
+
   programs = {
     zed-editor = {
       userSettings = {
@@ -37,181 +46,12 @@
       path = "${./framework_wallpaper.png}";
     };
 
-    # Waybar settings
-    waybar = {
-      settings = [
-        {
-          layer = "top";
-          position = "top";
-          height = 20;
-          margin-top = 0;
-          margin-left = 0;
-          margin-right = 0;
-          spacing = 10;
-          output = [
-            "eDP-1"
-          ];
-          modules-left = [ "hyprland/workspaces" ];
-          modules-center = [ "hyprland/window" ];
-          modules-right = [
-            "tray"
-            "custom/wireguard"
-            "idle_inhibitor"
-            # "bluetooth"
-            "pulseaudio"
-            "network"
-            "power-profiles-daemon"
-            "battery"
-            "clock"
-            "custom/notification"
-          ];
-
-          "hyprland/workspaces" = {
-            format = "{name}";
-            disable-scroll-wraparound = true;
-            on-click = "activate";
-            sort-by-number = true;
-          };
-          "hyprland/window" = {
-            max-length = 50;
-            format = "{}";
-            separate-outputs = true;
-          };
-          "clock" = {
-            format = "{:%H:%M}";
-            locale = "en_US.UTF-8";
-            # format-alt = "{:%a %d %b %H:%M}";
-            tooltip-format = "<big>{:%A %D}</big>\n<tt><small>{calendar}</small></tt>";
-            interval = 60;
-          };
-          "pulseaudio" = {
-            # format = "{icon} {volume}% {format_source}";
-            format = "󰕾 {volume}%";
-            # format-bluetooth = "{icon} {volume}% {format_source}";
-            # format-bluetooth-muted = "󰝟 {icon} {format_source}";
-            format-muted = "󰝟 ";
-            format-source = " {volume}%";
-            format-source-muted = "󰝟 ";
-            # format-icons = {
-            #     headphone = "";
-            #     hands-free = "󱠡";
-            #     headset = "󰋎";
-            #     phone = "";
-            #     portable = "";
-            #     car = "";
-            #     default = ["" "" ""];
-            # };
-            on-click = "${lib.getExe pkgs.pamixer} -t";
-            on-click-right = "pavucontrol";
-          };
-          "tray" = {
-            spacing = 10;
-            show-passive-items = false;
-            reverse-direction = true;
-          };
-          "power-profiles-daemon" = {
-            format = "{icon}";
-            "tooltip-format" = "Power profile: {profile}\nDriver: {driver}";
-            "tooltip" = true;
-            "format-icons" = {
-              "default" = " ";
-              "performance" = " ";
-              "balanced" = " ";
-              "power-saver" = " ";
-            };
-          };
-          "battery" = {
-            states = {
-              good = 95;
-              warning = 30;
-              critical = 15;
-            };
-            interval = 5;
-            format = "{capacity}% {icon}";
-            format-charging = "{capacity}% 󰂄";
-            format-plugged = "{capacity}%  ";
-            format-alt = "{time} {icon}";
-            format-icons = [
-              "󰁺"
-              "󰁼"
-              "󰁿"
-              "󰂁"
-              "󰁹"
-            ];
-          };
-          "network" = {
-            #  "interface": "wlp2*", // (Optional) To force the use of this interface
-            format = "󰖩 Wifi";
-            # format-wifi = "󰖩 {essid}";
-            format-wifi = "󰖩 {bandwidthTotalBits}";
-            format-ethernet = "󰈀 {bandwidthTotalBits}";
-            tooltip-format = "{ifname} via {gwaddr}/{cidr}; {ipaddr}/{cidr}";
-            format-linked = "{ifname} (No IP)";
-            format-disconnected = "󰖪 Disconnected";
-            format-alt = "󰛳 {essid}";
-            interval = 5;
-            # on-click = "pkill rofi || rofi-wifi-menu";
-            on-click-right = "${lib.getExe pkgs.kitty} nmtui";
-          };
-          "idle_inhibitor" = {
-            format = "{icon}";
-            format-icons = {
-              activated = "󰅶 ";
-              deactivated = "󰾪 ";
-            };
-          };
-          "bluetooth" = {
-            # // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
-            format-on = "󰂯";
-            format-off = "󰂲";
-            format-disabled = ""; # an empty format will hide the module
-            format-connected = "󰂯 {num_connections}";
-            tooltip-format = "{controller_alias}\t{controller_address}";
-            tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
-            tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-            on-click = "bluetoothctl power on";
-            on-click-right = "bluetoothctl power off";
-          };
-          "custom/wireguard" = {
-            # nm-connection-editor to open up gui editor
-            format = "{}";
-            format-disconnected = "󰖪 Disconnected";
-            exec = "/home/appleboblin/dotfiles-nixos/home-manager/programs/vpn-wg.sh";
-            on-click = "rofi -modi 'WireGuard:/home/appleboblin/dotfiles-nixos/home-manager/programs/rofi-wireguard-menu.sh' -show WireGuard";
-            interval = 1;
-            return-type = "json";
-          };
-          "custom/notification" = {
-            "tooltip" = false;
-            "format" = "{icon} ";
-            "format-icons" = {
-              "notification" = "<span foreground='red'><sup></sup></span>";
-              "none" = "";
-              "dnd-notification" = "<span foreground='red'><sup></sup></span>";
-              "dnd-none" = "";
-              "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
-              "inhibited-none" = "";
-              "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
-              "dnd-inhibited-none" = "";
-            };
-            "return-type" = "json";
-            "exec-if" = "which swaync-client";
-            "exec" = "swaync-client -swb";
-            "on-click" = "swaync-client -t -sw";
-            "on-click-right" = "swaync-client -d -sw";
-            "escape" = true;
-          };
-        }
-      ];
-    };
-
     vscode = {
       profiles.default.userSettings = {
         "editor.fontSize" = 15;
         "window.zoomLevel" = 2;
         "terminal.integrated.fontSize" = 14;
         "markdown.preview.fontSize" = 15;
-        #"workbench.colorTheme" = "Nord";
         "workbench.productIconTheme" = "material-product-icons";
         "editor.fontFamily" = "'MesloLGS Nerd Font Mono', 'monospace', monospace";
         "terminal.integrated.defaultProfile.linux" = "fish";
@@ -219,8 +59,31 @@
     };
   };
 
+  services.hyprpaper.settings = {
+    wallpaper = [
+      "eDP-1,${wpPath}"
+    ];
+  };
+
   # hyprland config
   wayland.windowManager.hyprland = {
+    monitor = [
+      "eDP-1, 2256x1504, 0x0, 1"
+    ];
+
+    workspace = [
+      "1, monitor:eDP-1, default:true"
+      "2, monitor:eDP-1"
+      "3, monitor:eDP-1"
+      "4, monitor:eDP-1"
+      "5, monitor:eDP-1"
+      "6, monitor:eDP-1"
+      "7, monitor:eDP-1"
+      "8, monitor:eDP-1"
+      "9, monitor:eDP-1"
+      "10, monitor:eDP-1"
+    ];
+
     settings = {
       input = {
         natural_scroll = true;
@@ -228,10 +91,12 @@
       };
 
       exec-once = [
+        # brightness on startup
+        "${lib.getExe pkgs.brightnessctl} s 40%"
+        "sleep 3;hyprctl dispatch workspace 8;hyprctl dispatch workspace 9;hyprctl dispatch workspace 10;hyprctl dispatch workspace 1"
       ];
 
       windowrule = [
-        # "workspace 9 silent, class(obsidian), title:(Obsidian)(.*)$" # stopped working for some reason so using windowrule
         "workspace 8 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
       ];
     };

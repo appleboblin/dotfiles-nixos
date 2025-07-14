@@ -1,6 +1,10 @@
 {
+  lib,
+  ...
+}:
+{
   programs.localsend = {
-    enable = true;
+    enable = lib.mkDefault true;
     openFirewall = true;
   };
 }

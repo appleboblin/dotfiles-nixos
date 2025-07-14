@@ -5,7 +5,7 @@
 }:
 {
   programs.steam = {
-    enable = lib.mkDefault true;
+    enable = lib.mkDefault false;
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];

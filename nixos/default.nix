@@ -36,6 +36,7 @@
       options = "--delete-older-than 7d";
     };
   };
+
   i18n = {
     # Select internationalisation properties.
     defaultLocale = "en_US.UTF-8";
@@ -95,9 +96,15 @@
     printing.enable = true;
 
     power-profiles-daemon.enable = lib.mkIf (host == "framework") true;
-    # Proton mail and vpn fix
-    # services.passSecretService.enable = true;
+
     gnome.gnome-keyring.enable = true;
+    protonmail-bridge = lib.mkIf (host == "desktop") {
+      enable = true;
+      package = pkgs.protonmail-bridge;
+      logLevel = "info";
+      path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176
+    };
+
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -130,7 +137,6 @@
     envfs.enable = true;
     udev = {
       # Udev rules
-      # services.udev.extraRules = ''
       extraRules = ''
         		SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
         		# pixel 8
@@ -139,7 +145,7 @@
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4eec", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee0", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
         		'';
-      # '';
+
       packages = [
         pkgs.yubikey-personalization
         (pkgs.writeTextFile {
@@ -172,13 +178,14 @@
     };
 
     # Enable the OpenSSH daemon.
-    openssh.enable = true;
-
-    # Scrub btrfs
-    btrfs.autoScrub = {
+    openssh = {
       enable = true;
-      interval = "weekly";
-      fileSystems = [ "/" ];
+      openFirewall = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "prohibit-password";
+      };
     };
 
     # fstrim
@@ -187,12 +194,7 @@
       interval = "weekly";
     };
   };
-  services.protonmail-bridge = lib.mkIf (host == "desktop") {
-    enable = true;
-    package = pkgs.protonmail-bridge;
-    logLevel = "info";
-    path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176
-  };
+
   security = {
     rtkit.enable = true;
     polkit.enable = true;
@@ -213,20 +215,11 @@
     ];
     config.common.default = "gtk";
   };
-  boot = {
-    # Obs virtual camera
-    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
-    kernelModules = [
-      "v4l2loopback"
-    ];
-    extraModprobeConfig = ''
-      		options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-      	'';
-  };
 
   # OpenGL
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
   };
 
   # gtk themes on qt
@@ -245,16 +238,12 @@
       "networkmanager"
       "wheel"
       "libvirtd"
-      # "wireshark"
     ];
-    # shell = pkgs.zsh;
-    packages =
-      with pkgs;
-      lib.mkIf (host != "vm") [
-        # mpd
-        mpc_cli
-      ];
+    openssh.authorizedKeys.keyFiles = [
+      ./id_ed25519.pub
+    ];
   };
+
   nixpkgs = {
     config = {
       # https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
@@ -266,12 +255,6 @@
   };
 
   environment = {
-    # etc = {
-    #   # get gparted to use system theme
-    #   "xdg/gtk-3.0/settings.ini".text = config.hm.xdg.configFile."gtk-3.0/settings.ini".text;
-    #   "xdg/gtk-4.0/settings.ini".text = config.hm.xdg.configFile."gtk-4.0/settings.ini".text;
-    # };
-
     variables = {
       EDITOR = "zeditor -w";
       BROWSER = "vivaldi";
@@ -319,20 +302,18 @@
       p7zip
       rsync
       ntfs3g
-      # bluez
-      # bluez-tools
       yubioath-flutter
       solo2-cli
       mlocate
       tree
     ];
   };
+
   programs = {
     dconf.enable = true;
     yubikey-touch-detector.enable = true;
 
     # Thunar
-    # programs.thunar.enable = true;
     xfconf.enable = true;
     file-roller.enable = true;
     thunar.plugins = with pkgs.xfce; [
@@ -354,6 +335,7 @@
       qemu.ovmf.enable = host != "vm";
     };
   };
+
   networking = {
     # Enable networking
     networkmanager.enable = true;
@@ -396,11 +378,6 @@
     wireguard.enable = true;
   };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  # Don't Delete
+  system.stateVersion = "23.11";
 }

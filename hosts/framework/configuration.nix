@@ -1,13 +1,9 @@
 {
-  config,
   host,
   lib,
   pkgs,
   ...
 }:
-let
-  wpPath = ../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg;
-in
 {
   boot = {
     supportedFilesystems = [ "zfs" ];
@@ -134,12 +130,6 @@ in
         };
       };
     };
-
-    transmission.enable = false;
-  };
-
-  programs = {
-    steam.enable = false;
   };
 
   # bluetooth
@@ -164,39 +154,5 @@ in
   programs.hyprland = lib.mkIf (host != "vm") {
     enable = true;
     withUWSM = true;
-  };
-
-  hm = {
-    services.hyprpaper.settings = {
-      wallpaper = [
-        "eDP-1,${wpPath}"
-      ];
-    };
-
-    # Hyprland settings
-    wayland.windowManager.hyprland.settings = lib.mkIf config.programs.hyprland.enable {
-      monitor = [
-        "eDP-1, 2256x1504, 0x0, 1"
-      ];
-
-      workspace = [
-        "1, monitor:eDP-1, default:true"
-        "2, monitor:eDP-1"
-        "3, monitor:eDP-1"
-        "4, monitor:eDP-1"
-        "5, monitor:eDP-1"
-        "6, monitor:eDP-1"
-        "7, monitor:eDP-1"
-        "8, monitor:eDP-1"
-        "9, monitor:eDP-1"
-        "10, monitor:eDP-1"
-      ];
-
-      exec-once = [
-        # brightness on startup
-        "${lib.getExe pkgs.brightnessctl} s 40%"
-        "sleep 3;hyprctl dispatch workspace 8;hyprctl dispatch workspace 9;hyprctl dispatch workspace 10;hyprctl dispatch workspace 1"
-      ];
-    };
   };
 }

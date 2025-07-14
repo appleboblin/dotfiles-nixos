@@ -1,10 +1,11 @@
 {
+  lib,
   user,
   ...
 }:
 {
   services.syncthing = {
-    enable = false;
+    enable = lib.mkDefault false;
     user = "${user}";
     openDefaultPorts = true;
     dataDir = "/home/${user}";
