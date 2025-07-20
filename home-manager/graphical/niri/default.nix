@@ -51,7 +51,7 @@
         max-scroll-amount = "95%";
       };
 
-      warp-mouse-to-focus.enable = true;
+      warp-mouse-to-focus.enable = false;
       workspace-auto-back-and-forth = true;
       power-key-handling.enable = false;
     };
