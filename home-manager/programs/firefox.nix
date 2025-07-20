@@ -1,10 +1,11 @@
 {
   config = {
     programs.firefox = {
-      enable = true;
+      enable = false;
       # home.file.".mozilla/firefox/appleboblin/search.json.mozlz4".force = lib.mkForce true;
       # package = pkgs.librewolf;
       profiles."appleboblin" = {
+        id = 1;
         isDefault = true;
         search = {
           default = "ddg";

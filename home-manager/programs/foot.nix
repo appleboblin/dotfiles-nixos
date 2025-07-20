@@ -14,11 +14,11 @@
       };
       cursor = {
         style = "block";
-        color = "181926 f4dbd6";
         blink = "yes";
       };
 
       colors = {
+        cursor = "181926 f4dbd6";
         # Catppuccin Macchiato
         alpha = "0.95";
         foreground = "cad3f5";
