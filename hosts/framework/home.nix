@@ -64,12 +64,6 @@ in
       path = "${./framework_wallpaper.png}";
     };
 
-    services.hyprpaper.settings = {
-      wallpaper = [
-        "eDP-1,${wpPath}"
-      ];
-    };
-
     vscode = {
       profiles.default.userSettings = {
         "editor.fontSize" = 15;
@@ -81,51 +75,56 @@ in
         "terminal.integrated.defaultProfile.linux" = "fish";
       };
     };
-  };
 
-  # niri config
-  programs.niri.settings = {
-    workspaces = builtins.listToAttrs (map mkWorkspace workspaceNames);
-    outputs = {
-      "eDP-1" = {
-        scale = 1.0;
-        mode = {
-          width = 2256;
-          height = 1504;
-          refresh = 60.000;
-        };
-        transform = {
-          rotation = 0;
-          flipped = false;
-        };
-        position = {
-          x = 0;
-          y = 0;
+    # niri config
+    niri.settings = {
+      workspaces = builtins.listToAttrs (map mkWorkspace workspaceNames);
+      outputs = {
+        "eDP-1" = {
+          scale = 1.0;
+          mode = {
+            width = 2256;
+            height = 1504;
+            refresh = 60.000;
+          };
+          transform = {
+            rotation = 0;
+            flipped = false;
+          };
+          position = {
+            x = 0;
+            y = 0;
+          };
         };
       };
     };
   };
 
+  services.hyprpaper.settings = {
+    wallpaper = [
+      "eDP-1,${wpPath}"
+    ];
+  };
   # hyprland config
   wayland.windowManager.hyprland = {
-    monitor = [
-      "eDP-1, 2256x1504, 0x0, 1"
-    ];
-
-    workspace = [
-      "1, monitor:eDP-1, default:true"
-      "2, monitor:eDP-1"
-      "3, monitor:eDP-1"
-      "4, monitor:eDP-1"
-      "5, monitor:eDP-1"
-      "6, monitor:eDP-1"
-      "7, monitor:eDP-1"
-      "8, monitor:eDP-1"
-      "9, monitor:eDP-1"
-      "10, monitor:eDP-1"
-    ];
-
     settings = {
+      monitor = [
+        "eDP-1, 2256x1504, 0x0, 1"
+      ];
+
+      workspace = [
+        "1, monitor:eDP-1, default:true"
+        "2, monitor:eDP-1"
+        "3, monitor:eDP-1"
+        "4, monitor:eDP-1"
+        "5, monitor:eDP-1"
+        "6, monitor:eDP-1"
+        "7, monitor:eDP-1"
+        "8, monitor:eDP-1"
+        "9, monitor:eDP-1"
+        "10, monitor:eDP-1"
+      ];
+
       input = {
         natural_scroll = true;
         sensitivity = 0;

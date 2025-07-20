@@ -5,7 +5,7 @@
 }:
 {
   # Waybar settings
-  waybar = {
+  programs.waybar = {
     settings = [
       {
         layer = "top";
