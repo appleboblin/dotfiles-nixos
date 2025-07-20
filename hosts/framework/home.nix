@@ -1,12 +1,30 @@
 {
-  config,
-  host,
   lib,
   pkgs,
   ...
 }:
 let
   wpPath = ../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg;
+  mkWorkspace = name: {
+    name = name;
+    value = {
+      open-on-output = "eDP-1";
+    };
+  };
+
+  workspaceNames = [
+    "W0"
+    "W1"
+    "W2"
+    "W3"
+    "W4"
+    "W5"
+    "W6"
+    "W7"
+    "W8"
+    "W9"
+    "Wmusic"
+  ];
 in
 {
   imports = [
@@ -46,6 +64,12 @@ in
       path = "${./framework_wallpaper.png}";
     };
 
+    services.hyprpaper.settings = {
+      wallpaper = [
+        "eDP-1,${wpPath}"
+      ];
+    };
+
     vscode = {
       profiles.default.userSettings = {
         "editor.fontSize" = 15;
@@ -59,10 +83,27 @@ in
     };
   };
 
-  services.hyprpaper.settings = {
-    wallpaper = [
-      "eDP-1,${wpPath}"
-    ];
+  # niri config
+  programs.niri.settings = {
+    workspaces = builtins.listToAttrs (map mkWorkspace workspaceNames);
+    outputs = {
+      "eDP-1" = {
+        scale = 1.0;
+        mode = {
+          width = 2256;
+          height = 1504;
+          refresh = 60.000;
+        };
+        transform = {
+          rotation = 0;
+          flipped = false;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
+      };
+    };
   };
 
   # hyprland config

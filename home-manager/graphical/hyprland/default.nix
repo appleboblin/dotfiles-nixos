@@ -11,14 +11,6 @@
     ./windowrule.nix
   ];
   config = {
-    home = {
-      packages = with pkgs; [
-        # clipboard history
-        cliphist
-        wl-clipboard
-      ];
-    };
-
     xdg.portal = {
       enable = true;
       extraPortals = [

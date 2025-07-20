@@ -2,9 +2,14 @@
   host,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 {
+  imports = [
+    inputs.niri.nixosModules.niri
+  ];
+
   boot = {
     supportedFilesystems = [ "zfs" ];
     zfs.requestEncryptionCredentials = true;
@@ -151,8 +156,12 @@
   xdg.portal = {
     wlr.enable = lib.mkForce false;
   };
-  programs.hyprland = lib.mkIf (host != "vm") {
-    enable = true;
-    withUWSM = true;
+  programs = {
+    niri.enable = true;
+
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
   };
 }

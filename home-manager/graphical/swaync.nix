@@ -84,7 +84,7 @@
             }
             {
               "label" = "󰍃";
-              "command" = "hyprctl dispatch exit";
+              "command" = "loginctl kill-user '$(whoami)'";
             }
             {
               "label" = "󰒲";

@@ -13,6 +13,6 @@ case $chosen in
     "$reboot") systemctl reboot ;;
     "$lock") loginctl lock-session ;;
     "$suspend") systemctl suspend ;;
-    "$logout") hyprctl dispatch exit ;;
+    "$logout") loginctl kill-user "$(whoami)" ;;
     *) exit 1 ;;
 esac
