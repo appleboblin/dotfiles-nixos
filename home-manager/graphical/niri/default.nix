@@ -28,6 +28,7 @@
       TERMINAL = "footclient";
       XMODIFIERS = "@im=fcitx";
     };
+
     input = {
       keyboard = {
         xkb = {
@@ -54,6 +55,10 @@
       warp-mouse-to-focus.enable = false;
       workspace-auto-back-and-forth = true;
       power-key-handling.enable = false;
+    };
+
+    gestures = {
+      hot-corners.enable = false;
     };
 
     screenshot-path = "~/Pictures/Screenshots/screenshot_%Y%m%d_%H%M%S.png";

@@ -57,6 +57,9 @@ in
         matches = [
           { app-id = "thunderbird"; }
         ];
+        excludes = [
+          { title = "^Login to account '([^']+@[^']+)' failed$"; }
+        ];
         open-on-workspace = "W0";
         open-maximized = true;
         open-focused = false;
