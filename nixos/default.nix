@@ -95,8 +95,6 @@
     # Enable CUPS to print documents.
     printing.enable = true;
 
-    power-profiles-daemon.enable = lib.mkIf (host == "framework") true;
-
     gnome.gnome-keyring.enable = true;
     protonmail-bridge = lib.mkIf (host == "desktop") {
       enable = true;

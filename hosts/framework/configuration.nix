@@ -21,7 +21,41 @@
     hostId = "3f4e9fd8";
     hostName = host;
   };
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      # powerOnBoot = lib.mkForce false;
+    };
+  };
+
+  # AMDGPU Controller
+  # https://wiki.nixos.org/wiki/AMD_GPU
+  # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix
+  environment.systemPackages = with pkgs; [
+    lact
+    amdgpu_top
+    fw-ectool
+    framework-tool
+  ];
+
+  # Desktop environment
+  # Override xdg.portal.wlr.enable, theres conflict
+  xdg.portal = {
+    wlr.enable = lib.mkForce false;
+  };
+
+  programs = {
+    niri.enable = true;
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+  };
+
   services = {
+    fwupd.enable = true;
+    power-profiles-daemon.enable = true;
     zfs = {
       autoScrub.enable = true;
       trim.enable = true;
@@ -31,26 +65,11 @@
     libinput.enable = true;
     libinput.touchpad.disableWhileTyping = lib.mkForce true;
     blueman.enable = true;
-    # hardware.bolt.enable = true;
+    hardware.bolt.enable = true;
 
-    # # ectool on start up
-    # systemd.services.ectool = {
-    # 	description = "Run ECTool on start up to swap left alt and left super";
-    # 	enable = true;
-    # 	path = [ pkgs.fw-ectool ];
-    # 	serviceConfig = {
-    # 	Type = "simple";
-    # 	User = "root";
-    # 	Group = "root";
-    # 	Restart = "always";
-    # 	After = ["suspend.target" "hibernate.target"];
-    # 	};
-    # 	script = ''
-    # 	ectool raw 0x3E0C d1,d1,b1,b3,wE01F
-    # 	ectool raw 0x3E0C d1,d1,b3,b1,w11
-    # 	'';
-    # 	wantedBy = [ "multi-user.target" "suspend.target" "hibernate.target" ];
-    # };
+    logind.extraConfig = ''
+      HandlePowerKey=ignore
+    '';
 
     # qmk for linux
     keyd = {
@@ -134,34 +153,6 @@
           };
         };
       };
-    };
-  };
-
-  # bluetooth
-  hardware.bluetooth = {
-    enable = true; # enables support for Bluetooth
-    powerOnBoot = lib.mkForce false; # powers up the default Bluetooth controller on boot
-  };
-
-  # AMDGPU Controller
-  # https://wiki.nixos.org/wiki/AMD_GPU
-  # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix
-  environment.systemPackages = with pkgs; [
-    lact
-    amdgpu_top
-  ];
-
-  # Desktop environment
-  # Override xdg.portal.wlr.enable, theres conflict
-  xdg.portal = {
-    wlr.enable = lib.mkForce false;
-  };
-  programs = {
-    niri.enable = true;
-
-    hyprland = {
-      enable = true;
-      withUWSM = true;
     };
   };
 }
