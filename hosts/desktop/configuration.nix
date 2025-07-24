@@ -1,14 +1,15 @@
 {
-  config,
   host,
   lib,
   pkgs,
+  inputs,
   ...
 }:
-let
-  monitors = import ./monitors.nix;
-in
 {
+  imports = [
+    inputs.niri.nixosModules.niri
+  ];
+
   networking.hostName = host;
   hardware = {
     graphics = {
@@ -68,6 +69,7 @@ in
 
   programs = {
     steam.enable = true;
+    niri.enable = true;
 
     hyprland = {
       enable = true;

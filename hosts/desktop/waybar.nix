@@ -5,6 +5,32 @@
 }:
 let
   monitors = import ./monitors.nix;
+
+  niriWorkspace = {
+    format = "{icon}";
+    format-icons = {
+      "W0" = "1";
+      "W1" = "2";
+      "W2" = "3";
+      "W3" = "4";
+      "W4" = "5";
+      "W5" = "6";
+      "W6" = "7";
+      "W7" = "8";
+      "W8" = "9";
+      "W9" = "10";
+      "Wmusic" = "󰝚";
+      default = "";
+    };
+    disable-scroll-wraparound = true;
+    on-click = "activate";
+  };
+
+  niriWindow = {
+    max-length = 50;
+    format = "{}";
+    separate-outputs = true;
+  };
 in
 {
   # Waybar settings
@@ -21,8 +47,8 @@ in
         output = [
           "${monitors.left}"
         ];
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
+        modules-left = [ "niri/workspaces" ];
+        modules-center = [ "niri/window" ];
         modules-right = [
           "pulseaudio"
           "cpu"
@@ -31,17 +57,8 @@ in
           "clock"
           "custom/powermenu"
         ];
-        "hyprland/workspaces" = {
-          format = "{name}";
-          disable-scroll-wraparound = true;
-          on-click = "activate";
-          sort-by-number = true;
-        };
-        "hyprland/window" = {
-          max-length = 50;
-          format = "{}";
-          separate-outputs = true;
-        };
+        "niri/workspaces" = niriWorkspace;
+        "niri/window" = niriWindow;
         "clock" = {
           format = "{:%a %d %b %H:%M}";
           locale = "en_US.UTF-8";
@@ -89,31 +106,22 @@ in
         margin-top = 0;
         margin-left = 0;
         margin-right = 0;
-        spacing = 10;
+        spacing = 15;
         output = [
           "${monitors.middle}"
         ];
         modules-left = [
           "custom/launcher"
-          "hyprland/workspaces"
+          "niri/workspaces"
         ];
-        modules-center = [ "hyprland/window" ];
+        modules-center = [ "niri/window" ];
         modules-right = [
           "tray"
           "clock"
           "custom/notification"
         ];
-        "hyprland/workspaces" = {
-          format = "{name}";
-          disable-scroll-wraparound = true;
-          on-click = "activate";
-          sort-by-number = true;
-        };
-        "hyprland/window" = {
-          max-length = 50;
-          format = "{}";
-          separate-outputs = true;
-        };
+        "niri/workspaces" = niriWorkspace;
+        "niri/window" = niriWindow;
         "clock" = {
           format = "{:%H:%M}";
           locale = "en_US.UTF-8";
@@ -121,7 +129,7 @@ in
           interval = 60;
         };
         "tray" = {
-          spacing = 10;
+          spacing = 15;
         };
         "custom/launcher" = {
           format = " ";
@@ -159,23 +167,14 @@ in
         output = [
           "${monitors.right}"
         ];
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
+        modules-left = [ "niri/workspaces" ];
+        modules-center = [ "niri/window" ];
         modules-right = [
           "bluetooth"
           "idle_inhibitor"
         ];
-        "hyprland/workspaces" = {
-          format = "{name}";
-          disable-scroll-wraparound = true;
-          on-click = "activate";
-          sort-by-number = true;
-        };
-        "hyprland/window" = {
-          max-length = 50;
-          format = "{}";
-          separate-outputs = true;
-        };
+        "niri/workspaces" = niriWorkspace;
+        "niri/window" = niriWindow;
         "idle_inhibitor" = {
           format = "{icon}";
           format-icons = {

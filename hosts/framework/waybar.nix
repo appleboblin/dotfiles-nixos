@@ -5,7 +5,7 @@
 }:
 {
   # Waybar settings
-  waybar = {
+  programs.waybar = {
     settings = [
       {
         layer = "top";
@@ -18,8 +18,8 @@
         output = [
           "eDP-1"
         ];
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
+        modules-left = [ "niri/workspaces" ];
+        modules-center = [ "niri/window" ];
         modules-right = [
           "tray"
           "custom/wireguard"
@@ -33,13 +33,26 @@
           "custom/notification"
         ];
 
-        "hyprland/workspaces" = {
-          format = "{name}";
+        "niri/workspaces" = {
+          format = "{icon}";
+          format-icons = {
+            "W0" = "1";
+            "W1" = "2";
+            "W2" = "3";
+            "W3" = "4";
+            "W4" = "5";
+            "W5" = "6";
+            "W6" = "7";
+            "W7" = "8";
+            "W8" = "9";
+            "W9" = "10";
+            "Wmusic" = "󰝚";
+            default = "";
+          };
           disable-scroll-wraparound = true;
           on-click = "activate";
-          sort-by-number = true;
         };
-        "hyprland/window" = {
+        "niri/window" = {
           max-length = 50;
           format = "{}";
           separate-outputs = true;
@@ -52,29 +65,15 @@
           interval = 60;
         };
         "pulseaudio" = {
-          # format = "{icon} {volume}% {format_source}";
           format = "󰕾 {volume}%";
-          # format-bluetooth = "{icon} {volume}% {format_source}";
-          # format-bluetooth-muted = "󰝟 {icon} {format_source}";
           format-muted = "󰝟 ";
           format-source = " {volume}%";
           format-source-muted = "󰝟 ";
-          # format-icons = {
-          #     headphone = "";
-          #     hands-free = "󱠡";
-          #     headset = "󰋎";
-          #     phone = "";
-          #     portable = "";
-          #     car = "";
-          #     default = ["" "" ""];
-          # };
           on-click = "${lib.getExe pkgs.pamixer} -t";
           on-click-right = "pavucontrol";
         };
         "tray" = {
           spacing = 10;
-          show-passive-items = false;
-          reverse-direction = true;
         };
         "power-profiles-daemon" = {
           format = "{icon}";

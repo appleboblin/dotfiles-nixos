@@ -68,7 +68,7 @@
         r2modman
         nextcloud-client
         gnome-disk-utility
-        darktable
+        # darktable
         pcloud
         calibre
         libation

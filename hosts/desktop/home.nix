@@ -39,6 +39,131 @@ in
     };
   };
 
+  # niri config
+  programs.niri.settings = {
+
+    spawn-at-startup =
+      let
+        command = cmd: { command = lib.lists.flatten [ cmd ]; };
+      in
+      [
+        (command "vesktop")
+        (command "thunderbird")
+        (command "spotify")
+      ];
+
+    window-rules = [
+      {
+        matches = [
+          { app-id = "thunderbird"; }
+        ];
+        excludes = [
+          { title = "^Login to account '([^']+@[^']+)' failed$"; }
+        ];
+        open-on-workspace = "W0";
+        open-maximized = true;
+        open-focused = false;
+        open-floating = false;
+        default-column-display = "tabbed";
+      }
+      {
+        matches = [
+          { title = "^Login to account '([^']+@[^']+)' failed$"; }
+        ];
+        open-on-workspace = "W0";
+        open-maximized = false;
+        open-focused = false;
+        open-floating = true;
+      }
+    ];
+
+    workspaces = {
+      "W0" = {
+        open-on-output = "${monitors.left}";
+      };
+      "W1" = {
+        open-on-output = "${monitors.left}";
+      };
+      "W2" = {
+        open-on-output = "${monitors.left}";
+      };
+      "W3" = {
+        open-on-output = "${monitors.middle}";
+      };
+      "W4" = {
+        open-on-output = "${monitors.middle}";
+      };
+      "W5" = {
+        open-on-output = "${monitors.middle}";
+      };
+      "W6" = {
+        open-on-output = "${monitors.middle}";
+      };
+      "W7" = {
+        open-on-output = "${monitors.right}";
+      };
+      "W8" = {
+        open-on-output = "${monitors.right}";
+      };
+      "W9" = {
+        open-on-output = "${monitors.right}";
+      };
+      "Wmusic" = {
+        open-on-output = "${monitors.right}";
+      };
+    };
+    outputs = {
+      "DP-1" = {
+        scale = 1.0;
+        mode = {
+          width = 2560;
+          height = 1440;
+          refresh = 164.998;
+        };
+        transform = {
+          rotation = 0;
+          flipped = false;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
+      };
+      "DP-2" = {
+        scale = 1.0;
+        mode = {
+          width = 2560;
+          height = 1440;
+          refresh = 164.998;
+        };
+        transform = {
+          rotation = 0;
+          flipped = false;
+        };
+        position = {
+          x = 2560;
+          y = 0;
+        };
+      };
+      "HDMI-A-1" = {
+        scale = 1.0;
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 60.000;
+        };
+        transform = {
+          rotation = 270;
+          flipped = false;
+        };
+        position = {
+          x = 5120;
+          y = -133;
+        };
+      };
+    };
+  };
+
   # hyprland config
   wayland.windowManager.hyprland = {
     settings = {
