@@ -46,7 +46,7 @@
     "Mod+Print".action = screenshot-window;
     "Mod+Shift+S".action = screenshot;
 
-    "Mod+Q" = {
+    "Mod+B" = {
       action.close-window = { };
       repeat = false;
     };
@@ -90,7 +90,7 @@
     "Mod+Return".action = spawn "footclient";
     "Mod+W".action = toggle-column-tabbed-display;
 
-    "Mod+Shift+H".action = consume-window-into-column;
+    "Mod+Shift+P".action = consume-window-into-column;
     "Mod+Shift+K".action = expel-window-from-column;
     "Mod+C".action = center-window;
     "Mod+Tab".action = switch-focus-between-floating-and-tiling;
@@ -102,25 +102,25 @@
     "Mod+Shift+Minus".action = set-window-height "+10%";
     "Mod+O".action = toggle-overview;
 
-    "Mod+M".action = focus-column-or-monitor-left;
-    "Mod+I".action = focus-column-or-monitor-right;
-    "Mod+N".action = focus-window-or-workspace-down;
-    "Mod+E".action = focus-window-or-workspace-up;
+    "Mod+Y".action = focus-column-or-monitor-left;
+    "Mod+E".action = focus-column-or-monitor-right;
+    "Mod+H".action = focus-window-or-workspace-down;
+    "Mod+A".action = focus-window-or-workspace-up;
     "Mod+Comma".action = focus-column-left-or-last;
     "Mod+Period".action = focus-column-right-or-first;
-    "Mod+Ctrl+M".action = focus-monitor-left;
-    "Mod+Ctrl+I".action = focus-monitor-right;
-    "Mod+Ctrl+E".action = focus-workspace-up;
-    "Mod+Ctrl+N".action = focus-workspace-down;
+    "Mod+Ctrl+Y".action = focus-monitor-left;
+    "Mod+Ctrl+E".action = focus-monitor-right;
+    "Mod+Ctrl+A".action = focus-workspace-up;
+    "Mod+Ctrl+H".action = focus-workspace-down;
 
-    "Mod+Shift+M".action = move-column-left-or-to-monitor-left;
-    "Mod+Shift+I".action = move-column-right-or-to-monitor-right;
-    "Mod+Shift+E".action = move-window-up-or-to-workspace-up;
-    "Mod+Shift+N".action = move-window-down-or-to-workspace-down;
-    "Mod+Shift+Ctrl+M".action = move-window-to-monitor-left;
-    "Mod+Shift+Ctrl+I".action = move-window-to-monitor-right;
-    "Mod+Shift+Ctrl+N".action = move-window-to-workspace-down;
-    "Mod+Shift+Ctrl+E".action = move-window-to-workspace-up;
+    "Mod+Shift+Y".action = move-column-left-or-to-monitor-left;
+    "Mod+Shift+E".action = move-column-right-or-to-monitor-right;
+    "Mod+Shift+A".action = move-window-up-or-to-workspace-up;
+    "Mod+Shift+H".action = move-window-down-or-to-workspace-down;
+    "Mod+Shift+Ctrl+Y".action = move-window-to-monitor-left;
+    "Mod+Shift+Ctrl+E".action = move-window-to-monitor-right;
+    "Mod+Shift+Ctrl+H".action = move-window-to-workspace-down;
+    "Mod+Shift+Ctrl+A".action = move-window-to-workspace-up;
 
     "Mod+1".action.focus-workspace = "W0";
     "Mod+2".action.focus-workspace = "W1";
