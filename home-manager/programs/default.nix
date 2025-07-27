@@ -2,6 +2,7 @@
   imports = [
     ./beets.nix
     ./btop.nix
+    ./easyeffects.nix
     ./firefox.nix
     ./foot.nix
     ./ghostty.nix
