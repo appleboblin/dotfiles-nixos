@@ -13,6 +13,7 @@
     ./obs-studio.nix
     ./rofi.nix
     ./spicetify.nix
+    ./plover.nix
     ./vscodium.nix
     ./zed-editor.nix
   ];

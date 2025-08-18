@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   host,
@@ -8,6 +7,7 @@
 {
   imports = [
     ./boot.nix
+    ./docker.nix
     ./fonts.nix
     ./localsend.nix
     ./steam.nix
@@ -142,6 +142,8 @@
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee7", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4eec", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee0", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
+            KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+            SUBSYSTEM=="hidraw", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="400d", MODE="0666"
         		'';
 
       packages = [
@@ -236,6 +238,8 @@
       "networkmanager"
       "wheel"
       "libvirtd"
+      "dialout"
+      "input"
     ];
     openssh.authorizedKeys.keyFiles = [
       ./id_ed25519.pub

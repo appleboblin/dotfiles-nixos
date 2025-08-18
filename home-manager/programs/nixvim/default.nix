@@ -7,7 +7,6 @@
   # Lots of config from https://github.com/MikaelFangel/nixvim-config
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    ./colemakdh.nix
     ./options.nix
     ./utils.nix
     ./cmp.nix

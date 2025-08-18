@@ -44,9 +44,10 @@
 
     # screenshot
     "Mod+Print".action = screenshot-window;
+    "Mod+Ctrl+S".action = screenshot-window;
     "Mod+Shift+S".action = screenshot;
 
-    "Mod+B" = {
+    "Mod+Q" = {
       action.close-window = { };
       repeat = false;
     };
@@ -94,7 +95,7 @@
     "Mod+Shift+K".action = expel-window-from-column;
     "Mod+C".action = center-window;
     "Mod+Tab".action = switch-focus-between-floating-and-tiling;
-    "Alt+S".action.focus-workspace = "Wmusic";
+    "Mod+S".action.focus-workspace = "Wmusic";
 
     "Mod+Minus".action = set-column-width "-10%";
     "Mod+Equal".action = set-column-width "+10%";
