@@ -76,4 +76,8 @@
       withUWSM = true;
     };
   };
+
+  virtualisation.docker = {
+    storageDriver = "btrfs";
+  };
 }
