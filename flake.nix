@@ -18,6 +18,7 @@
     nixvim.url = "github:nix-community/nixvim";
     # hyprpanel.url = "github:jas-singhfsu/hyprpanel";
     niri.url = "github:sodiboo/niri-flake";
+    plover-flake.url = "github:openstenoproject/plover-flake";
 
     # Tools
     poetry2nix = {
