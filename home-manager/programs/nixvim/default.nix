@@ -6,7 +6,7 @@
   # Fits what I already have, only small tweaks
   # Lots of config from https://github.com/MikaelFangel/nixvim-config
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
     ./options.nix
     ./utils.nix
     ./cmp.nix
