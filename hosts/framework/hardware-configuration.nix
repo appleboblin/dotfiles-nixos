@@ -32,7 +32,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/A785-7069";
+    device = "/dev/disk/by-label/NIXBOOT";
     fsType = "vfat";
     options = [
       "fmask=0022"
@@ -46,7 +46,7 @@
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/ddba3c4e-0e96-49a3-91b4-4bc604760f01"; }
+    { device = "/dev/disk/by-label/SWAP"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
