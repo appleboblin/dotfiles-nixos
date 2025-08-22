@@ -12,9 +12,10 @@
 
   networking.hostName = host;
   boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "810b59d0";
+  networking.hostId = "b709075d";
   services.zfs.autoScrub.enable = true;
   nix.settings.download-buffer-size = 524288000;
+  zramSwap.enable = true;
   hardware = {
     graphics = {
       enable = true;
