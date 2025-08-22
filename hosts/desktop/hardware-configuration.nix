@@ -27,18 +27,26 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/06ab91ac-476f-4a46-a0cf-4f1e0c3f1e4c";
-    fsType = "btrfs";
-    options = [ "subvol=@" ];
+    device = "NIXROOT/root";
+    fsType = "zfs";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/22B6-308F";
+    device = "/dev/disk/by-label/NIXBOOT";
     fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
+
+  fileSystems."/home" = {
+    device = "NIXROOT/home";
+    fsType = "zfs";
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/82618cbb-b21b-4474-bbc7-93f790289f5a"; }
+    { device = "/dev/disk/by-label/SWAP"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

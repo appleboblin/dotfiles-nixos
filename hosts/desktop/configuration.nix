@@ -11,6 +11,10 @@
   ];
 
   networking.hostName = host;
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "810b59d0";
+  services.zfs.autoScrub.enable = true;
+  nix.settings.download-buffer-size = 524288000;
   hardware = {
     graphics = {
       enable = true;
@@ -54,12 +58,6 @@
     transmission.enable = true;
     blueman.enable = true;
     hardware.bolt.enable = true;
-    # Scrub btrfs
-    btrfs.autoScrub = {
-      enable = true;
-      interval = "weekly";
-      fileSystems = [ "/" ];
-    };
   };
 
   # Desktop environment
@@ -77,7 +75,4 @@
     };
   };
 
-  virtualisation.docker = {
-    storageDriver = "btrfs";
-  };
 }
