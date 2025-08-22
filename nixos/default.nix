@@ -76,21 +76,10 @@
     automatic-timezoned.enable = true;
     geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 
-    xserver = {
-      # Enable the X11 windowing system.
-      enable = true;
-      autorun = true;
-
-      desktopManager.xfce.enable = true;
-
-      xkb = {
-        layout = "us";
-      };
-    };
-
     displayManager.gdm = {
       enable = true;
     };
+    desktopManager.plasma6.enable = true;
 
     # Enable CUPS to print documents.
     printing.enable = true;
@@ -283,7 +272,6 @@
       nvtopPackages.full
       eza
       fzf
-      neofetch
       fastfetch
       procps
       bash-completion
@@ -296,7 +284,6 @@
       ior
       lxqt.lxqt-policykit
       libimobiledevice
-      ifuse # optional, to mount using 'ifuse'
       libheif
       ffmpeg
       imagemagick

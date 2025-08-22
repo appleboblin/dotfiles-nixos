@@ -27,7 +27,6 @@
         # browser
         brave
         chromium
-        floorp
         vivaldi
         vivaldi-ffmpeg-codecs
 
@@ -45,55 +44,36 @@
         thunderbird
         libreoffice
         vlc
+        xfce.thunar
+        xfce.thunar-volman
+        xfce.thunar-archive-plugin
 
         # Other
-        discord
         vesktop
-        betaflight-configurator
-        prusa-slicer
         filezilla
         inkscape
         remmina
         gimp
         kdePackages.okular
-        qalculate-gtk
-        parsec-bin
         element-desktop
         prismlauncher
         v4l-utils
         file
         ffmpeg
-        yt-dlp
-        # mysql-workbench
         r2modman
         nextcloud-client
-        gnome-disk-utility
-        # darktable
         pcloud
         calibre
         libation
         obsidian
         android-udev-rules
-        moonlight-qt
         pdfslicer
-        direnv
         proton-pass
         grayjay
         freetube
         nix-your-shell
         cryptomator
       ];
-
-    # home.directories = {
-    #     extra = [
-    #     # {
-    #     #     path = "/home/${user}/github";
-    #     # }
-    #     {
-    #         path = "/home/${user}/Pictures/Screenshot";
-    #     }
-    #     ];
-    # };
 
     sessionVariables = {
       EDITOR = "zeditor -w";
@@ -115,12 +95,6 @@
         # /etc/profiles/per-user/appleboblin/share/applications
         # /nix/store/hash-home-manager-path/share/applications
         # MIME types https://www.sitepoint.com/mime-types-complete-list/
-        # "default-web-browser" = [ "floorp.desktop" ];
-        # "text/html" = [ "floorp.desktop" ];
-        # "x-scheme-handler/http" = [ "floorp.desktop" ];
-        # "x-scheme-handler/https" = [ "floorp.desktop" ];
-        # "x-scheme-handler/about" = [ "floorp.desktop" ];
-        # "x-scheme-handler/unknown" = [ "floorp.desktop" ];
         # browser stuff
         "default-web-browser" = [ "vivaldi-stable.desktop" ];
         "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
@@ -185,13 +159,6 @@
             name = user;
           };
         }
-        # { # work
-        #     condition = "gitdir:~/Work/";
-        #     contents.user = {
-        #     email = "work@email.com";
-        #     name = "My Name";
-        #     };
-        # }
       ];
     };
   };
