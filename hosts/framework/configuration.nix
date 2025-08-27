@@ -1,5 +1,4 @@
 {
-  host,
   lib,
   pkgs,
   inputs,
@@ -11,17 +10,9 @@
     ./kanata.nix
   ];
 
-  boot = {
-    supportedFilesystems = [ "zfs" ];
-    zfs.requestEncryptionCredentials = true;
-  };
-  # zram
-  zramSwap.enable = true;
+  boot.zfs.requestEncryptionCredentials = true;
 
-  networking = {
-    hostId = "3f4e9fd8";
-    hostName = host;
-  };
+  networking.hostId = "3f4e9fd8";
 
   hardware = {
     bluetooth = {
@@ -49,7 +40,7 @@
   programs = {
     niri.enable = true;
     hyprland = {
-      enable = true;
+      enable = false;
       withUWSM = true;
     };
   };
@@ -57,10 +48,6 @@
   services = {
     fwupd.enable = true;
     power-profiles-daemon.enable = true;
-    zfs = {
-      autoScrub.enable = true;
-      trim.enable = true;
-    };
 
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;

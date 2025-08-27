@@ -4,6 +4,7 @@
 {
   host,
   pkgs,
+  user,
   ...
 }:
 {
@@ -28,9 +29,9 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.appleboblin = {
+  users.users.${user} = {
     isNormalUser = true;
-    description = "appleboblin";
+    description = "${user}";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -42,7 +43,7 @@
   services = {
     # Enable auto login
     xserver.displayManager.autoLogin.enable = true;
-    xserver.displayManager.autoLogin.user = "appleboblin";
+    xserver.displayManager.autoLogin.user = "${user}";
   };
 
   # List packages installed in system profile. To search, run:

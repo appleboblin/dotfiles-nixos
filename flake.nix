@@ -51,7 +51,7 @@
           modules = [
             ./nixos
             ./hosts/${host}/configuration.nix
-            ./hosts/${host}/hardware-configuration.nix
+            ./hosts/${host}/hardware.nix
 
             catppuccin.nixosModules.catppuccin
             inputs.home-manager.nixosModules.home-manager
@@ -67,6 +67,7 @@
                   isLaptop = host == "framework";
                   isVm = host == "vm";
                   isDesktop = host == "desktop";
+                  isGem12 = host == "gem12";
                 };
 
                 users.${user} = {
@@ -85,6 +86,7 @@
       nixosConfigurations = {
         framework = mkHost "framework";
         desktop = mkHost "desktop";
+        gem12 = mkHost "gem12";
         vm = mkHost "vm";
       };
     };

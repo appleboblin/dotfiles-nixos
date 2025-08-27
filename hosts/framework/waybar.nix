@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  user,
   ...
 }:
 {
@@ -142,8 +143,8 @@
           # nm-connection-editor to open up gui editor
           format = "{}";
           format-disconnected = "󰖪 Disconnected";
-          exec = "/home/appleboblin/dotfiles-nixos/home-manager/programs/vpn-wg.sh";
-          on-click = "rofi -modi 'WireGuard:/home/appleboblin/dotfiles-nixos/home-manager/programs/rofi-wireguard-menu.sh' -show WireGuard";
+          exec = "/home/${user}/dotfiles-nixos/home-manager/programs/vpn-wg.sh";
+          on-click = "rofi -modi 'WireGuard:/home/${user}/dotfiles-nixos/home-manager/programs/rofi-wireguard-menu.sh' -show WireGuard";
           interval = 1;
           return-type = "json";
         };

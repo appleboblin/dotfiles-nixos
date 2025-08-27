@@ -61,6 +61,12 @@
            _    _    _    _    _    _    _    _    _    _    _    _
            _    _    _              _              _    _
           )
+
+
+          (defoverrides
+            (lctl q) (lctl .)
+            (rctl q) (rctl .)
+          )
         '';
       };
     };

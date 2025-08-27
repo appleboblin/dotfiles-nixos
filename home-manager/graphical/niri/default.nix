@@ -172,5 +172,4 @@
     # https://github.com/YaLTeR/niri/wiki/Important-Software#portals
     extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
   };
-  services.gnome-keyring.enable = true;
 }

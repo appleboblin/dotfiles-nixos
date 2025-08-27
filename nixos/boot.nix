@@ -4,6 +4,7 @@
 }:
 {
   boot = {
+    supportedFilesystems = [ "zfs" ];
     loader = {
       systemd-boot.enable = true;
       timeout = 3;
