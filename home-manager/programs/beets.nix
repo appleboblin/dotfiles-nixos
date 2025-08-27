@@ -1,10 +1,14 @@
 {
+  user,
+  ...
+}:
+{
   programs.beets = {
     enable = true;
 
     settings = {
-      "directory" = "/home/appleboblin/Music/music/";
-      "library" = "/home/appleboblin/Music/beets/musiclibrary.db";
+      "directory" = "/home/${user}/Music/music/";
+      "library" = "/home/${user}/Music/beets/musiclibrary.db";
       "import" = {
         "move" = true;
         "write" = true;

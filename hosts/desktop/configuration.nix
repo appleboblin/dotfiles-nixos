@@ -1,5 +1,4 @@
 {
-  host,
   lib,
   pkgs,
   inputs,
@@ -10,12 +9,10 @@
     inputs.niri.nixosModules.niri
   ];
 
-  networking.hostName = host;
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.requestEncryptionCredentials = false;
+
   networking.hostId = "b709075d";
-  services.zfs.autoScrub.enable = true;
-  nix.settings.download-buffer-size = 524288000;
-  zramSwap.enable = true;
+
   hardware = {
     graphics = {
       enable = true;
@@ -71,7 +68,7 @@
     niri.enable = true;
 
     hyprland = {
-      enable = true;
+      enable = false;
       withUWSM = true;
     };
   };

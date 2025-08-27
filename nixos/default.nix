@@ -2,6 +2,7 @@
   pkgs,
   lib,
   host,
+  user,
   ...
 }:
 {
@@ -14,6 +15,8 @@
     ./syncthing.nix
     ./tailscale.nix
     ./transmission.nix
+    ./kanata.nix
+    ./zfs.nix
   ];
 
   # Nix Package Manager
@@ -25,7 +28,7 @@
         "flakes"
       ];
       trusted-users = [
-        "appleboblin"
+        "${user}"
         "root"
         "@wheel"
       ];
@@ -69,21 +72,21 @@
   };
 
   # Set your time zone.
-  # time.timeZone = "Asia/Taipei";Pacific/Tahiti.
+  time.timeZone = "Asia/Taipei";
   # time.timeZone = "Pacific/Tahiti";
   services = {
     # https://discourse.nixos.org/t/timezones-how-to-setup-on-a-laptop/33853/8
-    automatic-timezoned.enable = true;
+    automatic-timezoned.enable = false; # uses country IP so vpn to other country will change time
     geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 
-    displayManager.gdm = {
-      enable = true;
-    };
-    desktopManager.plasma6.enable = true;
+    # displayManager.gdm = {
+    #   enable = true;
+    # };
 
     # Enable CUPS to print documents.
     printing.enable = true;
 
+    displayManager.gdm.enable = true;
     gnome.gnome-keyring.enable = true;
     protonmail-bridge = lib.mkIf (host == "desktop") {
       enable = true;
@@ -191,8 +194,9 @@
     polkit.enable = true;
     pam = {
       u2f.enable = true;
-      services.hyprlock = {
-        text = "auth include login";
+      services = {
+        login.enableGnomeKeyring = true;
+        hyprlock.text = "auth include login";
       };
     };
   };
@@ -213,6 +217,8 @@
     enable32Bit = true;
   };
 
+  zramSwap.enable = true;
+
   # gtk themes on qt
   qt = {
     enable = true;
@@ -221,9 +227,9 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.appleboblin = {
+  users.users.${user} = {
     isNormalUser = true;
-    description = "appleboblin";
+    description = "${user}";
     initialPassword = "password";
     extraGroups = [
       "networkmanager"
@@ -330,6 +336,8 @@
   networking = {
     # Enable networking
     networkmanager.enable = true;
+
+    hostName = host;
 
     firewall = {
       enable = true;
