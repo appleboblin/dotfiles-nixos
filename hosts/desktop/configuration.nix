@@ -7,6 +7,7 @@
 {
   imports = [
     inputs.niri.nixosModules.niri
+    ./kanata.nix
   ];
 
   boot.zfs.requestEncryptionCredentials = false;
