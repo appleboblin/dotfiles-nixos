@@ -27,6 +27,15 @@
           rainbow-delimiters
           which-key
           helpful
+          general
+          evil
+          evil-collection
+          hydra
+          projectile
+          counsel-projectile
+
+          magit
+          forge
         ];
     };
   };
