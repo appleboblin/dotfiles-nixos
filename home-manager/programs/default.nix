@@ -3,6 +3,7 @@
     ./beets.nix
     ./btop.nix
     ./easyeffects.nix
+    ./emacs
     ./firefox.nix
     ./foot.nix
     ./ghostty.nix

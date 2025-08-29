@@ -1,0 +1,5 @@
+(load-theme 'catppuccin :no-confirm)
+(setq catppuccin-flavor 'macchiato)
+(catppuccin-reload)
+(set-face-attribute 'default nil :font "MesloLGS Nerd Font-16" )
+(load-file "~/.emacs.d/config.el")

@@ -3,6 +3,7 @@
   lib,
   host,
   user,
+  inputs,
   ...
 }:
 {
@@ -19,6 +20,7 @@
     ./zfs.nix
   ];
 
+  nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
   # Nix Package Manager
   nix = {
     settings = {
