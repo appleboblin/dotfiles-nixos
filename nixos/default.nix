@@ -197,6 +197,7 @@
     pam = {
       u2f.enable = true;
       services = {
+        gdm.enableGnomeKeyring = true;
         login.enableGnomeKeyring = true;
         hyprlock.text = "auth include login";
       };

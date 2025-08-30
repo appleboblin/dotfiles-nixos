@@ -209,9 +209,9 @@
       auto_update = false;
       show_whitespaces = "all";
       ui_font_family = "Inter";
-      ui_font_size = lib.mkDefault 19;
+      ui_font_size = lib.mkDefault 20;
       buffer_font_family = "MesloLGS Nerd Font Mono";
-      buffer_font_size = lib.mkDefault 18;
+      buffer_font_size = lib.mkDefault 20;
       always_treat_brackets_as_autoclosed = true;
       preferred_line_length = 120;
       soft_wrap = "preferred_line_length";
