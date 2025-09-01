@@ -98,10 +98,10 @@
     "Mod+Tab".action = switch-focus-between-floating-and-tiling;
     "Mod+S".action.focus-workspace = "Wmusic";
 
-    "Mod+Minus".action = set-column-width "-10%";
-    "Mod+Equal".action = set-column-width "+10%";
-    "Mod+Shift+Equal".action = set-window-height "-10%";
-    "Mod+Shift+Minus".action = set-window-height "+10%";
+    "Mod+Alt+Y".action = set-column-width "-10%";
+    "Mod+Alt+E".action = set-column-width "+10%";
+    "Mod+Shift+Alt+Y".action = set-window-height "-10%";
+    "Mod+Shift+Alt+E".action = set-window-height "+10%";
     "Mod+O".action = toggle-overview;
 
     "Mod+Y".action = focus-column-or-monitor-left;

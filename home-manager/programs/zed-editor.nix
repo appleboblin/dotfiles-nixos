@@ -28,6 +28,7 @@
       "catppuccin" # https://github.com/catppuccin/zed
       # "catppuccin-icons" # https://github.com/catppuccin/zed-icons
       "elisp"
+      "org"
     ];
 
     # extension and language dependencies
