@@ -1,7 +1,4 @@
 (load-theme 'catppuccin :no-confirm)
 (setq catppuccin-flavor 'macchiato)
 (catppuccin-reload)
-(set-face-attribute 'default nil :font "MesloLGS Nerd Font Mono" :height 180)
-(set-face-attribute 'fixed-pitch nil :font "MesloLGS Nerd Font Mono" :height 180)
-(set-face-attribute 'variable-pitch nil :font "Inter Nerd Font" :height 180 :weight 'regular)
 (load-file "~/.emacs.d/config.el")

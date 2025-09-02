@@ -1,6 +1,25 @@
 #+title My Emacs Configuration
-#+START: overview
-#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/config.el
+#+STARTUP: overview
+# #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/config.el
+
+* Start Up
+Check start up performance
+
+#+begin_src emacs-lisp
+
+  ;; The default is 800 kilobytes.  Measured in bytes.
+  (setq gc-cons-threshold (* 50 1000 1000))
+
+  (defun ap/display-startup-time ()
+    (message "Emacs loaded in %s with %d garbage collections and %d features loaded."
+             (format "%.2f seconds"
+                     (float-time
+                       (time-subtract after-init-time before-init-time)))
+             gcs-done (length features)))
+
+  (add-hook 'emacs-startup-hook #'ap/display-startup-time)
+
+#+end_src
 
 * Package Configuration
 Use `use-package` to help configur settings, I use nixos as package installation. `use-package` can help with installation when needed, need to set source with `package`.
@@ -11,8 +30,26 @@ Use `use-package` to help configur settings, I use nixos as package installation
 
 #+end_src
 
+* Keep Folders Clean
+Use no-littering
+
+#+begin_src emacs-lisp
+
+  ;; NOTE: If you want to move everything out of the ~/.emacs.d folder
+  ;; reliably, set `user-emacs-directory` before loading no-littering!
+  ;(setq user-emacs-directory "~/.cache/emacs")
+
+  (use-package no-littering)
+
+  ;; no-littering doesn't set this by default so we must place
+  ;; auto save files in the same path as it uses for sessions
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+#+end_src
+
 * Basic Configuration
-Enable line number, other settings are in `early-init.org`
+Enable line number, other settings are in `early-init.org`. Close brackets
 
 #+begin_src emacs-lisp
 
@@ -22,6 +59,8 @@ Enable line number, other settings are in `early-init.org`
   ;; Disable line numbers for some modes
   (dolist (mode '(org-mode-hook
                   term-mode-hook
+  		treemacs-mode-hook
+  		vterm-mode-hook
                   shell-mode-hook
                   eshell-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
@@ -31,7 +70,7 @@ Enable line number, other settings are in `early-init.org`
 ** Font Configuration
 Uses [[https://github.com/ayusshrathore/inter-nerd-font][Inter Nerd Font]] for variable and [[https://github.com/romkatv/powerlevel10k/blob/master/font.md][Meslo LGS Nerd Font]] for default and fixed.
 
-#+begin_src emacs-lis
+#+begin_src emacs-lisp
 
   (set-face-attribute 'default nil :font "MesloLGS Nerd Font Mono" :height 180)
   (set-face-attribute 'fixed-pitch nil :font "MesloLGS Nerd Font Mono" :height 180)
@@ -200,6 +239,9 @@ Uses [[https://github.com/abo-abo/hydra][hydra]] do create key binding for quick
 
 #+begin_src emacs-lisp
 
+  (use-package hydra
+    :defer t)
+
   (defhydra hydra-text-scale (:timeout 4)
     "scale text"
     ("h" text-scale-increase "in")
@@ -281,7 +323,6 @@ Scale header with heading levels. Set fonts for different modes. Replace list hy
 #+begin_src emacs-lisp
 
   (use-package org-bullets
-    :after org
     :hook (org-mode . org-bullets-mode)
     :custom
     (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
@@ -334,6 +375,19 @@ Allowing short cuts to insert code blocks. Eg, `<el` and press `TAB` to expand i
 
 #+end_src
 
+** ox-typst.el
+Trying out typst insteal of latex
+
+#+begin_src emacs-lisp
+
+  ;; (use-package ox-typst
+  ;;   :after org
+  ;;   :config
+  ;;   (setq org-typst-from-latex-environment #'org-typst-from-latex-with-naive
+  ;;       org-typst-from-latex-fragment #'org-typst-from-latex-with-naive))
+
+#+end_src
+
 * Development
 
 ** Languages
@@ -342,19 +396,22 @@ Allowing short cuts to insert code blocks. Eg, `<el` and press `TAB` to expand i
 
 #+begin_src emacs-lisp
 
-    (defun ap/lsp-mode-setup ()
-      (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-      (lsp-headerline-breadcrumb-mode))
+  (defun ap/lsp-mode-setup ()
+    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+    (lsp-headerline-breadcrumb-mode))
 
-    (use-package lsp-mode
-      :commands (lsp lsp-deferred)
-      :hook
-      (lsp-mode . ap/lsp-mode-setup)
-      (nix-mode . lsp-deferred)
-      :init
-      (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
-      :config
-      (lsp-enable-which-key-integration t))
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :hook
+    (lsp-mode . ap/lsp-mode-setup)
+    (lsp-mode . yas-minor-mode)
+    (nix-mode . lsp-deferred)
+    (typst-ts-mode . lsp-deferred)
+    :init
+    (setq lsp-signature-auto-active nil)
+    (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+    :config
+    (lsp-enable-which-key-integration t))
 
 #+end_src
 
@@ -397,6 +454,7 @@ Emacs major mode, nil and nixd
                        :server-id 'nixd)))
   (use-package nix-mode
     :after lsp-mode
+    :mode "\\.nix\\'"
     :custom
     (lsp-disabled-clients '((nix-mode . nix-nil))) ;; Disable nil so that nixd will be used as lsp-server
     :config
@@ -409,9 +467,52 @@ Emacs major mode, nil and nixd
 
 #+end_src
 
-***
+*** tinymist
+language server for Typst
 
-***
+#+begin_src emacs-lisp
+
+  (use-package websocket
+    :after typst-preview)
+  (use-package typst-preview
+    :load-path "plugins"
+    :after typst-ts-mode
+    :config
+    (setq typst-preview-browser "nyxt")
+    (setq typst-preview-invert-colors "never")
+    ;; (define-key typst-preview-mode-map (kbd "C-c C-j") 'typst-preview-send-position)
+    )
+
+  (use-package typst-ts-mode
+    :after lsp-mode
+    :mode "\\.typ\\'"
+    :custom
+    (typst-ts-mode-watch-options "--open")
+    :config
+    ;; make sure to install typst-lsp from
+    ;; https://github.com/nvarner/typst-lsp/releases
+    ;; or use tinymist
+    (add-to-list 'lsp-language-id-configuration '(typst-ts-mode . "typst"))
+    (lsp-register-client
+     (make-lsp-client
+      :new-connection (lsp-stdio-connection "tinymist")
+      :major-modes '(typst-ts-mode)
+      :server-id 'tinymist))
+    )
+#+end_src
+
+** Terminal
+
+*** vterm
+faster than term
+
+#+begin_src emacs-lisp
+  (use-package vterm
+    :commands vterm
+    :config
+    (setq vterm-shell "fish")
+    (setq vterm-max-scrollback 10000))
+#+end_src
 
 ** Projectile
 [[https://projectile.mx/][Projectile]] helps with project management.
@@ -491,5 +592,97 @@ Use [[https://github.com/redguardtoo/evil-nerd-commenter][evil-nerd-commenter]] 
 
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
+
+#+end_src
+
+** Close Brackets
+[[https://github.com/Fuco1/smartparens][smartparens]] to auto closa brackest.
+
+#+begin_src emacs-lisp
+  ;; Built in closing bracket function
+  ;; (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+  ;; (electric-pair-mode 1)
+
+  (use-package smartparens
+    :hook (prog-mode text-mode conf-mode)
+    :config
+    (defun indent-between-pair (&rest _ignored)
+      (newline)
+      (indent-according-to-mode)
+      (forward-line -1)
+      (indent-according-to-mode))
+
+    (sp-local-pair 'prog-mode "(" nil :post-handlers '((indent-between-pair "RET")))
+    (sp-local-pair 'prog-mode "[" nil :post-handlers '((indent-between-pair "RET")))
+    (sp-local-pair 'prog-mode "{" nil :post-handlers '((indent-between-pair "RET")))
+    )
+
+#+end_src
+
+** Multiple Cursors
+[[https://github.com/magnars/multiple-cursors.el][multiple cursors]] is kindn buggy.
+
+#+begin_src emacs-lisp
+
+  (global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-;") 'mc/mark-next-like-this)
+
+#+end_src
+
+** Rainbow Mode
+Highlight color codes using [[https://github.com/emacsmirror/rainbow-mode/tree/master][rainbow-mode]].
+
+#+begin_src emacs-lisp
+
+  (use-package rainbow-mode
+    :hook (prog-mode text-mode))
+
+#+end_src
+
+** Formatter
+[[https://github.com/radian-software/apheleia][Apheleia]] is an auto formatter for emacs.
+
+#+begin_src emacs-lisp
+
+  (use-package apheleia
+    :hook (typst-ts-mode . apheleia-mode)
+    :config
+    ;; Add formatter
+    (add-to-list 'apheleia-formatters
+                 '(prettypst "prettypst" "--use-std-in" "--use-std-out"))
+
+    ;; Match formatter with mode
+    (add-to-list 'apheleia-mode-alist
+                 '(typst-ts-mode . prettypst)))
+
+#+end_src
+
+* File Management
+
+** Dired
+Build in file manager
+
+#+begin_src emacs-lisp
+
+  (use-package dired
+    :ensure nil
+    :commands (dired dired-jump)
+    :bind (("C-x C-j" . dired-jump))
+    :custom ((dired-listing-switches "-agho --group-directories-first")))
+  (use-package dired-hide-dotfiles
+    :hook (dired-mode . dired-hide-dotfiles-mode)
+    :config
+    (evil-collection-define-key 'normal 'dired-mode-map
+    "H" 'dired-hide-dotfiles-mode))
+
+#+end_src
+
+* Runtime Performance
+Reduce GC
+
+#+begin_src emacs-lisp
+
+  ;; Make gc pauses faster by decreasing the threshold.
+  (setq gc-cons-threshold (* 2 1000 1000))
 
 #+end_src

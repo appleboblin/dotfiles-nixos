@@ -49,6 +49,7 @@
           };
           modules = [
             ./nixos
+            ./overlays
             ./hosts/${host}/configuration.nix
             ./hosts/${host}/hardware.nix
 

@@ -3,7 +3,6 @@
   lib,
   host,
   user,
-  inputs,
   ...
 }:
 {
@@ -20,10 +19,8 @@
     ./zfs.nix
   ];
 
-  nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
   # Nix Package Manager
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       auto-optimise-store = true;
       experimental-features = [
@@ -307,8 +304,8 @@
       solo2-cli
       mlocate
       tree
-      nixd
-      nixfmt-rfc-style
+      # typst
+      # tinymist
     ];
   };
 

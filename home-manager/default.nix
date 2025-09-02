@@ -74,6 +74,7 @@
         nix-your-shell
         cryptomator
         protonvpn-gui
+        nyxt
       ];
 
     sessionVariables = {
