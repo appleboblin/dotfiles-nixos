@@ -29,6 +29,7 @@
       # "catppuccin-icons" # https://github.com/catppuccin/zed-icons
       "elisp"
       "org"
+      "typst"
     ];
 
     # extension and language dependencies
@@ -54,6 +55,9 @@
 
       # texliv
       texliveFull
+
+      typst
+      tinymist
     ];
 
     ## everything inside of these brackets are Zed options.
@@ -164,6 +168,20 @@
         # https://github.com/oxalica/nil/blob/main/docs/configuration.md
         nil.initialization_options = {
           nix.flake.autoArchive = true;
+        };
+        tinymist = {
+          initialization_options = {
+            preview = {
+              background = {
+                enabled = true;
+              };
+            };
+          };
+          settings = {
+            exportPdf = "onSave";
+            outputPath = "$root/$name";
+            lint = true;
+          };
         };
       };
 
