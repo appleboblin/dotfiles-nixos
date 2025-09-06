@@ -317,6 +317,16 @@ Scale header with heading levels. Set fonts for different modes. Replace list hy
 
 #+end_src
 
+** Inline Latex Scaling
+Make inline latex visible
+
+#+begin_src emacs-lisp
+
+  (with-eval-after-load 'org
+    (plist-put org-format-latex-options :scale 3.5))
+
+#+end_src
+
 ** Heading Bullets
 [[https://github.com/sabof/org-bullets][org-bullets]] replaces the default heading.
 
@@ -376,7 +386,7 @@ Allowing short cuts to insert code blocks. Eg, `<el` and press `TAB` to expand i
 #+end_src
 
 ** ox-typst.el
-Trying out typst insteal of latex
+Trying out typst insteal of latex. Can't seem to figure out how to generate inline code with this.
 
 #+begin_src emacs-lisp
 
@@ -458,17 +468,19 @@ Emacs major mode, nil and nixd
     :custom
     (lsp-disabled-clients '((nix-mode . nix-nil))) ;; Disable nil so that nixd will be used as lsp-server
     :config
+    (setq company-idle-delay 0.1)
     (setq lsp-nix-nixd-server-path "nixd"
         lsp-nix-nixd-formatting-command [ "nixfmt" ]
-        lsp-nix-nixd-nixpkgs-expr "import <nixpkgs> { }"))
-
-
-  ;(setq-hook! 'nix-mode-hook company-idle-delay nil)
+        lsp-nix-nixd-nixpkgs-expr "import <nixpkgs> { }")
+        ;lsp-nix-nixd-nixos-options-expr "(builtins.getFlake \"/home/appleboblin/dotfiles-nixos\").nixosConfigurations.appleboblin.options"
+        ;lsp-nix-nixd-home-manager-options-expr "(builtins.getFlake \"/home/appleboblin/dotfiles-nixos\").homeConfigurations.\"appleboblin@desktop\".options")
+    )
+  ; (setq-hook! 'nix-mode-hook company-idle-delay 0.1)
 
 #+end_src
 
 *** tinymist
-language server for Typst
+language server for Typst, create preview server and launch in nyxt.
 
 #+begin_src emacs-lisp
 

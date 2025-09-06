@@ -75,6 +75,11 @@
         cryptomator
         protonvpn-gui
         nyxt
+        # only adding system wide because of emacs lsp
+        typst
+        tinymist
+        prettypst
+        texliveFull
       ];
 
     sessionVariables = {

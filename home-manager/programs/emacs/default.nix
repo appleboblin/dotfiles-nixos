@@ -38,9 +38,11 @@ in
           pkgsList = with pkgs; [
             nixd
             nixfmt-rfc-style
+            # These are buggy, sometimes needs to be installed on system, sometimes not, ldk why
             typst
             tinymist
             prettypst
+            texliveFull
           ];
 
           epkgsList = with epkgs; [
