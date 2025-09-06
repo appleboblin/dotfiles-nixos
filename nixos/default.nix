@@ -90,9 +90,9 @@
     gnome.gnome-keyring.enable = true;
     protonmail-bridge = lib.mkIf (host == "desktop") {
       enable = true;
-      package = pkgs.protonmail-bridge;
-      logLevel = "info";
-      path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176
+      # package = pkgs.protonmail-bridge;
+      # logLevel = "info";
+      # path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176
     };
 
     pipewire = {
