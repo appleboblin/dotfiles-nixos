@@ -48,6 +48,9 @@
         xfce.thunar-volman
         xfce.thunar-archive-plugin
 
+        # Provides org.gnome.keyring.SystemPrompter
+        gcr
+
         # Other
         vesktop
         filezilla
@@ -89,6 +92,8 @@
       DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
     };
   };
+
+  services.gnome-keyring.enable = true;
 
   # default stuff
   xdg = {

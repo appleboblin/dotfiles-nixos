@@ -15,6 +15,10 @@
   };
 
   services = {
+    cliphist = {
+      enable = true;
+      allowImages = true;
+    };
     hypridle.enable = true;
     swaync.enable = true;
     swayosd.enable = true;

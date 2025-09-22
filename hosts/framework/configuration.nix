@@ -55,8 +55,6 @@
     blueman.enable = true;
     hardware.bolt.enable = true;
 
-    logind.extraConfig = ''
-      HandlePowerKey=ignore
-    '';
+    logind.settings.Login.HandlePowerKey' = "lock";
   };
 }

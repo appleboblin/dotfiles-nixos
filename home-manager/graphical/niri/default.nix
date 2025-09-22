@@ -82,26 +82,6 @@
         (command "pcloud")
         (command "cryptomator")
         (command "swaync")
-        (command [
-          "wl-paste"
-          "--type"
-          "text"
-          "--watch"
-          "cliphist"
-          "store"
-          "--max-len"
-          "50"
-        ])
-        (command [
-          "wl-paste"
-          "--type"
-          "image"
-          "--watch"
-          "cliphist"
-          "store"
-          "--max-len"
-          "10"
-        ])
       ];
 
     layout = {

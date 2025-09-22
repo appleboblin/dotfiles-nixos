@@ -72,7 +72,8 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Asia/Taipei";
+  # time.timeZone = "Asia/Taipei";
+  time.timeZone = "America/Los_Angeles";
   # time.timeZone = "Pacific/Tahiti";
   services = {
     # https://discourse.nixos.org/t/timezones-how-to-setup-on-a-laptop/33853/8
@@ -87,7 +88,7 @@
     printing.enable = true;
 
     displayManager.gdm.enable = true;
-    gnome.gnome-keyring.enable = true;
+
     protonmail-bridge = lib.mkIf (host == "desktop") {
       enable = true;
       # package = pkgs.protonmail-bridge;
@@ -195,8 +196,6 @@
     pam = {
       u2f.enable = true;
       services = {
-        gdm.enableGnomeKeyring = true;
-        login.enableGnomeKeyring = true;
         hyprlock.text = "auth include login";
       };
     };
