@@ -70,6 +70,13 @@
       };
     };
   };
+  systemd.user.services.gnome-keyring = {
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,ssh";
+      Restart = "on-abort";
+    };
+  };
 
   # Set your time zone.
   # time.timeZone = "Asia/Taipei";
@@ -196,6 +203,11 @@
     pam = {
       u2f.enable = true;
       services = {
+        hyprlock = { };
+        hyprland.enableGnomeKeyring = true;
+        niri.enableGnomeKeyring = true;
+        gdm.enableGnomeKeyring = true;
+        login.enableGnomeKeyring = true;
         hyprlock.text = "auth include login";
       };
     };

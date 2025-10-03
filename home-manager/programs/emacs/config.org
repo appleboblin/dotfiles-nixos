@@ -490,7 +490,7 @@ language server for Typst, create preview server and launch in nyxt.
     :load-path "plugins"
     :after typst-ts-mode
     :config
-    (setq typst-preview-browser "nyxt")
+    (setq typst-preview-browser "chromium")
     (setq typst-preview-invert-colors "never")
     ;; (define-key typst-preview-mode-map (kbd "C-c C-j") 'typst-preview-send-position)
     )

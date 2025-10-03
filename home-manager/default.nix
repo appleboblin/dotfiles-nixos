@@ -31,7 +31,7 @@
         vivaldi-ffmpeg-codecs
 
         # Programming
-        python3
+        # python3
 
         # Terminal
         distrobox
@@ -78,6 +78,7 @@
         cryptomator
         protonvpn-gui
         nyxt
+        seahorse
         # only adding system wide because of emacs lsp
         typst
         tinymist
@@ -93,7 +94,7 @@
     };
   };
 
-  services.gnome-keyring.enable = true;
+  # services.gnome-keyring.enable = true;
 
   # default stuff
   xdg = {

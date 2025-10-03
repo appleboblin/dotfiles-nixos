@@ -52,6 +52,12 @@
       repeat = false;
     };
 
+    # spawn lockscreen
+    "Mod+Ctrl+L" = {
+      action.spawn = [ "hyprlock" ];
+      allow-when-locked = true;
+    };
+
     # toggle menu
     "Shift+Ctrl+Delete".action.spawn = [
       "sh"
