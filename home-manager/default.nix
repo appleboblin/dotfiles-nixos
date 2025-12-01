@@ -84,6 +84,7 @@
         tinymist
         prettypst
         texliveFull
+        edgetx
       ];
 
     sessionVariables = {

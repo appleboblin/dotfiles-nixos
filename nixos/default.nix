@@ -146,6 +146,7 @@
             KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
             # javelin
             SUBSYSTEM=="hidraw", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="400d", MODE="0666"
+            SUBSYSTEM=="usb", ATTRS{idVendor}=="0011", ATTRS{idProduct}=="0006", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
         		'';
 
       packages = [
