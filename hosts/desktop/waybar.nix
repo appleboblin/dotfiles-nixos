@@ -45,12 +45,11 @@ in
         margin-right = 0;
         spacing = 15;
         output = [
-          "${monitors.left}"
+          "${monitors.middle}"
         ];
         modules-left = [ "niri/workspaces" ];
         modules-center = [ "niri/window" ];
         modules-right = [
-          "idle_inhibitor"
           "pulseaudio"
           "cpu"
           "memory"
@@ -120,13 +119,6 @@ in
           "on-click-right" = "swaync-client -d -sw";
           "escape" = true;
         };
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "󰅶 ";
-            deactivated = "󰾪 ";
-          };
-        };
       }
       {
         layer = "top";
@@ -137,20 +129,25 @@ in
         margin-right = 0;
         spacing = 15;
         output = [
-          "${monitors.middle}"
+          "${monitors.left}"
         ];
-        modules-left = [
-          "custom/launcher"
-          "niri/workspaces"
-        ];
+        modules-left = [ "niri/workspaces" ];
         modules-center = [ "niri/window" ];
         modules-right = [
+          "bluetooth"
+          "idle_inhibitor"
           "tray"
           "clock"
-          "custom/notification"
         ];
         "niri/workspaces" = niriWorkspace;
         "niri/window" = niriWindow;
+        "idle_inhibitor" = {
+          format = "{icon}";
+          format-icons = {
+            activated = "󰅶 ";
+            deactivated = "󰾪 ";
+          };
+        };
         "clock" = {
           format = "{:%H:%M}";
           locale = "en_US.UTF-8";
@@ -159,57 +156,6 @@ in
         };
         "tray" = {
           spacing = 15;
-        };
-        "custom/launcher" = {
-          format = " ";
-          on-click = "pkill rofi || ${lib.getExe pkgs.rofi} -show drun -theme-str 'window {width: 400px;}'";
-        };
-        "custom/notification" = {
-          "tooltip" = false;
-          "format" = "{icon} ";
-          "format-icons" = {
-            "notification" = "<span foreground='red'><sup></sup></span>";
-            "none" = "";
-            "dnd-notification" = "<span foreground='red'><sup></sup></span>";
-            "dnd-none" = "";
-            "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
-            "inhibited-none" = "";
-            "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
-            "dnd-inhibited-none" = "";
-          };
-          "return-type" = "json";
-          "exec-if" = "which swaync-client";
-          "exec" = "swaync-client -swb";
-          "on-click" = "swaync-client -t -sw";
-          "on-click-right" = "swaync-client -d -sw";
-          "escape" = true;
-        };
-      }
-      {
-        layer = "top";
-        position = "top";
-        height = 50;
-        margin-top = 0;
-        margin-left = 0;
-        margin-right = 0;
-        spacing = 15;
-        output = [
-          "${monitors.right}"
-        ];
-        modules-left = [ "niri/workspaces" ];
-        modules-center = [ "niri/window" ];
-        modules-right = [
-          "bluetooth"
-          "idle_inhibitor"
-        ];
-        "niri/workspaces" = niriWorkspace;
-        "niri/window" = niriWindow;
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "󰅶 ";
-            deactivated = "󰾪 ";
-          };
         };
         "bluetooth" = {
           # // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system

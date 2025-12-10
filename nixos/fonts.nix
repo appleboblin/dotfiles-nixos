@@ -12,6 +12,9 @@
       source-han-sans
       source-han-serif
       inter
+      liberation_ttf
+      corefonts
+      vista-fonts
       inter-nerdfont
       nerd-fonts.meslo-lg
       nerd-fonts.fira-code
