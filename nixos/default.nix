@@ -343,6 +343,8 @@
 
     # QEMU/KVM
     libvirtd = {
+      # Don't auto start vm server
+      # sudo systemctl start libvertd
       enable = host != "vm";
       qemu.ovmf.enable = host != "vm";
     };
