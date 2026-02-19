@@ -85,6 +85,7 @@
         prettypst
         texliveFull
         edgetx
+        orca-slicer
       ];
 
     sessionVariables = {
