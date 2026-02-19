@@ -52,6 +52,7 @@
       # html
       vscode-langservers-extracted
       openssl
+      openssl.out
 
       # texliv
       texliveFull
