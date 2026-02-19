@@ -11,6 +11,14 @@
       websocat.enable = true;
     };
     lsp.inlayHints.enable = true;
+    extraConfigLua = ''
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.typ",
+        callback = function()
+          vim.lsp.buf.format({ async = false })
+        end,
+      })
+    '';
     plugins = {
       typst-preview.enable = true;
       # typst-vim.enable = true;
