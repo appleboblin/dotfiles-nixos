@@ -69,7 +69,6 @@
         calibre
         libation
         obsidian
-        # android-udev-rules
         pdfslicer
         proton-pass
         grayjay

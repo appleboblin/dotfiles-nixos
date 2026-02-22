@@ -9,6 +9,7 @@ in
 {
   imports = [
     ./waybar.nix
+    ./window.nix
   ];
 
   services = {
