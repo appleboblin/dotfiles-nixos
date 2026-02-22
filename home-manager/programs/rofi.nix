@@ -37,15 +37,7 @@ in
 {
   programs.rofi = {
     enable = host != "vm";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     package = pkgs.rofi;
-=======
-    # package = pkgs.rofi-wayland;
->>>>>>> Stashed changes
-=======
-    # package = pkgs.rofi-wayland;
->>>>>>> Stashed changes
     font = "Inter Nerd Font Regular 16";
     extraConfig = {
       display-drun = " ";
