@@ -7,6 +7,7 @@
     # clipboard history
     cliphist
     wl-clipboard
+    swaybg
   ];
 
   programs = {
@@ -23,12 +24,5 @@
     swaync.enable = true;
     swayosd.enable = true;
     wlsunset.enable = true;
-    hyprpaper = {
-      enable = true;
-      settings = {
-        preload = "${./WP_Laser_Up-2560x1440_00229.jpg}";
-        splash = false;
-      };
-    };
   };
 }

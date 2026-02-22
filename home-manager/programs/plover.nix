@@ -10,7 +10,7 @@
   ];
   programs.plover = {
     enable = true;
-    package = inputs.plover-flake.packages.${pkgs.system}.plover.withPlugins (
+    package = inputs.plover-flake.packages.${pkgs.stdenv.hostPlatform.system}.plover.withPlugins (
       ps: with ps; [
         plover-lapwing-aio
       ]

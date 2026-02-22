@@ -10,7 +10,7 @@ let
   rofi-power-menu = pkgs.writeShellApplication {
     name = "rofi-power-menu";
     runtimeInputs = with pkgs; [
-      rofi-wayland
+      rofi
       procps
     ];
     text = lib.readFile ./rofi-power-menu.sh;
@@ -18,7 +18,7 @@ let
   rofi-wifi-menu = pkgs.writeShellApplication {
     name = "rofi-wifi-menu";
     runtimeInputs = with pkgs; [
-      rofi-wayland
+      rofi
       libnotify
       networkmanager
     ];
@@ -27,7 +27,7 @@ let
   rofi-screenshot-menu = pkgs.writeShellApplication {
     name = "rofi-screenshot-menu";
     runtimeInputs = with pkgs; [
-      rofi-wayland
+      rofi
       libnotify
       grimblast
     ];
@@ -37,7 +37,7 @@ in
 {
   programs.rofi = {
     enable = host != "vm";
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     font = "Inter Nerd Font Regular 16";
     extraConfig = {
       display-drun = " ";

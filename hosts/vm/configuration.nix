@@ -53,8 +53,8 @@
     wget
     curl
     git
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
+    thunar
+    thunar-volman
+    thunar-archive-plugin
   ];
 }

@@ -16,7 +16,6 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixvim.url = "github:nix-community/nixvim";
-    # hyprpanel.url = "github:jas-singhfsu/hyprpanel";
     niri.url = "github:sodiboo/niri-flake";
     plover-flake.url = "github:openstenoproject/plover-flake";
     emacs-overlay.url = "github:nix-community/emacs-overlay";

@@ -44,9 +44,9 @@
         thunderbird
         libreoffice
         vlc
-        xfce.thunar
-        xfce.thunar-volman
-        xfce.thunar-archive-plugin
+        thunar
+        thunar-volman
+        thunar-archive-plugin
 
         # Provides org.gnome.keyring.SystemPrompter
         gcr
@@ -69,7 +69,7 @@
         calibre
         libation
         obsidian
-        android-udev-rules
+        # android-udev-rules
         pdfslicer
         proton-pass
         grayjay
@@ -151,9 +151,9 @@
       enable = true;
       createDirectories = true;
       extraConfig = {
-        XDG_GITHUB_DIR = "${config.home.homeDirectory}/github";
-        XDG_SCREENSHOT_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
-        XDG_SHARE_DIR = "${config.home.homeDirectory}/Share";
+        GITHUB = "${config.home.homeDirectory}/github";
+        SCREENSHOT = "${config.home.homeDirectory}/Pictures/Screenshots";
+        SHARE = "${config.home.homeDirectory}/Share";
       };
     };
   };

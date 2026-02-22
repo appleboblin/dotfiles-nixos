@@ -55,9 +55,9 @@
 
         # toggle Menu
         "CTRL SHIFT, Delete, exec, pkill rofi || uwsm app -- rofi-power-menu"
-        "$mod, V, exec, pkill rofi || cliphist list | uwsm app -- ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to copy' | cliphist decode | wl-copy" # Select from history
-        "$mod SHIFT, V, exec, pkill rofi || cliphist list | uwsm app -- ${lib.getExe pkgs.rofi-wayland} -dmenu -p 'Select to delete' | cliphist delete" # Select history to delete
-        "$mod, Space, exec, pkill rofi || uwsm app -- ${lib.getExe pkgs.rofi-wayland} -show drun -run-command 'uwsm app -- {cmd}' -theme-str 'window {width: 400px;}'"
+        "$mod, V, exec, pkill rofi || cliphist list | uwsm app -- ${lib.getExe pkgs.rofi} -dmenu -p 'Select to copy' | cliphist decode | wl-copy" # Select from history
+        "$mod SHIFT, V, exec, pkill rofi || cliphist list | uwsm app -- ${lib.getExe pkgs.rofi} -dmenu -p 'Select to delete' | cliphist delete" # Select history to delete
+        "$mod, Space, exec, pkill rofi || uwsm app -- ${lib.getExe pkgs.rofi} -show drun -run-command 'uwsm app -- {cmd}' -theme-str 'window {width: 400px;}'"
 
         # Delete last entry from cliphist history
         "$mod, Delete, exec, cliphist list | cliphist delete "

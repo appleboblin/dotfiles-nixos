@@ -300,7 +300,7 @@
       nfs-utils # nfs file share
       cifs-utils
       openmpi
-      ior
+      # ior # broken build
       lxqt.lxqt-policykit
       libimobiledevice
       libheif
@@ -327,7 +327,7 @@
 
     # Thunar
     xfconf.enable = true;
-    file-roller.enable = true;
+    # file-roller.enable = true;
     thunar.plugins = with pkgs.xfce; [
       thunar-archive-plugin
       thunar-media-tags-plugin
@@ -346,7 +346,7 @@
       # Don't auto start vm server
       # sudo systemctl start libvertd
       enable = host != "vm";
-      qemu.ovmf.enable = host != "vm";
+      # qemu.ovmf.enable = host != "vm";
     };
   };
 

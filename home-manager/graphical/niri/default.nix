@@ -78,7 +78,13 @@
           "foot"
           "--server"
         ])
-        (command "hyprpaper")
+        (command [
+          "swaybg"
+          "-m"
+          "fill"
+          "-i"
+          "${../WP_Laser_Up-2560x1440_00229.jpg}"
+        ])
         (command "pcloud")
         (command "cryptomator")
         (command "swaync")

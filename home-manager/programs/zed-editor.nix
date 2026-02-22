@@ -38,7 +38,7 @@
       nixd
       nil
       # alejandra
-      nixfmt-rfc-style
+      nixfmt
 
       # python
       ruff

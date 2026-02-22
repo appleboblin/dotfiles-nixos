@@ -87,7 +87,7 @@
       };
       wilder = {
         enable = true;
-        modes = [
+        settings.modes = [
           ":"
           "/"
           "?"
