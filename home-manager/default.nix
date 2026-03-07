@@ -47,6 +47,7 @@
         thunar
         thunar-volman
         thunar-archive-plugin
+        file-roller
 
         # Provides org.gnome.keyring.SystemPrompter
         gcr
