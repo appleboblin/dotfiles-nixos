@@ -70,7 +70,7 @@
         calibre
         libation
         obsidian
-        pdfslicer
+        # pdfslicer
         proton-pass
         grayjay
         freetube
@@ -150,6 +150,7 @@
     userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = false;
       extraConfig = {
         GITHUB = "${config.home.homeDirectory}/github";
         SCREENSHOT = "${config.home.homeDirectory}/Pictures/Screenshots";
@@ -165,6 +166,7 @@
     # github
     git = {
       enable = true;
+      signing.format = null;
       includes = [
         {
           # personal

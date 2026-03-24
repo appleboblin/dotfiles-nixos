@@ -55,6 +55,14 @@
     blueman.enable = true;
     hardware.bolt.enable = true;
 
+    fprintd = {
+      enable = true;
+      package = pkgs.fprintd-tod;
+      tod.enable = true;
+      # Search for "libfprint" in packages to find other drivers
+      tod.driver = pkgs.libfprint-2-tod1-goodix;
+    };
+
     logind.settings.Login.HandlePowerKey' = "lock";
   };
 }
