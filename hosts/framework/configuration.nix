@@ -90,7 +90,10 @@
         login.fprintAuth = false;
         gdm.fprintAuth = false;
         sudo.fprintAuth = false;
-        hyprlock.fprintAuth = true;
+        hyprlock = {
+          fprintAuth = true; # adds pam_fprintd.so as “sufficient”
+          unixAuth = true; # keeps the usual pam_unix password path
+        };
       };
     };
   };

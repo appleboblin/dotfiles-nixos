@@ -199,6 +199,7 @@
       u2f.enable = true;
       services = {
         hyprlock = { };
+        hyprlock.unixAuth = true;
         hyprland.enableGnomeKeyring = true;
         niri.enableGnomeKeyring = true;
         gdm.enableGnomeKeyring = true;
