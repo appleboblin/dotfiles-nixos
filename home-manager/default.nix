@@ -86,6 +86,7 @@
         texliveFull
         edgetx
         orca-slicer
+        rocmPackages.rocm-smi
       ];
 
     sessionVariables = {
