@@ -4,7 +4,6 @@
     ./btop.nix
     ./easyeffects.nix
     ./emacs
-    # ./espanso.nix
     ./firefox.nix
     ./foot.nix
     ./ghostty.nix

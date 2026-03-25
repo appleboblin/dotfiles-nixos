@@ -30,6 +30,7 @@
     fw-ectool
     framework-tool
     polkit_gnome
+    powertop
   ];
 
   # Desktop environment
@@ -45,6 +46,9 @@
       withUWSM = true;
     };
   };
+
+  # sudo powertop --auto-tune
+  powerManagement.powertop.enable = true;
 
   services = {
     fwupd.enable = true;

@@ -13,6 +13,9 @@ in
   ];
 
   services = {
+    beets.enable = true;
+    easyeffects.enable = true;
+    kdeconnect.enable = true;
     hypridle.settings = {
       listener = lib.mkDefault [
         {
