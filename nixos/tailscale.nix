@@ -13,4 +13,5 @@
       "--accept-routes"
     ];
   };
+  systemd.services.tailscaled.wantedBy = lib.mkForce [ ];
 }

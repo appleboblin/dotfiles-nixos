@@ -88,6 +88,11 @@
         (command "pcloud")
         (command "cryptomator")
         (command "swaync")
+        (command [
+          "dbus-update-activation-environment"
+          "--systemd"
+          "--all"
+        ])
       ];
 
     layout = {

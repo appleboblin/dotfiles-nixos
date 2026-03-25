@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   host,
@@ -68,13 +69,6 @@
           fcitx5-chewing
         ];
       };
-    };
-  };
-  systemd.user.services.gnome-keyring = {
-    wantedBy = [ "default.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,ssh";
-      Restart = "on-abort";
     };
   };
 
@@ -209,7 +203,6 @@
         niri.enableGnomeKeyring = true;
         gdm.enableGnomeKeyring = true;
         login.enableGnomeKeyring = true;
-        hyprlock.text = "auth include login";
       };
     };
   };
@@ -281,6 +274,7 @@
       neovim
       killall
       wget
+      dbus
       usbutils
       curl
       gzip
@@ -334,19 +328,21 @@
     ];
 
     virt-manager = {
-      enable = host != "vm";
+      # enable = host != "vm";
+      enable = config.virtualisation.libvirtd.enable;
     };
   };
 
   virtualisation = {
-    spiceUSBRedirection.enable = true;
+    spiceUSBRedirection.enable = config.virtualisation.libvirtd.enable;
 
     # QEMU/KVM
     libvirtd = {
       # Don't auto start vm server
       # sudo systemctl start libvertd
-      enable = host != "vm";
+      # enable = host != "vm";
       # qemu.ovmf.enable = host != "vm";
+      enable = lib.mkDefault false;
     };
   };
 

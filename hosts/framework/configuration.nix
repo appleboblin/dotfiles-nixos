@@ -29,6 +29,7 @@
     amdgpu_top
     fw-ectool
     framework-tool
+    polkit_gnome
   ];
 
   # Desktop environment
@@ -64,5 +65,29 @@
     };
 
     logind.settings.Login.HandlePowerKey' = "lock";
+  };
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+  };
+
+  security = {
+    pam = {
+      services = {
+        login.fprintAuth = false;
+        gdm.fprintAuth = false;
+        sudo.fprintAuth = false;
+        hyprlock.fprintAuth = true;
+      };
+    };
   };
 }

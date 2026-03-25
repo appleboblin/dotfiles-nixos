@@ -23,7 +23,7 @@ let
 in
 {
   programs.emacs = {
-    enable = true;
+    enable = lib.mkDefault false;
     package = pkgs.emacsWithPackagesFromUsePackage {
       config = ./init.el;
       defaultInitFile = true;
