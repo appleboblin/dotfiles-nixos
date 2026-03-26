@@ -16,9 +16,8 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixvim.url = "github:nix-community/nixvim";
-    # hyprpanel.url = "github:jas-singhfsu/hyprpanel";
     niri.url = "github:sodiboo/niri-flake";
-    plover-flake.url = "github:openstenoproject/plover-flake";
+    # emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     # Tools
     poetry2nix = {
@@ -37,7 +36,6 @@
     }@inputs:
     let
       user = "appleboblin";
-
       mkHost =
         host:
         nixpkgs.lib.nixosSystem {
@@ -47,9 +45,9 @@
             inherit (nixpkgs) lib;
             inherit inputs host user;
           };
-
           modules = [
             ./nixos
+            ./overlays
             ./hosts/${host}/configuration.nix
             ./hosts/${host}/hardware.nix
 
@@ -86,7 +84,6 @@
       nixosConfigurations = {
         framework = mkHost "framework";
         desktop = mkHost "desktop";
-        gem12 = mkHost "gem12";
         vm = mkHost "vm";
       };
     };

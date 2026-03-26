@@ -10,7 +10,7 @@ let
   rofi-power-menu = pkgs.writeShellApplication {
     name = "rofi-power-menu";
     runtimeInputs = with pkgs; [
-      rofi-wayland
+      rofi
       procps
     ];
     text = lib.readFile ./rofi-power-menu.sh;
@@ -18,26 +18,27 @@ let
   rofi-wifi-menu = pkgs.writeShellApplication {
     name = "rofi-wifi-menu";
     runtimeInputs = with pkgs; [
-      rofi-wayland
+      rofi
       libnotify
       networkmanager
     ];
     text = lib.readFile ./rofi-wifi-menu.sh;
   };
-  rofi-screenshot-menu = pkgs.writeShellApplication {
-    name = "rofi-screenshot-menu";
-    runtimeInputs = with pkgs; [
-      rofi-wayland
-      libnotify
-      grimblast
-    ];
-    text = lib.readFile ./rofi-screenshot-menu.sh;
-  };
+  # Script is hyprland only for now
+  # rofi-screenshot-menu = pkgs.writeShellApplication {
+  #   name = "rofi-screenshot-menu";
+  #   runtimeInputs = with pkgs; [
+  #     rofi
+  #     libnotify
+  #     grimblast
+  #   ];
+  #   text = lib.readFile ./rofi-screenshot-menu.sh;
+  # };
 in
 {
   programs.rofi = {
     enable = host != "vm";
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     font = "Inter Nerd Font Regular 16";
     extraConfig = {
       display-drun = " ";
@@ -166,7 +167,7 @@ in
   home.packages = [
     rofi-power-menu
     rofi-wifi-menu
-    rofi-screenshot-menu
+    # rofi-screenshot-menu
   ];
 
   # xdg.configFile = {

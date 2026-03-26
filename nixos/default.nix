@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   host,
@@ -72,7 +73,8 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Asia/Taipei";
+  # time.timeZone = "Asia/Taipei";
+  time.timeZone = "America/Los_Angeles";
   # time.timeZone = "Pacific/Tahiti";
   services = {
     # https://discourse.nixos.org/t/timezones-how-to-setup-on-a-laptop/33853/8
@@ -87,12 +89,12 @@
     printing.enable = true;
 
     displayManager.gdm.enable = true;
-    gnome.gnome-keyring.enable = true;
+
     protonmail-bridge = lib.mkIf (host == "desktop") {
       enable = true;
-      package = pkgs.protonmail-bridge;
-      logLevel = "info";
-      path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176
+      # package = pkgs.protonmail-bridge;
+      # logLevel = "info";
+      # path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176
     };
 
     pipewire = {
@@ -138,6 +140,7 @@
             KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
             # javelin
             SUBSYSTEM=="hidraw", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="400d", MODE="0666"
+            SUBSYSTEM=="usb", ATTRS{idVendor}=="0011", ATTRS{idProduct}=="0006", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
         		'';
 
       packages = [
@@ -195,8 +198,12 @@
     pam = {
       u2f.enable = true;
       services = {
+        hyprlock = { };
+        hyprlock.unixAuth = true;
+        hyprland.enableGnomeKeyring = true;
+        niri.enableGnomeKeyring = true;
+        gdm.enableGnomeKeyring = true;
         login.enableGnomeKeyring = true;
-        hyprlock.text = "auth include login";
       };
     };
   };
@@ -268,6 +275,7 @@
       neovim
       killall
       wget
+      dbus
       usbutils
       curl
       gzip
@@ -287,7 +295,7 @@
       nfs-utils # nfs file share
       cifs-utils
       openmpi
-      ior
+      # ior # broken build
       lxqt.lxqt-policykit
       libimobiledevice
       libheif
@@ -303,6 +311,8 @@
       solo2-cli
       mlocate
       tree
+      # typst
+      # tinymist
     ];
   };
 
@@ -312,24 +322,28 @@
 
     # Thunar
     xfconf.enable = true;
-    file-roller.enable = true;
+    # file-roller.enable = true;
     thunar.plugins = with pkgs.xfce; [
       thunar-archive-plugin
       thunar-media-tags-plugin
     ];
 
     virt-manager = {
-      enable = host != "vm";
+      # enable = host != "vm";
+      enable = config.virtualisation.libvirtd.enable;
     };
   };
 
   virtualisation = {
-    spiceUSBRedirection.enable = true;
+    spiceUSBRedirection.enable = config.virtualisation.libvirtd.enable;
 
     # QEMU/KVM
     libvirtd = {
-      enable = host != "vm";
-      qemu.ovmf.enable = host != "vm";
+      # Don't auto start vm server
+      # sudo systemctl start libvertd
+      # enable = host != "vm";
+      # qemu.ovmf.enable = host != "vm";
+      enable = lib.mkDefault false;
     };
   };
 

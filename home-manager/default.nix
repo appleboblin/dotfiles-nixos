@@ -31,7 +31,7 @@
         vivaldi-ffmpeg-codecs
 
         # Programming
-        python3
+        # python3
 
         # Terminal
         distrobox
@@ -44,9 +44,13 @@
         thunderbird
         libreoffice
         vlc
-        xfce.thunar
-        xfce.thunar-volman
-        xfce.thunar-archive-plugin
+        thunar
+        thunar-volman
+        thunar-archive-plugin
+        file-roller
+
+        # Provides org.gnome.keyring.SystemPrompter
+        gcr
 
         # Other
         vesktop
@@ -66,14 +70,22 @@
         calibre
         libation
         obsidian
-        android-udev-rules
-        pdfslicer
+        # pdfslicer
         proton-pass
         grayjay
         freetube
         nix-your-shell
         cryptomator
         protonvpn-gui
+        nyxt
+        seahorse
+        # typst
+        tinymist
+        prettypst
+        texliveFull
+        edgetx
+        orca-slicer
+        rocmPackages.rocm-smi
       ];
 
     sessionVariables = {
@@ -83,6 +95,8 @@
       DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
     };
   };
+
+  # services.gnome-keyring.enable = true;
 
   # default stuff
   xdg = {
@@ -136,10 +150,11 @@
     userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = false;
       extraConfig = {
-        XDG_GITHUB_DIR = "${config.home.homeDirectory}/github";
-        XDG_SCREENSHOT_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
-        XDG_SHARE_DIR = "${config.home.homeDirectory}/Share";
+        GITHUB = "${config.home.homeDirectory}/github";
+        SCREENSHOT = "${config.home.homeDirectory}/Pictures/Screenshots";
+        SHARE = "${config.home.homeDirectory}/Share";
       };
     };
   };
@@ -151,6 +166,7 @@
     # github
     git = {
       enable = true;
+      signing.format = null;
       includes = [
         {
           # personal

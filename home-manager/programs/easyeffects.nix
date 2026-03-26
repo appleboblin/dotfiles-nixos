@@ -1,6 +1,10 @@
 {
+  lib,
+  ...
+}:
+{
   services.easyeffects = {
-    enable = true;
+    enable = lib.mkDefault false;
     preset = "loudnessEqualizer";
     extraPresets = {
       # https://github.com/Digitalone1/EasyEffects-Presets/blob/master/LoudnessEqualizer.json

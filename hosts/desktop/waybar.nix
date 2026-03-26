@@ -45,7 +45,7 @@ in
         margin-right = 0;
         spacing = 15;
         output = [
-          "${monitors.left}"
+          "${monitors.middle}"
         ];
         modules-left = [ "niri/workspaces" ];
         modules-center = [ "niri/window" ];
@@ -56,6 +56,7 @@ in
           "network"
           "clock"
           "custom/powermenu"
+          "custom/notification"
         ];
         "niri/workspaces" = niriWorkspace;
         "niri/window" = niriWindow;
@@ -98,43 +99,6 @@ in
           format = "";
           on-click = "rofi-power-menu";
         };
-      }
-      {
-        layer = "top";
-        position = "top";
-        height = 50;
-        margin-top = 0;
-        margin-left = 0;
-        margin-right = 0;
-        spacing = 15;
-        output = [
-          "${monitors.middle}"
-        ];
-        modules-left = [
-          "custom/launcher"
-          "niri/workspaces"
-        ];
-        modules-center = [ "niri/window" ];
-        modules-right = [
-          "tray"
-          "clock"
-          "custom/notification"
-        ];
-        "niri/workspaces" = niriWorkspace;
-        "niri/window" = niriWindow;
-        "clock" = {
-          format = "{:%H:%M}";
-          locale = "en_US.UTF-8";
-          format-alt = "{:%a %d %b %H:%M}";
-          interval = 60;
-        };
-        "tray" = {
-          spacing = 15;
-        };
-        "custom/launcher" = {
-          format = " ";
-          on-click = "pkill rofi || ${lib.getExe pkgs.rofi} -show drun -theme-str 'window {width: 400px;}'";
-        };
         "custom/notification" = {
           "tooltip" = false;
           "format" = "{icon} ";
@@ -165,13 +129,15 @@ in
         margin-right = 0;
         spacing = 15;
         output = [
-          "${monitors.right}"
+          "${monitors.left}"
         ];
         modules-left = [ "niri/workspaces" ];
         modules-center = [ "niri/window" ];
         modules-right = [
           "bluetooth"
           "idle_inhibitor"
+          "tray"
+          "clock"
         ];
         "niri/workspaces" = niriWorkspace;
         "niri/window" = niriWindow;
@@ -181,6 +147,15 @@ in
             activated = "󰅶 ";
             deactivated = "󰾪 ";
           };
+        };
+        "clock" = {
+          format = "{:%H:%M}";
+          locale = "en_US.UTF-8";
+          format-alt = "{:%a %d %b %H:%M}";
+          interval = 60;
+        };
+        "tray" = {
+          spacing = 15;
         };
         "bluetooth" = {
           # // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system

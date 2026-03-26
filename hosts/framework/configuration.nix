@@ -29,6 +29,8 @@
     amdgpu_top
     fw-ectool
     framework-tool
+    polkit_gnome
+    powertop
   ];
 
   # Desktop environment
@@ -45,6 +47,9 @@
     };
   };
 
+  # sudo powertop --auto-tune
+  powerManagement.powertop.enable = true;
+
   services = {
     fwupd.enable = true;
     power-profiles-daemon.enable = true;
@@ -55,8 +60,41 @@
     blueman.enable = true;
     hardware.bolt.enable = true;
 
-    logind.extraConfig = ''
-      HandlePowerKey=ignore
-    '';
+    fprintd = {
+      enable = true;
+      package = pkgs.fprintd-tod;
+      tod.enable = true;
+      # Search for "libfprint" in packages to find other drivers
+      tod.driver = pkgs.libfprint-2-tod1-goodix;
+    };
+
+    logind.settings.Login.HandlePowerKey' = "lock";
+  };
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+  };
+
+  security = {
+    pam = {
+      services = {
+        login.fprintAuth = false;
+        gdm.fprintAuth = false;
+        sudo.fprintAuth = false;
+        hyprlock = {
+          fprintAuth = true; # adds pam_fprintd.so as “sufficient”
+          unixAuth = true; # keeps the usual pam_unix password path
+        };
+      };
+    };
   };
 }

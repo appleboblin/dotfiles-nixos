@@ -17,7 +17,7 @@
         blink = "yes";
       };
 
-      colors = {
+      colors-dark = {
         cursor = "181926 f4dbd6";
         # Catppuccin Macchiato
         alpha = "0.95";

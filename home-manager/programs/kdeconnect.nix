@@ -1,3 +1,7 @@
 {
-  services.kdeconnect.enable = true;
+  lib,
+  ...
+}:
+{
+  services.kdeconnect.enable = lib.mkDefault false;
 }

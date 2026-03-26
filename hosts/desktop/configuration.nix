@@ -29,6 +29,13 @@
     bluetooth = {
       enable = true; # enables support for Bluetooth
       powerOnBoot = lib.mkForce true; # powers up the default Bluetooth controller on boot
+      settings = {
+        General = {
+          Experimental = true;
+          FastConnectable = true;
+        };
+        Policy.AutoEnable = true;
+      };
     };
 
     # Xone kernel driver for xbox controller

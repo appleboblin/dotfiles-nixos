@@ -27,6 +27,9 @@
       "log" # https://github.com/zed-extensions/log
       "catppuccin" # https://github.com/catppuccin/zed
       # "catppuccin-icons" # https://github.com/catppuccin/zed-icons
+      "elisp"
+      "org"
+      "typst"
     ];
 
     # extension and language dependencies
@@ -35,7 +38,7 @@
       nixd
       nil
       # alejandra
-      nixfmt-rfc-style
+      nixfmt
 
       # python
       ruff
@@ -49,9 +52,13 @@
       # html
       vscode-langservers-extracted
       openssl
+      openssl.out
 
       # texliv
       texliveFull
+
+      typst
+      tinymist
     ];
 
     ## everything inside of these brackets are Zed options.
@@ -163,6 +170,20 @@
         nil.initialization_options = {
           nix.flake.autoArchive = true;
         };
+        tinymist = {
+          initialization_options = {
+            preview = {
+              background = {
+                enabled = true;
+              };
+            };
+          };
+          settings = {
+            exportPdf = "onSave";
+            outputPath = "$root/$name";
+            lint = true;
+          };
+        };
       };
 
       telemetry = {
@@ -208,9 +229,9 @@
       auto_update = false;
       show_whitespaces = "all";
       ui_font_family = "Inter";
-      ui_font_size = lib.mkDefault 19;
+      ui_font_size = lib.mkDefault 20;
       buffer_font_family = "MesloLGS Nerd Font Mono";
-      buffer_font_size = lib.mkDefault 18;
+      buffer_font_size = lib.mkDefault 20;
       always_treat_brackets_as_autoclosed = true;
       preferred_line_length = 120;
       soft_wrap = "preferred_line_length";

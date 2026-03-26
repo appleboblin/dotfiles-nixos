@@ -1,0 +1,700 @@
+#+title My Emacs Configuration
+#+STARTUP: overview
+# #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/config.el
+
+* Start Up
+Check start up performance
+
+#+begin_src emacs-lisp
+
+  ;; The default is 800 kilobytes.  Measured in bytes.
+  (setq gc-cons-threshold (* 50 1000 1000))
+
+  (defun ap/display-startup-time ()
+    (message "Emacs loaded in %s with %d garbage collections and %d features loaded."
+             (format "%.2f seconds"
+                     (float-time
+                       (time-subtract after-init-time before-init-time)))
+             gcs-done (length features)))
+
+  (add-hook 'emacs-startup-hook #'ap/display-startup-time)
+
+#+end_src
+
+* Package Configuration
+Use `use-package` to help configur settings, I use nixos as package installation. `use-package` can help with installation when needed, need to set source with `package`.
+
+#+begin_src emacs-lisp
+  (require 'use-package)
+  (setq use-package-always-ensure t)
+
+#+end_src
+
+* Keep Folders Clean
+Use no-littering
+
+#+begin_src emacs-lisp
+
+  ;; NOTE: If you want to move everything out of the ~/.emacs.d folder
+  ;; reliably, set `user-emacs-directory` before loading no-littering!
+  ;(setq user-emacs-directory "~/.cache/emacs")
+
+  (use-package no-littering)
+
+  ;; no-littering doesn't set this by default so we must place
+  ;; auto save files in the same path as it uses for sessions
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+#+end_src
+
+* Basic Configuration
+Enable line number, other settings are in `early-init.org`. Close brackets
+
+#+begin_src emacs-lisp
+
+  (column-number-mode)
+  (global-display-line-numbers-mode t)
+
+  ;; Disable line numbers for some modes
+  (dolist (mode '(org-mode-hook
+                  term-mode-hook
+  		treemacs-mode-hook
+  		vterm-mode-hook
+                  shell-mode-hook
+                  eshell-mode-hook))
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+#+end_src
+
+** Font Configuration
+Uses [[https://github.com/ayusshrathore/inter-nerd-font][Inter Nerd Font]] for variable and [[https://github.com/romkatv/powerlevel10k/blob/master/font.md][Meslo LGS Nerd Font]] for default and fixed.
+
+#+begin_src emacs-lisp
+
+  (set-face-attribute 'default nil :font "MesloLGS Nerd Font Mono" :height 180)
+  (set-face-attribute 'fixed-pitch nil :font "MesloLGS Nerd Font Mono" :height 180)
+  (set-face-attribute 'variable-pitch nil :font "Inter Nerd Font" :height 180 :weight 'regular)
+
+#+end_src
+
+* Keybinding Configuration
+Uses [[https://github.com/emacs-evil/evil][evil-mode]] for Vim like experience. [[https://github.com/emacs-evil/evil-collection][evil-collection]] configures Emacs modes with Vim like keybindings. [[https://github.com/noctuid/general.el][general.el]] easy keybinding configuration with integration with which-key. Adds leader key.
+
+#+begin_src emacs-lisp
+
+  ;; Make ESC quit prompts
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+  (use-package general
+    :after evil
+    :config
+    (general-create-definer ap/leader-keys
+      :keymaps '(normal insert visual emacs)
+      :prefix "SPC"
+      :global-prefix "C-SPC")
+
+    (ap/leader-keys
+     "t"  '(:ignore t :which-key "toggles")))
+
+  (use-package evil
+    :init
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump nil)
+    :config
+    (evil-mode 1)
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+    (evil-set-initial-state 'messages-buffer-mode 'normal)
+    (evil-set-initial-state 'dashboard-mode 'normal))
+
+  (use-package evil-collection
+    :after evil
+    :config
+    (evil-collection-init))
+
+
+#+end_src
+
+* UI Configuration
+Everything UI related
+
+** Color Theme
+[[https://github.com/catppuccin/emacs][Catppuccin Macchiato]]
+
+#+begin_src emacs-lisp
+
+  (load-theme 'catppuccin :no-confirm)
+  (setq catppuccin-flavor 'macchiato)
+  (catppuccin-reload)
+
+#+end_src
+
+** Doom Modeline
+Need to install more icons if Nerd Font is not used.
+#+begin_src emacs-lisp
+
+  (use-package doom-modeline
+    :init (doom-modeline-mode 1)
+    :custom ((doom-modeline-height 15)))
+
+#+end_src
+
+
+** Which Key
+UI panel displaying binding under prefix.
+
+#+begin_src emacs-lisp
+
+  (use-package which-key
+    :defer 0
+    :diminish which-key-mode
+     :config
+     (which-key-mode)
+     (setq which-key-idle-delay 0.5))
+
+#+end_src
+
+** Ivy and Counsel
+[[https://github.com/emacsmirror/ivy][Ivy]] provides completion mechanism. Counsel provides custom common commands to use Ivy. Swiper provides better search. TODO look indo selectrum and [[https://github.com/radian-software/ctrlf][ctrlf]].
+
+#+begin_src emacs-lisp
+
+  (use-package ivy
+   :diminish
+   :bind (("C-s" . swiper)
+          :map ivy-minibuffer-map
+          ("TAB" . ivy-alt-done)
+          ("C-e" . ivy-alt-done)
+          :map ivy-switch-buffer-map
+          ("C-e" . ivy-done)
+          ("C-k" . ivy-switch-buffer-kill)
+          :map ivy-reverse-i-search-map
+          ("C-k" . ivy-reverse-i-search-kill))
+   :config
+   (ivy-mode 1))
+
+  ;; swiper to recerter
+  (setq ivy-display-style 'fancy)
+  (defun bjm-swiper-recenter (&rest args)
+    "recenter display after swiper"
+    (recenter))
+  (advice-add 'swiper :after #'bjm-swiper-recenter)
+
+  (use-package ivy-rich
+    ;; :after ivy
+    :init
+    (ivy-rich-mode 1))
+
+  (use-package counsel
+    :bind (("C-M-h" . 'counsel-switch-buffer)
+           :map minibuffer-local-map
+           ("C-r" . 'counsel-minibuffer-history))
+    :custom
+    (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+    :config
+    (counsel-mode 1))
+
+#+end_src
+
+** Improved Candidate Sorting
+Ivy-prescient to help sort command based on selection history.
+
+#+begin_src emacs-lisp
+
+  (use-package ivy-prescient
+    :after counsel
+    :custom
+    (ivy-prescient-enable-filtering nil)
+    :config
+    ;; Uncomment the following line to have sorting remembered across sessions!
+    (prescient-persist-mode 1)
+    (ivy-prescient-mode 1))
+
+#+end_src
+
+** Helpful Help Commands
+Helpful adds description to functions, able to view the documentation and source code of the function.
+
+#+begin_src emacs-lisp
+
+  (use-package helpful
+    :commands (helpful-callable helpful-variable helpful-command helpful-key)
+    :custom
+    (counsel-describe-function-function #'helpful-callable)
+    (counsel-describe-variable-function #'helpful-variable)
+    :bind
+    ([remap describe-function] . counsel-describe-function)
+    ([remap describe-command] . helpful-command)
+    ([remap describe-variable] . counsel-describe-variable)
+    ([remap describe-key] . helpful-key))
+
+#+end_src
+
+** Text Scaling
+Uses [[https://github.com/abo-abo/hydra][hydra]] do create key binding for quickly adjust scale of text.
+
+#+begin_src emacs-lisp
+
+  (use-package hydra
+    :defer t)
+
+  (defhydra hydra-text-scale (:timeout 4)
+    "scale text"
+    ("h" text-scale-increase "in")
+    ("a" text-scale-decrease "out")
+    ("f" nil "finished" :exit t))
+
+  (ap/leader-keys
+    "ts" '(hydra-text-scale/body :which-key "scale text"))
+
+#+end_src
+
+* Org Mode
+Rich document editor, project planner and for general notes. Want to replace Obsidian with org mode because I'm adding Obsidian plug in to make it more like org mode.
+
+** Basic Config
+Basic configuration for `org-mode`. Need to set up agenda and capture template.
+
+#+begin_src emacs-lisp
+
+  (defun ap/org-mode-setup ()
+    (org-indent-mode)
+    (variable-pitch-mode 1)
+    (visual-line-mode 1))
+
+  (use-package org
+    :hook (org-mode . ap/org-mode-setup)
+    :config
+    (setq org-ellipsis " ▾")
+    (setq org-agenda-start-with-log-mode t)
+    (setq org-log-done 'time)
+    (setq org-log-into-drawer t)
+
+    (setq org-agenda-files
+  	'("~/github/emacs/test.org"))
+    (setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)"))))
+
+#+end_src
+
+** Better Fonts
+Scale header with heading levels. Set fonts for different modes. Replace list hyphen with dot.
+
+#+begin_src emacs-lisp
+
+  ;; Replace list hyphen with dot
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  (with-eval-after-load 'org-faces
+    (dolist (face '((org-level-1 . 1.2)
+                    (org-level-2 . 1.1)
+                    (org-level-3 . 1.05)
+                    (org-level-4 . 1.0)
+                    (org-level-5 . 1.1)
+                    (org-level-6 . 1.1)
+                    (org-level-7 . 1.1)
+                    (org-level-8 . 1.1)))
+      (set-face-attribute (car face) nil :font "Inter Nerd Font" :weight 'regular :height (cdr face)))
+
+    ;; Make sure org-indent face is available
+    (require 'org-indent)
+
+    ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+    (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+    (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+    (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
+    (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+    (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+    (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+    (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+    (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
+
+#+end_src
+
+** Inline Latex Scaling
+Make inline latex visible
+
+#+begin_src emacs-lisp
+
+  (with-eval-after-load 'org
+    (plist-put org-format-latex-options :scale 3.5))
+
+#+end_src
+
+** Heading Bullets
+[[https://github.com/sabof/org-bullets][org-bullets]] replaces the default heading.
+
+#+begin_src emacs-lisp
+
+  (use-package org-bullets
+    :hook (org-mode . org-bullets-mode)
+    :custom
+    (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+#+end_src
+
+** Center Org Buffers
+[[https://github.com/joostkremers/visual-fill-column][visual-fill-column]] to center buffer for better writing experience.
+
+#+begin_src emacs-lisp
+
+
+(defun ap/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :hook (org-mode . ap/org-mode-visual-fill))
+
+
+#+end_src
+
+** Babel Languages
+Set up `org-babel-load-languages` to execute or export in `org-mode. [[https://orgmode.org/worg/org-contrib/babel/languages.html][Documentation]] for all languages supported.
+#+begin_src emacs-lisp
+
+  (with-eval-after-load 'org
+    (org-babel-do-load-languages
+        'org-babel-load-languages
+        '((emacs-lisp . t)
+        (python . t)))
+
+    (push '("conf-unix" . conf-unix) org-src-lang-modes))
+
+#+end_src
+
+** Structure Templates
+Allowing short cuts to insert code blocks. Eg, `<el` and press `TAB` to expand into a `emacs-lisp` block.
+
+#+begin_src emacs-lisp
+
+  (with-eval-after-load 'org
+    ;; This is needed as of Org 9.2
+    (require 'org-tempo)
+
+    (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+    (add-to-list 'org-structure-template-alist '("py" . "src python")))
+
+#+end_src
+
+** ox-typst.el
+Trying out typst insteal of latex. Can't seem to figure out how to generate inline code with this.
+
+#+begin_src emacs-lisp
+
+  ;; (use-package ox-typst
+  ;;   :after org
+  ;;   :config
+  ;;   (setq org-typst-from-latex-environment #'org-typst-from-latex-with-naive
+  ;;       org-typst-from-latex-fragment #'org-typst-from-latex-with-naive))
+
+#+end_src
+
+* Development
+
+** Languages
+
+*** Language Server
+
+#+begin_src emacs-lisp
+
+  (defun ap/lsp-mode-setup ()
+    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+    (lsp-headerline-breadcrumb-mode))
+
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :hook
+    (lsp-mode . ap/lsp-mode-setup)
+    (lsp-mode . yas-minor-mode)
+    (nix-mode . lsp-deferred)
+    (typst-ts-mode . lsp-deferred)
+    :init
+    (setq lsp-signature-auto-active nil)
+    (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+    :config
+    (lsp-enable-which-key-integration t))
+
+#+end_src
+
+**** lsp-ui
+#+begin_src emacs-lisp
+
+  (use-package lsp-ui
+    :hook (lsp-mode . lsp-ui-mode)
+    :custom
+    (lsp-ui-doc-position 'bottom))
+
+#+end_src
+
+**** lsp-treemacs
+#+begin_src emacs-lisp
+
+  (use-package lsp-treemacs
+    :after lsp)
+
+#+end_src
+
+**** lsp-ivy
+#+begin_src emacs-lisp
+
+  (use-package lsp-ivy
+    :after lsp)
+
+#+end_src
+
+*** Nix-mode
+Emacs major mode, nil and nixd
+
+#+begin_src emacs-lisp
+
+  (with-eval-after-load 'lsp-mode
+    (lsp-register-client
+      (make-lsp-client :new-connection (lsp-stdio-connection "nixd")
+                       :major-modes '(nix-mode)
+                       :priority 0
+                       :server-id 'nixd)))
+  (use-package nix-mode
+    :after lsp-mode
+    :mode "\\.nix\\'"
+    :custom
+    (lsp-disabled-clients '((nix-mode . nix-nil))) ;; Disable nil so that nixd will be used as lsp-server
+    :config
+    (setq company-idle-delay 0.1)
+    (setq lsp-nix-nixd-server-path "nixd"
+        lsp-nix-nixd-formatting-command [ "nixfmt" ]
+        lsp-nix-nixd-nixpkgs-expr "import <nixpkgs> { }")
+        ;lsp-nix-nixd-nixos-options-expr "(builtins.getFlake \"/home/appleboblin/dotfiles-nixos\").nixosConfigurations.appleboblin.options"
+        ;lsp-nix-nixd-home-manager-options-expr "(builtins.getFlake \"/home/appleboblin/dotfiles-nixos\").homeConfigurations.\"appleboblin@desktop\".options")
+    )
+  ; (setq-hook! 'nix-mode-hook company-idle-delay 0.1)
+
+#+end_src
+
+*** tinymist
+language server for Typst, create preview server and launch in nyxt.
+
+#+begin_src emacs-lisp
+
+  (use-package websocket
+    :after typst-preview)
+  (use-package typst-preview
+    :load-path "plugins"
+    :after typst-ts-mode
+    :config
+    (setq typst-preview-browser "chromium")
+    (setq typst-preview-invert-colors "never")
+    ;; (define-key typst-preview-mode-map (kbd "C-c C-j") 'typst-preview-send-position)
+    )
+
+  (use-package typst-ts-mode
+    :after lsp-mode
+    :mode "\\.typ\\'"
+    :custom
+    (typst-ts-mode-watch-options "--open")
+    :config
+    ;; make sure to install typst-lsp from
+    ;; https://github.com/nvarner/typst-lsp/releases
+    ;; or use tinymist
+    (add-to-list 'lsp-language-id-configuration '(typst-ts-mode . "typst"))
+    (lsp-register-client
+     (make-lsp-client
+      :new-connection (lsp-stdio-connection "tinymist")
+      :major-modes '(typst-ts-mode)
+      :server-id 'tinymist))
+    )
+#+end_src
+
+** Terminal
+
+*** vterm
+faster than term
+
+#+begin_src emacs-lisp
+  (use-package vterm
+    :commands vterm
+    :config
+    (setq vterm-shell "fish")
+    (setq vterm-max-scrollback 10000))
+#+end_src
+
+** Projectile
+[[https://projectile.mx/][Projectile]] helps with project management.
+
+#+begin_src emacs-lisp
+
+  (use-package projectile
+    :diminish projectile-mode
+    :config (projectile-mode)
+    :custom ((projectile-completion-system 'ivy))
+    :bind-keymap
+    ("C-c p" . projectile-command-map)
+    :init
+    ;; NOTE: Set this to the folder where you keep your Git repos!
+    (when (file-directory-p "~/github")
+      (setq projectile-project-search-path '("~/github")))
+    (setq projectile-switch-project-action #'projectile-dired))
+
+  (use-package counsel-projectile
+    :after projectile
+    :config (counsel-projectile-mode))
+
+#+end_src
+
+** Compary Mode
+#+begin_src emacs-lisp
+
+  (use-package company
+    :after lsp-mode
+    :hook
+    (lsp-mode . company-mode)
+    :bind (:map company-active-map
+           ("<tab>" . company-complete-selection))
+          (:map lsp-mode-map
+           ("<tab>" . company-indent-or-complete-common))
+    :custom
+    (company-minimum-prefix-length 1)
+    (company-idle-delay 0.0))
+
+  (use-package company-box
+    :hook (company-mode . company-box-mode))
+
+#+end_src
+
+** Magit
+[[https://magit.vc/][Magit]] is a Git interface. Can't seem to figure out forge yet
+
+#+begin_src emacs-lisp
+
+  (use-package magit
+    :commands magit-status
+    :custom
+    (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+  ;; NOTE: Make sure to configure a GitHub token before using this package!
+  ;; - https://magit.vc/manual/forge/Token-Creation.html#Token-Creation
+  ;; - https://magit.vc/manual/ghub/Getting-Started.html#Getting-Started
+  ;; (use-package forge
+  ;;  :after magit)
+
+#+end_src
+
+** Commenting
+Use [[https://github.com/redguardtoo/evil-nerd-commenter][evil-nerd-commenter]] to provide a better and familiar commenting behavior.
+
+#+begin_src emacs-lisp
+
+  (use-package evil-nerd-commenter
+    :bind ("C-/" . evilnc-comment-or-uncomment-lines))
+
+#+end_src
+
+** Rainbow Delimiters
+[[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters]] colorizes parentheses and brackest based on nesting depth.
+
+#+begin_src emacs-lisp
+
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode))
+
+#+end_src
+
+** Close Brackets
+[[https://github.com/Fuco1/smartparens][smartparens]] to auto closa brackest.
+
+#+begin_src emacs-lisp
+  ;; Built in closing bracket function
+  ;; (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+  ;; (electric-pair-mode 1)
+
+  (use-package smartparens
+    :hook (prog-mode text-mode conf-mode)
+    :config
+    (defun indent-between-pair (&rest _ignored)
+      (newline)
+      (indent-according-to-mode)
+      (forward-line -1)
+      (indent-according-to-mode))
+
+    (sp-local-pair 'prog-mode "(" nil :post-handlers '((indent-between-pair "RET")))
+    (sp-local-pair 'prog-mode "[" nil :post-handlers '((indent-between-pair "RET")))
+    (sp-local-pair 'prog-mode "{" nil :post-handlers '((indent-between-pair "RET")))
+    )
+
+#+end_src
+
+** Multiple Cursors
+[[https://github.com/magnars/multiple-cursors.el][multiple cursors]] is kindn buggy.
+
+#+begin_src emacs-lisp
+
+  (global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-;") 'mc/mark-next-like-this)
+
+#+end_src
+
+** Rainbow Mode
+Highlight color codes using [[https://github.com/emacsmirror/rainbow-mode/tree/master][rainbow-mode]].
+
+#+begin_src emacs-lisp
+
+  (use-package rainbow-mode
+    :hook (prog-mode text-mode))
+
+#+end_src
+
+** Formatter
+[[https://github.com/radian-software/apheleia][Apheleia]] is an auto formatter for emacs.
+
+#+begin_src emacs-lisp
+
+  (use-package apheleia
+    :hook (typst-ts-mode . apheleia-mode)
+    :config
+    ;; Add formatter
+    (add-to-list 'apheleia-formatters
+                 '(prettypst "prettypst" "--use-std-in" "--use-std-out"))
+
+    ;; Match formatter with mode
+    (add-to-list 'apheleia-mode-alist
+                 '(typst-ts-mode . prettypst)))
+
+#+end_src
+
+* File Management
+
+** Dired
+Build in file manager
+
+#+begin_src emacs-lisp
+
+  (use-package dired
+    :ensure nil
+    :commands (dired dired-jump)
+    :bind (("C-x C-j" . dired-jump))
+    :custom ((dired-listing-switches "-agho --group-directories-first")))
+  (use-package dired-hide-dotfiles
+    :hook (dired-mode . dired-hide-dotfiles-mode)
+    :config
+    (evil-collection-define-key 'normal 'dired-mode-map
+    "H" 'dired-hide-dotfiles-mode))
+
+#+end_src
+
+* Runtime Performance
+Reduce GC
+
+#+begin_src emacs-lisp
+
+  ;; Make gc pauses faster by decreasing the threshold.
+  (setq gc-cons-threshold (* 2 1000 1000))
+
+#+end_src

@@ -84,7 +84,8 @@
             }
             {
               "label" = "󰍃";
-              "command" = "loginctl kill-user '$(whoami)'";
+              "command" = "niri msg action quit";
+              # "command" = "loginctl kill-user '$(whoami)'";
             }
             {
               "label" = "󰒲";

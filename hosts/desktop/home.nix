@@ -9,9 +9,13 @@ in
 {
   imports = [
     ./waybar.nix
+    ./window.nix
   ];
 
   services = {
+    beets.enable = true;
+    easyeffects.enable = true;
+    kdeconnect.enable = true;
     hypridle.settings = {
       listener = lib.mkDefault [
         {
@@ -100,28 +104,29 @@ in
         open-on-output = "${monitors.middle}";
       };
       "W7" = {
-        open-on-output = "${monitors.right}";
+        open-on-output = "${monitors.middle}";
       };
       "W8" = {
-        open-on-output = "${monitors.right}";
+        open-on-output = "${monitors.middle}";
       };
       "W9" = {
-        open-on-output = "${monitors.right}";
+        open-on-output = "${monitors.left}";
       };
       "Wmusic" = {
-        open-on-output = "${monitors.right}";
+        open-on-output = "${monitors.left}";
       };
     };
     outputs = {
-      "DP-1" = {
+      "DP-2" = {
         scale = 1.0;
+        variable-refresh-rate = false; # vvr seems to cause screen flickering
         mode = {
           width = 2560;
           height = 1440;
-          refresh = 164.998;
+          refresh = 170.002;
         };
         transform = {
-          rotation = 0;
+          rotation = 90;
           flipped = false;
         };
         position = {
@@ -129,36 +134,20 @@ in
           y = 0;
         };
       };
-      "DP-2" = {
+      "DP-1" = {
         scale = 1.0;
         mode = {
           width = 2560;
           height = 1440;
-          refresh = 164.998;
+          refresh = 179.999;
         };
         transform = {
           rotation = 0;
           flipped = false;
         };
         position = {
-          x = 2560;
-          y = 0;
-        };
-      };
-      "HDMI-A-1" = {
-        scale = 1.0;
-        mode = {
-          width = 1920;
-          height = 1080;
-          refresh = 60.000;
-        };
-        transform = {
-          rotation = 270;
-          flipped = false;
-        };
-        position = {
-          x = 5120;
-          y = -133;
+          x = 1440;
+          y = 550;
         };
       };
     };

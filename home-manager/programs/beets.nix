@@ -1,10 +1,11 @@
 {
+  lib,
   user,
   ...
 }:
 {
   programs.beets = {
-    enable = true;
+    enable = lib.mkDefault false;
 
     settings = {
       "directory" = "/home/${user}/Music/music/";

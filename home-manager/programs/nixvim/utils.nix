@@ -1,6 +1,49 @@
 {
+  lib,
+  pkgs,
+  ...
+}:
+{
   programs.nixvim = {
+    dependencies = {
+      typst.enable = true;
+      tinymist.enable = true;
+      websocat.enable = true;
+    };
+    lsp.inlayHints.enable = true;
+    extraConfigLua = ''
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.typ",
+        callback = function()
+          vim.lsp.buf.format({ async = false })
+        end,
+      })
+    '';
     plugins = {
+      typst-preview.enable = true;
+      # typst-vim.enable = true;
+      # lsp-format.enable = true;
+      lsp = {
+        enable = true;
+        keymaps.lspBuf = {
+          gd = "definition";
+          K = "hover";
+        };
+      };
+      lsp.servers.tinymist = {
+        enable = true;
+        settings = {
+          exportPdf = "onType";
+          outputPath = "$root/$name";
+          fontPaths = [ "./fonts" ];
+          formatterMode = "typstyle";
+        };
+      };
+      conform-nvim.settings = {
+        formatters_by_ft.typst = [ "typstyle" ];
+        formatters.typstyle.command = lib.getExe' pkgs.typstyle "typstyle";
+      };
+
       lualine.enable = true;
       lazygit.enable = true;
       bufferline.enable = true;
@@ -44,7 +87,7 @@
       };
       wilder = {
         enable = true;
-        modes = [
+        settings.modes = [
           ":"
           "/"
           "?"

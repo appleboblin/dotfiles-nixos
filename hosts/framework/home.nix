@@ -60,8 +60,9 @@ in
     };
 
     # hyprlock image
-    hyprlock.settings.background = {
-      path = "${./framework_wallpaper.png}";
+    hyprlock.settings = {
+      auth."fingerprint:enabled" = true;
+      background.path = "${./framework_wallpaper.png}";
     };
 
     vscode = {

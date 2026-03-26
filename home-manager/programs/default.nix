@@ -3,6 +3,7 @@
     ./beets.nix
     ./btop.nix
     ./easyeffects.nix
+    # ./emacs
     ./firefox.nix
     ./foot.nix
     ./ghostty.nix
@@ -13,7 +14,6 @@
     ./obs-studio.nix
     ./rofi.nix
     ./spicetify.nix
-    ./plover.nix
     ./vscodium.nix
     ./zed-editor.nix
   ];

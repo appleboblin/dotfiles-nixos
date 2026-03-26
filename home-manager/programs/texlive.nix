@@ -1,5 +1,9 @@
 {
+  lib,
+  ...
+}:
+{
   programs.texlive = {
-    enable = true;
+    enable = lib.mkDefault false;
   };
 }
