@@ -43,6 +43,7 @@
     ];
 
     # screenshot
+    "Print".action.screenshot = [ ];
     "Mod+Print".action.screenshot-window = [ ];
     "Mod+Ctrl+S".action.screenshot-window = [ ];
     "Mod+Shift+S".action.screenshot = [ ];

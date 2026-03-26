@@ -23,7 +23,7 @@
         modules-center = [ "niri/window" ];
         modules-right = [
           "tray"
-          "custom/wireguard"
+          # "custom/wireguard"
           "idle_inhibitor"
           # "bluetooth"
           "pulseaudio"

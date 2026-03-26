@@ -24,15 +24,16 @@ let
     ];
     text = lib.readFile ./rofi-wifi-menu.sh;
   };
-  rofi-screenshot-menu = pkgs.writeShellApplication {
-    name = "rofi-screenshot-menu";
-    runtimeInputs = with pkgs; [
-      rofi
-      libnotify
-      grimblast
-    ];
-    text = lib.readFile ./rofi-screenshot-menu.sh;
-  };
+  # Script is hyprland only for now
+  # rofi-screenshot-menu = pkgs.writeShellApplication {
+  #   name = "rofi-screenshot-menu";
+  #   runtimeInputs = with pkgs; [
+  #     rofi
+  #     libnotify
+  #     grimblast
+  #   ];
+  #   text = lib.readFile ./rofi-screenshot-menu.sh;
+  # };
 in
 {
   programs.rofi = {
@@ -166,7 +167,7 @@ in
   home.packages = [
     rofi-power-menu
     rofi-wifi-menu
-    rofi-screenshot-menu
+    # rofi-screenshot-menu
   ];
 
   # xdg.configFile = {
