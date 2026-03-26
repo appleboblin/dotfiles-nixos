@@ -303,22 +303,6 @@
     "nixpkgs_6": {
       "locked": {
         "lastModified": 1773821835,
-        "narHash": "sha256-TJ3lSQtW0E2JrznGVm8hOQGVpXjJyXY2guAxku2O9A4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b40629efe5d6ec48dd1efba650c797ddbd39ace0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_7": {
-      "locked": {
-        "lastModified": 1773821835,
         "narHash": "sha256-p0tPeJJbg+PKaH741F1CWa9Bf9vf6g02HK9V/g4TkHo=",
         "rev": "b40629efe5d6ec48dd1efba650c797ddbd39ace0",
         "type": "tarball",
@@ -346,93 +330,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixvim",
-        "type": "github"
-      }
-    },
-    "plover": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1773991489,
-        "narHash": "sha256-IrGSqxNJ8z8eqHONhcPHP9Fm9yj05igN+rPq2i/Qqcw=",
-        "owner": "openstenoproject",
-        "repo": "plover",
-        "rev": "54377247e0e90694ff01c326bfcf1d735aa2fe22",
-        "type": "github"
-      },
-      "original": {
-        "owner": "openstenoproject",
-        "repo": "plover",
-        "type": "github"
-      }
-    },
-    "plover-flake": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_6",
-        "plover": "plover",
-        "plover-stroke": "plover-stroke",
-        "plover2cat": "plover2cat",
-        "plover_plugins_registry": "plover_plugins_registry",
-        "rtf-tokenize": "rtf-tokenize"
-      },
-      "locked": {
-        "lastModified": 1774068645,
-        "narHash": "sha256-AFR01Golj4ZitKoIqBW01m5kMQbfX8sPi3ucKrG5bh8=",
-        "owner": "openstenoproject",
-        "repo": "plover-flake",
-        "rev": "d945e473b6ed33bd969d2f6393316b9f2f511e6b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "openstenoproject",
-        "repo": "plover-flake",
-        "type": "github"
-      }
-    },
-    "plover-stroke": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1652559629,
-        "narHash": "sha256-A75OMzmEn0VmDAvmQCp6/7uptxzwWJTwsih3kWlYioA=",
-        "owner": "openstenoproject",
-        "repo": "plover_stroke",
-        "rev": "e717a1983b58dcba644153a542dbf8514425a39b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "openstenoproject",
-        "repo": "plover_stroke",
-        "type": "github"
-      }
-    },
-    "plover2cat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1771716484,
-        "narHash": "sha256-38gmfJbjC1n+lrHI2FZmhRvSyOZ2j72VicpteU1H4Hw=",
-        "owner": "greenwyrt",
-        "repo": "plover2CAT",
-        "rev": "795eee5750e0841f77054f54487a3cdfe74c92d9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "greenwyrt",
-        "repo": "plover2CAT",
-        "type": "github"
-      }
-    },
-    "plover_plugins_registry": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1773557032,
-        "narHash": "sha256-NN3TIIhHATwQZfZGn7iAuHa+Z/qPpuS0WFjOfMY5ox8=",
-        "owner": "openstenoproject",
-        "repo": "plover_plugins_registry",
-        "rev": "c3341656c3baea191dd386cd2aa46478b2b4477b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "openstenoproject",
-        "repo": "plover_plugins_registry",
         "type": "github"
       }
     },
@@ -470,30 +367,13 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
-        "plover-flake": "plover-flake",
         "poetry2nix": "poetry2nix",
         "spicetify-nix": "spicetify-nix"
       }
     },
-    "rtf-tokenize": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1751102035,
-        "narHash": "sha256-bM/DFl1mpHgeBItdyA5Tt+Eo9u82Gz+6qwft2h0bM94=",
-        "owner": "openstenoproject",
-        "repo": "rtf_tokenize",
-        "rev": "5c4ad772f4b45ceb35b60584e22a171e90526916",
-        "type": "github"
-      },
-      "original": {
-        "owner": "openstenoproject",
-        "repo": "rtf_tokenize",
-        "type": "github"
-      }
-    },
     "spicetify-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_6",
         "systems": "systems_4"
       },
       "locked": {

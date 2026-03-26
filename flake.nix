@@ -17,7 +17,6 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixvim.url = "github:nix-community/nixvim";
     niri.url = "github:sodiboo/niri-flake";
-    plover-flake.url = "github:openstenoproject/plover-flake";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     # Tools
