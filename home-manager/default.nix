@@ -79,8 +79,7 @@
         protonvpn-gui
         nyxt
         seahorse
-        # only adding system wide because of emacs lsp
-        typst
+        # typst
         tinymist
         prettypst
         texliveFull

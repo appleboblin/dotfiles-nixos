@@ -17,7 +17,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixvim.url = "github:nix-community/nixvim";
     niri.url = "github:sodiboo/niri-flake";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    # emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     # Tools
     poetry2nix = {
