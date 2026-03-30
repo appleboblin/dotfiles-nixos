@@ -13,7 +13,6 @@ in
   ];
 
   services = {
-    beets.enable = true;
     easyeffects.enable = true;
     kdeconnect.enable = true;
     hypridle.settings = {
@@ -43,111 +42,113 @@ in
     };
   };
 
-  # niri config
-  programs.niri.settings = {
+  programs = {
+    beets.enable = true;
+    # niri config
+    niri.settings = {
+      spawn-at-startup =
+        let
+          command = cmd: { command = lib.lists.flatten [ cmd ]; };
+        in
+        [
+          (command "vesktop")
+          (command "thunderbird")
+          (command "spotify")
+        ];
 
-    spawn-at-startup =
-      let
-        command = cmd: { command = lib.lists.flatten [ cmd ]; };
-      in
-      [
-        (command "vesktop")
-        (command "thunderbird")
-        (command "spotify")
+      window-rules = [
+        {
+          matches = [
+            { app-id = "thunderbird"; }
+          ];
+          excludes = [
+            { title = "^Login to account '([^']+@[^']+)' failed$"; }
+          ];
+          open-on-workspace = "W0";
+          open-maximized = true;
+          open-focused = false;
+          open-floating = false;
+          default-column-display = "tabbed";
+        }
+        {
+          matches = [
+            { title = "^Login to account '([^']+@[^']+)' failed$"; }
+          ];
+          open-on-workspace = "W0";
+          open-maximized = false;
+          open-focused = false;
+          open-floating = true;
+        }
       ];
 
-    window-rules = [
-      {
-        matches = [
-          { app-id = "thunderbird"; }
-        ];
-        excludes = [
-          { title = "^Login to account '([^']+@[^']+)' failed$"; }
-        ];
-        open-on-workspace = "W0";
-        open-maximized = true;
-        open-focused = false;
-        open-floating = false;
-        default-column-display = "tabbed";
-      }
-      {
-        matches = [
-          { title = "^Login to account '([^']+@[^']+)' failed$"; }
-        ];
-        open-on-workspace = "W0";
-        open-maximized = false;
-        open-focused = false;
-        open-floating = true;
-      }
-    ];
-
-    workspaces = {
-      "W0" = {
-        open-on-output = "${monitors.left}";
-      };
-      "W1" = {
-        open-on-output = "${monitors.left}";
-      };
-      "W2" = {
-        open-on-output = "${monitors.left}";
-      };
-      "W3" = {
-        open-on-output = "${monitors.middle}";
-      };
-      "W4" = {
-        open-on-output = "${monitors.middle}";
-      };
-      "W5" = {
-        open-on-output = "${monitors.middle}";
-      };
-      "W6" = {
-        open-on-output = "${monitors.middle}";
-      };
-      "W7" = {
-        open-on-output = "${monitors.middle}";
-      };
-      "W8" = {
-        open-on-output = "${monitors.middle}";
-      };
-      "W9" = {
-        open-on-output = "${monitors.left}";
-      };
-      "Wmusic" = {
-        open-on-output = "${monitors.left}";
-      };
-    };
-    outputs = {
-      "DP-2" = {
-        scale = 1.0;
-        variable-refresh-rate = false; # vvr seems to cause screen flickering
-        mode = {
-          width = 2560;
-          height = 1440;
-          refresh = 170.002;
+      workspaces = {
+        "W0" = {
+          open-on-output = "${monitors.left}";
         };
-        transform = {
-          rotation = 90;
-          flipped = false;
+        "W1" = {
+          open-on-output = "${monitors.left}";
         };
-        position = {
-          x = 0;
-          y = 0;
+        "W2" = {
+          open-on-output = "${monitors.left}";
+        };
+        "W3" = {
+          open-on-output = "${monitors.middle}";
+        };
+        "W4" = {
+          open-on-output = "${monitors.middle}";
+        };
+        "W5" = {
+          open-on-output = "${monitors.middle}";
+        };
+        "W6" = {
+          open-on-output = "${monitors.middle}";
+        };
+        "W7" = {
+          open-on-output = "${monitors.middle}";
+        };
+        "W8" = {
+          open-on-output = "${monitors.middle}";
+        };
+        "W9" = {
+          open-on-output = "${monitors.left}";
+        };
+        "Wmusic" = {
+          open-on-output = "${monitors.left}";
         };
       };
-      "DP-1" = {
-        scale = 1.0;
-        mode = {
-          width = 2560;
-          height = 1440;
-          refresh = 179.999;
+      outputs = {
+        "DP-2" = {
+          scale = 1.0;
+          variable-refresh-rate = false; # vvr seems to cause screen flickering
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 170.002;
+          };
+          transform = {
+            rotation = 90;
+            flipped = false;
+          };
+          position = {
+            x = 0;
+            y = 0;
+          };
         };
-        transform = {
-          rotation = 0;
-          flipped = false;
-        };
-        position = {
-          x = 1440;
-          y = 550;
+        "DP-1" = {
+          scale = 1.0;
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 179.999;
+          };
+          transform = {
+            rotation = 0;
+            flipped = false;
+          };
+          position = {
+            x = 1440;
+            y = 550;
+          };
         };
       };
     };
