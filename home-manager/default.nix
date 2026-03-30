@@ -48,6 +48,7 @@
         thunar-volman
         thunar-archive-plugin
         file-roller
+        ristretto
 
         # Provides org.gnome.keyring.SystemPrompter
         gcr
@@ -82,7 +83,7 @@
         # typst
         tinymist
         prettypst
-        texliveFull
+        # texliveFull
         edgetx
         orca-slicer
         rocmPackages.rocm-smi
