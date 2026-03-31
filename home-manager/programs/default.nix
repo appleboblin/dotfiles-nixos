@@ -14,7 +14,6 @@
     ./obs-studio.nix
     ./rofi.nix
     ./spicetify.nix
-    ./thunar.nix
     ./vscodium.nix
     ./zed-editor.nix
   ];
