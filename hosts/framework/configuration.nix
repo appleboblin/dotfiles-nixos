@@ -54,7 +54,6 @@
     fwupd.enable = true;
     power-profiles-daemon.enable = true;
 
-    # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
     libinput.touchpad.disableWhileTyping = lib.mkForce true;
     blueman.enable = true;
@@ -71,16 +70,38 @@
     logind.settings.Login.HandlePowerKey' = "lock";
   };
 
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+      };
+    };
+
+    services.restart-fprintd-after-resume = {
+      description = "Restart fprintd after resume";
+      wantedBy = [
+        "suspend.target"
+        "hibernate.target"
+        "hybrid-sleep.target"
+        "suspend-then-hibernate.target"
+      ];
+      after = [
+        "suspend.target"
+        "hibernate.target"
+        "hybrid-sleep.target"
+        "suspend-then-hibernate.target"
+      ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.systemd}/bin/systemd-run --on-active=2 ${pkgs.systemd}/bin/systemctl restart fprintd.service";
+      };
     };
   };
 
@@ -91,8 +112,8 @@
         gdm.fprintAuth = false;
         sudo.fprintAuth = false;
         hyprlock = {
-          fprintAuth = true; # adds pam_fprintd.so as “sufficient”
-          unixAuth = true; # keeps the usual pam_unix password path
+          fprintAuth = true;
+          unixAuth = true;
         };
       };
     };

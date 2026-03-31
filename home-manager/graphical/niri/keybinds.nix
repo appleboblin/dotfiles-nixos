@@ -98,6 +98,10 @@
     "Mod+Return".action = spawn "footclient";
     "Mod+W".action = toggle-column-tabbed-display;
     "Mod+Shift+Q".action = quit;
+    "Mod+Shift+X".action.spawn = [
+      "loginctl"
+      "lock-session"
+    ];
 
     "Mod+Shift+P".action = consume-window-into-column;
     "Mod+Shift+K".action = expel-window-from-column;
