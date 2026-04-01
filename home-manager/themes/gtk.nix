@@ -60,7 +60,7 @@ in
     };
 
     gtk4 = {
-      theme = null;
+      theme = config.gtk.theme;
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };
