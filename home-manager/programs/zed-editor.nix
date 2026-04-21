@@ -19,14 +19,14 @@
       "nix" # https://github.com/zed-extensions/nix
       "git-firefly" # https://github.com/d1y/git_firefly
       "ruff" # https://github.com/zed-industries/zed/tree/main/extensions/ruff
-      "python-lsp" # https://github.com/rgbkrk/python-lsp-zed-extension
+      # "python-lsp" # https://github.com/rgbkrk/python-lsp-zed-extension
       "fish" # https://github.com/hasit/zed-fish
       "rainbow-csv" # https://github.com/Kalmaegi/zed-rainbow-csv/tree/81bfb05d56a5302bd821230e83840230fd558c65
       "basedpyright" # https://github.com/m1guer/basedpyright-zed
       "latex" # https://github.com/rzukic/zed-latex/
       "log" # https://github.com/zed-extensions/log
       "catppuccin" # https://github.com/catppuccin/zed
-      # "catppuccin-icons" # https://github.com/catppuccin/zed-icons
+      "catppuccin-icons" # https://github.com/catppuccin/zed-icons
       "elisp"
       "org"
       "typst"
@@ -42,7 +42,7 @@
 
       # python
       ruff
-      pyright
+      # pyright
       basedpyright
       python3Packages.python-lsp-server
 
