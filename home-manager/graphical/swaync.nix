@@ -22,7 +22,7 @@
       "control-center-width" = 500;
       "control-center-height" = 1000;
       "notification-window-width" = 500;
-      "keyboard-shortcuts" = true;
+      "keyboard-shortcuts" = false;
       "image-visibility" = "when-available";
       "transition-time" = 200;
       "hide-on-clear" = false;
