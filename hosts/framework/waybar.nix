@@ -22,7 +22,7 @@
         modules-left = [ "niri/workspaces" ];
         modules-center = [ "niri/window" ];
         modules-right = [
-          "tray"
+          "group/tray-expander"
           # "custom/wireguard"
           "idle_inhibitor"
           # "bluetooth"
@@ -87,9 +87,24 @@
             "power-saver" = " ";
           };
         };
+        "group/tray-expander" = {
+          orientation = "inherit";
+          drawer = {
+            "transition-duration" = 300;
+            "children-class" = "tray-group-item";
+          };
+          modules = [
+            "custom/expand-icon"
+            "tray"
+          ];
+        };
+        "custom/expand-icon" = {
+          format = " ";
+          tooltip = false;
+        };
         "battery" = {
           states = {
-            good = 95;
+            # good = 95;
             warning = 30;
             critical = 15;
           };
@@ -97,20 +112,34 @@
           format = "{capacity}% {icon}";
           format-charging = "{capacity}% 󰂄";
           format-plugged = "{capacity}%  ";
-          format-alt = "{time} {icon}";
+          tooltip-format-discharging = "{power:>1.2f}W↓ {time}";
+          tooltip-format-charging = "{power:>1.2f}W↑ {time}";
+          tooltip-format-full = "{power:>1.2f}W";
           format-icons = [
             "󰁺"
+            "󰁻"
             "󰁼"
+            "󰁽"
+            "󰁾"
             "󰁿"
+            "󰂀"
             "󰂁"
+            "󰂂"
             "󰁹"
           ];
         };
         "network" = {
           #  "interface": "wlp2*", // (Optional) To force the use of this interface
-          format = "󰖩 Wifi";
+          format = "{icon}";
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           # format-wifi = "󰖩 {essid}";
-          format-wifi = "󰖩 {bandwidthTotalBits}";
+          format-wifi = "{icon} {bandwidthTotalBits}";
           format-ethernet = "󰈀 {bandwidthTotalBits}";
           tooltip-format = "{ifname} via {gwaddr}/{cidr}; {ipaddr}/{cidr}";
           format-linked = "{ifname} (No IP)";
