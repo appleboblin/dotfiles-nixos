@@ -45,10 +45,16 @@
   # AMDGPU Controller
   # https://wiki.nixos.org/wiki/AMD_GPU
   # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix
-  environment.systemPackages = with pkgs; [
-    lact
-    amdgpu_top
-  ];
+  environment = {
+    sessionVariables = {
+      HIP_VISIBLE_DEVICES = "0";
+      ROCR_VISIBLE_DEVICES = "0";
+    };
+    systemPackages = with pkgs; [
+      lact
+      amdgpu_top
+    ];
+  };
 
   systemd.services.lact = {
     description = "AMDGPU Control Daemon";
