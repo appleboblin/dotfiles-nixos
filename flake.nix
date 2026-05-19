@@ -18,6 +18,13 @@
     nixvim.url = "github:nix-community/nixvim";
     niri.url = "github:sodiboo/niri-flake";
     # emacs-overlay.url = "github:nix-community/emacs-overlay";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
 
     # Tools
     poetry2nix = {

@@ -87,6 +87,7 @@
         edgetx
         orca-slicer
         rocmPackages.rocm-smi
+        openscad
       ];
 
     sessionVariables = {
