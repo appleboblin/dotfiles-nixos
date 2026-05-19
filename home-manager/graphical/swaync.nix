@@ -23,6 +23,9 @@
       "control-center-height" = 1000;
       "notification-window-width" = 500;
       "keyboard-shortcuts" = false;
+      "keyboard-interactivity" = "on_demand";
+      "notification-2fa-action" = false;
+      "notification-inline-replies" = false;
       "image-visibility" = "when-available";
       "transition-time" = 200;
       "hide-on-clear" = false;
