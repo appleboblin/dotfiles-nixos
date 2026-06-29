@@ -10,7 +10,7 @@
         extraDefCfg = "process-unmapped-keys yes";
         config = ''
           (defsrc
-           grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+           grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc del
            tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
            caps a    s    d    f    g    h    j    k    l    ;    '    ret
            lsft z    x    c    v    b    n    m    ,    .    /    rsft
@@ -27,7 +27,7 @@
 
           ;; Default Graphite Anglemod
           (deflayer graphite-anglemod
-           grv  1    2    3    4    5    6      7    8    9       0      [      ]    bspc
+           grv  1    2    3    4    5    6      7    8    9       0      [      ]    bspc del
            tab  b    l    d    w    z    @quote f    o    u       j      ;      =    \
            lctl n    r    t    s    g    y      h    a    e       i      @comma ret
            lsft q    x    m    c    v    k      p    .    @hyphen @slash rsft
@@ -36,7 +36,7 @@
 
           ;; QWERTY Layout
           (deflayer qwerty
-           grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+           grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc del
            tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
            lctl a    s    d    f    g    h    j    k    l    ;    '    ret
            lsft z    x    c    v    b    n    m    ,    .    /    rsft
@@ -55,7 +55,7 @@
 
           ;; Layer-Switching Layer
           (deflayer layers
-           _   @gar @qwr  _    _    _    _    _    _    _    _    _    _   _
+           _   @gar @qwr  _    _    _    _    _    _    _    _    _    _   _  del
            _    _    _    _    _    _    _    _    _    _    _    _    _   _
            caps _    _    _    _    _    left down up   rght _    _    _
            _    _    _    _    _    _    _    _    _    _    _    _

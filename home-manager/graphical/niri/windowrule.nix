@@ -44,6 +44,18 @@
       ];
       default-column-width.proportion = 1.0;
     }
+    {
+      matches = [ { app-id = "zen-beta"; } ];
+      draw-border-with-background = false;
+      border = {
+        enable = true;
+        width = 2;
+      };
+      focus-ring = {
+        enable = true;
+        width = 2;
+      };
+    }
   ];
   programs.niri.settings.layer-rules = [
     {

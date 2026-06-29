@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -79,6 +80,10 @@ in
 
     # niri config
     niri.settings = {
+      binds = with config.lib.niri.actions; {
+        "XF86AudioMedia".action = spawn "footclient";
+        "Alt+O".action = toggle-overview;
+      };
       workspaces = builtins.listToAttrs (map mkWorkspace workspaceNames);
       outputs = {
         "eDP-1" = {

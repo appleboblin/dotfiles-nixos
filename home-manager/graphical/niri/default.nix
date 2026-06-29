@@ -109,7 +109,7 @@
       focus-ring.enable = false;
       shadow.enable = false;
 
-      background-color = "24273a";
+      background-color = "#24273a";
       default-column-display = "tabbed";
 
       tab-indicator = {
@@ -140,7 +140,7 @@
         proportion = 0.5 / 1.0;
       };
 
-      gaps = 0;
+      gaps = 1;
       struts = {
         left = 0;
         right = 0;
