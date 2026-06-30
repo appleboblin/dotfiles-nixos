@@ -72,6 +72,7 @@
     };
   };
 
+  catppuccin.autoEnable = true;
   # Set your time zone.
   # time.timeZone = "Asia/Taipei";
   time.timeZone = "America/Los_Angeles";
@@ -311,6 +312,7 @@
       solo2-cli
       mlocate
       tree
+      ripgrep
       # typst
       # tinymist
     ];
