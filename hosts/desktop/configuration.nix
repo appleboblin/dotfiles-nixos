@@ -79,7 +79,7 @@
 
   services = {
     transmission.enable = true;
-    blueman.enable = true;
+    # blueman.enable = true;
     hardware.bolt.enable = true;
   };
 
@@ -90,7 +90,10 @@
 
   programs = {
     steam.enable = true;
-    niri.enable = true;
+    niri = {
+      enable = true;
+      package = pkgs.niri-unstable;
+    };
 
     hyprland = {
       enable = false;
