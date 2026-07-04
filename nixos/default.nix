@@ -105,8 +105,12 @@
       wireplumber.enable = true;
       pulse.enable = true;
       jack.enable = true;
-
     };
+
+    # Power handeling
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
+
     # Flatpak
     flatpak.enable = true;
 

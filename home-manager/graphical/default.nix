@@ -6,8 +6,8 @@
     ./niri
     ./hyprlock.nix
     ./swaync.nix
-    ./waybar.nix
-    ./wlsunset.nix
+    # ./waybar.nix
+    # ./wlsunset.nix
     ./wm.nix
   ];
 }

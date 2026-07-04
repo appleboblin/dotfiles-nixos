@@ -8,7 +8,7 @@ let
 in
 {
   imports = [
-    ./waybar.nix
+    # ./waybar.nix
     ./window.nix
   ];
 
@@ -52,7 +52,7 @@ in
         in
         [
           (command "vesktop")
-          (command "thunderbird")
+          # (command "thunderbird")
           (command "spotify")
         ];
 
@@ -64,7 +64,7 @@ in
           excludes = [
             { title = "^Login to account '([^']+@[^']+)' failed$"; }
           ];
-          open-on-workspace = "W0";
+          open-on-workspace = "1";
           open-maximized = true;
           open-focused = false;
           open-floating = false;
@@ -74,7 +74,7 @@ in
           matches = [
             { title = "^Login to account '([^']+@[^']+)' failed$"; }
           ];
-          open-on-workspace = "W0";
+          open-on-workspace = "1";
           open-maximized = false;
           open-focused = false;
           open-floating = true;
@@ -82,37 +82,37 @@ in
       ];
 
       workspaces = {
-        "W0" = {
+        "1" = {
           open-on-output = "${monitors.left}";
         };
-        "W1" = {
+        "2" = {
           open-on-output = "${monitors.left}";
         };
-        "W2" = {
+        "3" = {
           open-on-output = "${monitors.left}";
         };
-        "W3" = {
+        "4" = {
           open-on-output = "${monitors.middle}";
         };
-        "W4" = {
+        "5" = {
           open-on-output = "${monitors.middle}";
         };
-        "W5" = {
+        "6" = {
           open-on-output = "${monitors.middle}";
         };
-        "W6" = {
+        "7" = {
           open-on-output = "${monitors.middle}";
         };
-        "W7" = {
+        "8" = {
           open-on-output = "${monitors.middle}";
         };
-        "W8" = {
+        "9" = {
           open-on-output = "${monitors.middle}";
         };
-        "W9" = {
+        "10" = {
           open-on-output = "${monitors.left}";
         };
-        "Wmusic" = {
+        "󰝚" = {
           open-on-output = "${monitors.left}";
         };
       };

@@ -54,8 +54,8 @@
         gcr
 
         # Other
-        # vesktop
-        (vesktop.override { pnpm_10_29_2 = pkgs.pnpm_10; })
+        vesktop
+        # (vesktop.override { pnpm_10_29_2 = pkgs.pnpm_10; })
         filezilla
         inkscape
         remmina

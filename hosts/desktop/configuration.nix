@@ -2,6 +2,7 @@
   lib,
   pkgs,
   inputs,
+  user,
   ...
 }:
 {
@@ -53,6 +54,16 @@
     systemPackages = with pkgs; [
       lact
       amdgpu_top
+    ];
+  };
+
+  # recommended for ROCm systems
+  # https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.0.0/how-to/prerequisites.html
+  users.users.${user} = {
+    description = "${user}";
+    extraGroups = [
+      "video"
+      "render"
     ];
   };
 

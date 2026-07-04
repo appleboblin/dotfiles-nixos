@@ -70,15 +70,15 @@
       [
         # Each command is a list of strings, which will be joined with spaces
         (command (lib.getExe pkgs.xwayland-satellite))
-        # (command [
-        #   "fcitx5"
-        #   "-d"
-        # ])
+        (command [
+          "fcitx5"
+          "-d"
+        ])
         (command [
           "foot"
           "--server"
         ])
-        (command "noctalia-shell")
+        (command "noctalia")
         # (command [
         #   "swaybg"
         #   "-m"
@@ -86,7 +86,7 @@
         #   "-i"
         #   "${../WP_Laser_Up-2560x1440_00229.jpg}"
         # ])
-        (command "pcloud")
+        # (command "pcloud")
         (command "cryptomator")
         # (command "swaync")
         (command [

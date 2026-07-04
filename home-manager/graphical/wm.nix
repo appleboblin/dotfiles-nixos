@@ -11,8 +11,8 @@
   ];
 
   programs = {
-    waybar.enable = true;
-    hyprlock.enable = true;
+    # waybar.enable = false;
+    # hyprlock.enable = true;
   };
 
   services = {
@@ -23,6 +23,6 @@
     hypridle.enable = true;
     # swaync.enable = true;
     # swayosd.enable = true;
-    wlsunset.enable = true;
+    # wlsunset.enable = true;
   };
 }

@@ -1,29 +1,29 @@
 {
   programs.niri.settings.window-rules = [
-    {
-      matches = [ { app-id = ".*"; } ];
-      clip-to-geometry = true;
-      geometry-corner-radius = {
-        top-left = 20.0;
-        top-right = 20.0;
-        bottom-left = 20.0;
-        bottom-right = 20.0;
-      };
-    }
+    # {
+    #   matches = [ { app-id = ".*"; } ];
+    #   clip-to-geometry = true;
+    #   geometry-corner-radius = {
+    #     top-left = 20.0;
+    #     top-right = 20.0;
+    #     bottom-left = 20.0;
+    #     bottom-right = 20.0;
+    #   };
+    # }
     # prevent starting applications from grabbing focus
-    {
-      matches = [
-        { at-startup = true; }
-      ];
-      open-focused = false;
-      open-floating = false;
-    }
+    # {
+    #   matches = [
+    #     { at-startup = true; }
+    #   ];
+    #   open-focused = false;
+    #   open-floating = false;
+    # }
     {
       matches = [
         { app-id = "vesktop"; }
         { app-id = "Element"; }
       ];
-      open-on-workspace = "W9";
+      open-on-workspace = "10";
       open-maximized = true;
       open-focused = true;
       open-floating = false;
@@ -33,7 +33,7 @@
       matches = [
         { app-id = "spotify"; }
       ];
-      open-on-workspace = "Wmusic";
+      open-on-workspace = "󰝚";
       open-maximized = true;
       open-focused = false;
       open-floating = false;

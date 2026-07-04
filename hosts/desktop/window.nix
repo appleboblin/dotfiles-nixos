@@ -8,7 +8,7 @@ let
     import sys
     from typing import Any
 
-    TARGET_WS_NAMES = {"W0", "W1", "W2", "W9"}
+    TARGET_WS_NAMES = {"1", "2", "3", "10"}
 
     workspaces_by_id: dict[int, dict[str, Any]] = {}
     windows_by_id: dict[int, dict[str, Any]] = {}

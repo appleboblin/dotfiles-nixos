@@ -1,9 +1,4 @@
 {
-  pkgs,
-  lib,
-  ...
-}:
-{
   services.swaync = {
     settings = {
       "positionX" = "right";
