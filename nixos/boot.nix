@@ -5,6 +5,7 @@
 {
   boot = {
     supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
     loader = {
       systemd-boot.enable = true;
       timeout = 3;

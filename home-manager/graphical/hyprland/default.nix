@@ -24,6 +24,7 @@
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
+      configType = "lua";
       settings = {
         env = [
           "XCURSOR_SIZE,24"

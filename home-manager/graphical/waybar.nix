@@ -1,6 +1,6 @@
 {
   programs.waybar = {
-    systemd.enable = true;
+    systemd.enable = false;
 
     style = ''
       * {

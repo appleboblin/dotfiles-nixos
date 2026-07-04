@@ -1,6 +1,7 @@
 {
   catppuccin = {
     # Sets many things to catppuccin
+    autoEnable = true;
     enable = true;
     flavor = "macchiato";
     accent = "pink";

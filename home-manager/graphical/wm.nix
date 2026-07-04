@@ -7,7 +7,7 @@
     # clipboard history
     cliphist
     wl-clipboard
-    swaybg
+    # swaybg
   ];
 
   programs = {
@@ -21,8 +21,8 @@
       allowImages = true;
     };
     hypridle.enable = true;
-    swaync.enable = true;
-    swayosd.enable = true;
+    # swaync.enable = true;
+    # swayosd.enable = true;
     wlsunset.enable = true;
   };
 }

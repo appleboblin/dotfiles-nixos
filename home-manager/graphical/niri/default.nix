@@ -70,24 +70,25 @@
       [
         # Each command is a list of strings, which will be joined with spaces
         (command (lib.getExe pkgs.xwayland-satellite))
-        (command [
-          "fcitx5"
-          "-d"
-        ])
+        # (command [
+        #   "fcitx5"
+        #   "-d"
+        # ])
         (command [
           "foot"
           "--server"
         ])
-        (command [
-          "swaybg"
-          "-m"
-          "fill"
-          "-i"
-          "${../WP_Laser_Up-2560x1440_00229.jpg}"
-        ])
+        (command "noctalia-shell")
+        # (command [
+        #   "swaybg"
+        #   "-m"
+        #   "fill"
+        #   "-i"
+        #   "${../WP_Laser_Up-2560x1440_00229.jpg}"
+        # ])
         (command "pcloud")
         (command "cryptomator")
-        (command "swaync")
+        # (command "swaync")
         (command [
           "dbus-update-activation-environment"
           "--systemd"
@@ -156,6 +157,9 @@
 
     prefer-no-csd = true;
     hotkey-overlay.skip-at-startup = true;
+
+    # noctalia
+    debug.honor-xdg-activation-with-invalid-serial = [ ];
   };
 
   xdg.portal = {

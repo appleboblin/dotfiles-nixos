@@ -1,5 +1,15 @@
 {
   programs.niri.settings.window-rules = [
+    {
+      matches = [ { app-id = ".*"; } ];
+      clip-to-geometry = true;
+      geometry-corner-radius = {
+        top-left = 20.0;
+        top-right = 20.0;
+        bottom-left = 20.0;
+        bottom-right = 20.0;
+      };
+    }
     # prevent starting applications from grabbing focus
     {
       matches = [

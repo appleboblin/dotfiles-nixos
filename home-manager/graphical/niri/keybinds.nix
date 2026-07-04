@@ -4,9 +4,6 @@
 }:
 {
   programs.niri.settings.binds = with config.lib.niri.actions; {
-    "XF86AudioMute".action = spawn "swayosd-client" "--output-volume=mute-toggle";
-    "XF86AudioMicMute".action = spawn "swayosd-client" "--input-volume=mute-toggle";
-
     "XF86AudioPlay".action.spawn = [
       "playerctl"
       "play-pause"
@@ -24,22 +21,41 @@
       "next"
     ];
 
+    "XF86AudioMute".action.spawn = [
+      "noctalia-shell"
+      "ipc"
+      "call"
+      "volume"
+      "muteOutput"
+    ];
     "XF86AudioRaiseVolume".action.spawn = [
-      "swayosd-client"
-      "--output-volume=raise"
+      "noctalia-shell"
+      "ipc"
+      "call"
+      "volume"
+      "increase"
     ];
     "XF86AudioLowerVolume".action.spawn = [
-      "swayosd-client"
-      "--output-volume=lower"
+      "noctalia-shell"
+      "ipc"
+      "call"
+      "volume"
+      "decrease"
     ];
 
     "XF86MonBrightnessUp".action.spawn = [
-      "swayosd-client"
-      "--brightness=raise"
+      "noctalia-shell"
+      "ipc"
+      "call"
+      "brightness"
+      "increase"
     ];
     "XF86MonBrightnessDown".action.spawn = [
-      "swayosd-client"
-      "--brightness=lower"
+      "noctalia-shell"
+      "ipc"
+      "call"
+      "brightness"
+      "decrease"
     ];
 
     # screenshot
@@ -90,10 +106,17 @@
     "Mod+F".action = maximize-column;
     "Mod+Ctrl+F".action = toggle-window-floating;
     "Mod+Shift+F".action = fullscreen-window;
+    # "Mod+Space".action.spawn = [
+    #   "sh"
+    #   "-c"
+    #   "pkill rofi || rofi -show drun -theme-str 'window {width: 400px;}'"
+    # ];
     "Mod+Space".action.spawn = [
-      "sh"
-      "-c"
-      "pkill rofi || rofi -show drun -theme-str 'window {width: 400px;}'"
+      "noctalia-shell"
+      "ipc"
+      "call"
+      "launcher"
+      "toggle"
     ];
     "Mod+Return".action = spawn "footclient";
     "Mod+W".action = toggle-column-tabbed-display;

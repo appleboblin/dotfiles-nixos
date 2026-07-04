@@ -53,6 +53,7 @@
   services = {
     fwupd.enable = true;
     power-profiles-daemon.enable = true;
+    upower.enable = true;
 
     libinput.enable = true;
     libinput.touchpad.disableWhileTyping = lib.mkForce true;

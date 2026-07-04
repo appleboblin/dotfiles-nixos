@@ -54,7 +54,8 @@
         gcr
 
         # Other
-        vesktop
+        # vesktop
+        (vesktop.override { pnpm_10_29_2 = pkgs.pnpm_10; })
         filezilla
         inkscape
         remmina
@@ -73,11 +74,11 @@
         obsidian
         # pdfslicer
         proton-pass
-        grayjay
+        # grayjay
         freetube
         nix-your-shell
         cryptomator
-        protonvpn-gui
+        proton-vpn
         nyxt
         seahorse
         # typst

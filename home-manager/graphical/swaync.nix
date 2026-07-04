@@ -14,7 +14,6 @@
       "control-center-margin-left" = 0;
       "notification-icon-size" = 64;
       "notification-body-image-height" = 100;
-      "notification-body-image-width" = 200;
       "timeout" = 10;
       "timeout-low" = 5;
       "timeout-critical" = 0;
@@ -94,18 +93,18 @@
               "label" = "󰒲";
               "command" = "systemctl suspend";
             }
-            {
-              "label" = "󰕾";
-              "command" = "${lib.getExe pkgs.pamixer} -t";
-            }
-            {
-              "label" = "󰖩";
-              "command" = "rofi-wifi-menu";
-            }
-            {
-              "label" = "󰂯";
-              "command" = "blueman-manager";
-            }
+            # {
+            #   "label" = "󰕾";
+            #   "command" = "${lib.getExe pkgs.pamixer} -t";
+            # }
+            # {
+            #   "label" = "󰖩";
+            #   "command" = "rofi-wifi-menu";
+            # }
+            # {
+            #   "label" = "󰂯";
+            #   "command" = "blueman-manager";
+            # }
             {
               "label" = "";
               "command" = "footclient";
