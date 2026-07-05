@@ -5,8 +5,8 @@
 {
   home.packages = with pkgs; [
     # clipboard history
-    cliphist
-    wl-clipboard
+    # cliphist
+    # wl-clipboard
     # swaybg
   ];
 
@@ -17,10 +17,10 @@
 
   services = {
     cliphist = {
-      enable = true;
+      enable = false;
       allowImages = true;
     };
-    hypridle.enable = true;
+    hypridle.enable = false;
     # swaync.enable = true;
     # swayosd.enable = true;
     # wlsunset.enable = true;

@@ -21,24 +21,25 @@
     {
       matches = [
         { app-id = "vesktop"; }
-        { app-id = "Element"; }
-      ];
-      open-on-workspace = "10";
-      open-maximized = true;
-      open-focused = true;
-      open-floating = false;
-      default-column-display = "tabbed";
-    }
-    {
-      matches = [
+        { app-id = "element"; }
         { app-id = "spotify"; }
       ];
-      open-on-workspace = "󰝚";
+      open-on-workspace = "stuff";
       open-maximized = true;
       open-focused = false;
       open-floating = false;
-      default-column-display = "tabbed";
+      # default-column-display = "tabbed";
     }
+    # {
+    #   matches = [
+    #     { app-id = "spotify"; }
+    #   ];
+    #   open-on-workspace = "music";
+    #   open-maximized = true;
+    #   open-focused = false;
+    #   open-floating = false;
+    #   # default-column-display = "tabbed";
+    # }
     {
       matches = [
         { app-id = "Proton Pass"; }

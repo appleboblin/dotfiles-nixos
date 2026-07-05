@@ -1,8 +1,37 @@
 {
   config,
+  pkgs,
   ...
 }:
+let
+  focus-or-back = pkgs.writeShellScriptBin "focus-or-back" ''
+    target_app="$1"; shift
+    state="$XDG_RUNTIME_DIR/focus-or-back-$target_app"
+
+    focused_app=$(${pkgs.niri}/bin/niri msg --json windows \
+      | ${pkgs.jq}/bin/jq -r 'first(.[] | select(.is_focused)) | .app_id')
+
+    if [ "$focused_app" = "$target_app" ]; then
+      if [ -f "$state" ]; then
+        back=$(cat "$state")
+        ${pkgs.niri}/bin/niri msg action focus-window --id "$back" 2>/dev/null || true
+      fi
+    else
+      # remember the currently focused *window* id
+      ${pkgs.niri}/bin/niri msg --json windows \
+        | ${pkgs.jq}/bin/jq -r 'first(.[] | select(.is_focused)) | .id' > "$state"
+      id=$(${pkgs.niri}/bin/niri msg --json windows \
+        | ${pkgs.jq}/bin/jq -r --arg a "$target_app" 'first(.[] | select(.app_id == $a)) | .id')
+      if [ -n "$id" ] && [ "$id" != "null" ]; then
+        ${pkgs.niri}/bin/niri msg action focus-window --id "$id"
+      else
+        exec "$@"
+      fi
+    fi
+  '';
+in
 {
+  home.packages = [ focus-or-back ];
   programs.niri.settings.binds = with config.lib.niri.actions; {
     "XF86AudioPlay".action.spawn = [
       "noctalia"
@@ -118,7 +147,7 @@
     # ];
 
     "Mod+G".action = switch-preset-column-width;
-    "Mod+Shift+G".action = switch-preset-window-height;
+    # "Mod+Shift+G".action = switch-preset-window-height;
     "Mod+Ctrl+R".action = reset-window-height;
     "Mod+F".action = maximize-column;
     "Mod+Ctrl+F".action = toggle-window-floating;
@@ -142,11 +171,22 @@
       "lock-session"
     ];
 
+    "Mod+S".action.spawn = [
+      "focus-or-back"
+      # "Spotify"
+      "spotify"
+    ];
+
+    "Mod+I".action.spawn = [
+      "focus-or-back"
+      "vesktop"
+      # "spotify"
+    ];
+
     "Mod+Shift+P".action = consume-window-into-column;
     "Mod+Shift+K".action = expel-window-from-column;
     "Mod+C".action = center-window;
     "Mod+Tab".action = switch-focus-between-floating-and-tiling;
-    "Mod+S".action.focus-workspace = "󰝚";
 
     "Mod+Alt+Y".action = set-column-width "-10%";
     "Mod+Alt+E".action = set-column-width "+10%";
@@ -174,25 +214,25 @@
     "Mod+Shift+Ctrl+H".action = move-window-to-workspace-down;
     "Mod+Shift+Ctrl+A".action = move-window-to-workspace-up;
 
-    "Mod+1".action.focus-workspace = "1";
-    "Mod+2".action.focus-workspace = "2";
-    "Mod+3".action.focus-workspace = "3";
-    "Mod+4".action.focus-workspace = "4";
-    "Mod+5".action.focus-workspace = "5";
-    "Mod+6".action.focus-workspace = "6";
-    "Mod+7".action.focus-workspace = "7";
-    "Mod+8".action.focus-workspace = "8";
-    "Mod+9".action.focus-workspace = "9";
-    "Mod+0".action.focus-workspace = "10";
-    "Mod+Shift+1".action.move-column-to-workspace = "1";
-    "Mod+Shift+2".action.move-column-to-workspace = "2";
-    "Mod+Shift+3".action.move-column-to-workspace = "3";
-    "Mod+Shift+4".action.move-column-to-workspace = "4";
-    "Mod+Shift+5".action.move-column-to-workspace = "5";
-    "Mod+Shift+6".action.move-column-to-workspace = "6";
-    "Mod+Shift+7".action.move-column-to-workspace = "7";
-    "Mod+Shift+8".action.move-column-to-workspace = "8";
-    "Mod+Shift+9".action.move-column-to-workspace = "9";
-    "Mod+Shift+0".action.move-column-to-workspace = "10";
+    "Mod+1".action.focus-workspace = 1;
+    "Mod+2".action.focus-workspace = 2;
+    "Mod+3".action.focus-workspace = 3;
+    "Mod+4".action.focus-workspace = 4;
+    "Mod+5".action.focus-workspace = 5;
+    "Mod+6".action.focus-workspace = 6;
+    "Mod+7".action.focus-workspace = 7;
+    "Mod+8".action.focus-workspace = 8;
+    "Mod+9".action.focus-workspace = 9;
+    "Mod+0".action.focus-workspace = "stuff";
+    "Mod+Shift+1".action.move-column-to-workspace = 1;
+    "Mod+Shift+2".action.move-column-to-workspace = 2;
+    "Mod+Shift+3".action.move-column-to-workspace = 3;
+    "Mod+Shift+4".action.move-column-to-workspace = 4;
+    "Mod+Shift+5".action.move-column-to-workspace = 5;
+    "Mod+Shift+6".action.move-column-to-workspace = 6;
+    "Mod+Shift+7".action.move-column-to-workspace = 7;
+    "Mod+Shift+8".action.move-column-to-workspace = 8;
+    "Mod+Shift+9".action.move-column-to-workspace = 9;
+    "Mod+Shift+0".action.move-column-to-workspace = "stuff";
   };
 }

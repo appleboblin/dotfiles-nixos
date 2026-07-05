@@ -57,28 +57,28 @@ in
         ];
 
       window-rules = [
-        {
-          matches = [
-            { app-id = "thunderbird"; }
-          ];
-          excludes = [
-            { title = "^Login to account '([^']+@[^']+)' failed$"; }
-          ];
-          open-on-workspace = "1";
-          open-maximized = true;
-          open-focused = false;
-          open-floating = false;
-          default-column-display = "tabbed";
-        }
-        {
-          matches = [
-            { title = "^Login to account '([^']+@[^']+)' failed$"; }
-          ];
-          open-on-workspace = "1";
-          open-maximized = false;
-          open-focused = false;
-          open-floating = true;
-        }
+        # {
+        #   matches = [
+        #     { app-id = "thunderbird"; }
+        #   ];
+        #   excludes = [
+        #     { title = "^Login to account '([^']+@[^']+)' failed$"; }
+        #   ];
+        #   open-on-workspace = "1";
+        #   open-maximized = true;
+        #   open-focused = false;
+        #   open-floating = false;
+        #   default-column-display = "tabbed";
+        # }
+        # {
+        #   matches = [
+        #     { title = "^Login to account '([^']+@[^']+)' failed$"; }
+        #   ];
+        #   open-on-workspace = "1";
+        #   open-maximized = false;
+        #   open-focused = false;
+        #   open-floating = true;
+        # }
       ];
 
       workspaces = {
@@ -92,27 +92,24 @@ in
           open-on-output = "${monitors.left}";
         };
         "4" = {
-          open-on-output = "${monitors.middle}";
-        };
-        "5" = {
-          open-on-output = "${monitors.middle}";
-        };
-        "6" = {
-          open-on-output = "${monitors.middle}";
-        };
-        "7" = {
-          open-on-output = "${monitors.middle}";
-        };
-        "8" = {
-          open-on-output = "${monitors.middle}";
-        };
-        "9" = {
-          open-on-output = "${monitors.middle}";
-        };
-        "10" = {
           open-on-output = "${monitors.left}";
         };
-        "󰝚" = {
+        "5" = {
+          open-on-output = "${monitors.left}";
+        };
+        "6" = {
+          open-on-output = "${monitors.left}";
+        };
+        "7" = {
+          open-on-output = "${monitors.left}";
+        };
+        "8" = {
+          open-on-output = "${monitors.left}";
+        };
+        "9" = {
+          open-on-output = "${monitors.left}";
+        };
+        "stuff" = {
           open-on-output = "${monitors.left}";
         };
       };

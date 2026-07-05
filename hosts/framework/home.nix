@@ -14,22 +14,21 @@ let
   };
 
   workspaceNames = [
-    "W0"
-    "W1"
-    "W2"
-    "W3"
-    "W4"
-    "W5"
-    "W6"
-    "W7"
-    "W8"
-    "W9"
-    "Wmusic"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+    "stuff"
   ];
 in
 {
   imports = [
-    ./waybar.nix
+    # ./waybar.nix
   ];
 
   # font size
