@@ -172,15 +172,15 @@ in
     ];
 
     "Mod+S".action.spawn = [
-      "focus-or-back"
-      # "Spotify"
-      "spotify"
+      "focus-or-back" # script
+      "spotify" # app-id
+      "spotify" # launch
     ];
 
     "Mod+I".action.spawn = [
       "focus-or-back"
       "vesktop"
-      # "spotify"
+      "vesktop"
     ];
 
     "Mod+Shift+P".action = consume-window-into-column;
