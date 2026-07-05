@@ -92,22 +92,22 @@ in
           open-on-output = "${monitors.left}";
         };
         "4" = {
-          open-on-output = "${monitors.left}";
+          open-on-output = "${monitors.middle}";
         };
         "5" = {
-          open-on-output = "${monitors.left}";
+          open-on-output = "${monitors.middle}";
         };
         "6" = {
-          open-on-output = "${monitors.left}";
+          open-on-output = "${monitors.middle}";
         };
         "7" = {
-          open-on-output = "${monitors.left}";
+          open-on-output = "${monitors.middle}";
         };
         "8" = {
-          open-on-output = "${monitors.left}";
+          open-on-output = "${monitors.middle}";
         };
         "9" = {
-          open-on-output = "${monitors.left}";
+          open-on-output = "${monitors.middle}";
         };
         "stuff" = {
           open-on-output = "${monitors.left}";
