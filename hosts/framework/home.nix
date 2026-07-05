@@ -81,7 +81,14 @@ in
     niri.settings = {
       binds = with config.lib.niri.actions; {
         "XF86AudioMedia".action = spawn "footclient";
-        "Alt+O".action = toggle-overview;
+      };
+      switch-events = {
+        lid-close.action.spawn = [
+          "noctalia"
+          "msg"
+          "session"
+          "lock-and-suspend"
+        ];
       };
       workspaces = builtins.listToAttrs (map mkWorkspace workspaceNames);
       outputs = {
