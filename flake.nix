@@ -4,20 +4,23 @@
   inputs = {
     # Core
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Extra modules
-    catppuccin.url = "github:catppuccin/nix";
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixvim.url = "github:nix-community/nixvim";
+
+    # Desktop environment
+    catppuccin.url = "github:catppuccin/nix";
     niri.url = "github:sodiboo/niri-flake";
-    # emacs-overlay.url = "github:nix-community/emacs-overlay";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Apps
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    nixvim.url = "github:nix-community/nixvim";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
@@ -29,17 +32,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Tools
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix/2024.5.939250";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
   outputs =

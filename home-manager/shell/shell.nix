@@ -6,12 +6,6 @@
 {
   # Aliases
   home.shellAliases = {
-    # Eza
-    # ls = "eza --icons";
-    # la = "eza -a --icons";
-    # ll = "eza -lah --icons";
-    # t = "eza --tree";
-
     # Color grep
     grep = "grep --color=auto";
     egrep = "egrep --color=auto";

@@ -1,11 +1,8 @@
 {
   config,
-  lib,
-  pkgs,
   ...
 }:
 let
-  wpPath = ../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg;
   mkWorkspace = name: {
     name = name;
     value = {
@@ -27,10 +24,6 @@ let
   ];
 in
 {
-  imports = [
-    # ./waybar.nix
-  ];
-
   # font size
   gtk.font.size = 21;
 
@@ -57,12 +50,6 @@ in
       settings = {
         font-size = "17";
       };
-    };
-
-    # hyprlock image
-    hyprlock.settings = {
-      auth."fingerprint:enabled" = true;
-      background.path = "${./framework_wallpaper.png}";
     };
 
     vscode = {
@@ -109,48 +96,6 @@ in
           };
         };
       };
-    };
-  };
-
-  services.hyprpaper.settings = {
-    wallpaper = [
-      "eDP-1,${wpPath}"
-    ];
-  };
-  # hyprland config
-  wayland.windowManager.hyprland = {
-    settings = {
-      monitor = [
-        "eDP-1, 2256x1504, 0x0, 1"
-      ];
-
-      workspace = [
-        "1, monitor:eDP-1, default:true"
-        "2, monitor:eDP-1"
-        "3, monitor:eDP-1"
-        "4, monitor:eDP-1"
-        "5, monitor:eDP-1"
-        "6, monitor:eDP-1"
-        "7, monitor:eDP-1"
-        "8, monitor:eDP-1"
-        "9, monitor:eDP-1"
-        "10, monitor:eDP-1"
-      ];
-
-      input = {
-        natural_scroll = true;
-        sensitivity = 0;
-      };
-
-      exec-once = [
-        # brightness on startup
-        "${lib.getExe pkgs.brightnessctl} s 40%"
-        "sleep 3;hyprctl dispatch workspace 8;hyprctl dispatch workspace 9;hyprctl dispatch workspace 10;hyprctl dispatch workspace 1"
-      ];
-
-      windowrule = [
-        "workspace 8 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
-      ];
     };
   };
 }

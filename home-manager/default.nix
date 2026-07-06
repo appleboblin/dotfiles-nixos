@@ -84,7 +84,6 @@
         # typst
         tinymist
         prettypst
-        # texliveFull
         edgetx
         orca-slicer
         rocmPackages.rocm-smi

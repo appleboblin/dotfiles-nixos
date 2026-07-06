@@ -1,12 +1,10 @@
 {
   programs.kitty = {
     enable = true;
-    # themeFile = "Nord";
     font = {
       name = "MesloLGS Nerd Font Mono";
       size = 16;
     };
-    # shellIntegration.enableZshIntegration = true;
     settings = {
       # Looks
       cursor_blink_interval = "0.5";

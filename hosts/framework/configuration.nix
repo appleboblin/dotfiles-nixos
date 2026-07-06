@@ -40,10 +40,9 @@
   };
 
   programs = {
-    niri.enable = true;
-    hyprland = {
-      enable = false;
-      withUWSM = true;
+    niri = {
+      enable = true;
+      package = pkgs.niri-unstable;
     };
   };
 
@@ -55,7 +54,6 @@
 
     libinput.enable = true;
     libinput.touchpad.disableWhileTyping = lib.mkForce true;
-    blueman.enable = true;
     hardware.bolt.enable = true;
 
     fprintd = {
@@ -110,10 +108,6 @@
         login.fprintAuth = false;
         gdm.fprintAuth = false;
         sudo.fprintAuth = false;
-        hyprlock = {
-          fprintAuth = true;
-          unixAuth = true;
-        };
       };
     };
   };

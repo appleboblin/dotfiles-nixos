@@ -78,8 +78,7 @@
   };
 
   services = {
-    transmission.enable = true;
-    # blueman.enable = true;
+    transmission.enable = false;
     hardware.bolt.enable = true;
   };
 
@@ -93,11 +92,6 @@
     niri = {
       enable = true;
       package = pkgs.niri-unstable;
-    };
-
-    hyprland = {
-      enable = false;
-      withUWSM = true;
     };
   };
 
