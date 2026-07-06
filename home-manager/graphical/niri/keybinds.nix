@@ -4,26 +4,29 @@
   ...
 }:
 let
+  niri = "${config.programs.niri.package}/bin/niri";
+  jq = "${pkgs.jq}/bin/jq";
+
   focus-or-back = pkgs.writeShellScriptBin "focus-or-back" ''
     target_app="$1"; shift
     state="$XDG_RUNTIME_DIR/focus-or-back-$target_app"
 
-    focused_app=$(${pkgs.niri}/bin/niri msg --json windows \
-      | ${pkgs.jq}/bin/jq -r 'first(.[] | select(.is_focused)) | .app_id')
+    focused_app=$(${niri} msg --json windows \
+      | ${jq} -r 'first(.[] | select(.is_focused)) | .app_id')
 
     if [ "$focused_app" = "$target_app" ]; then
       if [ -f "$state" ]; then
         back=$(cat "$state")
-        ${pkgs.niri}/bin/niri msg action focus-window --id "$back" 2>/dev/null || true
+        ${niri} msg action focus-window --id "$back" 2>/dev/null || true
       fi
     else
       # remember the currently focused *window* id
-      ${pkgs.niri}/bin/niri msg --json windows \
+      ${niri} msg --json windows \
         | ${pkgs.jq}/bin/jq -r 'first(.[] | select(.is_focused)) | .id' > "$state"
-      id=$(${pkgs.niri}/bin/niri msg --json windows \
+      id=$(${niri} msg --json windows \
         | ${pkgs.jq}/bin/jq -r --arg a "$target_app" 'first(.[] | select(.app_id == $a)) | .id')
       if [ -n "$id" ] && [ "$id" != "null" ]; then
-        ${pkgs.niri}/bin/niri msg action focus-window --id "$id"
+        ${niri} msg action focus-window --id "$id"
       else
         exec "$@"
       fi
@@ -97,10 +100,6 @@ in
     };
 
     # spawn lockscreen
-    # "Mod+Ctrl+L" = {
-    #   action.spawn = [ "hyprlock" ];
-    #   allow-when-locked = true;
-    # };
     "Mod+Ctrl+L".action.spawn = [
       "noctalia"
       "msg"
@@ -115,11 +114,7 @@ in
       "panel-toggle"
       "session"
     ];
-    # "Shift+Ctrl+Delete".action.spawn = [
-    #   "sh"
-    #   "-c"
-    #   "rofi-power-menu -theme-str 'window {width: 400px;}'"
-    # ];
+
     # Open history
     "Mod+v".action.spawn = [
       "noctalia"
@@ -127,36 +122,11 @@ in
       "panel-toggle"
       "clipboard"
     ];
-    # select from history
-    # "Mod+v".action.spawn = [
-    #   "sh"
-    #   "-c"
-    #   "pkill rofi || cliphist list | rofi -dmenu -p 'Select to copy' | cliphist decode | wl-copy"
-    # ];
-    # select history to delete
-    # "Mod+Shift+v".action.spawn = [
-    #   "sh"
-    #   "-c"
-    #   "pkill rofi || cliphist list | rofi -dmenu -p 'Select to delete' | cliphist delete"
-    # ];
-    # delete last entry from cliphist history
-    # "Mod+Delete".action.spawn = [
-    #   "sh"
-    #   "-c"
-    #   "cliphist list | cliphist delete"
-    # ];
 
     "Mod+G".action = switch-preset-column-width;
-    # "Mod+Shift+G".action = switch-preset-window-height;
-    # "Mod+Ctrl+R".action = reset-window-height;
     "Mod+F".action = maximize-column;
     "Mod+Ctrl+F".action = toggle-window-floating;
     "Mod+Shift+F".action = fullscreen-window;
-    # "Mod+Space".action.spawn = [
-    #   "sh"
-    #   "-c"
-    #   "pkill rofi || rofi -show drun -theme-str 'window {width: 400px;}'"
-    # ];
     "Mod+Space".action.spawn = [
       "noctalia"
       "msg"
@@ -185,6 +155,8 @@ in
 
     "Mod+Shift+P".action = consume-window-into-column;
     "Mod+Shift+K".action = expel-window-from-column;
+    "Mod+Period".action = consume-or-expel-window-left;
+    "Mod+Minus".action = consume-or-expel-window-right;
     "Mod+C".action = center-window;
     "Mod+Tab".action = switch-focus-between-floating-and-tiling;
 
@@ -198,8 +170,6 @@ in
     "Mod+E".action = focus-column-or-monitor-right;
     "Mod+H".action = focus-window-or-workspace-down;
     "Mod+A".action = focus-window-or-workspace-up;
-    "Mod+Comma".action = focus-column-left-or-last;
-    "Mod+Period".action = focus-column-right-or-first;
     "Mod+Ctrl+Y".action = focus-monitor-left;
     "Mod+Ctrl+E".action = focus-monitor-right;
     "Mod+Ctrl+A".action = focus-workspace-up;

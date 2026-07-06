@@ -6,6 +6,7 @@
 {
   imports = [
     ./keybinds.nix
+    ./ws-maximize.nix
     ./windowrule.nix
   ];
 
@@ -79,16 +80,7 @@
           "--server"
         ])
         (command "noctalia")
-        # (command [
-        #   "swaybg"
-        #   "-m"
-        #   "fill"
-        #   "-i"
-        #   "${../WP_Laser_Up-2560x1440_00229.jpg}"
-        # ])
-        # (command "pcloud")
         (command "cryptomator")
-        # (command "swaync")
         (command [
           "dbus-update-activation-environment"
           "--systemd"
@@ -111,7 +103,7 @@
       shadow.enable = false;
 
       background-color = "#24273a";
-      default-column-display = "tabbed";
+      default-column-display = "normal";
 
       tab-indicator = {
         hide-when-single-tab = true;
@@ -141,7 +133,7 @@
         proportion = 0.5 / 1.0;
       };
 
-      gaps = 1;
+      gaps = 0;
       struts = {
         left = 0;
         right = 0;

@@ -49,12 +49,12 @@
       ];
       block-out-from = "screen-capture";
     }
-    {
-      matches = [
-        { app-id = "dev.zed.Zed"; }
-      ];
-      default-column-width.proportion = 1.0;
-    }
+    # {
+    #   matches = [
+    #     { app-id = "dev.zed.Zed"; }
+    #   ];
+    #   default-column-width.proportion = 1.0;
+    # }
     {
       matches = [ { app-id = "zen-beta"; } ];
       draw-border-with-background = false;
