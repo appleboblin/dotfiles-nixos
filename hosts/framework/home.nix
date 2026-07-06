@@ -98,4 +98,13 @@ in
       };
     };
   };
+
+  services = {
+    niri-ws-maximize = {
+      enable = true;
+      targetWorkspaces = [
+        "stuff"
+      ];
+    };
+  };
 }

@@ -8,6 +8,9 @@ use serde_json::Value;
 /// width, regardless of how many windows are present. Read once from the
 /// NIRI_WS_TARGETS env var as a comma-separated list (e.g. "1,2,3,stuff").
 /// Unset or empty means pure solo-maximize behavior everywhere.
+///
+/// Note: entries match workspace *names* only. "1" matches a workspace
+/// literally named "1", not the workspace at index 1.
 fn target_ws_names() -> &'static [String] {
     use std::sync::OnceLock;
     static NAMES: OnceLock<Vec<String>> = OnceLock::new();
@@ -22,8 +25,8 @@ fn target_ws_names() -> &'static [String] {
     })
 }
 
-/// Width to restore when a window is no longer solo / leaves a target
-/// workspace. Override with NIRI_RESTORE_WIDTH (e.g. "33.333%").
+/// Width to restore when a window leaves the desired-maximized set.
+/// Override with NIRI_RESTORE_WIDTH (e.g. "33.333%").
 fn restore_width() -> &'static str {
     use std::sync::OnceLock;
     static WIDTH: OnceLock<String> = OnceLock::new();
@@ -43,26 +46,13 @@ struct State {
     /// workspace id -> workspace name (if named)
     workspace_names: BTreeMap<u64, Option<String>>,
     windows: BTreeMap<u64, WindowInfo>,
-    /// windows whose column we've set to 100%
-    maximized: BTreeSet<u64>,
-    /// currently focused window, per the event stream
-    focused: Option<u64>,
+    /// The desired-maximized set from the previous enforce pass. Purely a
+    /// diff base for deciding which windows to resize; recomputed from
+    /// window state every pass, so it can't drift from reality.
+    prev_desired: BTreeSet<u64>,
 }
 
 impl State {
-    fn target_workspace_ids(&self) -> HashSet<u64> {
-        self.workspace_names
-            .iter()
-            .filter_map(|(id, name)| {
-                let name = name.as_deref()?;
-                target_ws_names()
-                    .iter()
-                    .any(|t| t == name)
-                    .then_some(*id)
-            })
-            .collect()
-    }
-
     /// Handle one event from `niri msg --json event-stream`.
     ///
     /// Events are externally tagged, e.g.
@@ -82,13 +72,16 @@ impl State {
                 }
             }
         } else if let Some(payload) = obj.get("WindowsChanged") {
-            // Full snapshot of all windows.
+            // Full snapshot of all windows. Also reset the diff base so the
+            // next pass re-issues widths from scratch (harmless no-ops for
+            // windows already at the right size); this self-heals drift
+            // after a service restart or a failed action.
             if let Some(list) = payload.get("windows").and_then(Value::as_array) {
                 self.windows.clear();
+                self.prev_desired.clear();
                 for w in list {
                     self.upsert_window(w);
                 }
-                self.maximized.retain(|id| self.windows.contains_key(id));
             }
         } else if let Some(payload) = obj.get("WindowOpenedOrChanged") {
             // Also fires when a window moves to another workspace or
@@ -99,16 +92,11 @@ impl State {
         } else if let Some(payload) = obj.get("WindowClosed") {
             if let Some(id) = payload.get("id").and_then(Value::as_u64) {
                 self.windows.remove(&id);
-                self.maximized.remove(&id);
-                if self.focused == Some(id) {
-                    self.focused = None;
-                }
+                self.prev_desired.remove(&id);
             }
-        } else if let Some(payload) = obj.get("WindowFocusChanged") {
-            self.focused = payload.get("id").and_then(Value::as_u64);
         }
-        // Everything else (workspace activation, keyboard layouts, ...) is
-        // irrelevant.
+        // Everything else (focus changes, workspace activation, layout
+        // changes, ...) is irrelevant.
     }
 
     fn upsert_window(&mut self, w: &Value) {
@@ -121,67 +109,48 @@ impl State {
                 .unwrap_or(false),
         };
         self.windows.insert(id, info);
-        if w.get("is_focused").and_then(Value::as_bool) == Some(true) {
-            self.focused = Some(id);
-        }
     }
 
-    fn enforce(&mut self) {
-        let targets = self.target_workspace_ids();
+    /// Compute which tiled windows should be at 100% right now: any window
+    /// on a target workspace, or the only tiled window on its workspace.
+    fn desired_maximized(&self) -> BTreeSet<u64> {
+        let targets: HashSet<u64> = self
+            .workspace_names
+            .iter()
+            .filter_map(|(id, name)| {
+                let name = name.as_deref()?;
+                target_ws_names().iter().any(|t| t == name).then_some(*id)
+            })
+            .collect();
 
-        // Count tiled windows per workspace; floating windows don't affect
-        // whether a tiled window is "solo".
+        // Floating windows don't count toward whether a tiled window is
+        // "solo", and are never resized themselves.
         let mut tiled_count: BTreeMap<u64, usize> = BTreeMap::new();
         for info in self.windows.values() {
-            if info.floating {
-                continue;
-            }
-            if let Some(ws) = info.ws {
+            if let (false, Some(ws)) = (info.floating, info.ws) {
                 *tiled_count.entry(ws).or_insert(0) += 1;
             }
         }
 
-        let mut to_maximize = Vec::new();
-        let mut to_restore = Vec::new();
+        self.windows
+            .iter()
+            .filter(|(_, info)| !info.floating)
+            .filter_map(|(&id, info)| {
+                let ws = info.ws?;
+                (targets.contains(&ws) || tiled_count.get(&ws) == Some(&1)).then_some(id)
+            })
+            .collect()
+    }
 
-        for (&id, info) in &self.windows {
-            if info.floating {
-                // Never resize floating windows; drop stale bookkeeping if a
-                // maximized window went floating.
-                self.maximized.remove(&id);
-                continue;
-            }
-            let desired = info.ws.is_some_and(|ws| {
-                targets.contains(&ws) || tiled_count.get(&ws) == Some(&1)
-            });
-            let is_max = self.maximized.contains(&id);
-            if desired && !is_max {
-                to_maximize.push(id);
-            } else if !desired && is_max {
-                to_restore.push(id);
-            }
+    fn enforce(&mut self) {
+        let desired = self.desired_maximized();
+        for &id in desired.difference(&self.prev_desired) {
+            set_width(id, "100%");
         }
-
-        if to_maximize.is_empty() && to_restore.is_empty() {
-            return;
+        for &id in self.prev_desired.difference(&desired) {
+            set_width(id, restore_width());
         }
-
-        for &id in &to_maximize {
-            set_column_width_for_window(id, "100%");
-            self.maximized.insert(id);
-        }
-        for &id in &to_restore {
-            set_column_width_for_window(id, restore_width());
-            self.maximized.remove(&id);
-        }
-
-        // Resizing required focusing each affected window; put focus back
-        // where the user had it.
-        if let Some(f) = self.focused {
-            if self.windows.contains_key(&f) {
-                niri_action(&["focus-window", "--id", &f.to_string()]);
-            }
-        }
+        self.prev_desired = desired;
     }
 }
 
@@ -193,49 +162,56 @@ fn niri_bin() -> &'static str {
     BIN.get_or_init(|| std::env::var("NIRI_BIN").unwrap_or_else(|_| "niri".to_string()))
 }
 
-fn niri_action(args: &[&str]) {
-    let _ = Command::new(niri_bin())
-        .arg("msg")
-        .arg("action")
+/// Set a window's column width by id. `set-window-width --id` targets the
+/// window directly, so no focus juggling is needed. stderr flows through to
+/// ours (journald picks it up for user services).
+fn set_width(id: u64, width: &str) {
+    let args = ["set-window-width", "--id", &id.to_string(), width];
+    match Command::new(niri_bin())
+        .args(["msg", "action"])
         .args(args)
         .stdout(Stdio::null())
-        .stderr(Stdio::null())
-        .status();
-}
-
-/// `set-column-width` acts on the focused column, so focus the window first.
-fn set_column_width_for_window(id: u64, width: &str) {
-    niri_action(&["focus-window", "--id", &id.to_string()]);
-    niri_action(&["set-column-width", width]);
+        .status()
+    {
+        Ok(status) if !status.success() => eprintln!("niri action {args:?} failed: {status}"),
+        Err(e) => eprintln!("failed to spawn {}: {e}", niri_bin()),
+        _ => {}
+    }
 }
 
 fn main() -> std::io::Result<()> {
     let mut child = Command::new(niri_bin())
         .args(["msg", "--json", "event-stream"])
         .stdout(Stdio::piped())
-        .stderr(Stdio::null())
         .spawn()?;
 
     let stdout = child.stdout.take().expect("stdout was piped");
-    let reader = BufReader::new(stdout);
-
     let mut state = State::default();
 
-    for line in reader.lines() {
-        let line = line?;
+    for line in BufReader::new(stdout).lines() {
+        let Ok(line) = line else { break };
         let line = line.trim();
         if line.is_empty() {
             continue;
         }
-        let Ok(event) = serde_json::from_str::<Value>(line) else {
-            continue;
-        };
-        state.handle_event(&event);
-        state.enforce();
+        if let Ok(event) = serde_json::from_str::<Value>(line) {
+            state.handle_event(&event);
+            state.enforce();
+        }
     }
 
-    // Event stream ended (niri exited or the socket dropped).
-    // Exit non-zero so systemd's Restart=always brings us back up.
-    let _ = child.wait();
-    std::process::exit(1);
+    // Event stream ended. Distinguish a clean compositor shutdown (session
+    // ending -- exit 0 so Restart=on-failure leaves us alone) from an
+    // unexpected stream death (exit 1 so systemd restarts us).
+    match child.wait() {
+        Ok(status) if status.success() => Ok(()),
+        Ok(status) => {
+            eprintln!("niri event-stream exited: {status}");
+            std::process::exit(1);
+        }
+        Err(e) => {
+            eprintln!("failed to wait on niri event-stream: {e}");
+            std::process::exit(1);
+        }
+    }
 }

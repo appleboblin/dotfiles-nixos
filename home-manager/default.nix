@@ -38,7 +38,7 @@
 
         # Window Manager
         pavucontrol
-        grimblast
+        # grimblast
 
         # Daily
         thunderbird
@@ -62,11 +62,11 @@
         gimp
         kdePackages.okular
         element-desktop
-        prismlauncher
+        # prismlauncher # Maybe set enable game file?
         v4l-utils
         file
         ffmpeg
-        r2modman
+        # r2modman # Move this to if enable steam
         nextcloud-client
         pcloud
         calibre
@@ -84,7 +84,7 @@
         # typst
         tinymist
         prettypst
-        edgetx
+        # edgetx
         orca-slicer
         rocmPackages.rocm-smi
         openscad

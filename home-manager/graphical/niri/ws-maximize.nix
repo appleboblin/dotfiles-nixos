@@ -9,7 +9,7 @@ let
 
   niri-ws-maximize = pkgs.rustPlatform.buildRustPackage {
     pname = "niri-ws-maximize";
-    version = "0.2.0";
+    version = "0.3.0";
     src = ./niri-ws-maximize;
     cargoLock.lockFile = ./niri-ws-maximize/Cargo.lock;
   };
