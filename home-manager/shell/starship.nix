@@ -14,25 +14,17 @@
       };
       # https://starship.rs/config/
       format = lib.concatStringsSep "" [
-        # "$username"
-        # "$hostname"
         "$directory"
         "$git_branch"
         "$git_state"
         "$git_status"
         "$nix_shell"
-        # "$cmd_duration"
-        # "$line_break"
-        # "$python"
-        # "$time"
         "$character"
       ];
-      # format = "$directory$git_branch$git_state$git_status$nix_shell$character";
       right_format = lib.concatStringsSep "" [
         "$cmd_duration"
         "$time"
       ];
-      # right_format = "$cmd_duration$time";
 
       character = {
         error_symbol = "[❯](red)";
@@ -82,10 +74,6 @@
         symbol = "❄️ ";
         style = "blue";
       };
-      # python = {
-      #   format = "[$virtualenv]($style) ";
-      #   style = "bright-black";
-      # };
     };
   };
 

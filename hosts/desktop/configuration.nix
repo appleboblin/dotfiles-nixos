@@ -90,6 +90,7 @@
   custom.games.enable = true;
 
   programs = {
+    kdeconnect.enable = true;
     niri = {
       enable = true;
       package = pkgs.niri-unstable;

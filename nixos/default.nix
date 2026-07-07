@@ -81,10 +81,6 @@
     automatic-timezoned.enable = false; # uses country IP so vpn to other country will change time
     geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 
-    # displayManager.gdm = {
-    #   enable = true;
-    # };
-
     # Enable CUPS to print documents.
     printing.enable = true;
 
@@ -92,9 +88,6 @@
 
     protonmail-bridge = lib.mkIf (host == "desktop") {
       enable = true;
-      # package = pkgs.protonmail-bridge;
-      # logLevel = "info";
-      # path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176
     };
 
     pipewire = {
@@ -270,52 +263,56 @@
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
 
-    systemPackages = with pkgs; [
-      nano
-      micro
-      neovim
-      killall
-      wget
-      dbus
-      usbutils
-      curl
-      gzip
-      git
-      git-lfs
-      htop
-      btop
-      nvtopPackages.full
-      eza
-      fzf
-      fastfetch
-      procps
-      bash-completion
-      virtiofsd # vm
-      spice-gtk
-      wireguard-tools # vpn
-      nfs-utils # nfs file share
-      cifs-utils
-      openmpi
-      # ior # broken build
-      lxqt.lxqt-policykit
-      libimobiledevice
-      libheif
-      ffmpeg
-      imagemagick
-      zip
-      rar
-      unzip
-      p7zip
-      rsync
-      ntfs3g
-      yubioath-flutter
-      solo2-cli
-      mlocate
-      tree
-      ripgrep
-      # typst
-      # tinymist
-    ];
+    systemPackages =
+      with pkgs;
+      [
+        nano
+        micro
+        neovim
+        killall
+        wget
+        dbus
+        usbutils
+        curl
+        gzip
+        git
+        git-lfs
+        htop
+        btop
+        nvtopPackages.full
+        eza
+        fzf
+        fastfetch
+        procps
+        bash-completion
+        wireguard-tools # vpn
+        nfs-utils # nfs file share
+        cifs-utils
+        openmpi
+        # ior # broken build
+        lxqt.lxqt-policykit
+        libimobiledevice
+        libheif
+        ffmpeg
+        imagemagick
+        zip
+        rar
+        unzip
+        p7zip
+        rsync
+        ntfs3g
+        yubioath-flutter
+        solo2-cli
+        mlocate
+        tree
+        ripgrep
+        # typst
+        # tinymist
+      ]
+      ++ lib.optionals config.virtualisation.libvirtd.enable [
+        virtiofsd # vm
+        spice-gtk
+      ];
   };
 
   programs = {
@@ -357,37 +354,31 @@
 
     firewall = {
       enable = true;
-      allowedTCPPortRanges = [
+      allowedTCPPorts = lib.optionals config.virtualisation.libvirtd.enable [
+        16509 # libvirt
+      ];
+      allowedTCPPortRanges = lib.optionals config.virtualisation.libvirtd.enable [
         {
           from = 5900;
           to = 5999;
-        } # spice
-        {
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
-      ];
-      allowedUDPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
-      ];
-      allowedTCPPorts = [
-        16509 # libvirt
+        } # SPICE
       ];
       # if packets are still dropped, they will show up in dmesg
       logReversePathDrops = true;
       # wireguard trips rpfilter up
-      extraCommands = ''
-        			ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
-        			ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
-        			iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
-        		'';
-      extraStopCommands = ''
-        			ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
-        			ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
-        		'';
+      extraCommands =
+        lib.optionalString config.networking.wireguard.enable ''
+          ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
+          ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
+        ''
+        + ''
+          iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
+        '';
+
+      extraStopCommands = lib.optionalString config.networking.wireguard.enable ''
+        ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
+        ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
+      '';
     };
     # wireguard
     wireguard.enable = true;

@@ -8,7 +8,6 @@ in
 {
   services = {
     easyeffects.enable = true;
-    kdeconnect.enable = true;
     niri-ws-maximize = {
       enable = true;
       targetWorkspaces = [
@@ -21,7 +20,6 @@ in
   };
 
   programs = {
-    # beets.enable = true;
     # niri config
     niri.settings = {
       spawn-at-startup =

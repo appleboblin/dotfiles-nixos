@@ -24,23 +24,12 @@
     packages =
       with pkgs;
       lib.mkIf (host != "vm") [
-        # browser
         brave
         chromium
         vivaldi
         vivaldi-ffmpeg-codecs
-
-        # Programming
-        # python3
-
-        # Terminal
         distrobox
-
-        # Window Manager
         pavucontrol
-        # grimblast
-
-        # Daily
         thunderbird
         libreoffice
         vlc
@@ -49,13 +38,8 @@
         thunar-archive-plugin
         file-roller
         ristretto
-
-        # Provides org.gnome.keyring.SystemPrompter
-        gcr
-
-        # Other
+        gcr # Provides org.gnome.keyring.SystemPrompter
         vesktop
-        # (vesktop.override { pnpm_10_29_2 = pkgs.pnpm_10; })
         filezilla
         inkscape
         remmina
@@ -70,19 +54,14 @@
         calibre
         libation
         obsidian
-        # pdfslicer
         proton-pass
-        # grayjay
         freetube
         nix-your-shell
         cryptomator
         proton-vpn
-        nyxt
         seahorse
-        # typst
         tinymist
         prettypst
-        # edgetx
         orca-slicer
         rocmPackages.rocm-smi
         openscad

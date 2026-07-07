@@ -1,11 +1,9 @@
 {
   imports = [
-    ./beets.nix
     ./btop.nix
     ./easyeffects.nix
     ./foot.nix
     ./games.nix
-    ./kdeconnect.nix
     ./kitty.nix
     ./nixvim/default.nix
     ./obs-studio.nix
