@@ -62,11 +62,9 @@
         gimp
         kdePackages.okular
         element-desktop
-        # prismlauncher # Maybe set enable game file?
         v4l-utils
         file
         ffmpeg
-        # r2modman # Move this to if enable steam
         nextcloud-client
         pcloud
         calibre

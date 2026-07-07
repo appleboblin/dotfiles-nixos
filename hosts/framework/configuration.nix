@@ -46,6 +46,8 @@
     };
   };
 
+  custom.games.enable = false;
+
   # sudo powertop --auto-tune
   powerManagement.powertop.enable = true;
 

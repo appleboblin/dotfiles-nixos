@@ -87,8 +87,9 @@
     wlr.enable = lib.mkForce false;
   };
 
+  custom.games.enable = true;
+
   programs = {
-    steam.enable = true;
     niri = {
       enable = true;
       package = pkgs.niri-unstable;

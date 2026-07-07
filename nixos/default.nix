@@ -11,8 +11,8 @@
     ./boot.nix
     ./docker.nix
     ./fonts.nix
+    ./games.nix
     ./localsend.nix
-    ./steam.nix
     ./tailscale.nix
     ./transmission.nix
     ./kanata.nix
