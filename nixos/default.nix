@@ -306,8 +306,12 @@
         mlocate
         tree
         ripgrep
+        jq
         # typst
         # tinymist
+        # glib
+        # gsettings-desktop-schemas
+        # gtk3
       ]
       ++ lib.optionals config.virtualisation.libvirtd.enable [
         virtiofsd # vm

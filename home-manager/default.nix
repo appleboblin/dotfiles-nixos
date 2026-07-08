@@ -4,8 +4,12 @@
   user,
   host,
   lib,
+  inputs,
   ...
 }:
+let
+  pkgs-orca = import inputs.nixpkgs-orca { inherit (pkgs) system; };
+in
 {
   imports = [
     ./graphical
@@ -62,7 +66,8 @@
         seahorse
         tinymist
         prettypst
-        orca-slicer
+        # orca-slicer
+        pkgs-orca.orca-slicer
         rocmPackages.rocm-smi
         openscad
       ];
@@ -74,8 +79,6 @@
       DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
     };
   };
-
-  # services.gnome-keyring.enable = true;
 
   # default stuff
   xdg = {

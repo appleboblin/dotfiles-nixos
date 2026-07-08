@@ -32,6 +32,8 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # remove when fixed?
+    nixpkgs-orca.url = "github:nixos/nixpkgs/e8273b29fe1390ec8d4603f2477357555291432e";
   };
 
   outputs =
