@@ -188,7 +188,9 @@ in
               rotation = 0.0;
               settings = {
                 background = false;
+                clock_style = "digital";
                 center_text = true;
+                format = "{:%H:%M}";
                 shadow = false;
               };
             };
@@ -198,11 +200,12 @@ in
               output = "eDP-1";
               box_height = 0.0;
               box_width = 0.0;
-              cx = 1128.0;
+              cx = 1192.0;
               cy = 1296.0;
               rotation = 0.0;
               settings = {
                 background = true;
+                command = "noctalia msg session shutdown";
                 glyph = "shutdown";
                 variant = "default";
               };
@@ -213,11 +216,12 @@ in
               output = "eDP-1";
               box_height = 0.0;
               box_width = 0.0;
-              cx = 1192.0;
+              cx = 1128.0;
               cy = 1296.0;
               rotation = 0.0;
               settings = {
                 background = true;
+                command = "noctalia msg session reboot";
                 glyph = "reboot";
                 variant = "default";
               };
@@ -233,6 +237,7 @@ in
               rotation = 0.0;
               settings = {
                 background = true;
+                command = "noctalia msg session lock-and-suspend";
                 glyph = "player-pause-filled";
                 variant = "default";
               };
@@ -248,8 +253,9 @@ in
               rotation = 0.0;
               settings = {
                 background = false;
+                clock_style = "digital";
                 center_text = true;
-                format = "{:%A %B %d}";
+                format = "%A %d %B";
                 shadow = false;
               };
             };

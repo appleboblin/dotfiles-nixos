@@ -14,9 +14,18 @@
     enable = true;
 
     settings = {
-      battery.warning_threshold = 20;
+      battery.warning_threshold = 25;
 
       brightness.enable_ddcutil = true;
+
+      control_center.shortcuts = [
+        { type = "bluetooth"; }
+        { type = "caffeine"; }
+        { type = "nightlight"; }
+        { type = "notification"; }
+        { type = "power_profile"; }
+        { type = "keyboard_layout"; }
+      ];
 
       idle = {
         behavior_order = [
@@ -50,12 +59,15 @@
         panel = {
           open_near_click_control_center = true;
           open_near_click_session = true;
+          shadow = false;
         };
+        screenshot.directory = "/home/appleboblin/Pictures/Screenshots";
       };
 
       theme = {
         builtin = "Catppuccin";
         community_palette = "Catppuccin Macchiato Pink";
+        mode = "dark";
         source = "community";
         wallpaper_scheme = "m3-content";
         templates = {

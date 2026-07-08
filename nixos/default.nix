@@ -77,6 +77,7 @@
   time.timeZone = "America/Los_Angeles";
   # time.timeZone = "Pacific/Tahiti";
   services = {
+    accounts-daemon.enable = true;
     # https://discourse.nixos.org/t/timezones-how-to-setup-on-a-laptop/33853/8
     automatic-timezoned.enable = false; # uses country IP so vpn to other country will change time
     geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
