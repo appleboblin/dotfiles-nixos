@@ -7,7 +7,7 @@
 }:
 {
   imports = [
-    inputs.niri.nixosModules.niri
+    # inputs.niri.nixosModules.niri
     ./kanata.nix
   ];
 

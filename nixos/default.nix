@@ -86,7 +86,7 @@
     # Enable CUPS to print documents.
     printing.enable = true;
 
-    # displayManager.gdm.enable = true;
+    displayManager.gdm.enable = true;
 
     protonmail-bridge = lib.mkIf (host == "desktop") {
       enable = true;

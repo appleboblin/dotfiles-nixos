@@ -1,11 +1,16 @@
 {
   lib,
+  inputs,
   ...
 }:
 let
   monitors = import ./monitors.nix;
 in
 {
+  imports = [
+    inputs.niri.homeModules.niri
+  ];
+
   services = {
     easyeffects.enable = true;
     niri-ws-maximize = {

@@ -16,10 +16,10 @@
     };
 
     noctalia-greeter = {
-      enable = true;
+      enable = false;
 
       # Optional configuration
-      greeter-args = "--session Niri --user appleboblin";
+      # greeter-args = "--session Niri --user appleboblin";
     };
   };
 }

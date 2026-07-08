@@ -1,12 +1,10 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }:
 {
   imports = [
-    inputs.niri.nixosModules.niri
     ./kanata.nix
   ];
 

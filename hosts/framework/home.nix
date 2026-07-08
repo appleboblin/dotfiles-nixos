@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   ...
 }:
 let
@@ -24,6 +25,10 @@ let
   ];
 in
 {
+  imports = [
+    inputs.niri.homeModules.niri
+  ];
+
   # font size
   gtk.font.size = 21;
 
