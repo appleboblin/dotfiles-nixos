@@ -12,5 +12,73 @@
   ];
   programs.noctalia = {
     enable = true;
+
+    settings = {
+      battery.warning_threshold = 20;
+
+      brightness.enable_ddcutil = true;
+
+      idle = {
+        behavior_order = [
+          "lock"
+          "screen-off"
+          "lock-and-suspend"
+        ];
+        pre_action_fade_seconds = 0;
+      };
+
+      location.auto_locate = true;
+
+      lockscreen = {
+        blur_intensity = 0.099999997764825821;
+        tint_intensity = 0.0;
+      };
+
+      nightlight.enabled = true;
+
+      shell = {
+        avatar_path = "${./jigglypuff.png}";
+        font_family = "Inter Nerd Font";
+        niri_overview_type_to_launch_enabled = true;
+        screen_time_enabled = true;
+        animation.enabled = false;
+        launcher = {
+          categories = false;
+          compact = true;
+          session_search = true;
+        };
+        panel = {
+          open_near_click_control_center = true;
+          open_near_click_session = true;
+        };
+      };
+
+      theme = {
+        builtin = "Catppuccin";
+        community_palette = "Catppuccin Macchiato Pink";
+        source = "community";
+        wallpaper_scheme = "m3-content";
+        templates = {
+          enable_builtin_templates = false;
+          enable_community_templates = false;
+        };
+      };
+
+      wallpaper = {
+        default.path = "${./WP_Laser_Up-2560x1440_00229.jpg}";
+      };
+
+      widget = {
+        media.hide_when_no_media = true;
+        network.show_label = false;
+        tray.drawer = true;
+        workspaces = {
+          active_pill_size = 1.0;
+          display = "none";
+          hide_when_empty = true;
+          max_label_chars = 1;
+        };
+      };
+    };
   };
 }
