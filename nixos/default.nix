@@ -86,8 +86,6 @@
     # Enable CUPS to print documents.
     printing.enable = true;
 
-    displayManager.gdm.enable = true;
-
     protonmail-bridge = lib.mkIf (host == "desktop") {
       enable = true;
     };
@@ -206,12 +204,7 @@
 
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    config.common.default = "gtk";
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   # OpenGL
@@ -261,7 +254,6 @@
       EDITOR = "zeditor -w";
       BROWSER = "vivaldi";
       TERMINAL = "xterm-256color";
-      DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
 

@@ -31,12 +31,6 @@
     powertop
   ];
 
-  # Desktop environment
-  # Override xdg.portal.wlr.enable, theres conflict
-  xdg.portal = {
-    wlr.enable = lib.mkForce false;
-  };
-
   programs = {
     niri = {
       enable = true;

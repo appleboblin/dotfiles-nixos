@@ -82,6 +82,7 @@
       };
 
       widget = {
+        clock.format = "{:%a %d %b %H:%M}";
         media.hide_when_no_media = true;
         network.show_label = false;
         tray.drawer = true;

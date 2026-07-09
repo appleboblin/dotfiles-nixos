@@ -50,6 +50,7 @@ in
         Description = "niri: maximize solo windows; force-maximize on target workspaces";
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session.target" ];
+        StartLimitIntervalSec = 0;
       };
 
       Service = {
@@ -61,8 +62,8 @@ in
         ++ lib.optional (
           cfg.targetWorkspaces != [ ]
         ) "NIRI_WS_TARGETS=${lib.concatStringsSep "," cfg.targetWorkspaces}";
-        Restart = "always";
-        RestartSec = 1;
+        Restart = "on-failure";
+        RestartSec = 2;
       };
 
       Install = {

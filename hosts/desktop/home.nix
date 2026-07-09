@@ -143,7 +143,7 @@ in
             "lock-and-suspend" = {
               action = "lock_and_suspend";
               enabled = true;
-              timeout = 36000.0;
+              timeout = 3600.0;
             };
             "screen-off" = {
               action = "screen_off";
