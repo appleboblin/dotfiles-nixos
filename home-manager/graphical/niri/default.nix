@@ -21,7 +21,6 @@
       environment = {
         CLUTTER_BACKEND = "wayland";
         DISPLAY = ":0";
-        GDK_BACKEND = "wayland,x11";
         MOZ_ENABLE_WAYLAND = "1";
         NIXOS_OZONE_WL = "1";
         QT_QPA_PLATFORM = "wayland;xcb";
@@ -73,7 +72,7 @@
         in
         [
           # Each command is a list of strings, which will be joined with spaces
-          (command (lib.getExe pkgs.xwayland-satellite))
+          # (command (lib.getExe pkgs.xwayland-satellite))
           (command [
             "fcitx5"
             "-d"
