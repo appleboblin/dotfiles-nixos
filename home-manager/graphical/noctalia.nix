@@ -45,6 +45,10 @@
 
       nightlight.enabled = true;
 
+      osd.kinds = {
+        media = false;
+      };
+
       shell = {
         avatar_path = "${./jigglypuff.png}";
         font_family = "Inter Nerd Font";
