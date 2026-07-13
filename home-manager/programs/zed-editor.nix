@@ -54,9 +54,6 @@
       openssl
       openssl.out
 
-      # texliv
-      # texliveFull
-
       typst
       tinymist
     ];

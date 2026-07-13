@@ -1,45 +1,91 @@
 {
   config,
+  pkgs,
   ...
 }:
-{
-  programs.niri.settings.binds = with config.lib.niri.actions; {
-    "XF86AudioMute".action = spawn "swayosd-client" "--output-volume=mute-toggle";
-    "XF86AudioMicMute".action = spawn "swayosd-client" "--input-volume=mute-toggle";
+let
+  niri = "${config.programs.niri.package}/bin/niri";
+  jq = "${pkgs.jq}/bin/jq";
 
+  focus-or-back = pkgs.writeShellScriptBin "focus-or-back" ''
+    target_app="$1"; shift
+    state="$XDG_RUNTIME_DIR/focus-or-back-$target_app"
+
+    focused_app=$(${niri} msg --json windows \
+      | ${jq} -r 'first(.[] | select(.is_focused)) | .app_id')
+
+    if [ "$focused_app" = "$target_app" ]; then
+      if [ -f "$state" ]; then
+        back=$(cat "$state")
+        ${niri} msg action focus-window --id "$back" 2>/dev/null || true
+      fi
+    else
+      # remember the currently focused *window* id
+      ${niri} msg --json windows \
+        | ${pkgs.jq}/bin/jq -r 'first(.[] | select(.is_focused)) | .id' > "$state"
+      id=$(${niri} msg --json windows \
+        | ${pkgs.jq}/bin/jq -r --arg a "$target_app" 'first(.[] | select(.app_id == $a)) | .id')
+      if [ -n "$id" ] && [ "$id" != "null" ]; then
+        ${niri} msg action focus-window --id "$id"
+      else
+        exec "$@"
+      fi
+    fi
+  '';
+in
+{
+  home.packages = [ focus-or-back ];
+  programs.niri.settings.binds = with config.lib.niri.actions; {
     "XF86AudioPlay".action.spawn = [
-      "playerctl"
-      "play-pause"
+      "noctalia"
+      "msg"
+      "media"
+      "toggle"
     ];
     "XF86AudioStop".action.spawn = [
-      "playerctl"
-      "pause"
+      "noctalia"
+      "msg"
+      "media"
+      "stop"
     ];
     "XF86AudioPrev".action.spawn = [
-      "playerctl"
+      "noctalia"
+      "msg"
+      "media"
       "previous"
     ];
     "XF86AudioNext".action.spawn = [
-      "playerctl"
+      "noctalia"
+      "msg"
+      "media"
       "next"
     ];
 
+    "XF86AudioMute".action.spawn = [
+      "noctalia"
+      "msg"
+      "volume-mute"
+    ];
     "XF86AudioRaiseVolume".action.spawn = [
-      "swayosd-client"
-      "--output-volume=raise"
+      "noctalia"
+      "msg"
+      "volume-up"
     ];
     "XF86AudioLowerVolume".action.spawn = [
-      "swayosd-client"
-      "--output-volume=lower"
+      "noctalia"
+      "msg"
+      "volume-down"
     ];
 
     "XF86MonBrightnessUp".action.spawn = [
-      "swayosd-client"
-      "--brightness=raise"
+      "noctalia"
+      "msg"
+      "brightness-up"
     ];
     "XF86MonBrightnessDown".action.spawn = [
-      "swayosd-client"
-      "--brightness=lower"
+      "noctalia"
+      "msg"
+      "brightness-down"
     ];
 
     # screenshot
@@ -54,46 +100,38 @@
     };
 
     # spawn lockscreen
-    "Mod+Ctrl+L" = {
-      action.spawn = [ "hyprlock" ];
-      allow-when-locked = true;
-    };
+    "Mod+Ctrl+L".action.spawn = [
+      "noctalia"
+      "msg"
+      "session"
+      "lock"
+    ];
 
     # toggle menu
     "Shift+Ctrl+Delete".action.spawn = [
-      "sh"
-      "-c"
-      "rofi-power-menu -theme-str 'window {width: 400px;}'"
+      "noctalia"
+      "msg"
+      "panel-toggle"
+      "session"
     ];
-    # select from history
+
+    # Open history
     "Mod+v".action.spawn = [
-      "sh"
-      "-c"
-      "pkill rofi || cliphist list | rofi -dmenu -p 'Select to copy' | cliphist decode | wl-copy"
-    ];
-    # select history to delete
-    "Mod+Shift+v".action.spawn = [
-      "sh"
-      "-c"
-      "pkill rofi || cliphist list | rofi -dmenu -p 'Select to delete' | cliphist delete"
-    ];
-    # delete last entry from cliphist history
-    "Mod+Delete".action.spawn = [
-      "sh"
-      "-c"
-      "cliphist list | cliphist delete"
+      "noctalia"
+      "msg"
+      "panel-toggle"
+      "clipboard"
     ];
 
     "Mod+G".action = switch-preset-column-width;
-    "Mod+Shift+G".action = switch-preset-window-height;
-    "Mod+Ctrl+R".action = reset-window-height;
     "Mod+F".action = maximize-column;
     "Mod+Ctrl+F".action = toggle-window-floating;
     "Mod+Shift+F".action = fullscreen-window;
     "Mod+Space".action.spawn = [
-      "sh"
-      "-c"
-      "pkill rofi || rofi -show drun -theme-str 'window {width: 400px;}'"
+      "noctalia"
+      "msg"
+      "panel-toggle"
+      "launcher"
     ];
     "Mod+Return".action = spawn "footclient";
     "Mod+W".action = toggle-column-tabbed-display;
@@ -103,11 +141,24 @@
       "lock-session"
     ];
 
+    "Mod+S".action.spawn = [
+      "focus-or-back" # script
+      "spotify" # app-id
+      "spotify" # launch
+    ];
+
+    "Mod+I".action.spawn = [
+      "focus-or-back"
+      "vesktop"
+      "vesktop"
+    ];
+
     "Mod+Shift+P".action = consume-window-into-column;
     "Mod+Shift+K".action = expel-window-from-column;
+    "Mod+Period".action = consume-or-expel-window-left;
+    "Mod+Minus".action = consume-or-expel-window-right;
     "Mod+C".action = center-window;
     "Mod+Tab".action = switch-focus-between-floating-and-tiling;
-    "Mod+S".action.focus-workspace = "Wmusic";
 
     "Mod+Alt+Y".action = set-column-width "-10%";
     "Mod+Alt+E".action = set-column-width "+10%";
@@ -119,8 +170,6 @@
     "Mod+E".action = focus-column-or-monitor-right;
     "Mod+H".action = focus-window-or-workspace-down;
     "Mod+A".action = focus-window-or-workspace-up;
-    "Mod+Comma".action = focus-column-left-or-last;
-    "Mod+Period".action = focus-column-right-or-first;
     "Mod+Ctrl+Y".action = focus-monitor-left;
     "Mod+Ctrl+E".action = focus-monitor-right;
     "Mod+Ctrl+A".action = focus-workspace-up;
@@ -135,25 +184,25 @@
     "Mod+Shift+Ctrl+H".action = move-window-to-workspace-down;
     "Mod+Shift+Ctrl+A".action = move-window-to-workspace-up;
 
-    "Mod+1".action.focus-workspace = "W0";
-    "Mod+2".action.focus-workspace = "W1";
-    "Mod+3".action.focus-workspace = "W2";
-    "Mod+4".action.focus-workspace = "W3";
-    "Mod+5".action.focus-workspace = "W4";
-    "Mod+6".action.focus-workspace = "W5";
-    "Mod+7".action.focus-workspace = "W6";
-    "Mod+8".action.focus-workspace = "W7";
-    "Mod+9".action.focus-workspace = "W8";
-    "Mod+0".action.focus-workspace = "W9";
-    "Mod+Shift+1".action.move-column-to-workspace = "W0";
-    "Mod+Shift+2".action.move-column-to-workspace = "W1";
-    "Mod+Shift+3".action.move-column-to-workspace = "W2";
-    "Mod+Shift+4".action.move-column-to-workspace = "W3";
-    "Mod+Shift+5".action.move-column-to-workspace = "W4";
-    "Mod+Shift+6".action.move-column-to-workspace = "W5";
-    "Mod+Shift+7".action.move-column-to-workspace = "W6";
-    "Mod+Shift+8".action.move-column-to-workspace = "W7";
-    "Mod+Shift+9".action.move-column-to-workspace = "W8";
-    "Mod+Shift+0".action.move-column-to-workspace = "W9";
+    "Mod+1".action.focus-workspace = "1";
+    "Mod+2".action.focus-workspace = "2";
+    "Mod+3".action.focus-workspace = "3";
+    "Mod+4".action.focus-workspace = "4";
+    "Mod+5".action.focus-workspace = "5";
+    "Mod+6".action.focus-workspace = "6";
+    "Mod+7".action.focus-workspace = "7";
+    "Mod+8".action.focus-workspace = "8";
+    "Mod+9".action.focus-workspace = "9";
+    "Mod+0".action.focus-workspace = "stuff";
+    "Mod+Shift+1".action.move-column-to-workspace = "1";
+    "Mod+Shift+2".action.move-column-to-workspace = "2";
+    "Mod+Shift+3".action.move-column-to-workspace = "3";
+    "Mod+Shift+4".action.move-column-to-workspace = "4";
+    "Mod+Shift+5".action.move-column-to-workspace = "5";
+    "Mod+Shift+6".action.move-column-to-workspace = "6";
+    "Mod+Shift+7".action.move-column-to-workspace = "7";
+    "Mod+Shift+8".action.move-column-to-workspace = "8";
+    "Mod+Shift+9".action.move-column-to-workspace = "9";
+    "Mod+Shift+0".action.move-column-to-workspace = "stuff";
   };
 }

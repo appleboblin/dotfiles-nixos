@@ -1,18 +1,12 @@
 {
   imports = [
-    ./beets.nix
     ./btop.nix
     ./easyeffects.nix
-    # ./emacs
-    ./firefox.nix
     ./foot.nix
-    ./ghostty.nix
-    ./kdeconnect.nix
+    ./games.nix
     ./kitty.nix
-    ./nemo.nix
     ./nixvim/default.nix
     ./obs-studio.nix
-    ./rofi.nix
     ./spicetify.nix
     ./thunar.nix
     ./vscodium.nix

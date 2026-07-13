@@ -1,12 +1,11 @@
 {
   lib,
   pkgs,
-  inputs,
+  user,
   ...
 }:
 {
   imports = [
-    inputs.niri.nixosModules.niri
     ./kanata.nix
   ];
 
@@ -56,6 +55,16 @@
     ];
   };
 
+  # recommended for ROCm systems
+  # https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.0.0/how-to/prerequisites.html
+  users.users.${user} = {
+    description = "${user}";
+    extraGroups = [
+      "video"
+      "render"
+    ];
+  };
+
   systemd.services.lact = {
     description = "AMDGPU Control Daemon";
     after = [ "multi-user.target" ];
@@ -67,8 +76,7 @@
   };
 
   services = {
-    transmission.enable = true;
-    blueman.enable = true;
+    transmission.enable = false;
     hardware.bolt.enable = true;
   };
 
@@ -77,13 +85,13 @@
     wlr.enable = lib.mkForce false;
   };
 
-  programs = {
-    steam.enable = true;
-    niri.enable = true;
+  custom.games.enable = true;
 
-    hyprland = {
-      enable = false;
-      withUWSM = true;
+  programs = {
+    kdeconnect.enable = true;
+    niri = {
+      enable = true;
+      package = pkgs.niri-unstable;
     };
   };
 

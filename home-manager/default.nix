@@ -4,8 +4,12 @@
   user,
   host,
   lib,
+  inputs,
   ...
 }:
+let
+  pkgs-orca = import inputs.nixpkgs-orca { inherit (pkgs) system; };
+in
 {
   imports = [
     ./graphical
@@ -24,23 +28,12 @@
     packages =
       with pkgs;
       lib.mkIf (host != "vm") [
-        # browser
         brave
         chromium
         vivaldi
         vivaldi-ffmpeg-codecs
-
-        # Programming
-        # python3
-
-        # Terminal
         distrobox
-
-        # Window Manager
         pavucontrol
-        grimblast
-
-        # Daily
         thunderbird
         libreoffice
         vlc
@@ -62,17 +55,14 @@
         gimp
         kdePackages.okular
         element-desktop
-        prismlauncher
         v4l-utils
         file
         ffmpeg
-        r2modman
         nextcloud-client
-        pcloud
+        # pcloud
         calibre
         libation
         obsidian
-        # pdfslicer
         proton-pass
         # grayjay
         freetube
@@ -81,12 +71,10 @@
         proton-vpn
         nyxt
         seahorse
-        # typst
         tinymist
         prettypst
-        # texliveFull
-        edgetx
-        orca-slicer
+        # orca-slicer
+        pkgs-orca.orca-slicer
         rocmPackages.rocm-smi
         openscad
       ];
@@ -98,8 +86,6 @@
       DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
     };
   };
-
-  # services.gnome-keyring.enable = true;
 
   # default stuff
   xdg = {

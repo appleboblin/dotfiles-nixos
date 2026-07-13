@@ -3,5 +3,7 @@
   ...
 }:
 {
-  # nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+  nixpkgs.overlays = [
+    inputs.niri.overlays.niri
+  ];
 }

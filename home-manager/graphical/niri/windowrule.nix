@@ -11,23 +11,26 @@
     {
       matches = [
         { app-id = "vesktop"; }
-        { app-id = "Element"; }
-      ];
-      open-on-workspace = "W9";
-      open-maximized = true;
-      open-focused = true;
-      open-floating = false;
-      default-column-display = "tabbed";
-    }
-    {
-      matches = [
+        { app-id = "element"; }
         { app-id = "spotify"; }
       ];
-      open-on-workspace = "Wmusic";
+      open-on-workspace = "stuff";
       open-maximized = true;
       open-focused = false;
       open-floating = false;
-      default-column-display = "tabbed";
+    }
+    {
+      matches = [
+        { app-id = "OrcaSlicer"; }
+      ];
+      open-maximized = true;
+    }
+    {
+      matches = [
+        { app-id = "xdg-desktop-portal-gtk"; }
+      ];
+      open-floating = true;
+      open-focused = true;
     }
     {
       matches = [
@@ -37,12 +40,6 @@
         { app-id = "Element"; }
       ];
       block-out-from = "screen-capture";
-    }
-    {
-      matches = [
-        { app-id = "dev.zed.Zed"; }
-      ];
-      default-column-width.proportion = 1.0;
     }
     {
       matches = [ { app-id = "zen-beta"; } ];
@@ -55,13 +52,6 @@
         enable = true;
         width = 2;
       };
-    }
-  ];
-  programs.niri.settings.layer-rules = [
-    {
-      matches = [ { namespace = ".*syawnc.*"; } ];
-      block-out-from = "screen-capture";
-      opacity = 0.8;
     }
   ];
 }

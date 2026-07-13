@@ -1,11 +1,9 @@
 {
   config,
-  lib,
-  pkgs,
+  inputs,
   ...
 }:
 let
-  wpPath = ../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg;
   mkWorkspace = name: {
     name = name;
     value = {
@@ -14,22 +12,21 @@ let
   };
 
   workspaceNames = [
-    "W0"
-    "W1"
-    "W2"
-    "W3"
-    "W4"
-    "W5"
-    "W6"
-    "W7"
-    "W8"
-    "W9"
-    "Wmusic"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+    "stuff"
   ];
 in
 {
   imports = [
-    ./waybar.nix
+    inputs.niri.homeModules.niri
   ];
 
   # font size
@@ -54,18 +51,6 @@ in
       };
     };
 
-    ghostty = {
-      settings = {
-        font-size = "17";
-      };
-    };
-
-    # hyprlock image
-    hyprlock.settings = {
-      auth."fingerprint:enabled" = true;
-      background.path = "${./framework_wallpaper.png}";
-    };
-
     vscode = {
       profiles.default.userSettings = {
         "editor.fontSize" = 15;
@@ -78,11 +63,17 @@ in
       };
     };
 
-    # niri config
     niri.settings = {
       binds = with config.lib.niri.actions; {
         "XF86AudioMedia".action = spawn "footclient";
-        "Alt+O".action = toggle-overview;
+      };
+      switch-events = {
+        lid-close.action.spawn = [
+          "noctalia"
+          "msg"
+          "session"
+          "lock-and-suspend"
+        ];
       };
       workspaces = builtins.listToAttrs (map mkWorkspace workspaceNames);
       outputs = {
@@ -104,46 +95,186 @@ in
         };
       };
     };
-  };
 
-  services.hyprpaper.settings = {
-    wallpaper = [
-      "eDP-1,${wpPath}"
-    ];
-  };
-  # hyprland config
-  wayland.windowManager.hyprland = {
-    settings = {
-      monitor = [
-        "eDP-1, 2256x1504, 0x0, 1"
-      ];
+    noctalia = {
+      settings = {
+        bar.default = {
+          start = [
+            "launcher"
+            "workspaces"
+          ];
+          center = [ "active_window" ];
+          end = [
+            "media"
+            "tray"
+            "network"
+            "bluetooth"
+            "volume"
+            "battery"
+            "clock"
+            "notifications"
+            "control-center"
+            "session"
+          ];
+          margin_edge = 0;
+          margin_ends = 0;
+          radius = 0;
+          shadow = false;
+        };
+        idle = {
+          behavior = {
+            lock = {
+              action = "lock";
+              enabled = true;
+              timeout = 300.0;
+            };
+            "lock-and-suspend" = {
+              action = "lock_and_suspend";
+              enabled = true;
+              timeout = 900.0;
+            };
+            "screen-off" = {
+              action = "screen_off";
+              enabled = true;
+              timeout = 600.0;
+            };
+          };
+        };
+        lockscreen = {
+          wallpaper = "${./framework_wallpaper.png}";
+        };
+        lockscreen_widgets = {
+          enabled = true;
+          schema_version = 2;
+          widget_order = [
+            "lockscreen-login-box@eDP-1"
+            "lockscreen-widget-0000000000000001"
+            "lockscreen-widget-0000000000000002"
+            "lockscreen-widget-0000000000000003"
+            "lockscreen-widget-0000000000000004"
+            "lockscreen-widget-0000000000000005"
+          ];
 
-      workspace = [
-        "1, monitor:eDP-1, default:true"
-        "2, monitor:eDP-1"
-        "3, monitor:eDP-1"
-        "4, monitor:eDP-1"
-        "5, monitor:eDP-1"
-        "6, monitor:eDP-1"
-        "7, monitor:eDP-1"
-        "8, monitor:eDP-1"
-        "9, monitor:eDP-1"
-        "10, monitor:eDP-1"
-      ];
+          grid = {
+            cell_size = 16;
+            major_interval = 4;
+            visible = true;
+          };
 
-      input = {
-        natural_scroll = true;
-        sensitivity = 0;
+          widget = {
+            "lockscreen-login-box@eDP-1" = {
+              type = "login_box";
+              output = "eDP-1";
+              box_height = 70.0;
+              box_width = 400.0;
+              cx = 1128.0;
+              cy = 1165.0;
+              rotation = 0.0;
+              settings = {
+                background_color = "surface_variant";
+                background_opacity = 0.88;
+                background_radius = 12.0;
+                input_opacity = 1.0;
+                input_radius = 6.0;
+                show_caps_lock = true;
+                show_keyboard_layout = true;
+                show_login_button = true;
+                show_password_hint = true;
+              };
+            };
+
+            "lockscreen-widget-0000000000000001" = {
+              type = "clock";
+              output = "eDP-1";
+              box_height = 256.0;
+              box_width = 640.0;
+              cx = 1128.0;
+              cy = 432.0;
+              rotation = 0.0;
+              settings = {
+                background = false;
+                clock_style = "digital";
+                center_text = true;
+                format = "{:%H:%M}";
+                shadow = false;
+              };
+            };
+
+            "lockscreen-widget-0000000000000002" = {
+              type = "button";
+              output = "eDP-1";
+              box_height = 0.0;
+              box_width = 0.0;
+              cx = 1192.0;
+              cy = 1296.0;
+              rotation = 0.0;
+              settings = {
+                background = true;
+                command = "noctalia msg session shutdown";
+                glyph = "shutdown";
+                variant = "default";
+              };
+            };
+
+            "lockscreen-widget-0000000000000003" = {
+              type = "button";
+              output = "eDP-1";
+              box_height = 0.0;
+              box_width = 0.0;
+              cx = 1128.0;
+              cy = 1296.0;
+              rotation = 0.0;
+              settings = {
+                background = true;
+                command = "noctalia msg session reboot";
+                glyph = "reboot";
+                variant = "default";
+              };
+            };
+
+            "lockscreen-widget-0000000000000004" = {
+              type = "button";
+              output = "eDP-1";
+              box_height = 0.0;
+              box_width = 0.0;
+              cx = 1064.0;
+              cy = 1296.0;
+              rotation = 0.0;
+              settings = {
+                background = true;
+                command = "noctalia msg session lock-and-suspend";
+                glyph = "player-pause-filled";
+                variant = "default";
+              };
+            };
+
+            "lockscreen-widget-0000000000000005" = {
+              type = "clock";
+              output = "eDP-1";
+              box_height = 48.0;
+              box_width = 368.0;
+              cx = 1128.0;
+              cy = 592.0;
+              rotation = 0.0;
+              settings = {
+                background = false;
+                clock_style = "digital";
+                center_text = true;
+                format = "%A %d %B";
+                shadow = false;
+              };
+            };
+          };
+        };
       };
+    };
+  };
 
-      exec-once = [
-        # brightness on startup
-        "${lib.getExe pkgs.brightnessctl} s 40%"
-        "sleep 3;hyprctl dispatch workspace 8;hyprctl dispatch workspace 9;hyprctl dispatch workspace 10;hyprctl dispatch workspace 1"
-      ];
-
-      windowrule = [
-        "workspace 8 silent, class:(thunderbird), title:(Mozilla Thunderbird)(.*)$ "
+  services = {
+    niri-ws-maximize = {
+      enable = true;
+      targetWorkspaces = [
+        "stuff"
       ];
     };
   };

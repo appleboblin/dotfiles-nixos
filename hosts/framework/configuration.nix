@@ -1,12 +1,10 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }:
 {
   imports = [
-    inputs.niri.nixosModules.niri
     ./kanata.nix
   ];
 
@@ -33,30 +31,23 @@
     powertop
   ];
 
-  # Desktop environment
-  # Override xdg.portal.wlr.enable, theres conflict
-  xdg.portal = {
-    wlr.enable = lib.mkForce false;
-  };
-
   programs = {
-    niri.enable = true;
-    hyprland = {
-      enable = false;
-      withUWSM = true;
+    niri = {
+      enable = true;
+      package = pkgs.niri-unstable;
     };
   };
+
+  custom.games.enable = false;
 
   # sudo powertop --auto-tune
   powerManagement.powertop.enable = true;
 
   services = {
     fwupd.enable = true;
-    power-profiles-daemon.enable = true;
 
     libinput.enable = true;
     libinput.touchpad.disableWhileTyping = lib.mkForce true;
-    blueman.enable = true;
     hardware.bolt.enable = true;
 
     fprintd = {
@@ -111,10 +102,6 @@
         login.fprintAuth = false;
         gdm.fprintAuth = false;
         sudo.fprintAuth = false;
-        hyprlock = {
-          fprintAuth = true;
-          unixAuth = true;
-        };
       };
     };
   };
