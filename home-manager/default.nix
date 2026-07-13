@@ -54,7 +54,7 @@ in
         file
         ffmpeg
         nextcloud-client
-        pcloud
+        # pcloud
         calibre
         libation
         obsidian
