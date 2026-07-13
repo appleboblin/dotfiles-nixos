@@ -153,7 +153,7 @@ sudo mount --mkdir "$BOOTDISK" /mnt/boot
 read -rp "Enter flake URL (default: github:appleboblin/dotfiles-nixos): " repo
 repo="${repo:-github:appleboblin/dotfiles-nixos}"
 
-# only relevant for IynaixOS
+# only relevant for appleboblin config
 if [[ $repo == "github:appleboblin/dotfiles-nixos" ]]; then
     hosts=("desktop" "framework" "vm")
 
@@ -173,7 +173,7 @@ if [[ $repo == "github:appleboblin/dotfiles-nixos" ]]; then
         fi
     done
 else
-    # non IynaixOS, prompt for host
+    # non appleboblin config, prompt for host
     read -rp "Which host to install?" host
 fi
 
