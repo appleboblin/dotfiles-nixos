@@ -20,9 +20,7 @@
     },
     "firefox-addons": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
@@ -42,10 +40,7 @@
     },
     "flake-parts": {
       "inputs": {
-        "nixpkgs-lib": [
-          "nixvim",
-          "nixpkgs"
-        ]
+        "nixpkgs-lib": ["nixvim", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1782949081,
@@ -63,9 +58,7 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1783525612,
@@ -296,9 +289,7 @@
     },
     "noctalia": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1783525093,
@@ -316,9 +307,7 @@
     },
     "noctalia-greeter": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1783497237,
@@ -435,12 +424,8 @@
     },
     "zen-browser": {
       "inputs": {
-        "home-manager": [
-          "home-manager"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "home-manager": ["home-manager"],
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1783489920,

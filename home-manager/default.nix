@@ -42,8 +42,13 @@ in
         thunar-archive-plugin
         file-roller
         ristretto
-        gcr # Provides org.gnome.keyring.SystemPrompter
-        vesktop
+
+        # Provides org.gnome.keyring.SystemPrompter
+        gcr
+
+        # Other
+        # vesktop
+        (vesktop.override { pnpm_10_29_2 = pkgs.pnpm_10; })
         filezilla
         inkscape
         remmina
@@ -59,10 +64,12 @@ in
         libation
         obsidian
         proton-pass
+        # grayjay
         freetube
         nix-your-shell
         cryptomator
         proton-vpn
+        nyxt
         seahorse
         tinymist
         prettypst
