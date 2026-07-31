@@ -50,7 +50,7 @@
       ROCR_VISIBLE_DEVICES = "0";
     };
     systemPackages = with pkgs; [
-      lact
+      # lact
       amdgpu_top
     ];
   };

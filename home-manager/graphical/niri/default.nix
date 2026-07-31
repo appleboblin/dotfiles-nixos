@@ -20,7 +20,6 @@
     settings = {
       environment = {
         CLUTTER_BACKEND = "wayland";
-        DISPLAY = ":0";
         MOZ_ENABLE_WAYLAND = "1";
         NIXOS_OZONE_WL = "1";
         QT_QPA_PLATFORM = "wayland;xcb";
@@ -76,10 +75,6 @@
           (command [
             "fcitx5"
             "-d"
-          ])
-          (command [
-            "foot"
-            "--server"
           ])
           (command "noctalia")
           (command "cryptomator")

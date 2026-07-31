@@ -47,8 +47,7 @@ in
         gcr
 
         # Other
-        # vesktop
-        (vesktop.override { pnpm_10_29_2 = pkgs.pnpm_10; })
+        vesktop
         filezilla
         inkscape
         remmina
@@ -58,8 +57,7 @@ in
         v4l-utils
         file
         ffmpeg
-        nextcloud-client
-        # pcloud
+        pcloud
         calibre
         libation
         obsidian
@@ -69,12 +67,10 @@ in
         nix-your-shell
         cryptomator
         proton-vpn
-        nyxt
         seahorse
         tinymist
         prettypst
-        # orca-slicer
-        pkgs-orca.orca-slicer
+        orca-slicer
         rocmPackages.rocm-smi
         openscad
       ];
@@ -82,8 +78,6 @@ in
     sessionVariables = {
       EDITOR = "zeditor -w";
       BROWSER = "vivaldi";
-      TERMINAL = "xterm-256color";
-      DISPLAY = ":0 {if QT} QT_QPA_PLATFORM=xcb application";
     };
   };
 

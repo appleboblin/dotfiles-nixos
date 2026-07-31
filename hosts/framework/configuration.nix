@@ -23,7 +23,7 @@
   # https://wiki.nixos.org/wiki/AMD_GPU
   # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix
   environment.systemPackages = with pkgs; [
-    lact
+    # lact
     amdgpu_top
     fw-ectool
     framework-tool
@@ -101,6 +101,7 @@
       services = {
         login.fprintAuth = false;
         gdm.fprintAuth = false;
+        greetd.fprintAuth = false;
         sudo.fprintAuth = false;
       };
     };

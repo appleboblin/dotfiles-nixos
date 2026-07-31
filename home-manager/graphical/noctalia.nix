@@ -59,7 +59,10 @@
         launcher = {
           categories = false;
           compact = true;
-          session_search = true;
+          providers = {
+            session.global = true;
+            windows.global = true;
+          };
         };
         panel = {
           open_near_click_control_center = true;

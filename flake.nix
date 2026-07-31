@@ -75,10 +75,6 @@
 
                 extraSpecialArgs = {
                   inherit inputs host user;
-                  isLaptop = host == "framework";
-                  isVm = host == "vm";
-                  isDesktop = host == "desktop";
-                  isGem12 = host == "gem12";
                 };
 
                 users.${user} = {
