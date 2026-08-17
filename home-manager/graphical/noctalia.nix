@@ -95,7 +95,7 @@
         tray.drawer = true;
         workspaces = {
           active_pill_size = 1.0;
-          display = "none";
+          show_labels = false;
           hide_when_empty = true;
           max_label_chars = 1;
         };

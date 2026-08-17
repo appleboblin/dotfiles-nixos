@@ -4,12 +4,8 @@
   user,
   host,
   lib,
-  inputs,
   ...
 }:
-let
-  pkgs-orca = import inputs.nixpkgs-orca { inherit (pkgs) system; };
-in
 {
   imports = [
     ./graphical
@@ -46,6 +42,8 @@ in
         # Provides org.gnome.keyring.SystemPrompter
         gcr
 
+        python3
+
         # Other
         vesktop
         filezilla
@@ -62,8 +60,6 @@ in
         libation
         obsidian
         proton-pass
-        # grayjay
-        freetube
         nix-your-shell
         cryptomator
         proton-vpn
@@ -72,7 +68,6 @@ in
         prettypst
         orca-slicer
         rocmPackages.rocm-smi
-        openscad
       ];
 
     sessionVariables = {
