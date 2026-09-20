@@ -149,9 +149,6 @@ in
           widget_order = [
             "lockscreen-login-box@eDP-1"
             "lockscreen-widget-0000000000000001"
-            "lockscreen-widget-0000000000000002"
-            "lockscreen-widget-0000000000000003"
-            "lockscreen-widget-0000000000000004"
             "lockscreen-widget-0000000000000005"
           ];
 
@@ -163,50 +160,56 @@ in
 
           widget = {
             "lockscreen-login-box@eDP-1" = {
-              type = "login_box";
-              output = "eDP-1";
-              box_height = 70.0;
-              box_width = 400.0;
+              box_height = 196.0;
+              box_width = 720.0;
               cx = 1128.0;
               cy = 1165.0;
+              output = "eDP-1";
               rotation = 0.0;
+              type = "login_box";
               settings = {
                 background_color = "surface_variant";
                 background_opacity = 0.88;
                 background_radius = 12.0;
+                center_password_text = false;
                 input_opacity = 1.0;
                 input_radius = 6.0;
+                layout = "regular";
                 show_caps_lock = true;
                 show_keyboard_layout = true;
                 show_login_button = true;
+                show_media = true;
+                show_session_buttons = true;
+                show_unlock_hint = true;
+                show_weather = true;
               };
             };
 
             "lockscreen-widget-0000000000000001" = {
-              type = "clock";
-              output = "eDP-1";
               box_height = 256.0;
               box_width = 640.0;
               cx = 1128.0;
               cy = 432.0;
+              output = "eDP-1";
               rotation = 0.0;
+              type = "clock";
               settings = {
                 background = false;
-                clock_style = "digital";
                 center_text = true;
+                clock_style = "digital";
                 format = "{:%H:%M}";
                 shadow = false;
               };
             };
 
             "lockscreen-widget-0000000000000002" = {
-              type = "button";
-              output = "eDP-1";
               box_height = 0.0;
               box_width = 0.0;
               cx = 1192.0;
               cy = 1296.0;
+              output = "eDP-1";
               rotation = 0.0;
+              type = "button";
               settings = {
                 background = true;
                 command = "noctalia msg session shutdown";
@@ -216,13 +219,13 @@ in
             };
 
             "lockscreen-widget-0000000000000003" = {
-              type = "button";
-              output = "eDP-1";
               box_height = 0.0;
               box_width = 0.0;
               cx = 1128.0;
               cy = 1296.0;
+              output = "eDP-1";
               rotation = 0.0;
+              type = "button";
               settings = {
                 background = true;
                 command = "noctalia msg session reboot";
@@ -232,13 +235,13 @@ in
             };
 
             "lockscreen-widget-0000000000000004" = {
-              type = "button";
-              output = "eDP-1";
               box_height = 0.0;
               box_width = 0.0;
               cx = 1064.0;
               cy = 1296.0;
+              output = "eDP-1";
               rotation = 0.0;
+              type = "button";
               settings = {
                 background = true;
                 command = "noctalia msg session lock-and-suspend";
@@ -248,17 +251,17 @@ in
             };
 
             "lockscreen-widget-0000000000000005" = {
-              type = "clock";
-              output = "eDP-1";
               box_height = 48.0;
               box_width = 368.0;
               cx = 1128.0;
               cy = 592.0;
+              output = "eDP-1";
               rotation = 0.0;
+              type = "clock";
               settings = {
                 background = false;
-                clock_style = "digital";
                 center_text = true;
+                clock_style = "digital";
                 format = "%A %d %B";
                 shadow = false;
               };

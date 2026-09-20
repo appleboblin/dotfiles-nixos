@@ -138,6 +138,8 @@
             # javelin
             SUBSYSTEM=="hidraw", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="400d", MODE="0666"
             SUBSYSTEM=="usb", ATTRS{idVendor}=="0011", ATTRS{idProduct}=="0006", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
+            # CH314A USB SPI
+            SUBSYSTEM=="usb", ATTR{idVendor}=="1a86", ATTR{idProduct}=="5512", , MODE="0666", SYMLINK+="ch341a_spi"
         		'';
 
       packages = [
@@ -311,6 +313,7 @@
   };
 
   programs = {
+    flashrom.enable = true;
     dconf.enable = true;
     yubikey-touch-detector.enable = true;
 
