@@ -12,7 +12,7 @@
 
     # Desktop environment
     catppuccin.url = "github:catppuccin/nix";
-    niri.url = "github:sodiboo/niri-flake";
+    niri.url = "github:epireyn/niri-flake";
     noctalia = {
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
