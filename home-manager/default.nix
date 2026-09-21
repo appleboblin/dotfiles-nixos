@@ -40,7 +40,7 @@
         ristretto
 
         # Provides org.gnome.keyring.SystemPrompter
-        gcr
+        gcr_4
 
         python3
 
