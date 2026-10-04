@@ -89,6 +89,7 @@
 
   programs = {
     kdeconnect.enable = true;
+    nix-ld.enable = true;
     niri = {
       enable = true;
       package = pkgs.niri-unstable;

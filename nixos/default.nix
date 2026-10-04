@@ -197,9 +197,13 @@
     pam = {
       u2f.enable = true;
       services = {
-        niri.enableGnomeKeyring = true;
-        gdm.enableGnomeKeyring = true;
-        login.enableGnomeKeyring = true;
+        login = {
+          enableGnomeKeyring = true;
+          u2fAuth = false;
+        };
+        # niri.enableGnomeKeyring = true;
+        # greetd.enableGnomeKeyring = true;
+        # login.enableGnomeKeyring = true;
       };
     };
   };
@@ -278,7 +282,8 @@
         nvtopPackages.full
         eza
         fzf
-        fastfetch
+        # (pkgs.fastfetch.override { zfsSupport = true; })
+        steam-run
         procps
         bash-completion
         wireguard-tools # vpn

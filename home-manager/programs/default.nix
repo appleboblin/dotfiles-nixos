@@ -2,6 +2,7 @@
   imports = [
     ./btop.nix
     ./easyeffects.nix
+    ./fastfetch.nix
     ./foot.nix
     ./games.nix
     ./kitty.nix
