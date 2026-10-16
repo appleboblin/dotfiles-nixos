@@ -58,7 +58,7 @@
       tod.driver = pkgs.libfprint-2-tod1-goodix;
     };
 
-    logind.settings.Login.HandlePowerKey' = "lock";
+    logind.settings.Login.HandlePowerKey = "lock";
   };
 
   systemd = {
