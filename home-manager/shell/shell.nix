@@ -20,7 +20,7 @@
     #NixOS
     rebuild = "git add . && sudo nixos-rebuild switch --flake .#${host}";
     delete = "sudo nix-collect-garbage -d";
-    garbage = "sudo nix-collect-garbage --delete-older-than 7d";
+    garbage = "sudo nix-collect-garbage --delete-older-than 14d";
     update = "nix flake update";
     dots = "cd /home/${user}/dotfiles-nixos";
 
