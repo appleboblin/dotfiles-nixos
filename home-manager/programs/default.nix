@@ -12,6 +12,5 @@
     ./thunar.nix
     ./vscodium.nix
     ./zed-editor.nix
-    ./zen-browser.nix
   ];
 }

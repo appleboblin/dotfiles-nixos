@@ -10,6 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: DeterminateSystems/determinate-nix-action@v3
-      - uses: DeterminateSystems/update-flake-lock@main
+      - id: update
+        uses: DeterminateSystems/update-flake-lock@main
         with:
           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
+      - if: steps.update.outputs.pull-request-number != ''
+        run: gh pr merge --auto --squash ${{ steps.update.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
