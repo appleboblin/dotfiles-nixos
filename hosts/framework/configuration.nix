@@ -75,25 +75,38 @@
       };
     };
 
-    services.restart-fprintd-after-resume = {
-      description = "Restart fprintd after resume";
-      wantedBy = [
-        "suspend.target"
-        "hibernate.target"
-        "hybrid-sleep.target"
-        "suspend-then-hibernate.target"
-      ];
-      after = [
-        "suspend.target"
-        "hibernate.target"
-        "hybrid-sleep.target"
-        "suspend-then-hibernate.target"
-      ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.systemd}/bin/systemd-run --on-active=2 ${pkgs.systemd}/bin/systemctl restart fprintd.service";
+    services = {
+      restart-fprintd-after-resume = {
+        description = "Restart fprintd after resume";
+        wantedBy = [
+          "suspend.target"
+          "hibernate.target"
+          "hybrid-sleep.target"
+          "suspend-then-hibernate.target"
+        ];
+        after = [
+          "suspend.target"
+          "hibernate.target"
+          "hybrid-sleep.target"
+          "suspend-then-hibernate.target"
+        ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.systemd}/bin/systemd-run --on-active=2 ${pkgs.systemd}/bin/systemctl restart fprintd.service";
+        };
+      };
+
+      pcloud-presleep = {
+        description = "Stop pCloud before sleep";
+        wantedBy = [ "sleep.target" ];
+        before = [ "sleep.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.systemd}/bin/systemctl --user -M appleboblin@ stop pcloud.service";
+        };
       };
     };
+
   };
 
   security = {
