@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  user,
   ...
 }:
 {
@@ -13,6 +14,8 @@
   networking.hostId = "3f4e9fd8";
 
   hardware = {
+    # if overclocking or underclock
+    # amdgpu.overdrive.enable = true;
     bluetooth = {
       enable = true;
       # powerOnBoot = lib.mkForce false;
@@ -23,20 +26,12 @@
   # https://wiki.nixos.org/wiki/AMD_GPU
   # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix
   environment.systemPackages = with pkgs; [
-    # lact
     amdgpu_top
     fw-ectool
     framework-tool
     polkit_gnome
     powertop
   ];
-
-  programs = {
-    niri = {
-      enable = true;
-      package = pkgs.niri-unstable;
-    };
-  };
 
   custom.games.enable = false;
 
@@ -102,7 +97,7 @@
         before = [ "sleep.target" ];
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "${pkgs.systemd}/bin/systemctl --user -M appleboblin@ stop pcloud.service";
+          ExecStart = "${pkgs.systemd}/bin/systemctl --user -M ${user}@ stop pcloud.service";
         };
       };
     };

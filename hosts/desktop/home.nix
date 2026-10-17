@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   inputs,
   ...
 }:
@@ -134,21 +135,34 @@ in
         };
 
         idle = {
+          behavior_order = [
+            "lock"
+            "screen-off"
+            "lock-and-suspend"
+            "lock-and-suspend-media"
+          ];
           behavior = {
             lock = {
               action = "lock";
               enabled = true;
-              timeout = 600.0;
-            };
-            "lock-and-suspend" = {
-              action = "lock_and_suspend";
-              enabled = true;
-              timeout = 3600.0;
+              timeout = 60.0;
             };
             "screen-off" = {
               action = "screen_off";
               enabled = true;
               timeout = 900.0;
+            };
+            # suspend unless media is playing
+            "lock-and-suspend" = {
+              enabled = true;
+              timeout = 1800;
+              command = "${pkgs.playerctl}/bin/playerctl -a status 2>/dev/null | grep -qx Playing || noctalia msg session lock-and-suspend";
+            };
+            # suspend
+            "lock-and-suspend-media" = {
+              enabled = true;
+              timeout = 7200;
+              command = "noctalia msg session lock-and-suspend";
             };
           };
         };
@@ -355,8 +369,6 @@ in
 
         widget = {
           active_window.anchor = true;
-          cpu.show_label = false;
-          ram.show_label = false;
         };
 
         wallpaper.monitors = {

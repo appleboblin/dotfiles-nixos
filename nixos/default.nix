@@ -23,9 +23,9 @@
 
   # Nix Package Manager
   nix = {
+    optimise.automatic = true;
     registry.dots.flake = inputs.self;
     settings = {
-      auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
@@ -35,11 +35,6 @@
         "root"
         "@wheel"
       ];
-    };
-    gc = {
-      automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 14d";
     };
   };
 
@@ -135,29 +130,15 @@
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee7", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4eec", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee0", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
-            # plover
-            KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
             # javelin
             SUBSYSTEM=="hidraw", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="400d", MODE="0666"
             SUBSYSTEM=="usb", ATTRS{idVendor}=="0011", ATTRS{idProduct}=="0006", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
             # CH314A USB SPI
-            SUBSYSTEM=="usb", ATTR{idVendor}=="1a86", ATTR{idProduct}=="5512", , MODE="0666", SYMLINK+="ch341a_spi"
+            SUBSYSTEM=="usb", ATTR{idVendor}=="1a86", ATTR{idProduct}=="5512", TAG+="uaccess", SYMLINK+="ch341a_spi"
         		'';
 
       packages = [
         pkgs.yubikey-personalization
-        (pkgs.writeTextFile {
-          name = "qflipper_udev";
-          text = ''
-            			#Flipper Zero serial port
-            			SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", ATTRS{manufacturer}=="Flipper Devices Inc.", TAG+="uaccess"
-            			#Flipper Zero DFU
-            			SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", ATTRS{manufacturer}=="STMicroelectronics", TAG+="uaccess"
-            			#Flipper ESP32s2 BlackMagic
-            			SUBSYSTEMS=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="40??", ATTRS{manufacturer}=="Flipper Devices Inc.", TAG+="uaccess"
-            			'';
-          destination = "/etc/udev/rules.d/42-flipperzero.rules";
-        })
         (pkgs.writeTextFile {
           name = "solo2_udev";
           text = ''
@@ -215,10 +196,15 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  # OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  hardware = {
+    flipperzero.enable = true;
+    # plover
+    uinput.enable = true;
+    # OpenGL
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 
   zramSwap.enable = true;
@@ -259,9 +245,7 @@
 
   environment = {
     variables = {
-      EDITOR = "zeditor -w";
-      BROWSER = "vivaldi";
-      TERMINAL = "xterm-256color";
+      EDITOR = "nvim";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
 
@@ -320,6 +304,10 @@
   };
 
   programs = {
+    niri = {
+      enable = true;
+      package = pkgs.niri-unstable;
+    };
     flashrom.enable = true;
     dconf.enable = true;
     yubikey-touch-detector.enable = true;
@@ -335,6 +323,15 @@
     virt-manager = {
       # enable = host != "vm";
       enable = config.virtualisation.libvirtd.enable;
+    };
+
+    nh = {
+      enable = true;
+      flake = "/home/${user}/dotfiles-nixos";
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 14d --keep 5";
+      };
     };
   };
 

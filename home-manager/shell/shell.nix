@@ -18,10 +18,10 @@
     c = "clear";
 
     #NixOS
-    rebuild = "git add . && sudo nixos-rebuild switch --flake .#${host}";
-    delete = "sudo nix-collect-garbage -d";
-    garbage = "sudo nix-collect-garbage --delete-older-than 14d";
-    update = "nix flake update";
+    rebuild = "git -C /home/${user}/dotfiles-nixos add -A && nh os switch /home/${user}/dotfiles-nixos --ask";
+    update = "git -C /home/${user}/dotfiles-nixos pull && rebuild";
+    delete = "nh clean all";
+    garbage = "nh clean all --keep-since 14d --keep 5";
     dots = "cd /home/${user}/dotfiles-nixos";
 
     # cd

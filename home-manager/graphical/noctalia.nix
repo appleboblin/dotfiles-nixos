@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -62,7 +63,6 @@
           categories = false;
           compact = true;
           layout = "simple";
-          session_search = true;
           show_app_actions = true;
           providers = {
             session.global = true;
@@ -74,7 +74,7 @@
           open_near_click_session = true;
           shadow = false;
         };
-        screenshot.directory = "/home/appleboblin/Pictures/Screenshots";
+        screenshot.directory = "${config.xdg.userDirs.extraConfig.SCREENSHOT}";
       };
 
       theme = {

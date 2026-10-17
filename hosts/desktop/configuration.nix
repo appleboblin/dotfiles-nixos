@@ -15,19 +15,16 @@
 
   hardware = {
     graphics = {
-      enable = true;
       # opencl
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
       ];
-      # vulkan
-      enable32Bit = true;
     };
 
     # bluetooth
     bluetooth = {
-      enable = true; # enables support for Bluetooth
-      powerOnBoot = lib.mkForce true; # powers up the default Bluetooth controller on boot
+      enable = true;
+      powerOnBoot = lib.mkForce true;
       settings = {
         General = {
           Experimental = true;
@@ -50,7 +47,6 @@
       ROCR_VISIBLE_DEVICES = "0";
     };
     systemPackages = with pkgs; [
-      # lact
       amdgpu_top
     ];
   };
@@ -65,17 +61,8 @@
     ];
   };
 
-  systemd.services.lact = {
-    description = "AMDGPU Control Daemon";
-    after = [ "multi-user.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.lact}/bin/lact daemon";
-    };
-    enable = true;
-  };
-
   services = {
+    lact.enable = true;
     transmission.enable = false;
     hardware.bolt.enable = true;
   };
@@ -90,10 +77,6 @@
   programs = {
     kdeconnect.enable = true;
     nix-ld.enable = true;
-    niri = {
-      enable = true;
-      package = pkgs.niri-unstable;
-    };
   };
 
 }
