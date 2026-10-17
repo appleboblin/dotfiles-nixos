@@ -145,12 +145,12 @@ in
             lock = {
               action = "lock";
               enabled = true;
-              timeout = 60.0;
+              timeout = 600;
             };
             "screen-off" = {
               action = "screen_off";
               enabled = true;
-              timeout = 900.0;
+              timeout = 900;
             };
             # suspend unless media is playing
             "lock-and-suspend" = {

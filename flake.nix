@@ -79,7 +79,6 @@
       nixosConfigurations = {
         framework = mkHost "framework";
         desktop = mkHost "desktop";
-        vm = mkHost "vm";
       };
       templates = import ./templates;
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;

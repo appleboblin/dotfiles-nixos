@@ -155,7 +155,7 @@ repo="${repo:-github:appleboblin/dotfiles-nixos}"
 
 # only relevant for appleboblin config
 if [[ $repo == "github:appleboblin/dotfiles-nixos" ]]; then
-    hosts=("desktop" "framework" "vm")
+    hosts=("desktop" "framework")
 
     echo "Available hosts:"
     for i in "${!hosts[@]}"; do

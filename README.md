@@ -33,13 +33,6 @@ sh <(curl -L https://raw.githubusercontent.com/appleboblin/dotfiles-nixos/refs/h
 1. Add Chewing and set English (US) as the base layout
 2. Hold `RAlt` and press `2` to switch to QWERTY layer before typing in Chewing
 
-### Protonmail Bridge
-
-1. Kill the running bridge process.
-2. Launch the app in terminal: `protonmail-bridge -c`
-3. Run `login` and authenticate. Syncing starts once authentication completes
-4. After syncing finishes, run `info` and add the printed credentials to Thunderbird
-
 ### PCloud
 
 1. Log in and set the sync folder

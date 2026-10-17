@@ -83,10 +83,6 @@
     # Enable CUPS to print documents.
     printing.enable = true;
 
-    protonmail-bridge = lib.mkIf (host == "desktop") {
-      enable = true;
-    };
-
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -130,9 +126,6 @@
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee7", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4eec", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
         		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee0", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
-            # javelin
-            SUBSYSTEM=="hidraw", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="400d", MODE="0666"
-            SUBSYSTEM=="usb", ATTRS{idVendor}=="0011", ATTRS{idProduct}=="0006", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
             # CH314A USB SPI
             SUBSYSTEM=="usb", ATTR{idVendor}=="1a86", ATTR{idProduct}=="5512", TAG+="uaccess", SYMLINK+="ch341a_spi"
         		'';
@@ -198,8 +191,6 @@
 
   hardware = {
     flipperzero.enable = true;
-    # plover
-    uinput.enable = true;
     # OpenGL
     graphics = {
       enable = true;
@@ -321,7 +312,6 @@
     ];
 
     virt-manager = {
-      # enable = host != "vm";
       enable = config.virtualisation.libvirtd.enable;
     };
 
@@ -342,8 +332,6 @@
     libvirtd = {
       # Don't auto start vm server
       # sudo systemctl start libvertd
-      # enable = host != "vm";
-      # qemu.ovmf.enable = host != "vm";
       enable = lib.mkDefault false;
     };
   };

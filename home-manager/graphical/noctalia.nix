@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -29,7 +30,7 @@
       ];
 
       idle = {
-        behavior_order = [
+        behavior_order = lib.mkDefault [
           "lock"
           "screen-off"
           "lock-and-suspend"

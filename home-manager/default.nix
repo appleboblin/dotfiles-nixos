@@ -21,54 +21,51 @@
     # Don't Delete!
     stateVersion = "23.11";
 
-    packages =
-      with pkgs;
-      lib.mkIf (host != "vm") [
-        brave
-        chromium
-        vivaldi
-        vivaldi-ffmpeg-codecs
-        distrobox
-        pavucontrol
-        thunderbird
-        libreoffice
-        vlc
-        thunar
-        thunar-volman
-        thunar-archive-plugin
-        file-roller
-        ristretto
+    packages = with pkgs; [
+      brave
+      chromium
+      vivaldi
+      vivaldi-ffmpeg-codecs
+      distrobox
+      pavucontrol
+      libreoffice
+      vlc
+      thunar
+      thunar-volman
+      thunar-archive-plugin
+      file-roller
+      ristretto
 
-        # Provides org.gnome.keyring.SystemPrompter
-        gcr_4
+      # Provides org.gnome.keyring.SystemPrompter
+      gcr_4
 
-        python3
+      python3
 
-        # Other
-        vesktop
-        filezilla
-        inkscape
-        remmina
-        gimp
-        kdePackages.okular
-        element-desktop
-        v4l-utils
-        file
-        ffmpeg
-        pcloud
-        calibre
-        libation
-        obsidian
-        proton-pass
-        nix-your-shell
-        cryptomator
-        proton-vpn
-        seahorse
-        tinymist
-        prettypst
-        orca-slicer
-        rocmPackages.rocm-smi
-      ];
+      # Other
+      vesktop
+      filezilla
+      inkscape
+      remmina
+      gimp
+      kdePackages.okular
+      element-desktop
+      v4l-utils
+      file
+      ffmpeg
+      pcloud
+      calibre
+      libation
+      obsidian
+      proton-pass
+      nix-your-shell
+      cryptomator
+      proton-vpn
+      seahorse
+      tinymist
+      prettypst
+      orca-slicer
+      rocmPackages.rocm-smi
+    ];
 
     sessionVariables = {
       EDITOR = "zeditor -w";
@@ -159,7 +156,7 @@
   };
 
   # KVM
-  dconf.settings = lib.mkIf (host != "vm") {
+  dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///system" ];
       uris = [ "qemu:///system" ];

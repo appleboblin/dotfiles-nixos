@@ -35,23 +35,10 @@
     {
       matches = [
         { app-id = "Proton Pass"; }
-        { app-id = "thunderbird"; }
         { app-id = "vesktop"; }
         { app-id = "Element"; }
       ];
       block-out-from = "screen-capture";
-    }
-    {
-      matches = [ { app-id = "zen-beta"; } ];
-      draw-border-with-background = false;
-      border = {
-        enable = true;
-        width = 2;
-      };
-      focus-ring = {
-        enable = true;
-        width = 2;
-      };
     }
   ];
 }
