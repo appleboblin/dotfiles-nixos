@@ -20,7 +20,6 @@
     stateVersion = "23.11";
 
     packages = with pkgs; [
-      brave
       chromium
       vivaldi
       vivaldi-ffmpeg-codecs

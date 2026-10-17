@@ -92,6 +92,8 @@
       jack.enable = true;
     };
 
+    speechd.enable = false;
+
     # Power handeling
     power-profiles-daemon.enable = true;
     upower.enable = true;
