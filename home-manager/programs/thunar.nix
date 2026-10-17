@@ -22,7 +22,6 @@
       Name=Foot Client
     '';
     configFile = {
-      "mimeapps.list".force = true;
       "Thunar/thunarrc".text = ''
         [Configuration]
         DefaultView=ThunarDetailsView

@@ -282,6 +282,7 @@
       enable = true;
       package = pkgs.niri-unstable;
     };
+    nix-ld.enable = true;
     flashrom.enable = true;
     dconf.enable = true;
     yubikey-touch-detector.enable = true;

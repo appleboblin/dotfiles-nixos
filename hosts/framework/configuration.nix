@@ -29,7 +29,6 @@
     amdgpu_top
     fw-ectool
     framework-tool
-    polkit_gnome
     powertop
   ];
 

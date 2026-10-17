@@ -69,9 +69,6 @@
 
   custom.games.enable = true;
 
-  programs = {
-    kdeconnect.enable = true;
-    nix-ld.enable = true;
-  };
+  programs.kdeconnect.enable = true;
 
 }
