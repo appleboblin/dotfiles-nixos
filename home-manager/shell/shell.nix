@@ -5,11 +5,6 @@
 {
   # Aliases
   home.shellAliases = {
-    # Color grep
-    grep = "grep --color=auto";
-    egrep = "egrep --color=auto";
-    fgrep = "fgrep --color=auto";
-
     # Program shortcuts
     v = "nvim";
     m = "micro";
@@ -32,6 +27,14 @@
     bash.enable = true;
     eza.enable = true;
     nix-your-shell.enable = true;
+    ripgrep = {
+      enable = true;
+      arguments = [
+        "--smart-case"
+        "--hidden"
+        "--glob=!.git/"
+      ];
+    };
     zoxide = {
       enable = true;
       options = [ "--cmd cd" ];

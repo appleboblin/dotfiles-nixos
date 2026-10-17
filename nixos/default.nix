@@ -270,7 +270,6 @@
         yubioath-flutter
         solo2-cli
         tree
-        ripgrep
         jq
       ]
       ++ lib.optionals config.virtualisation.libvirtd.enable [
