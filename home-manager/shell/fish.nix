@@ -6,8 +6,6 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting ""
-      complete -c cd -e
-      complete -c cd -f -a '(__fish_complete_directories (commandline -ct))'
     '';
     functions = {
       gt = {

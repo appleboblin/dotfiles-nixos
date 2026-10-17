@@ -50,7 +50,6 @@
       libation
       obsidian
       proton-pass
-      nix-your-shell
       cryptomator
       proton-vpn
       seahorse

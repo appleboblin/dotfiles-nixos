@@ -35,9 +35,6 @@
         "--glob=!.git/"
       ];
     };
-    zoxide = {
-      enable = true;
-      options = [ "--cmd cd" ];
-    };
+    zoxide.enable = true;
   };
 }
