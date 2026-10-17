@@ -30,9 +30,7 @@ fn target_ws_names() -> &'static [String] {
 fn restore_width() -> &'static str {
     use std::sync::OnceLock;
     static WIDTH: OnceLock<String> = OnceLock::new();
-    WIDTH.get_or_init(|| {
-        std::env::var("NIRI_RESTORE_WIDTH").unwrap_or_else(|_| "50%".to_string())
-    })
+    WIDTH.get_or_init(|| std::env::var("NIRI_RESTORE_WIDTH").unwrap_or_else(|_| "50%".to_string()))
 }
 
 struct WindowInfo {
@@ -50,6 +48,13 @@ struct State {
     /// diff base for deciding which windows to resize; recomputed from
     /// window state every pass, so it can't drift from reality.
     prev_desired: BTreeSet<u64>,
+    /// Width each window had right before we maximized it, restored when
+    /// it leaves the desired set.
+    saved_width: BTreeMap<u64, i64>,
+    /// Set by a full `WindowsChanged` snapshot (startup or resync). Windows
+    /// newly maximized in that pass may already be at 100%, so their width
+    /// isn't saved; they fall back to `restore_width()`.
+    resync: bool,
 }
 
 impl State {
@@ -79,6 +84,8 @@ impl State {
             if let Some(list) = payload.get("windows").and_then(Value::as_array) {
                 self.windows.clear();
                 self.prev_desired.clear();
+                self.saved_width.clear();
+                self.resync = true;
                 for w in list {
                     self.upsert_window(w);
                 }
@@ -89,18 +96,21 @@ impl State {
             if let Some(w) = payload.get("window") {
                 self.upsert_window(w);
             }
-        } else if let Some(payload) = obj.get("WindowClosed") {
-            if let Some(id) = payload.get("id").and_then(Value::as_u64) {
-                self.windows.remove(&id);
-                self.prev_desired.remove(&id);
-            }
+        } else if let Some(payload) = obj.get("WindowClosed")
+            && let Some(id) = payload.get("id").and_then(Value::as_u64)
+        {
+            self.windows.remove(&id);
+            self.prev_desired.remove(&id);
+            self.saved_width.remove(&id);
         }
-        // Everything else (focus changes, workspace activation, layout
-        // changes, ...) is irrelevant.
+        // Everything else (focus changes, workspace activation, ...) is
+        // irrelevant.
     }
 
     fn upsert_window(&mut self, w: &Value) {
-        let Some(id) = w.get("id").and_then(Value::as_u64) else { return };
+        let Some(id) = w.get("id").and_then(Value::as_u64) else {
+            return;
+        };
         let info = WindowInfo {
             ws: w.get("workspace_id").and_then(Value::as_u64),
             floating: w
@@ -144,14 +154,64 @@ impl State {
 
     fn enforce(&mut self) {
         let desired = self.desired_maximized();
-        for &id in desired.difference(&self.prev_desired) {
+        let newly: Vec<u64> = desired.difference(&self.prev_desired).copied().collect();
+        if !newly.is_empty() && !self.resync {
+            // Ask niri for the widths right now instead of tracking layout
+            // events, so a mouse resize is always reflected.
+            let widths = current_widths();
+            for id in &newly {
+                if let Some(&px) = widths.get(id) {
+                    self.saved_width.insert(*id, px);
+                }
+            }
+        }
+        for &id in &newly {
             set_width(id, "100%");
         }
         for &id in self.prev_desired.difference(&desired) {
-            set_width(id, restore_width());
+            let saved = self.saved_width.remove(&id);
+            // Skip windows that are now floating (or gone): resizing a
+            // floating window would shrink it to the column width.
+            if self.windows.get(&id).is_some_and(|w| !w.floating) {
+                match saved {
+                    Some(px) => set_width(id, &px.to_string()),
+                    None => set_width(id, restore_width()),
+                }
+            }
         }
         self.prev_desired = desired;
+        self.resync = false;
     }
+}
+
+/// Current width of every window in logical pixels, from
+/// `niri msg --json windows` (`layout.window_size[0]`).
+fn current_widths() -> BTreeMap<u64, i64> {
+    let output = match Command::new(niri_bin())
+        .args(["msg", "--json", "windows"])
+        .stderr(Stdio::inherit())
+        .output()
+    {
+        Ok(o) if o.status.success() => o.stdout,
+        Ok(o) => {
+            eprintln!("niri msg windows failed: {}", o.status);
+            return BTreeMap::new();
+        }
+        Err(e) => {
+            eprintln!("failed to spawn {}: {e}", niri_bin());
+            return BTreeMap::new();
+        }
+    };
+    let Ok(Value::Array(list)) = serde_json::from_slice::<Value>(&output) else {
+        return BTreeMap::new();
+    };
+    list.iter()
+        .filter_map(|w| {
+            let id = w.get("id")?.as_u64()?;
+            let px = w.get("layout")?.get("window_size")?.get(0)?.as_i64()?;
+            Some((id, px))
+        })
+        .collect()
 }
 
 /// Path to the niri binary. Set NIRI_BIN to pin the exact compositor

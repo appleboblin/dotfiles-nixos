@@ -9,7 +9,7 @@ let
 
   niri-ws-maximize = pkgs.rustPlatform.buildRustPackage {
     pname = "niri-ws-maximize";
-    version = "0.3.0";
+    version = "0.4.1";
     src = ./niri-ws-maximize;
     cargoLock.lockFile = ./niri-ws-maximize/Cargo.lock;
   };
@@ -36,10 +36,14 @@ in
 
     restoreWidth = lib.mkOption {
       type = lib.types.str;
-      default = "50%";
+      default =
+        let
+          p = config.programs.niri.settings.layout.default-column-width.proportion or 0.5;
+        in
+        "${toString (p * 100)}%";
       description = ''
-        Column width restored when a window is no longer solo (or leaves a
-        target workspace). Match your default column width preset.
+        Fallback column width when a window's pre-maximize width is unknown
+        (e.g. after a service restart). Defaults to niri's default-column-width.
       '';
     };
   };
