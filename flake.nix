@@ -11,8 +11,15 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # Desktop environment
-    catppuccin.url = "github:catppuccin/nix";
-    niri.url = "github:epireyn/niri-flake";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    niri = {
+      url = "github:epireyn/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,8 +30,14 @@
     };
 
     # Apps
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    nixvim.url = "github:nix-community/nixvim";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
