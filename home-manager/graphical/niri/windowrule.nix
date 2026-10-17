@@ -11,7 +11,7 @@
     {
       matches = [
         { app-id = "vesktop"; }
-        { app-id = "element"; }
+        { app-id = "^element-desktop$"; }
         { app-id = "spotify"; }
       ];
       open-on-workspace = "stuff";
@@ -36,7 +36,7 @@
       matches = [
         { app-id = "Proton Pass"; }
         { app-id = "vesktop"; }
-        { app-id = "Element"; }
+        { app-id = "^element-desktop$"; }
       ];
       block-out-from = "screen-capture";
     }

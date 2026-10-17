@@ -2,8 +2,6 @@
   config,
   pkgs,
   user,
-  host,
-  lib,
   ...
 }:
 {
@@ -30,9 +28,6 @@
       pavucontrol
       libreoffice
       vlc
-      thunar
-      thunar-volman
-      thunar-archive-plugin
       file-roller
       ristretto
 
@@ -51,7 +46,6 @@
       element-desktop
       v4l-utils
       file
-      ffmpeg
       pcloud
       calibre
       libation
@@ -75,7 +69,6 @@
 
   # default stuff
   xdg = {
-    configFile."mimeapps.list".force = true;
     mimeApps = {
       enable = true;
       defaultApplications = {

@@ -12,6 +12,7 @@ in
   options.custom.games.enable = lib.mkEnableOption "gaming (Steam + userspace tools)";
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.steam-run ];
     programs.steam = {
       enable = true;
       extraCompatPackages = with pkgs; [

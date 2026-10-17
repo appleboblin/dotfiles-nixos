@@ -217,7 +217,6 @@
       "wheel"
       "libvirtd"
       "dialout"
-      "input"
     ];
     openssh.authorizedKeys.keyFiles = [
       ./id_ed25519.pub
@@ -248,27 +247,14 @@
         neovim
         killall
         wget
-        dbus
         usbutils
-        curl
-        gzip
         git
         git-lfs
-        htop
-        btop
         nvtopPackages.full
-        eza
         fzf
-        # (pkgs.fastfetch.override { zfsSupport = true; })
-        steam-run
-        procps
-        bash-completion
         wireguard-tools # vpn
         nfs-utils # nfs file share
         cifs-utils
-        openmpi
-        # ior # broken build
-        lxqt.lxqt-policykit
         libimobiledevice
         libheif
         ffmpeg
@@ -281,12 +267,9 @@
         ntfs3g
         yubioath-flutter
         solo2-cli
-        mlocate
         tree
         ripgrep
         jq
-        # typst
-        # tinymist
       ]
       ++ lib.optionals config.virtualisation.libvirtd.enable [
         virtiofsd # vm
@@ -306,10 +289,14 @@
     # Thunar
     xfconf.enable = true;
     # file-roller.enable = true;
-    thunar.plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-media-tags-plugin
-    ];
+    thunar = {
+      enable = true;
+      plugins = with pkgs; [
+        thunar-archive-plugin
+        thunar-media-tags-plugin
+        thunar-volman
+      ];
+    };
 
     virt-manager = {
       enable = config.virtualisation.libvirtd.enable;

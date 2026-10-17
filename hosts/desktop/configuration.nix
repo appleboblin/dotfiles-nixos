@@ -67,11 +67,6 @@
     hardware.bolt.enable = true;
   };
 
-  # Desktop environment
-  xdg.portal = {
-    wlr.enable = lib.mkForce false;
-  };
-
   custom.games.enable = true;
 
   programs = {
