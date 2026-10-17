@@ -8,7 +8,6 @@
     server.enable = true;
     settings = {
       main = {
-        term = "xterm-256color";
         font = lib.mkDefault "MesloLGS Nerd Font Mono:size=16";
         shell = "fish";
         pad = "8x8";

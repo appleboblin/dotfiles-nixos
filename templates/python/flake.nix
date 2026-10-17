@@ -28,7 +28,7 @@
           ];
 
         # Set python version
-        python = pkgs.python312.withPackages pythonPackages;
+        python = pkgs.python3.withPackages pythonPackages;
 
       in
       {

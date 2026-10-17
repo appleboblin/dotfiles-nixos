@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   lib,
   host,
@@ -22,6 +23,7 @@
 
   # Nix Package Manager
   nix = {
+    registry.dots.flake = inputs.self;
     settings = {
       auto-optimise-store = true;
       experimental-features = [

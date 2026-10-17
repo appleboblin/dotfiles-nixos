@@ -82,5 +82,6 @@
         desktop = mkHost "desktop";
         vm = mkHost "vm";
       };
+      templates = import ./templates;
     };
 }
