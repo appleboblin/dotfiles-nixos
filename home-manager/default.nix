@@ -57,7 +57,6 @@
       tinymist
       prettypst
       orca-slicer
-      rocmPackages.rocm-smi
     ];
 
     sessionVariables = {

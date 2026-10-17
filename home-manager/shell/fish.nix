@@ -1,5 +1,4 @@
 {
-  user,
   ...
 }:
 {
@@ -7,7 +6,8 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting ""
-      nix-your-shell fish | source
+      complete -c cd -e
+      complete -c cd -f -a '(__fish_complete_directories (commandline -ct))'
     '';
     functions = {
       gt = {
@@ -25,11 +25,8 @@
   };
 
   xdg.configFile = {
-    "/home/${user}/.config/fish/completions/gt.fish".text = ''
-      function _gt --description 'complete GitHub directories'
-          find "$HOME/github/" -maxdepth 1 -type d -not -wholename "$HOME/github/" -exec basename {} \;
-      end
-      complete --no-files --command gt --arguments "(_gt)"
+    "fish/completions/gt.fish".text = ''
+      complete --no-files --command gt --arguments "(path basename $HOME/github/*/)"
     '';
   };
 }

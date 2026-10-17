@@ -28,9 +28,13 @@
     "..." = "cd ../..";
   };
 
-  programs.eza = {
-    enable = true;
-    enableBashIntegration = true;
-    enableFishIntegration = true;
+  programs = {
+    bash.enable = true;
+    eza.enable = true;
+    nix-your-shell.enable = true;
+    zoxide = {
+      enable = true;
+      options = [ "--cmd cd" ];
+    };
   };
 }
