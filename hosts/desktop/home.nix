@@ -355,9 +355,13 @@ in
 
         widget = {
           active_window.anchor = true;
-          clock.format = "{:%a %d %b %H:%M}";
           cpu.show_label = false;
           ram.show_label = false;
+        };
+
+        wallpaper.monitors = {
+          "DP-1".path = "${../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg}";
+          "DP-2".path = "${../../home-manager/graphical/WP_Laser_Up-2560x1440_00229.jpg}";
         };
       };
     };

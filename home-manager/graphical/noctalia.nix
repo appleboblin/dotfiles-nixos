@@ -41,6 +41,7 @@
       lockscreen = {
         blur_intensity = 0.099999997764825821;
         tint_intensity = 0.0;
+        transition = [ ];
       };
 
       nightlight.enabled = true;
@@ -56,9 +57,13 @@
         polkit_agent = true;
         screen_time_enabled = true;
         animation.enabled = false;
+        popup_shadows = false;
         launcher = {
           categories = false;
           compact = true;
+          layout = "simple";
+          session_search = true;
+          show_app_actions = true;
           providers = {
             session.global = true;
             windows.global = true;
@@ -98,6 +103,7 @@
           show_labels = false;
           hide_when_empty = true;
           max_label_chars = 1;
+          focused_output_only = true;
         };
       };
     };
