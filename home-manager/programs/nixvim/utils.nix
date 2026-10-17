@@ -50,7 +50,6 @@
       barbecue.enable = true;
       which-key.enable = true;
       nvim-autopairs.enable = true;
-      copilot-chat.enable = true;
       trouble.enable = true;
       telescope = {
         enable = true;
