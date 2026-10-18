@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   pkgs,
   ...
 }:
@@ -77,10 +76,6 @@ let
   };
 in
 {
-  imports = [
-    inputs.niri.homeModules.niri
-  ];
-
   # font size
   gtk.font.size = 21;
 
@@ -239,54 +234,6 @@ in
                 clock_style = "digital";
                 format = "{:%H:%M}";
                 shadow = false;
-              };
-            };
-
-            "lockscreen-widget-0000000000000002" = {
-              box_height = 0.0;
-              box_width = 0.0;
-              cx = 1192.0;
-              cy = 1296.0;
-              output = "eDP-1";
-              rotation = 0.0;
-              type = "button";
-              settings = {
-                background = true;
-                command = "noctalia msg session shutdown";
-                glyph = "shutdown";
-                variant = "default";
-              };
-            };
-
-            "lockscreen-widget-0000000000000003" = {
-              box_height = 0.0;
-              box_width = 0.0;
-              cx = 1128.0;
-              cy = 1296.0;
-              output = "eDP-1";
-              rotation = 0.0;
-              type = "button";
-              settings = {
-                background = true;
-                command = "noctalia msg session reboot";
-                glyph = "reboot";
-                variant = "default";
-              };
-            };
-
-            "lockscreen-widget-0000000000000004" = {
-              box_height = 0.0;
-              box_width = 0.0;
-              cx = 1064.0;
-              cy = 1296.0;
-              output = "eDP-1";
-              rotation = 0.0;
-              type = "button";
-              settings = {
-                background = true;
-                command = "noctalia msg session lock-and-suspend";
-                glyph = "player-pause-filled";
-                variant = "default";
               };
             };
 

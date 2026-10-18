@@ -1,17 +1,12 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }:
 let
   monitors = import ./monitors.nix;
 in
 {
-  imports = [
-    inputs.niri.homeModules.niri
-  ];
-
   services = {
     easyeffects.enable = true;
     niri-ws-maximize = {
@@ -309,57 +304,6 @@ in
                 font_family = "";
                 format = "%A %d %B";
                 shadow = true;
-              };
-            };
-
-            "lockscreen-widget-0000000000000004" = {
-              box_height = 0.0;
-              box_width = 0.0;
-              cx = 1376.0;
-              cy = 1248.0;
-              output = "DP-1";
-              rotation = 0.0;
-              type = "button";
-              settings = {
-                background = true;
-                command = "noctalia msg session shutdown";
-                glyph = "shutdown";
-                label = "";
-                variant = "default";
-              };
-            };
-
-            "lockscreen-widget-0000000000000005" = {
-              box_height = 0.0;
-              box_width = 0.0;
-              cx = 1280.0;
-              cy = 1248.0;
-              output = "DP-1";
-              rotation = 0.0;
-              type = "button";
-              settings = {
-                background = true;
-                command = "noctalia msg session reboot";
-                glyph = "reboot";
-                label = "";
-                variant = "default";
-              };
-            };
-
-            "lockscreen-widget-0000000000000006" = {
-              box_height = 0.0;
-              box_width = 0.0;
-              cx = 1188.0;
-              cy = 1248.0;
-              output = "DP-1";
-              rotation = 0.0;
-              type = "button";
-              settings = {
-                background = true;
-                command = "noctalia msg session lock-and-suspend";
-                glyph = "player-pause-filled";
-                label = "";
-                variant = "default";
               };
             };
           };

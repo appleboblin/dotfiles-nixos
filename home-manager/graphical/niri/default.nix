@@ -1,11 +1,13 @@
 {
   pkgs,
   lib,
+  inputs,
   osConfig,
   ...
 }:
 {
   imports = [
+    inputs.niri.homeModules.niri
     ./keybinds.nix
     ./ws-maximize.nix
     ./windowrule.nix
