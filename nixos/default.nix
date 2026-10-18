@@ -101,7 +101,7 @@
     # security key
     yubikey-agent.enable = true;
 
-    # iPhone mount
+    # iOS mount
     usbmuxd = {
       enable = true;
       package = pkgs.usbmuxd2;
@@ -249,7 +249,6 @@
         git-lfs
         nvtopPackages.full
         fzf
-        wireguard-tools # vpn
         nfs-utils # nfs file share
         cifs-utils
         libimobiledevice
