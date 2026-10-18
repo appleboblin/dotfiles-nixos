@@ -33,8 +33,6 @@
       # Provides org.gnome.keyring.SystemPrompter
       gcr_4
 
-      python3
-
       # Other
       vesktop
       filezilla

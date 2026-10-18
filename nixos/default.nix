@@ -98,9 +98,6 @@
     power-profiles-daemon.enable = true;
     upower.enable = true;
 
-    # Flatpak
-    flatpak.enable = true;
-
     # security key
     yubikey-agent.enable = true;
 
@@ -225,10 +222,10 @@
     ];
   };
 
+  documentation.doc.enable = false;
+
   nixpkgs = {
     config = {
-      # https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
-      # programs.nm-applet.enable = true;
       allowUnfree = true;
       permittedInsecurePackages = [
       ];
@@ -244,8 +241,6 @@
     systemPackages =
       with pkgs;
       [
-        nano
-        micro
         neovim
         killall
         wget
@@ -270,7 +265,6 @@
         yubioath-flutter
         solo2-cli
         tree
-        jq
       ]
       ++ lib.optionals config.virtualisation.libvirtd.enable [
         virtiofsd # vm
@@ -344,23 +338,10 @@
       ];
       # if packets are still dropped, they will show up in dmesg
       logReversePathDrops = true;
-      # wireguard trips rpfilter up
-      extraCommands =
-        lib.optionalString config.networking.wireguard.enable ''
-          ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
-          ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
-        ''
-        + ''
-          iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
-        '';
-
-      extraStopCommands = lib.optionalString config.networking.wireguard.enable ''
-        ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
-        ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
+      extraCommands = ''
+        iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
       '';
     };
-    # wireguard
-    wireguard.enable = true;
   };
 
   # Don't Delete

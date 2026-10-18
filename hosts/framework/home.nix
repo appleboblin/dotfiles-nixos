@@ -360,8 +360,8 @@ in
       Unit.PartOf = [ "graphical-session.target" ];
       Timer = {
         OnActiveSec = "10s";
-        OnUnitActiveSec = "30s";
-        AccuracySec = "5s";
+        OnUnitActiveSec = "2min";
+        AccuracySec = "30s";
       };
       Install.WantedBy = [ "graphical-session.target" ];
     };

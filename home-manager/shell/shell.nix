@@ -7,7 +7,6 @@
   home.shellAliases = {
     # Program shortcuts
     v = "nvim";
-    m = "micro";
     mkdir = "mkdir -p";
     c = "clear";
 

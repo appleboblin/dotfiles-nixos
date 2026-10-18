@@ -7,17 +7,13 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
       source-han-sans
       source-han-serif
       inter
-      liberation_ttf
       corefonts
       vista-fonts
       inter-nerdfont
       nerd-fonts.meslo-lg
-      nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
     ];
 

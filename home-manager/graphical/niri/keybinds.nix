@@ -4,37 +4,41 @@
   ...
 }:
 let
-  niri = "${config.programs.niri.package}/bin/niri";
-  jq = "${pkgs.jq}/bin/jq";
+  # toggle-app <app-id> <launch command...>
+  # Focus the app's window (launching it if not running); if it's
+  # already focused, jump back to the previously focused window.
+  toggle-app = pkgs.writeShellApplication {
+    name = "toggle-app";
+    runtimeInputs = [
+      pkgs.jq
+      config.programs.niri.package
+    ];
+    text = ''
+      target_app="$1"; shift
+      state="$XDG_RUNTIME_DIR/toggle-app-$target_app"
+      windows=$(niri msg --json windows)
 
-  focus-or-back = pkgs.writeShellScriptBin "focus-or-back" ''
-    target_app="$1"; shift
-    state="$XDG_RUNTIME_DIR/focus-or-back-$target_app"
+      focused_app=$(jq -r 'first(.[] | select(.is_focused)) | .app_id' <<<"$windows")
 
-    focused_app=$(${niri} msg --json windows \
-      | ${jq} -r 'first(.[] | select(.is_focused)) | .app_id')
-
-    if [ "$focused_app" = "$target_app" ]; then
-      if [ -f "$state" ]; then
-        back=$(cat "$state")
-        ${niri} msg action focus-window --id "$back" 2>/dev/null || true
-      fi
-    else
-      # remember the currently focused *window* id
-      ${niri} msg --json windows \
-        | ${pkgs.jq}/bin/jq -r 'first(.[] | select(.is_focused)) | .id' > "$state"
-      id=$(${niri} msg --json windows \
-        | ${pkgs.jq}/bin/jq -r --arg a "$target_app" 'first(.[] | select(.app_id == $a)) | .id')
-      if [ -n "$id" ] && [ "$id" != "null" ]; then
-        ${niri} msg action focus-window --id "$id"
+      if [ "$focused_app" = "$target_app" ]; then
+        if [ -f "$state" ]; then
+          niri msg action focus-window --id "$(<"$state")" 2>/dev/null || true
+        fi
       else
-        exec "$@"
+        # remember the currently focused window id
+        jq -r 'first(.[] | select(.is_focused)) | .id' <<<"$windows" > "$state"
+        id=$(jq -r --arg a "$target_app" 'first(.[] | select(.app_id == $a)) | .id' <<<"$windows")
+        if [ -n "$id" ] && [ "$id" != "null" ]; then
+          niri msg action focus-window --id "$id"
+        else
+          exec "$@"
+        fi
       fi
-    fi
-  '';
+    '';
+  };
 in
 {
-  home.packages = [ focus-or-back ];
+  home.packages = [ toggle-app ];
   programs.niri.settings.binds = with config.lib.niri.actions; {
     "XF86AudioPlay".action.spawn = [
       "noctalia"
@@ -142,13 +146,13 @@ in
     ];
 
     "Mod+S".action.spawn = [
-      "focus-or-back" # script
+      "toggle-app" # script
       "spotify" # app-id
       "spotify" # launch
     ];
 
     "Mod+I".action.spawn = [
-      "focus-or-back"
+      "toggle-app"
       "vesktop"
       "vesktop"
     ];
