@@ -13,6 +13,7 @@ in
   home.packages = with pkgs; [
     catppuccinKv
     libsForQt5.qtstyleplugin-kvantum
+    kdePackages.qtstyleplugin-kvantum
     libsForQt5.qt5ct
     qt6Packages.qt6ct
     qt6.qtwayland
@@ -27,25 +28,27 @@ in
     };
   };
 
-  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
-    [General]
-    theme=Catppuccin-Macchiato-Pink
-  '';
-  xdg.configFile."Kvantum/Catppuccin-Macchiato-Pink".recursive = true;
-  xdg.configFile."Kvantum/Catppuccin-Macchiato-Pink".source =
-    "${catppuccinKv}/share/Kvantum/Catppuccin-Macchiato-Pink";
-
-  xdg.configFile."qt5ct/qt5ct.conf".text = ''
-    [Appearance]
-    style=kvantum
-  '';
-  xdg.configFile."qt6ct/qt6ct.conf".text = ''
-    [Appearance]
-    style=kvantum
-  '';
+  xdg.configFile = {
+    "Kvantum/kvantum.kvconfig".text = ''
+      [General]
+      theme=Catppuccin-Macchiato-Pink
+    '';
+    "Kvantum/Catppuccin-Macchiato-Pink" = {
+      source = "${catppuccinKv}/share/Kvantum/Catppuccin-Macchiato-Pink";
+      recursive = true;
+    };
+    "qt5ct/qt5ct.conf".text = ''
+      [Appearance]
+      style=kvantum
+    '';
+    "qt6ct/qt6ct.conf".text = ''
+      [Appearance]
+      style=kvantum
+    '';
+  };
 
   home.sessionVariables = {
-    QT_QPA_PLATFORM = "wayland;xcb";
     QT_STYLE_OVERRIDE = "kvantum";
+    CALIBRE_USE_SYSTEM_THEME = "1";
   };
 }

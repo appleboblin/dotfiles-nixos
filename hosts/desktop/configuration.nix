@@ -5,10 +5,6 @@
   ...
 }:
 {
-  imports = [
-    ./kanata.nix
-  ];
-
   boot.zfs.requestEncryptionCredentials = false;
 
   networking.hostId = "b709075d";

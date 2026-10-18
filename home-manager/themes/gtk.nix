@@ -73,9 +73,5 @@ in
       gtk.enable = true;
       x11.enable = true;
     };
-
-    sessionVariables = {
-      XCURSOR_SIZE = config.home.pointerCursor.size;
-    };
   };
 }

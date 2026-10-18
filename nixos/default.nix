@@ -17,7 +17,6 @@
     ./noctalia.nix
     ./tailscale.nix
     ./transmission.nix
-    ./kanata.nix
     ./zfs.nix
   ];
 
@@ -101,7 +100,7 @@
     # security key
     yubikey-agent.enable = true;
 
-    # iOS mount
+    # iOS over USB
     usbmuxd = {
       enable = true;
       package = pkgs.usbmuxd2;
@@ -176,9 +175,7 @@
           enableGnomeKeyring = true;
           u2fAuth = false;
         };
-        # niri.enableGnomeKeyring = true;
-        # greetd.enableGnomeKeyring = true;
-        # login.enableGnomeKeyring = true;
+        greetd.enableGnomeKeyring = true;
       };
     };
   };
@@ -198,13 +195,6 @@
   };
 
   zramSwap.enable = true;
-
-  # gtk themes on qt
-  qt = {
-    enable = true;
-    platformTheme = "qt5ct";
-    style = "kvantum";
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
