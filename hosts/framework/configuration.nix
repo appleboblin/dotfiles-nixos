@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./bluetooth-power.nix
     ./kanata.nix
   ];
 
