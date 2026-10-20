@@ -43,14 +43,17 @@ struct WindowInfo {
 struct State {
     /// workspace id -> workspace name (if named)
     workspace_names: BTreeMap<u64, Option<String>>,
+    /// workspace id -> output (monitor) name
+    workspace_outputs: BTreeMap<u64, Option<String>>,
     windows: BTreeMap<u64, WindowInfo>,
     /// The desired-maximized set from the previous enforce pass. Purely a
     /// diff base for deciding which windows to resize; recomputed from
     /// window state every pass, so it can't drift from reality.
     prev_desired: BTreeSet<u64>,
-    /// Width each window had right before we maximized it, restored when
-    /// it leaves the desired set.
-    saved_width: BTreeMap<u64, i64>,
+    /// Width (px) and output each window had right before we maximized it.
+    /// Restored when it leaves the desired set, but only on the same output:
+    /// a pixel width from another monitor is meaningless there.
+    saved_width: BTreeMap<u64, (i64, Option<String>)>,
     /// Set by a full `WindowsChanged` snapshot (startup or resync). Windows
     /// newly maximized in that pass may already be at 100%, so their width
     /// isn't saved; they fall back to `restore_width()`.
@@ -69,10 +72,13 @@ impl State {
             // Full snapshot of all workspaces.
             if let Some(list) = payload.get("workspaces").and_then(Value::as_array) {
                 self.workspace_names.clear();
+                self.workspace_outputs.clear();
                 for ws in list {
                     if let Some(id) = ws.get("id").and_then(Value::as_u64) {
                         let name = ws.get("name").and_then(Value::as_str).map(String::from);
+                        let output = ws.get("output").and_then(Value::as_str).map(String::from);
                         self.workspace_names.insert(id, name);
+                        self.workspace_outputs.insert(id, output);
                     }
                 }
             }
@@ -105,6 +111,12 @@ impl State {
         }
         // Everything else (focus changes, workspace activation, ...) is
         // irrelevant.
+    }
+
+    /// Output (monitor) the window is currently on.
+    fn output_of(&self, id: u64) -> Option<String> {
+        let ws = self.windows.get(&id)?.ws?;
+        self.workspace_outputs.get(&ws)?.clone()
     }
 
     fn upsert_window(&mut self, w: &Value) {
@@ -161,7 +173,7 @@ impl State {
             let widths = current_widths();
             for id in &newly {
                 if let Some(&px) = widths.get(id) {
-                    self.saved_width.insert(*id, px);
+                    self.saved_width.insert(*id, (px, self.output_of(*id)));
                 }
             }
         }
@@ -174,8 +186,11 @@ impl State {
             // floating window would shrink it to the column width.
             if self.windows.get(&id).is_some_and(|w| !w.floating) {
                 match saved {
-                    Some(px) => set_width(id, &px.to_string()),
-                    None => set_width(id, restore_width()),
+                    Some((px, output)) if output == self.output_of(id) => {
+                        set_width(id, &px.to_string())
+                    }
+                    // Unknown, or saved on a different monitor.
+                    _ => set_width(id, restore_width()),
                 }
             }
         }

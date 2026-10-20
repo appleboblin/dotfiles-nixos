@@ -61,10 +61,14 @@
     lact.enable = true;
     transmission.enable = false;
     hardware.bolt.enable = true;
+    # BT wake from suspend: TP-Link BT dongle and VIA hub
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2357", ATTR{idProduct}=="0604", ATTR{power/wakeup}="enabled"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2109", ATTR{idProduct}=="2817", ATTR{power/wakeup}="enabled"
+    '';
   };
 
   custom.games.enable = true;
 
   programs.kdeconnect.enable = true;
-
 }
