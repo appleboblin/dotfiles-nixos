@@ -9,7 +9,7 @@
 - Custom niri helpers:
   - `niri-ws-maximize`: maximizes solo windows and restores their previous width
   - `toggle-app`: one key to jump to an app (launching it if needed) and back
-- CI: every PR builds both hosts and checks formatting; `flake.lock` updates weekly and auto-merges when builds pass
+- CI: PRs build both hosts; pushes to `main` check formatting; `flake.lock` updates weekly and auto-merges when builds pass
 - `nh` for rebuilds with package diffs, plus automatic store cleanup
 - Dev shell templates (`init c|py|rs|js`)
 - Laptop extras: kanata (Graphite layout), fingerprint login, Bluetooth state remembered across reboots, Wi-Fi/power-aware pCloud sync
@@ -53,6 +53,7 @@ sh <(curl -L https://raw.githubusercontent.com/appleboblin/dotfiles-nixos/refs/h
 | `rebuild`         | Formats the repo, stages changes, and switches with `nh` (shows a diff, asks before applying) |
 | `update`          | Pulls the latest `main` (including the tested `flake.lock`) and rebuilds                      |
 | `garbage`         | Removes generations older than 14 days, keeping at least 5                                    |
+| `delete`          | Removes all old generations (`nh clean all`)                                                  |
 | `dots`            | `cd` into the repo                                                                            |
 | `init <template>` | Starts a dev environment in the current folder: `c`, `py`, `rs`, `js`/`ts`                    |
 
