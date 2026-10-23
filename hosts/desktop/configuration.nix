@@ -34,6 +34,9 @@
     xone.enable = true;
   };
 
+  virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
+
   # AMDGPU Controller
   # https://wiki.nixos.org/wiki/AMD_GPU
   # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix
@@ -59,7 +62,7 @@
 
   services = {
     lact.enable = true;
-    transmission.enable = false;
+    # transmission.enable = true;
     hardware.bolt.enable = true;
     # BT wake from suspend: TP-Link BT dongle and VIA hub
     udev.extraRules = ''

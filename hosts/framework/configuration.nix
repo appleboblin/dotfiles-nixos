@@ -27,6 +27,9 @@
     };
   };
 
+  # virtualisation.libvirtd.enable = true;
+  # virtualisation.docker.enable = true;
+
   # AMDGPU Controller
   # https://wiki.nixos.org/wiki/AMD_GPU
   # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix

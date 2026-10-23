@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   pkgs,
   lib,
@@ -10,13 +9,13 @@
 {
   imports = [
     ./boot.nix
-    ./docker.nix
     ./fonts.nix
     ./games.nix
     ./localsend.nix
     ./noctalia.nix
     ./tailscale.nix
     ./transmission.nix
+    ./virtualisation.nix
     ./zfs.nix
   ];
 
@@ -204,7 +203,6 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "libvirtd"
       "dialout"
     ];
     openssh.authorizedKeys.keyFiles = [
@@ -228,37 +226,31 @@
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
 
-    systemPackages =
-      with pkgs;
-      [
-        neovim
-        killall
-        wget
-        usbutils
-        git
-        git-lfs
-        nvtopPackages.full
-        fzf
-        nfs-utils # nfs file share
-        cifs-utils
-        libimobiledevice
-        libheif
-        ffmpeg
-        imagemagick
-        zip
-        rar
-        unzip
-        p7zip
-        rsync
-        ntfs3g
-        yubioath-flutter
-        solo2-cli
-        tree
-      ]
-      ++ lib.optionals config.virtualisation.libvirtd.enable [
-        virtiofsd # vm
-        spice-gtk
-      ];
+    systemPackages = with pkgs; [
+      neovim
+      killall
+      wget
+      usbutils
+      git
+      git-lfs
+      nvtopPackages.full
+      fzf
+      nfs-utils # nfs file share
+      cifs-utils
+      libimobiledevice
+      libheif
+      ffmpeg
+      imagemagick
+      zip
+      rar
+      unzip
+      p7zip
+      rsync
+      ntfs3g
+      yubioath-flutter
+      solo2-cli
+      tree
+    ];
   };
 
   programs = {
@@ -283,10 +275,6 @@
       ];
     };
 
-    virt-manager = {
-      enable = config.virtualisation.libvirtd.enable;
-    };
-
     nh = {
       enable = true;
       flake = "/home/${user}/dotfiles-nixos";
@@ -294,17 +282,6 @@
         enable = true;
         extraArgs = "--keep-since 14d --keep 5";
       };
-    };
-  };
-
-  virtualisation = {
-    spiceUSBRedirection.enable = config.virtualisation.libvirtd.enable;
-
-    # QEMU/KVM
-    libvirtd = {
-      # Don't auto start vm server
-      # sudo systemctl start libvertd
-      enable = lib.mkDefault false;
     };
   };
 
@@ -316,15 +293,6 @@
 
     firewall = {
       enable = true;
-      allowedTCPPorts = lib.optionals config.virtualisation.libvirtd.enable [
-        16509 # libvirt
-      ];
-      allowedTCPPortRanges = lib.optionals config.virtualisation.libvirtd.enable [
-        {
-          from = 5900;
-          to = 5999;
-        } # SPICE
-      ];
       # if packets are still dropped, they will show up in dmesg
       logReversePathDrops = true;
       extraCommands = ''
