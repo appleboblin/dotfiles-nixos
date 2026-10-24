@@ -34,8 +34,8 @@
     xone.enable = true;
   };
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.docker.enable = true;
+  # virtualisation.libvirtd.enable = true;
+  # virtualisation.docker.enable = true;
 
   # AMDGPU Controller
   # https://wiki.nixos.org/wiki/AMD_GPU
