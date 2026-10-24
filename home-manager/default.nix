@@ -21,8 +21,6 @@
 
     packages = with pkgs; [
       chromium
-      vivaldi
-      vivaldi-ffmpeg-codecs
       distrobox
       pavucontrol
       libreoffice

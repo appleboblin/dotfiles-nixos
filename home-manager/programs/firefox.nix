@@ -22,8 +22,16 @@ let
     "browser.newtabpage.activity-stream.feeds.topsites" = true; # Shortcuts section
     "browser.newtabpage.activity-stream.topSitesRows" = 3; # up to 4 rows
     "browser.tabs.inTitlebar" = 0;
+
+    # New tab page: no recommended stories or sponsored content
+    "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+    "browser.newtabpage.activity-stream.showSponsored" = false;
+    "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+
     "devtools.chrome.enabled" = true;
     "devtools.debugger.remote-enabled" = true;
+
+    "layout.css.devPixelsPerPx" = "1.00";
 
   };
 
@@ -73,6 +81,7 @@ let
     firefox-color
     simple-tab-groups # workspaces
     ublock-origin
+    darkreader
   ];
 
   mkProfile = id: {
@@ -83,6 +92,11 @@ let
       ;
     isDefault = id == 0;
     extensions = extensions // {
+      force = true;
+    };
+    search = {
+      default = "ddg";
+      privateDefault = "ddg";
       force = true;
     };
   };

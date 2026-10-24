@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word Count</title>
+<style>
+  /* Catppuccin Macchiato (dark) / Latte (light), pink accent */
+  :root {
+    --base: #24273a; --mantle: #1e2030; --surface0: #363a4f; --surface1: #494d64;
+    --text: #cad3f5; --subtext: #a5adcb; --overlay: #6e738d; --accent: #f5bde6;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --base: #eff1f5; --mantle: #e6e9ef; --surface0: #ccd0da; --surface1: #bcc0cc;
+      --text: #4c4f69; --subtext: #6c6f85; --overlay: #9ca0b0; --accent: #ea76cb;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--base); color: var(--text);
+    font: 15px/1.5 Inter, system-ui, sans-serif;
+    display: grid; grid-template-columns: 1fr 300px; gap: 16px; padding: 16px;
+  }
+  @media (max-width: 760px) { body { grid-template-columns: 1fr; } }
+  textarea {
+    width: 100%; height: 100%; min-height: 50vh; resize: none;
+    background: var(--mantle); color: var(--text);
+    border: 1px solid var(--surface0); border-radius: 12px;
+    padding: 16px; font: inherit; font-size: 16px; outline: none;
+  }
+  textarea:focus { border-color: var(--accent); }
+  aside { display: flex; flex-direction: column; gap: 12px; overflow-y: auto; }
+  .card {
+    background: var(--mantle); border: 1px solid var(--surface0);
+    border-radius: 12px; padding: 12px 14px;
+  }
+  .big { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .big div { text-align: center; }
+  .big b { display: block; font-size: 28px; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .big span, h2 { color: var(--subtext); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+  h2 { margin: 0 0 6px; font-weight: 600; }
+  dl { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; margin: 0; }
+  dt { color: var(--subtext); }
+  dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
+  .row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+  .row button, .row label {
+    background: var(--surface0); color: var(--text); border: 0;
+    border-radius: 8px; padding: 4px 10px; font: inherit; font-size: 13px; cursor: pointer;
+  }
+  .row button[aria-pressed="true"] { background: var(--accent); color: var(--base); }
+  .row label { display: flex; gap: 6px; align-items: center; }
+  input[type="checkbox"] { accent-color: var(--accent); }
+  ol { margin: 0; padding-left: 22px; }
+  li { display: flex; justify-content: space-between; gap: 8px; }
+  li span:last-child { color: var(--subtext); font-variant-numeric: tabular-nums; }
+  .muted { color: var(--overlay); }
+  #clear { margin-top: auto; background: var(--surface0); color: var(--text);
+    border: 0; border-radius: 8px; padding: 8px; font: inherit; cursor: pointer; }
+  #clear:hover { background: var(--surface1); }
+</style>
+</head>
+<body>
+<textarea id="text" placeholder="Type or paste text…" autofocus spellcheck="true"></textarea>
+<aside>
+  <div class="card big">
+    <div><b id="words">0</b><span>Words</span></div>
+    <div><b id="chars">0</b><span>Characters</span></div>
+  </div>
+  <div class="card">
+    <h2>Details</h2>
+    <dl>
+      <dt>Characters (no spaces)</dt><dd id="charsNoSpace">0</dd>
+      <dt>Sentences</dt><dd id="sentences">0</dd>
+      <dt>Paragraphs</dt><dd id="paragraphs">0</dd>
+      <dt>Avg. word length</dt><dd id="avgWord">0</dd>
+      <dt>Avg. sentence length</dt><dd id="avgSentence">0</dd>
+      <dt>Reading time</dt><dd id="reading">0 s</dd>
+      <dt>Speaking time</dt><dd id="speaking">0 s</dd>
+    </dl>
+  </div>
+  <div class="card">
+    <h2>Keyword density</h2>
+    <div class="row">
+      <button data-n="1" aria-pressed="true">1 word</button>
+      <button data-n="2" aria-pressed="false">2 words</button>
+      <button data-n="3" aria-pressed="false">3 words</button>
+      <label><input type="checkbox" id="stop" checked> Skip common</label>
+    </div>
+    <ol id="keywords"></ol>
+  </div>
+  <button id="clear">Clear</button>
+</aside>
+<script>
+"use strict";
+// Word-aware segmentation: handles CJK (each word/character counts) as well as spaced languages.
+const segmenter = new Intl.Segmenter(undefined, { granularity: "word" });
+const sentenceSeg = new Intl.Segmenter(undefined, { granularity: "sentence" });
+const STOP = new Set(("a an and are as at be but by for from has have he her his i if in into is it its " +
+  "me my no not of on or our she so than that the their them then there these they this to too us " +
+  "was we were what when where which who will with would you your 的 了 是 在 我 你 他 她 和 也 就 都 而 及 與 或").split(" "));
+const WPM_READ = 238, WPM_SPEAK = 130;
+
+const $ = (id) => document.getElementById(id);
+const text = $("text");
+let ngram = 1;
+
+function words(str) {
+  const out = [];
+  for (const s of segmenter.segment(str)) if (s.isWordLike) out.push(s.segment);
+  return out;
+}
+
+function duration(minutes) {
+  const s = Math.round(minutes * 60);
+  if (s < 60) return `${s} s`;
+  const m = Math.floor(s / 60), r = s % 60;
+  return r ? `${m} min ${r} s` : `${m} min`;
+}
+
+function keywords(list) {
+  const tokens = list.map((w) => w.toLowerCase());
+  const skip = $("stop").checked;
+  const counts = new Map();
+  let total = 0;
+  for (let i = 0; i + ngram <= tokens.length; i++) {
+    const gram = tokens.slice(i, i + ngram);
+    if (skip && (STOP.has(gram[0]) || STOP.has(gram[gram.length - 1]))) continue;
+    if (gram.every((t) => /^\d+$/.test(t))) continue;
+    const key = gram.join(" ");
+    counts.set(key, (counts.get(key) || 0) + 1);
+    total++;
+  }
+  return [...counts]
+    .filter(([, c]) => ngram === 1 || c > 1)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 10)
+    .map(([k, c]) => [k, c, total ? (100 * c) / total : 0]);
+}
+
+function update() {
+  const str = text.value;
+  const w = words(str);
+  const wc = w.length;
+  const sentences = [...sentenceSeg.segment(str)].filter((s) => /\p{L}|\p{N}/u.test(s.segment)).length;
+  const paragraphs = str.split(/\n\s*\n/).filter((p) => p.trim()).length;
+  const letters = w.reduce((n, x) => n + [...x].length, 0);
+
+  $("words").textContent = wc.toLocaleString();
+  $("chars").textContent = [...str].length.toLocaleString();
+  $("charsNoSpace").textContent = [...str.replace(/\s/g, "")].length.toLocaleString();
+  $("sentences").textContent = sentences.toLocaleString();
+  $("paragraphs").textContent = paragraphs.toLocaleString();
+  $("avgWord").textContent = wc ? (letters / wc).toFixed(1) : "0";
+  $("avgSentence").textContent = sentences ? (wc / sentences).toFixed(1) + " words" : "0";
+  $("reading").textContent = duration(wc / WPM_READ);
+  $("speaking").textContent = duration(wc / WPM_SPEAK);
+
+  const list = $("keywords");
+  const kw = keywords(w);
+  list.replaceChildren(...(kw.length ? kw.map(([k, c, pct]) => {
+    const li = document.createElement("li");
+    const a = document.createElement("span"); a.textContent = k;
+    const b = document.createElement("span"); b.textContent = `${c} · ${pct.toFixed(1)}%`;
+    li.append(a, b);
+    return li;
+  }) : [Object.assign(document.createElement("li"), { className: "muted", textContent: ngram > 1 ? "No repeated phrases yet" : "—" })]));
+
+  try { localStorage.setItem("wordcount-draft", str); } catch {}
+}
+
+document.querySelectorAll("button[data-n]").forEach((btn) =>
+  btn.addEventListener("click", () => {
+    ngram = Number(btn.dataset.n);
+    document.querySelectorAll("button[data-n]").forEach((b) =>
+      b.setAttribute("aria-pressed", String(b === btn)));
+    update();
+  }));
+$("stop").addEventListener("change", update);
+$("clear").addEventListener("click", () => { text.value = ""; update(); text.focus(); });
+text.addEventListener("input", update);
+
+try { text.value = localStorage.getItem("wordcount-draft") || ""; } catch {}
+update();
+</script>
+</body>
+</html>

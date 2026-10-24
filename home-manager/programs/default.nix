@@ -11,6 +11,7 @@
     ./spicetify.nix
     ./thunar.nix
     ./vivaldi.nix
+    ./wordcount.nix
     ./zed-editor.nix
   ];
 }
