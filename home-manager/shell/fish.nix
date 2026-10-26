@@ -18,7 +18,7 @@
         description = "cd into GitHub directories";
       };
       ssh = "TERM=xterm-256color command ssh $argv";
-      init = "nix flake init -t dots#$argv[1]";
+      init = "nix flake init -t dots#$argv[1]; and direnv allow";
     };
   };
 
