@@ -44,7 +44,7 @@ in
     };
 
     font = {
-      name = "Inter Regular";
+      name = "Inter";
       package = pkgs.inter;
       size = lib.mkDefault 16;
     };

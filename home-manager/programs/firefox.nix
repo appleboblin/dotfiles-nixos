@@ -28,6 +28,59 @@ let
     "browser.newtabpage.activity-stream.showSponsored" = false;
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
 
+    "browser.uiCustomization.state" = builtins.toJSON {
+      placements = {
+        widget-overflow-fixed-list = [ ];
+        unified-extensions-area = [
+          "firefoxcolor_mozilla_com-browser-action"
+          "addon_darkreader_org-browser-action"
+        ];
+        nav-bar = [
+          "alltabs-button"
+          "smartwindow-group-tabs-button"
+          "ai-window-toggle"
+          "reset-pbm-toolbar-button"
+          "simple-tab-groups_drive4ik-browser-action"
+          "sidebar-button"
+          "back-button"
+          "forward-button"
+          "stop-reload-button"
+          "urlbar-container"
+          "vertical-spacer"
+          "ublock0_raymondhill_net-browser-action"
+          "unified-extensions-button"
+        ];
+        toolbar-menubar = [ "menubar-items" ];
+        TabsToolbar = [ ];
+        vertical-tabs = [ "tabbrowser-tabs" ];
+        PersonalToolbar = [
+          "import-button"
+          "personal-bookmarks"
+        ];
+      };
+      seen = [
+        "reset-pbm-toolbar-button"
+        "simple-tab-groups_drive4ik-browser-action"
+        "ublock0_raymondhill_net-browser-action"
+        "smartwindow-group-tabs-button"
+        "ai-window-toggle"
+        "developer-button"
+        "screenshot-button"
+        "firefoxcolor_mozilla_com-browser-action"
+        "addon_darkreader_org-browser-action"
+      ];
+      dirtyAreaCache = [
+        "unified-extensions-area"
+        "nav-bar"
+        "TabsToolbar"
+        "vertical-tabs"
+        "PersonalToolbar"
+        "toolbar-menubar"
+      ];
+      currentVersion = 28;
+      newElementCount = 2;
+    };
+
     "devtools.chrome.enabled" = true;
     "devtools.debugger.remote-enabled" = true;
 
