@@ -51,7 +51,15 @@
       seahorse
       tinymist
       prettypst
-      orca-slicer
+      (symlinkJoin {
+        name = "orca-slicer";
+        paths = [ orca-slicer ];
+        nativeBuildInputs = [ makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/orca-slicer \
+            --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+        '';
+      })
     ];
 
     sessionVariables = {
