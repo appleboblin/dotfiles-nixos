@@ -135,6 +135,7 @@ let
     simple-tab-groups # workspaces
     ublock-origin
     darkreader
+    proton-pass
   ];
 
   mkProfile = id: {
