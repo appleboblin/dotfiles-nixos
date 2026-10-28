@@ -93,10 +93,26 @@ in
     ];
 
     # screenshot
-    "Print".action.screenshot = [ ];
+    # Noctalia
+    "Print".action.spawn = [
+      "noctalia"
+      "msg"
+      "screenshot-region"
+    ];
+    "Mod+Shift+S".action.spawn = [
+      "noctalia"
+      "msg"
+      "screenshot-region"
+    ];
+    "Shift+Print".action.spawn = [
+      "noctalia"
+      "msg"
+      "screenshot-fullscreen"
+    ];
+
+    # window capture (niri; Noctalia has no window mode)
     "Mod+Print".action.screenshot-window = [ ];
     "Mod+Ctrl+S".action.screenshot-window = [ ];
-    "Mod+Shift+S".action.screenshot = [ ];
 
     "Mod+Q" = {
       action.close-window = { };

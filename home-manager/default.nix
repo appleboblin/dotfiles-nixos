@@ -57,7 +57,9 @@
         nativeBuildInputs = [ makeWrapper ];
         postBuild = ''
           wrapProgram $out/bin/orca-slicer \
-            --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+            --set WEBKIT_DISABLE_DMABUF_RENDERER 1 \
+             --set WEBKIT_DISABLE_COMPOSITING_MODE 1 \
+             --prefix PATH : ${lib.makeBinPath [ python3 ]}
         '';
       })
     ];
