@@ -75,7 +75,14 @@
           open_near_click_session = true;
           shadow = false;
         };
-        screenshot.directory = "${config.xdg.userDirs.extraConfig.SCREENSHOT}";
+        screenshot = {
+          directory = "${config.xdg.userDirs.extraConfig.SCREENSHOT}";
+          filename_pattern = "screenshot_%Y%m%d_%H%M%S";
+          annotate = true;
+          confirm_region = true;
+          remember_last_region = true;
+          skip_annotate_on_copy_save = true;
+        };
       };
 
       theme = {

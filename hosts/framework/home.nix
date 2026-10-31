@@ -203,7 +203,7 @@ in
               rotation = 0.0;
               type = "login_box";
               settings = {
-                background_color = "surface_variant";
+                background_color = "surface_container";
                 background_opacity = 0.88;
                 background_radius = 12.0;
                 center_password_text = false;
@@ -217,6 +217,7 @@ in
                 show_session_buttons = true;
                 show_unlock_hint = true;
                 show_weather = true;
+                show_password_reveal = true;
               };
             };
 
