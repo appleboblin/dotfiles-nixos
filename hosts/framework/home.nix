@@ -258,18 +258,19 @@ in
         };
       };
     };
-  };
 
-  umbriel.settings = {
-    output."eDP-1" = {
-      mode = "2256x1504@60";
-      scale = 1.0;
-      workspaces = workspaceNames;
+    umbriel.settings = {
+      output."eDP-1" = {
+        mode = "2256x1504@60";
+        scale = 1.0;
+        workspaces = workspaceNames;
+      };
+
+      events.lid_close = "noctalia msg session lock-and-suspend";
+
+      keybinds."XF86AudioMedia" = "spawn footclient";
     };
 
-    events.lid_close = "noctalia msg session lock-and-suspend";
-
-    keybinds."XF86AudioMedia" = "spawn footclient";
   };
 
   services = {
