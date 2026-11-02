@@ -9,11 +9,14 @@
   programs.umbriel = {
     enable = true;
     settings = {
-      general.autostart = [
-        "fcitx5 -d"
-        "noctalia"
-        "cryptomator"
-      ];
+      general = {
+        autostart = [
+          "fcitx5 -d"
+          "noctalia"
+          "cryptomator"
+        ];
+        show_cheatsheet = false;
+      };
 
       input = {
         keyboard = {
