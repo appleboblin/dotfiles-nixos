@@ -98,39 +98,6 @@ in
       };
     };
 
-    niri.settings = {
-      binds = with config.lib.niri.actions; {
-        "XF86AudioMedia".action = spawn "footclient";
-      };
-      switch-events = {
-        lid-close.action.spawn = [
-          "noctalia"
-          "msg"
-          "session"
-          "lock-and-suspend"
-        ];
-      };
-      workspaces = builtins.listToAttrs (map mkWorkspace workspaceNames);
-      outputs = {
-        "eDP-1" = {
-          scale = 1.0;
-          mode = {
-            width = 2256;
-            height = 1504;
-            refresh = 60.000;
-          };
-          transform = {
-            rotation = 0;
-            flipped = false;
-          };
-          position = {
-            x = 0;
-            y = 0;
-          };
-        };
-      };
-    };
-
     noctalia = {
       settings = {
         bar.default = {
@@ -271,15 +238,6 @@ in
       keybinds."XF86AudioMedia" = "spawn footclient";
     };
 
-  };
-
-  services = {
-    niri-ws-maximize = {
-      enable = true;
-      targetWorkspaces = [
-        "stuff"
-      ];
-    };
   };
 
   systemd.user = {

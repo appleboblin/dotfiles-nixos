@@ -4,14 +4,14 @@
 
 - Multiple NixOS hosts (Framework 13 AMD laptop, desktop) from one flake, with Home Manager as a NixOS module
 - ZFS root, installed by a guided script (disk selection, partitioning, encryption on the laptop)
-- Niri with the Noctalia shell and greeter
+- Umbriel with the Noctalia shell and greeter
+- `umbriel-toggle-app`: one key to jump to an app (launching it if needed) and back
+- Vesktop and Spotify start on the `stuff` workspace on every host
 - Catppuccin Macchiato (Pink accent) across GTK, Qt/Kvantum, terminal, and editors
-- Custom niri helpers:
-  - `niri-ws-maximize`: maximizes solo windows and restores their previous width
-  - `toggle-app`: one key to jump to an app (launching it if needed) and back
 - CI: PRs build both hosts; pushes to `main` check formatting; `flake.lock` updates weekly and auto-merges when builds pass
+- Binary caches for Noctalia and Umbriel, so they aren't compiled locally
 - `nh` for rebuilds with package diffs, plus automatic store cleanup
-- Dev shell templates (`init c|py|rs|js`)
+- Dev shell templates (`init c|py|rs|js`) that load automatically through direnv
 - Laptop extras: kanata (Graphite layout), fingerprint login, Bluetooth state remembered across reboots, Wi-Fi/power-aware pCloud sync
 - Editors: Zed and Nixvim
 

@@ -119,11 +119,6 @@ let
       display: none !important;
     }
 
-
-    /* window controls: niri handles windows */
-    .titlebar-buttonbox-container {
-      display: none !important;
-    }
     /* hide Simple Tab Groups' toolbar button */
     #simple-tab-groups_drive4ik-BAP {
       display: none !important;

@@ -55,7 +55,6 @@
       shell = {
         avatar_path = "${./jigglypuff.png}";
         font_family = "Inter Nerd Font";
-        niri_overview_type_to_launch_enabled = true;
         polkit_agent = true;
         screen_time_enabled = true;
         animation.enabled = false;

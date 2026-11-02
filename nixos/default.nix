@@ -259,10 +259,6 @@
   };
 
   programs = {
-    niri = {
-      enable = true;
-      package = pkgs.niri-unstable;
-    };
     nix-ld.enable = true;
     flashrom.enable = true;
     dconf.enable = true;

@@ -20,7 +20,6 @@
   };
   services.displayManager.noctalia-greeter = {
     enable = true;
-    # greeter-args = "--session Niri --user ${user}";
     greeter-args = "--session Umbriel --user ${user}";
   };
 

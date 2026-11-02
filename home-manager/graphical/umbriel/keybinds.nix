@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 let
   # umbriel-toggle-app <app-id> <launch command...>
-  # Same behaviour as the niri toggle-app: focus the app (launch if missing);
   # if it's already focused, jump back to the previous window.
   umbriel-toggle-app = pkgs.writeShellApplication {
     name = "umbriel-toggle-app";
