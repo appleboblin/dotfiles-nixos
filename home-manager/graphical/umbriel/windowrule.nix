@@ -27,5 +27,15 @@
       ];
       block_capture = true;
     }
+    {
+      match.app_id = [
+        "vesktop"
+        "^element-desktop$"
+        "spotify"
+      ];
+      default_workspace = "stuff";
+      default_maximize = true;
+      default_focused = false;
+    }
   ];
 }

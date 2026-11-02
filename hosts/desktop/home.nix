@@ -354,19 +354,6 @@ in
         workspaces = map toString (lib.range 4 9);
       };
 
-      window_rule = [
-        {
-          match.app_id = [
-            "vesktop"
-            "^element-desktop$"
-            "spotify"
-          ];
-          default_workspace = "stuff";
-          default_maximize = true;
-          default_focused = false;
-        }
-      ];
-
       keybinds =
         lib.listToAttrs (
           lib.concatMap (n: [
