@@ -20,19 +20,6 @@
   programs.niri = {
     package = osConfig.programs.niri.package;
     settings = {
-      environment = {
-        CLUTTER_BACKEND = "wayland";
-        MOZ_ENABLE_WAYLAND = "1";
-        NIXOS_OZONE_WL = "1";
-        QT_QPA_PLATFORM = "wayland;xcb";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-        SDL_VIDEODRIVER = "wayland";
-        _JAVA_AWT_WM_NONREPARENTING = "1";
-        TERM = "xterm-256color";
-        TERMINAL = "footclient";
-        XMODIFIERS = "@im=fcitx";
-      };
-
       input = {
         keyboard = {
           xkb = {

@@ -322,5 +322,60 @@ in
         };
       };
     };
+
+    umbriel.settings = {
+      general.autostart = [
+        "vesktop"
+        "spotify"
+      ];
+
+      output.${monitors.left} = {
+        mode = "2560x1440@170";
+        transform = "90";
+        position = [
+          0
+          0
+        ];
+        vrr = "always";
+        workspaces = [
+          "1"
+          "2"
+          "3"
+          "stuff"
+        ];
+        layout.scrolling.default_extent_fraction = 1.0;
+      };
+      output.${monitors.middle} = {
+        mode = "2560x1440@180";
+        position = [
+          1440
+          550
+        ];
+        workspaces = map toString (lib.range 4 9);
+      };
+
+      window_rule = [
+        {
+          match.app_id = [
+            "vesktop"
+            "^element-desktop$"
+            "spotify"
+          ];
+          default_workspace = "stuff";
+          default_maximize = true;
+          default_focused = false;
+        }
+      ];
+
+      keybinds =
+        lib.listToAttrs (
+          lib.concatMap (n: [
+            (lib.nameValuePair "Mod+${n}" (lib.mkForce "workspace-switch --name ${n}"))
+            (lib.nameValuePair "Mod+Shift+${n}" (lib.mkForce "column-move-to-workspace --name ${n}"))
+          ]) (map toString (lib.range 1 9))
+        )
+        // {
+        };
+    };
   };
 }

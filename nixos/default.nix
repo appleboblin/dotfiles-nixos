@@ -221,9 +221,16 @@
   };
 
   environment = {
-    variables = {
+    sessionVariables = {
       EDITOR = "nvim";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      NIXOS_OZONE_WL = "1";
+      QT_QPA_PLATFORM = "wayland;xcb";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      SDL_VIDEODRIVER = "wayland,x11";
+      _JAVA_AWT_WM_NONREPARENTING = "1";
+      TERMINAL = "footclient";
+      XMODIFIERS = "@im=fcitx";
     };
 
     systemPackages = with pkgs; [
