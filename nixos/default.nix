@@ -81,6 +81,8 @@
     # Enable CUPS to print documents.
     printing.enable = true;
 
+    gnome.gnome-keyring.enable = true;
+
     pipewire = {
       enable = true;
       alsa.enable = true;
