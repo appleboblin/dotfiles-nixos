@@ -36,6 +36,17 @@
           "lock-and-suspend"
         ];
         pre_action_fade_seconds = 0;
+        behavior = {
+          lock = {
+            action = "lock";
+            enabled = true;
+          };
+          "screen-off" = {
+            action = "screen_off";
+            enabled = true;
+          };
+          "lock-and-suspend".enabled = true;
+        };
       };
 
       location.auto_locate = true;
@@ -44,6 +55,15 @@
         blur_intensity = 0.099999997764825821;
         tint_intensity = 0.0;
         transition = [ ];
+      };
+
+      lockscreen_widgets = {
+        enabled = true;
+        schema_version = 2;
+        grid = {
+          major_interval = 4;
+          visible = true;
+        };
       };
 
       nightlight.enabled = true;

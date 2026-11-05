@@ -13,6 +13,7 @@
   ];
   programs.nixvim = {
     enable = true;
+    enableMan = false;
 
     colorschemes.catppuccin = {
       enable = true;

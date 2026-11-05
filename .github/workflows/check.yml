@@ -27,4 +27,8 @@ jobs:
           hatchet-protocol: rampage
           witness-carnage: true
       - uses: DeterminateSystems/determinate-nix-action@v3
+        with:
+          extra-conf: |
+            extra-substituters = https://noctalia.cachix.org https://umbriel.cachix.org https://catppuccin.cachix.org
+            extra-trusted-public-keys = noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= umbriel.cachix.org-1:JfNq/2yg2S6D6z4Z2dVSZrZlDPQTKtexB6GAVLD98nw= catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU=
       - run: nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --print-build-logs

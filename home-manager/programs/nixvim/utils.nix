@@ -112,6 +112,33 @@
       treesitter = {
         enable = true;
         nixGrammars = true;
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          bash
+          c
+          csv
+          cpp
+          css
+          fish
+          html
+          javascript
+          json
+          lua
+          markdown
+          markdown_inline
+          nix
+          python
+          query
+          regex
+          rust
+          toml
+          typescript
+          typst
+          udev
+          vim
+          vimdoc
+          yaml
+          xml
+        ];
         settings = {
           highlight.enable = true;
           indent.enable = true;

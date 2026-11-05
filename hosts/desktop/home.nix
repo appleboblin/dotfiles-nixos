@@ -5,6 +5,7 @@
 }:
 let
   monitors = import ./monitors.nix;
+  loginBox = import ../../home-manager/graphical/noctalia-login-box.nix;
 in
 {
   services = {
@@ -73,18 +74,13 @@ in
           ];
           behavior = {
             lock = {
-              action = "lock";
-              enabled = true;
               timeout = 600;
             };
             "screen-off" = {
-              action = "screen_off";
-              enabled = true;
               timeout = 900;
             };
             # suspend unless media is playing
             "lock-and-suspend" = {
-              enabled = true;
               timeout = 1800;
               command = "${pkgs.playerctl}/bin/playerctl -a status 2>/dev/null | grep -qx Playing || noctalia msg session lock-and-suspend";
             };
@@ -98,8 +94,6 @@ in
         };
 
         lockscreen_widgets = {
-          enabled = true;
-          schema_version = 2;
           widget_order = [
             "lockscreen-login-box@DP-1"
             "lockscreen-login-box@DP-2"
@@ -110,8 +104,6 @@ in
 
           grid = {
             cell_size = 24;
-            major_interval = 4;
-            visible = true;
           };
 
           widget = {
@@ -125,23 +117,7 @@ in
               placement_width = 2560.0;
               rotation = 0.0;
               type = "login_box";
-              settings = {
-                background_color = "surface_container";
-                background_opacity = 0.88;
-                background_radius = 12.0;
-                center_password_text = false;
-                input_opacity = 1.0;
-                input_radius = 6.0;
-                layout = "regular";
-                show_caps_lock = true;
-                show_keyboard_layout = true;
-                show_login_button = true;
-                show_media = true;
-                show_session_buttons = true;
-                show_unlock_hint = true;
-                show_weather = true;
-                show_password_reveal = true;
-              };
+              settings = loginBox;
             };
 
             "lockscreen-login-box@DP-2" = {
