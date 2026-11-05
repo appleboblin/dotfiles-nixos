@@ -1,7 +1,3 @@
-{
-  config,
-  ...
-}:
 let
   loginBox = import ../../home-manager/graphical/noctalia-login-box.nix;
 
