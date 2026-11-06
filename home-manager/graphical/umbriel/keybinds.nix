@@ -143,6 +143,11 @@ in
 
     "Mod+0" = "workspace-switch stuff";
     "Mod+Shift+0" = "column-move-to-workspace stuff";
+
+    # scratchpad
+    "Mod+T" = once "scratchpad-toggle term";
+    "Mod+Shift+T" = once "window-toggle-scratchpad term";
+    "Mod+Ctrl+T" = once "scratchpad-focus-next term";
   }
   // workspaces;
 }

@@ -37,5 +37,13 @@
       default_maximize = true;
       default_focused = false;
     }
+    {
+      match.app_id = "^scratchpad-term$";
+      default_scratchpad = "term";
+      default_floating_size = {
+        width = 0.7;
+        height = 0.7;
+      };
+    }
   ];
 }

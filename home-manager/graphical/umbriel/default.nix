@@ -50,6 +50,7 @@
           hide_when_single = true;
         };
       };
+
       animation = {
         duration_ms = 150;
         windows_in.curve = "spring:1,2000";
@@ -63,6 +64,7 @@
         };
         border.curve = "spring:1,2000";
       };
+
       colors.border = {
         focused = "#f5bde6ff";
         unfocused = "#181926ff";
@@ -81,6 +83,14 @@
           default_extent_fraction = 0.5;
         };
       };
+
+      scratchpad = [
+        {
+          name = "term";
+          spawn_when_empty = "footclient --app-id scratchpad-term";
+          proportional_size = true;
+        }
+      ];
 
       workspaces.back_and_forth = true;
     };
