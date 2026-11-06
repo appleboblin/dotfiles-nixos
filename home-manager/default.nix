@@ -110,8 +110,13 @@
         "text/x-lua" = "dev.zed.Zed.desktop";
         "text/x-perl" = "dev.zed.Zed.desktop";
         "text/x-ruby" = "dev.zed.Zed.desktop";
+        "application/rtf" = "dev.zed.Zed.desktop";
 
         "application/pdf" = [ "okularApplication_pdf.desktop" ];
+        # word documents open with libreoffice writer
+        "application/msword" = [ "writer.desktop" ]; # .doc
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ]; # .docx
+        "application/vnd.oasis.opendocument.text" = [ "writer.desktop" ]; # .odt
 
         "image/jpeg" = [ "org.xfce.ristretto.desktop" ];
         "image/png" = [ "org.xfce.ristretto.desktop" ];
