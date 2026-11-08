@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   ...
 }:
@@ -34,8 +35,8 @@
         mouse.natural_scroll = false;
         focus.follows_mouse = true;
         cursor = {
-          size = 28;
-          theme = "catppuccin-macchiato-pink-cursors";
+          theme = config.home.pointerCursor.name;
+          inherit (config.home.pointerCursor) size;
         };
       };
 

@@ -1,4 +1,5 @@
 {
+  ctp,
   inputs,
   ...
 }:
@@ -18,7 +19,7 @@
     colorschemes.catppuccin = {
       enable = true;
       settings = {
-        flavour = "macchiato"; # latte, frappe, macchiato, mocha
+        flavour = ctp.flavor;
         transparent_background = true;
         # dim_inactive = true;
         no_italic = true;

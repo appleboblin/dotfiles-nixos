@@ -1,5 +1,6 @@
 {
   config,
+  ctp,
   inputs,
   lib,
   pkgs,
@@ -106,7 +107,7 @@
 
       theme = {
         builtin = "Catppuccin";
-        community_palette = "Catppuccin Macchiato Pink";
+        community_palette = "Catppuccin ${ctp.Flavor} ${ctp.Accent}";
         mode = "dark";
         source = "community";
         wallpaper_scheme = "m3-content";

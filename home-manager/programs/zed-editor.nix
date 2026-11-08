@@ -99,7 +99,7 @@
           TERM = "xterm-256color";
         };
         font_family = "MesloLGS Nerd Font Mono";
-        font_size = lib.mkDefault 18;
+        font_size = lib.mkDefault 20;
         line_height = "comfortable";
         option_as_meta = false;
         button = true;
@@ -225,7 +225,7 @@
       hour_format = "hour24";
       auto_update = false;
       show_whitespaces = "all";
-      ui_font_family = "Inter";
+      ui_font_family = "Inter Nerd Font";
       ui_font_size = lib.mkDefault 20;
       buffer_font_family = "MesloLGS Nerd Font Mono";
       buffer_font_size = lib.mkDefault 20;

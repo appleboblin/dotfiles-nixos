@@ -14,15 +14,18 @@
       vista-fonts
       inter-nerdfont
       nerd-fonts.meslo-lg
-      nerd-fonts.jetbrains-mono
     ];
 
-    fontconfig = {
-      defaultFonts = {
-        serif = [ "Inter" ];
-        sansSerif = [ "Inter" ];
-        monospace = [ "JetBrainsMono Nerd Font" ];
-      };
+    fontconfig.defaultFonts = {
+      serif = [
+        "Noto Serif"
+        "Source Han Serif"
+      ];
+      sansSerif = [
+        "Inter Nerd Font"
+        "Source Han Sans"
+      ];
+      monospace = [ "MesloLGS Nerd Font Mono" ];
     };
   };
 }

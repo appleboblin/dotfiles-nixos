@@ -1,13 +1,10 @@
 {
   config,
+  ctp,
   pkgs,
   lib,
   ...
 }:
-let
-  variant = "macchiato";
-  accent = "pink";
-in
 {
   dconf.settings = {
     # disable dconf first use warning
@@ -23,10 +20,10 @@ in
   gtk = {
     enable = true;
     theme = {
-      name = "catppuccin-macchiato-pink-compact";
+      name = "catppuccin-${ctp.flavor}-${ctp.accent}-compact";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ accent ];
-        variant = variant;
+        accents = [ ctp.accent ];
+        variant = ctp.flavor;
         tweaks = [
           # "black" # black tweak for oled
           # "rimless"
@@ -38,14 +35,14 @@ in
     iconTheme = lib.mkForce {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
-        accent = accent;
-        flavor = variant;
+        inherit (ctp) accent;
+        flavor = ctp.flavor;
       };
     };
 
     font = {
-      name = "Inter";
-      package = pkgs.inter;
+      name = "Inter Nerd Font";
+      package = pkgs.inter-nerdfont;
       size = lib.mkDefault 16;
     };
     gtk2 = {

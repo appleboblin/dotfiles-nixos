@@ -6,9 +6,15 @@
 }:
 let
   inherit (config.catppuccin) flavor accent;
-  capitalize = s: lib.toUpper (lib.substring 0 1 s) + lib.substring 1 (-1) s;
+  cap = s: lib.toUpper (lib.substring 0 1 s) + lib.substring 1 (-1) s;
 in
 {
+  _module.args.ctp = {
+    inherit flavor accent cap;
+    Flavor = cap flavor;
+    Accent = cap accent;
+  };
+
   catppuccin = {
     autoEnable = true;
     enable = true;
@@ -21,7 +27,7 @@ in
 
   home.pointerCursor = {
     enable = true;
-    package = pkgs.catppuccin-cursors."${flavor}${capitalize accent}";
+    package = pkgs.catppuccin-cursors."${flavor}${cap accent}";
     name = "catppuccin-${flavor}-${accent}-cursors";
     size = 28;
     gtk.enable = true;
