@@ -162,6 +162,8 @@
       };
     };
 
+    resolved.enable = true;
+
     # fstrim
     fstrim = {
       enable = true;
@@ -295,7 +297,10 @@
 
   networking = {
     # Enable networking
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+    };
 
     hostName = host;
 

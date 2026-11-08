@@ -9,8 +9,11 @@
     # authKeyFile = "/etc/tailscale-authkey";
     useRoutingFeatures = "client";
     openFirewall = true;
-    extraUpFlags = [
+    # Applied via `tailscale set` on every tailscaled start (no authKeyFile needed).
+    extraSetFlags = [
       "--accept-routes"
+      # Keep the local LAN reachable while routing through an exit node.
+      "--exit-node-allow-lan-access"
     ];
   };
 }
