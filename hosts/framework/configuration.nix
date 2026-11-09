@@ -8,6 +8,7 @@
   imports = [
     ./bluetooth-power.nix
     ./kanata.nix
+    ./low-battery-shutdown.nix
   ];
 
   boot.zfs.requestEncryptionCredentials = true;
@@ -60,7 +61,10 @@
       tod.driver = pkgs.libfprint-2-tod1-goodix;
     };
 
-    logind.settings.Login.HandlePowerKey = "lock";
+    logind.settings.Login = {
+      HandlePowerKey = "lock";
+      HandleLidSwitch = "ignore";
+    };
   };
 
   systemd = {
