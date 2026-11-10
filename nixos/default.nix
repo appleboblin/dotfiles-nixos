@@ -210,7 +210,7 @@
 
   environment = {
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "zeditor -w";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland;xcb";
@@ -222,7 +222,6 @@
     };
 
     systemPackages = with pkgs; [
-      neovim
       killall
       wget
       usbutils
