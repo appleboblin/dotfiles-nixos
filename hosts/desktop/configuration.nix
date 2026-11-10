@@ -69,6 +69,7 @@
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2357", ATTR{idProduct}=="0604", ATTR{power/wakeup}="enabled"
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2109", ATTR{idProduct}=="2817", ATTR{power/wakeup}="enabled"
     '';
+    openssh.openFirewall = true;
   };
 
   custom.games.enable = true;

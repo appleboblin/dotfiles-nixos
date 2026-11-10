@@ -19,10 +19,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        host: [desktop, framework]
+        host: [desktop, framework, framework-intel]
     steps:
       - uses: actions/checkout@v6
-      - uses: wimpysworld/nothing-but-nix@main
+      - uses: wimpysworld/nothing-but-nix@b2574ec1cf1462bee0a34de0fb6ff11ad3c43cb2 # v12
         with:
           hatchet-protocol: rampage
           witness-carnage: true

@@ -4,8 +4,6 @@
     trim.enable = true;
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/SWAP"; } ];
-
   fileSystems = {
     "/" = {
       device = "NIXROOT/root";

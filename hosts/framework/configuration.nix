@@ -1,3 +1,4 @@
+# Shared by every Framework 13 board. Board-specific bits: amd.nix / intel.nix (picked in flake.nix).
 {
   lib,
   pkgs,
@@ -16,26 +17,18 @@
   networking.hostId = "3f4e9fd8";
 
   hardware = {
-    # if overclocking or underclock
-    # amdgpu.overdrive.enable = true;
     bluetooth = {
       enable = true;
       # powerOnBoot = lib.mkForce false;
     };
-    framework.laptop13.audioEnhancement = {
-      enable = true;
-      rawDeviceName = "alsa_output.pci-0000_c1_00.6.analog-stereo";
-    };
+    # rawDeviceName is per-board: amd.nix sets it, nixos-hardware defaults it on Intel
+    framework.laptop13.audioEnhancement.enable = true;
   };
 
   # virtualisation.libvirtd.enable = true;
   # virtualisation.docker.enable = true;
 
-  # AMDGPU Controller
-  # https://wiki.nixos.org/wiki/AMD_GPU
-  # https://github.com/paschoal/dotfiles/blob/master/hardware/radeon/default.nix
   environment.systemPackages = with pkgs; [
-    amdgpu_top
     fw-ectool
     framework-tool
     powertop
@@ -63,7 +56,8 @@
 
     logind.settings.Login = {
       HandlePowerKey = "lock";
-      HandleLidSwitch = "ignore";
+      # Lid close: logind suspends (works at the greeter too); Noctalia locks
+      # first via lockscreen.lock_before_suspend (default true).
     };
   };
 

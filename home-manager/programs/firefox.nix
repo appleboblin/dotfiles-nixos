@@ -81,49 +81,46 @@ let
       newElementCount = 2;
     };
 
-    "devtools.chrome.enabled" = true;
-    "devtools.debugger.remote-enabled" = true;
-
     "layout.css.devPixelsPerPx" = "1.00";
 
   };
 
   # Move the toolbox (nav bar, bookmarks) below the page. With vertical tabs
   # there's no tab strip left up top, so this is the whole toolbar area.
-  userChrome = ''
-    #main-window body {
-      flex-direction: column-reverse !important;
-    }
-    #navigator-toolbox {
-      flex-direction: column-reverse !important;
-    }
+  # userChrome = ''
+  #   #main-window body {
+  #     flex-direction: column-reverse !important;
+  #   }
+  #   #navigator-toolbox {
+  #     flex-direction: column-reverse !important;
+  #   }
 
-    /* bottom URL bar: open suggestions upwards (Firefox 158, popover) */
-    #urlbar[popover-open] > .urlbarView {
-      top: auto !important;
-      bottom: anchor(top) !important;
-      position-try-fallbacks: none !important;
-      height: auto !important;
-      max-height: 60vh !important;
-      overflow: hidden auto !important;
-      margin-bottom: 4px !important;
-      border-radius: 12px !important;
-      box-shadow: 0 -4px 16px rgb(0 0 0 / 0.35) !important;
-    }
-    #urlbar[popover-open] .urlbarView-background {
-      border-radius: 12px !important;
-    }
+  #   /* bottom URL bar: open suggestions upwards (Firefox 158, popover) */
+  #   #urlbar[popover-open] > .urlbarView {
+  #     top: auto !important;
+  #     bottom: anchor(top) !important;
+  #     position-try-fallbacks: none !important;
+  #     height: auto !important;
+  #     max-height: 60vh !important;
+  #     overflow: hidden auto !important;
+  #     margin-bottom: 4px !important;
+  #     border-radius: 12px !important;
+  #     box-shadow: 0 -4px 16px rgb(0 0 0 / 0.35) !important;
+  #   }
+  #   #urlbar[popover-open] .urlbarView-background {
+  #     border-radius: 12px !important;
+  #   }
 
-    /* hide group headings like "Firefox Suggest" */
-    #urlbar[popover-open] .urlbarView-row[label]::before {
-      display: none !important;
-    }
+  #   /* hide group headings like "Firefox Suggest" */
+  #   #urlbar[popover-open] .urlbarView-row[label]::before {
+  #     display: none !important;
+  #   }
 
-    /* hide Simple Tab Groups' toolbar button */
-    #simple-tab-groups_drive4ik-BAP {
-      display: none !important;
-    }
-  '';
+  #   /* hide Simple Tab Groups' toolbar button */
+  #   #simple-tab-groups_drive4ik-BAP {
+  #     display: none !important;
+  #   }
+  # '';
 
   extensions.packages = with addons; [
     firefox-color
@@ -137,7 +134,7 @@ let
     inherit
       id
       settings
-      userChrome
+      # userChrome
       ;
     isDefault = id == 0;
     extensions = extensions // {

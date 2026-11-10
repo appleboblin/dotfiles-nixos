@@ -149,8 +149,6 @@ in
         workspaces = workspaceNames;
       };
 
-      events.lid_close = "noctalia msg session lock-and-suspend";
-
       keybinds."XF86AudioMedia" = "spawn footclient";
     };
 

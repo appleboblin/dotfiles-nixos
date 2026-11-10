@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: DeterminateSystems/determinate-nix-action@v3
       - id: update
-        uses: DeterminateSystems/update-flake-lock@main
+        uses: DeterminateSystems/update-flake-lock@da03c0f078bc4b2c37ee4f7e072d34bf8f188bb3 # v29
         with:
           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
       - if: steps.update.outputs.pull-request-number != ''

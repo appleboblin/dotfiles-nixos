@@ -16,7 +16,8 @@ in
     };
   };
 
-  hm.home.packages = lib.mkIf transmissionEnabled [
-    pkgs.transmission_4-gtk
-  ];
+  hm = lib.mkIf transmissionEnabled {
+    home.packages = [ pkgs.transmission_4-gtk ];
+    xdg.mimeApps.defaultApplications."x-scheme-handler/magnet" = "transmission-gtk.desktop";
+  };
 }

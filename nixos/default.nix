@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   lib,
@@ -119,46 +120,37 @@
     # List services that you want to enable:
     # allow /bin and /usr/bin shebangs to work
     envfs.enable = true;
-    udev = {
-      # Udev rules
-      extraRules = ''
-        		SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
-        		# pixel 8
-        		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee2", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
-        		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee7", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
-        		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4eec", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
-        		SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee0", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"
-            # CH314A USB SPI
-            SUBSYSTEM=="usb", ATTR{idVendor}=="1a86", ATTR{idProduct}=="5512", TAG+="uaccess", SYMLINK+="ch341a_spi"
-        		'';
+    udev.packages = [
+      pkgs.yubikey-personalization
+      # TAG+="uaccess" only works in rules sorted before 73-seat-late.rules;
+      # services.udev.extraRules lands in 99-local.rules, which is too late.
+      (pkgs.writeTextFile {
+        name = "uaccess-udev-rules";
+        destination = "/etc/udev/rules.d/70-uaccess.rules";
+        text = ''
+          # Pixel 8
+          SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee0|4ee2|4ee7|4eec", TAG+="uaccess", SYMLINK+="android%n"
+          # CH341A USB SPI
+          SUBSYSTEM=="usb", ATTR{idVendor}=="1a86", ATTR{idProduct}=="5512", TAG+="uaccess", SYMLINK+="ch341a_spi"
+          # NXP LPC55 ROM bootloader (unmodified)
+          SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0021", TAG+="uaccess"
+          # NXP LPC55 ROM bootloader (with Solo 2 VID:PID)
+          SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="b000", TAG+="uaccess"
+          # Solo 2
+          SUBSYSTEM=="tty", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="beee", TAG+="uaccess"
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="beee", TAG+="uaccess"
+        '';
+      })
+    ];
 
-      packages = [
-        pkgs.yubikey-personalization
-        (pkgs.writeTextFile {
-          name = "solo2_udev";
-          text = ''
-            			# NXP LPC55 ROM bootloader (unmodified)
-            			SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0021", TAG+="uaccess"
-            			# NXP LPC55 ROM bootloader (with Solo 2 VID:PID)
-            			SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="b000", TAG+="uaccess"
-            			# Solo 2
-            			SUBSYSTEM=="tty", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="beee", TAG+="uaccess"
-            			# Solo 2
-            			SUBSYSTEM=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="beee", TAG+="uaccess"
-            			'';
-          destination = "/etc/udev/rules.d/70-solo2.rules";
-        })
-      ];
-    };
-
-    # Enable the OpenSSH daemon.
+    # Enable the OpenSSH daemon. Reachable over Tailscale only (see networking.firewall).
     openssh = {
       enable = true;
-      openFirewall = true;
+      openFirewall = lib.mkDefault false;
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
-        PermitRootLogin = "prohibit-password";
+        PermitRootLogin = "no";
       };
     };
 
@@ -308,6 +300,8 @@
       enable = true;
       # if packets are still dropped, they will show up in dmesg
       logReversePathDrops = true;
+      # ssh
+      interfaces.${config.services.tailscale.interfaceName}.allowedTCPPorts = [ 22 ];
       extraCommands = ''
         iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
       '';

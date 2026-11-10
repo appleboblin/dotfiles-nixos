@@ -8,7 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Desktop environment
     catppuccin.url = "github:catppuccin/nix";
@@ -40,8 +43,13 @@
     }@inputs:
     let
       user = "appleboblin";
+      # dir: which hosts/<dir> to load, when several hosts share one
       mkHost =
-        host:
+        {
+          host,
+          dir ? host,
+          extraModules ? [ ],
+        }:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
@@ -51,8 +59,8 @@
           modules = [
             ./nixos
             ./overlays
-            ./hosts/${host}/configuration.nix
-            ./hosts/${host}/hardware.nix
+            ./hosts/${dir}/configuration.nix
+            ./hosts/${dir}/hardware.nix
 
             catppuccin.nixosModules.catppuccin
             inputs.home-manager.nixosModules.home-manager
@@ -62,6 +70,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "bak";
 
                 extraSpecialArgs = {
                   inherit inputs host user;
@@ -70,19 +79,28 @@
                 users.${user} = {
                   imports = [
                     ./home-manager
-                    ./hosts/${host}/home.nix
+                    ./hosts/${dir}/home.nix
                     catppuccin.homeModules.catppuccin
                   ];
                 };
               };
             }
-          ];
+          ]
+          ++ extraModules;
         };
     in
     {
       nixosConfigurations = {
-        framework = mkHost "framework";
-        desktop = mkHost "desktop";
+        framework = mkHost {
+          host = "framework";
+          extraModules = [ ./hosts/framework/amd.nix ];
+        };
+        framework-intel = mkHost {
+          host = "framework-intel";
+          dir = "framework";
+          extraModules = [ ./hosts/framework/intel.nix ];
+        };
+        desktop = mkHost { host = "desktop"; };
       };
       templates = import ./templates;
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;

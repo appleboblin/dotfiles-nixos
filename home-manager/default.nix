@@ -120,8 +120,6 @@
 
         "image/jpeg" = [ "org.xfce.ristretto.desktop" ];
         "image/png" = [ "org.xfce.ristretto.desktop" ];
-
-        "x-scheme-handler/magnet" = "transmission.desktop";
       };
     };
     userDirs = {
