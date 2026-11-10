@@ -21,7 +21,7 @@
       enable = true;
       # powerOnBoot = lib.mkForce false;
     };
-    # rawDeviceName is per-board: amd.nix sets it, nixos-hardware defaults it on Intel
+    # rawDeviceName is set per board by the nixos-hardware module
     framework.laptop13.audioEnhancement.enable = true;
   };
 
@@ -46,13 +46,7 @@
     libinput.touchpad.disableWhileTyping = lib.mkForce true;
     hardware.bolt.enable = true;
 
-    fprintd = {
-      enable = true;
-      package = pkgs.fprintd-tod;
-      tod.enable = true;
-      # Search for "libfprint" in packages to find other drivers
-      tod.driver = pkgs.libfprint-2-tod1-goodix;
-    };
+    fprintd.enable = true;
 
     logind.settings.Login = {
       HandlePowerKey = "lock";
@@ -100,7 +94,6 @@
     pam = {
       services = {
         login.fprintAuth = false;
-        gdm.fprintAuth = false;
         greetd.fprintAuth = false;
         sudo.fprintAuth = false;
       };

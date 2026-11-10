@@ -252,15 +252,12 @@ in
         workspaces = map toString (lib.range 4 9);
       };
 
-      keybinds =
-        lib.listToAttrs (
-          lib.concatMap (n: [
-            (lib.nameValuePair "Mod+${n}" (lib.mkForce "workspace-switch --name ${n}"))
-            (lib.nameValuePair "Mod+Shift+${n}" (lib.mkForce "column-move-to-workspace --name ${n}"))
-          ]) (map toString (lib.range 1 9))
-        )
-        // {
-        };
+      keybinds = lib.listToAttrs (
+        lib.concatMap (n: [
+          (lib.nameValuePair "Mod+${n}" (lib.mkForce "workspace-switch --name ${n}"))
+          (lib.nameValuePair "Mod+Shift+${n}" (lib.mkForce "column-move-to-workspace --name ${n}"))
+        ]) (map toString (lib.range 1 9))
+      );
     };
   };
 }

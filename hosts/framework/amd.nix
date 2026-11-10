@@ -15,7 +15,6 @@
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     # if overclocking or underclock
     # amdgpu.overdrive.enable = true;
-    framework.laptop13.audioEnhancement.rawDeviceName = "alsa_output.pci-0000_c1_00.6.analog-stereo";
   };
 
   # AMDGPU Controller

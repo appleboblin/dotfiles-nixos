@@ -176,6 +176,11 @@ echo "Installing NixOS"
 if [[ $repo == "github:appleboblin/dotfiles-nixos" ]]; then
     # root password is irrelevant if initialPassword is set in the config
     sudo nixos-install --no-root-password --flake "$repo/${git_rev:-main}#$host" --option tarball-ttl 0
+
+    # replace the config's initialPassword before first boot
+    echo "Set the login password for appleboblin"
+    sudo nixos-enter --root /mnt -c 'passwd appleboblin' ||
+        echo "Password not changed: it is still the initialPassword from the config, change it with passwd after booting."
 else
     sudo nixos-install --flake "$repo/${git_rev:-main}#$host" --option tarball-ttl 0
 fi

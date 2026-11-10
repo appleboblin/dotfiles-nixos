@@ -29,11 +29,6 @@
         "nix-command"
         "flakes"
       ];
-      trusted-users = [
-        "${user}"
-        "root"
-        "@wheel"
-      ];
       extra-substituters = [ "https://catppuccin.cachix.org" ];
       extra-trusted-public-keys = [
         "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
@@ -211,13 +206,7 @@
 
   documentation.doc.enable = false;
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [
-      ];
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   environment = {
     sessionVariables = {
