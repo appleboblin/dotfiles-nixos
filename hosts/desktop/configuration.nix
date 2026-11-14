@@ -64,15 +64,18 @@
     lact.enable = true;
     # transmission.enable = true;
     hardware.bolt.enable = true;
-    # BT wake from suspend: TP-Link BT dongle and VIA hub
+    # Wake from suspend: BT wake broke for some reason
     udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2357", ATTR{idProduct}=="0604", ATTR{power/wakeup}="enabled"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2357", ATTR{idProduct}=="0604", ATTR{power/wakeup}="disabled"
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2109", ATTR{idProduct}=="2817", ATTR{power/wakeup}="enabled"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="615e", ATTR{power/wakeup}="enabled"
     '';
     openssh.openFirewall = true;
   };
 
   custom.games.enable = true;
 
-  programs.kdeconnect.enable = true;
+  programs.kdeconnect.enable = false;
+
+  networking.firewall.allowedUDPPorts = [ 5678 ];
 }

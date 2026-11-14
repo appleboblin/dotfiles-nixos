@@ -51,6 +51,7 @@
       seahorse
       tinymist
       prettypst
+      winbox
       (symlinkJoin {
         name = "orca-slicer";
         paths = [ orca-slicer ];

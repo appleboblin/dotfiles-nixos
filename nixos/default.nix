@@ -171,6 +171,7 @@
         greetd.enableGnomeKeyring = true;
       };
     };
+    pki.certificateFiles = [ ./keys/homelab-ca.crt ];
   };
 
   xdg.portal = {
@@ -187,7 +188,10 @@
     };
   };
 
-  zramSwap.enable = true;
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
@@ -200,7 +204,7 @@
       "dialout"
     ];
     openssh.authorizedKeys.keyFiles = [
-      ./id_ed25519.pub
+      ./keys/id_ed25519.pub
     ];
   };
 
@@ -277,10 +281,7 @@
 
   networking = {
     # Enable networking
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-    };
+    networkmanager.enable = true;
 
     hostName = host;
 

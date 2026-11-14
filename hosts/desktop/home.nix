@@ -75,19 +75,23 @@ in
           behavior = {
             lock = {
               timeout = 600;
+              # timeout = 20;
             };
             "screen-off" = {
+              # timeout = 30;
               timeout = 900;
             };
             # suspend unless media is playing
             "lock-and-suspend" = {
               timeout = 1800;
+              # timeout = 50;
               command = "${pkgs.playerctl}/bin/playerctl -a status 2>/dev/null | grep -qx Playing || noctalia msg session lock-and-suspend";
             };
             # suspend
             "lock-and-suspend-media" = {
               enabled = true;
               timeout = 7200;
+              # timeout = 50;
               command = "noctalia msg session lock-and-suspend";
             };
           };
