@@ -52,6 +52,7 @@
       tinymist
       prettypst
       winbox
+      wakeonlan
       (symlinkJoin {
         name = "orca-slicer";
         paths = [ orca-slicer ];

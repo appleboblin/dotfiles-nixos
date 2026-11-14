@@ -77,5 +77,8 @@
 
   programs.kdeconnect.enable = false;
 
-  networking.firewall.allowedUDPPorts = [ 5678 ];
+  networking = {
+    firewall.allowedUDPPorts = [ 5678 ];
+    interfaces.enp2s0.wakeOnLan.enable = true;
+  };
 }
