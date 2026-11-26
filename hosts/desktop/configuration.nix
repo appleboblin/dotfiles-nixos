@@ -73,6 +73,34 @@
     openssh.openFirewall = true;
   };
 
+  # Ollama
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-rocm; # replaces the removed `acceleration = "rocm"`
+    host = "0.0.0.0";
+    port = 11434;
+    environmentVariables = {
+      OLLAMA_KEEP_ALIVE = "30m"; # keep the model loaded between photos
+      OLLAMA_CONTEXT_LENGTH = "16384"; # cap context to leave VRAM headroom
+    };
+  };
+
+  # Installed, but not started at boot
+  systemd.services.ollama.wantedBy = lib.mkForce [ ];
+
+  # Allow only the Pi to reach port 11434. Use ONE of these.
+  # iptables firewall (NixOS default):
+  networking.firewall.extraCommands = ''
+    iptables -A nixos-fw -p tcp -s 192.168.88.2 --dport 11434 -j nixos-fw-accept
+  '';
+  networking.firewall.extraStopCommands = ''
+    iptables -D nixos-fw -p tcp -s 192.168.88.2 --dport 11434 -j nixos-fw-accept || true
+  '';
+  # nftables firewall (if networking.nftables.enable = true):
+  # networking.firewall.extraInputRules = ''
+  #   ip saddr 192.168.88.2 tcp dport 11434 accept
+  # '';
+
   custom.games.enable = true;
 
   programs.kdeconnect.enable = false;

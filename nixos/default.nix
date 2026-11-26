@@ -278,7 +278,9 @@
       };
     };
   };
-
+  systemd.services = lib.mapAttrs' (
+    name: _: lib.nameValuePair "home-manager-${name}" { environment.GIO_USE_VFS = "local"; }
+  ) config.home-manager.users;
   networking = {
     # Enable networking
     networkmanager.enable = true;

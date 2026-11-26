@@ -18,11 +18,9 @@
       "toml" # https://github.com/zed-industries/zed/tree/main/extensions/toml
       "nix" # https://github.com/zed-extensions/nix
       "git-firefly" # https://github.com/d1y/git_firefly
-      "ruff" # https://github.com/zed-industries/zed/tree/main/extensions/ruff
       # "python-lsp" # https://github.com/rgbkrk/python-lsp-zed-extension
       "fish" # https://github.com/hasit/zed-fish
       "rainbow-csv" # https://github.com/Kalmaegi/zed-rainbow-csv/tree/81bfb05d56a5302bd821230e83840230fd558c65
-      "basedpyright" # https://github.com/m1guer/basedpyright-zed
       "latex" # https://github.com/rzukic/zed-latex/
       "log" # https://github.com/zed-extensions/log
       "catppuccin" # https://github.com/catppuccin/zed
@@ -44,7 +42,6 @@
       ruff
       # pyright
       basedpyright
-      python3Packages.python-lsp-server
 
       # javascript
       eslint
@@ -136,26 +133,9 @@
           format_on_save = "on";
         };
         Python = {
-          # https://github.com/python-lsp/python-lsp-server
-          # https://github.com/microsoft/pyright
+          # https://zed.dev/docs/languages/python
+          # built-in defaults: basedpyright (LSP) + ruff (lint/format)
           tab_size = 4;
-          language_servers = [
-            "pylsp"
-            "!pyright"
-            "basedpyright"
-          ];
-          formatter = {
-            external = {
-              # https://github.com/astral-sh/ruff
-              command = "ruff";
-              arguments = [
-                "format"
-                "--stdin-filename"
-                "{buffer_path}"
-                "-"
-              ];
-            };
-          };
           format_on_save = "on";
         };
       };
@@ -178,7 +158,10 @@
           settings = {
             exportPdf = "onSave";
             outputPath = "$root/$name";
-            lint = true;
+            lint = {
+              enabled = true;
+              when = "onSave";
+            };
           };
         };
       };
@@ -208,12 +191,9 @@
       #   dark = "Catppuccin Macchiato";
       # };
 
-      features = {
-        # edit_prediction_provider = "zed";
-        edit_prediction_provider = "copilot";
-      };
-
       edit_predictions = {
+        # provider = "zed";
+        provider = "copilot";
         mode = "subtle";
       };
 
@@ -222,7 +202,6 @@
 
       # editor settings
       base_keymap = "VSCode";
-      hour_format = "hour24";
       auto_update = false;
       show_whitespaces = "all";
       ui_font_family = "Inter Nerd Font";
@@ -231,7 +210,7 @@
       buffer_font_size = lib.mkDefault 20;
       always_treat_brackets_as_autoclosed = true;
       preferred_line_length = 120;
-      soft_wrap = "preferred_line_length";
+      soft_wrap = "bounded";
       remove_trailing_whitespace_on_save = true;
       ensure_final_newline_on_save = true;
       format_on_save = "on";
@@ -239,7 +218,7 @@
 
       # vim mode
       vim_mode = false;
-      relative_line_numbers = false;
+      relative_line_numbers = "disabled";
     };
 
     # User Keymaps

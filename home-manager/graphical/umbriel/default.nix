@@ -33,7 +33,7 @@
           disable_while_typing = true;
         };
         mouse.natural_scroll = false;
-        focus.follows_mouse = true;
+        focus.follows_mouse = "sloppy";
         cursor = {
           theme = config.home.pointerCursor.name;
           inherit (config.home.pointerCursor) size;
