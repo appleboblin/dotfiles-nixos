@@ -73,7 +73,6 @@ These parts of the config look odd, but they're there on purpose.
 
 | Where                                    | Workaround                                                              |
 | ---------------------------------------- | ----------------------------------------------------------------------- |
-| `nixos/localsend.nix`                    | Adds `zlib` to `LD_LIBRARY_PATH`. The nixpkgs package misses it. Remove once fixed upstream. |
 | `nixos/default.nix`, gvfs                | Forces `pkgs.gnome.gvfs`. The default package gave a gvfs error.        |
 | `nixos/default.nix`, udev                | `uaccess` rules in a `70-` file. They must load before `73-seat-late.rules`, and `extraRules` loads too late. |
 | `home-manager/default.nix`, Orca Slicer  | WebKit rendering workarounds, plus Python on `PATH`.                    |
