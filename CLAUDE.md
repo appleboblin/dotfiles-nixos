@@ -18,7 +18,8 @@ This is a NixOS and Home Manager flake with three hosts: `desktop`, `framework`,
 The repo squash-merges with the pull request title and description as the commit message, and GitHub adds "(#N)" to the title. Whatever you write here ends up on `main`, so write it as a commit message.
 
 - Title: a short summary in plain words, like "Drop the LocalSend zlib wrapper". No `type:` prefix.
-- Description: summary bullets first, then a `## Testing` section, then the `Co-Authored-By` line. Add a `## Notes` section only when something needs explaining. Don't add a "Generated with Claude Code" line. If the pull request changes, update the description to match.
+- Description: summary bullets first, then a `## Testing` section. Add a `## Notes` section only when something needs explaining. If the pull request changes, update the description to match.
+- Don't put a `Co-Authored-By` line or a "Generated with Claude Code" line in the description. Commits keep their `Co-Authored-By` line, and GitHub copies it into the squash commit by itself, so writing it here would add it twice.
 
 ```
 - <what changed>
@@ -26,8 +27,6 @@ The repo squash-merges with the pull request title and description as the commit
 
 ## Testing
 - <what was built or run, and what the owner tested on hardware>
-
-Co-Authored-By: Claude …
 ```
 
 ## Checking a change
