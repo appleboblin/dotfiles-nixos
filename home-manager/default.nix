@@ -53,6 +53,7 @@
       prettypst
       winbox
       wakeonlan
+      claude-code
       (symlinkJoin {
         name = "orca-slicer";
         paths = [ orca-slicer ];

@@ -6,6 +6,7 @@
     ./firefox.nix
     ./foot.nix
     ./games.nix
+    ./gh.nix
     ./nixvim/default.nix
     ./obs-studio.nix
     ./spicetify.nix
