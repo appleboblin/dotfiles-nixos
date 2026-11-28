@@ -11,11 +11,11 @@ This is a NixOS and Home Manager flake with three hosts: `desktop`, `framework`,
 3. Before pushing, run `nix fmt` and build every host the change affects. Documentation-only changes (`.md` files, `docs/`, `.claude/`, `.gitignore`) don't need a build, and CI skips the builds for them.
 4. Push with `git push -u origin <branch>` and open a pull request with `gh pr create`. Write the title and description in the format below.
 5. Stop there. The owner reviews the pull request and either merges it or tells you to merge it.
-6. Only merge when the owner has said so for that specific pull request, and only once the required checks pass. Use `gh pr merge <N> --squash`. Each merge asks the owner for permission. Never use `--auto` or `--admin`, and never change rulesets or repo settings.
+6. Only merge when the owner has said so for that specific pull request, and only once the required checks pass. Use `gh pr merge <N> --squash`. Each merge asks the owner for permission. You may rewrite the squash message with `--subject "<summary>"` and `--body "<bullets>"` when that summarizes the pull request better, for example after many commits. Keep the same format, and end the body with the `Co-Authored-By` line, because GitHub doesn't add it to a message you pass yourself. Never use `--auto` or `--admin`, and never change rulesets or repo settings.
 
 ## Pull request title and description
 
-The repo squash-merges with the pull request title and description as the commit message, and GitHub adds "(#N)" to the title. Whatever you write here ends up on `main`, so write it as a commit message.
+The repo squash-merges with the pull request title and description as the default commit message, and GitHub adds "(#N)" to the title. That default is there so the owner can merge on GitHub without editing anything, so write the description as a commit message.
 
 - Title: a short summary in plain words, like "Drop the LocalSend zlib wrapper". No `type:` prefix.
 - Description: summary bullets first, then a `## Testing` section. Add a `## Notes` section only when something needs explaining. If the pull request changes, update the description to match.
