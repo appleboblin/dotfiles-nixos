@@ -25,7 +25,7 @@ The workflow uses a personal token stored as `GH_TOKEN_FOR_UPDATES`. Pull reques
 
 - Changes have to go through a pull request. Nobody can push to `main` directly. Approvals aren't required, because GitHub doesn't let you approve your own pull request.
 - `build (desktop)`, `build (framework)`, and `fmt` must pass before a pull request can merge.
-- Pull requests are squash merged, so each one becomes a single commit on `main`. Merge commits and rebase merges are turned off.
+- Pull requests are squash merged, so each one becomes a single commit on `main`. The commit uses the pull request's title and description, so write the description as a summary. Merge commits and rebase merges are turned off.
 - `main` can't be deleted or force-pushed. Branches are deleted automatically after they merge.
 - As an admin, you can still merge a pull request whose checks failed, for example when a binary cache is down. You still can't push to `main` directly.
 

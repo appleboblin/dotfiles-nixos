@@ -9,17 +9,26 @@ This is a NixOS and Home Manager flake with three hosts: `desktop`, `framework`,
 1. Make a branch from the latest `main` with `git switch -c <short-topic> origin/main`. Never commit to `main`.
 2. Write clear commit messages. Put unrelated changes in separate pull requests.
 3. Before pushing, run `nix fmt` and build every host the change affects.
-4. Push with `git push -u origin <branch>` and open a pull request with `gh pr create`.
+4. Push with `git push -u origin <branch>` and open a pull request with `gh pr create`. Write the title and description in the format below.
 5. Stop there. The owner reviews the pull request and either merges it or tells you to merge it.
-6. Only merge when the owner has said so for that specific pull request, and only once the required checks pass. Each merge asks the owner for permission. Never use `--auto` or `--admin`, and never change rulesets or repo settings.
-7. The squash commit summarizes the pull request: a title of the form "<summary> (#N)" with the pull request number, and a short bullet body. End it with the `Co-Authored-By` line. Pass both explicitly, so GitHub doesn't paste in every commit message:
+6. Only merge when the owner has said so for that specific pull request, and only once the required checks pass. Use `gh pr merge <N> --squash`. Each merge asks the owner for permission. Never use `--auto` or `--admin`, and never change rulesets or repo settings.
 
-   ```sh
-   gh pr merge <N> --squash --subject "<summary> (#N)" --body "- <change>
-   - <change>
+## Pull request title and description
 
-   Co-Authored-By: Claude …"
-   ```
+The repo squash-merges with the pull request title and description as the commit message, and GitHub adds "(#N)" to the title. Whatever you write here ends up on `main`, so write it as a commit message.
+
+- Title: a short summary in plain words, like "Drop the LocalSend zlib wrapper". No `type:` prefix.
+- Description: summary bullets first, then a `## Testing` section, then the `Co-Authored-By` line. Add a `## Notes` section only when something needs explaining. Don't add a "Generated with Claude Code" line. If the pull request changes, update the description to match.
+
+```
+- <what changed>
+- <why, if it isn't obvious>
+
+## Testing
+- <what was built or run, and what the owner tested on hardware>
+
+Co-Authored-By: Claude …
+```
 
 ## Checking a change
 
