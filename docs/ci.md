@@ -35,8 +35,8 @@ The workflow uses a personal token stored as `GH_TOKEN_FOR_UPDATES`. Pull reques
 
 Claude Code uses your `git` and `gh` login, so GitHub can't tell its actions apart from yours. Two files in the repo keep it working through pull requests.
 
-- `CLAUDE.md` tells it to work on a branch, build, open a pull request, and then stop. You review and merge.
-- `.claude/settings.json` blocks it from pushing to `main`, force-pushing, merging pull requests, and changing rulesets or repo settings. These blocks also apply in auto mode.
+- `CLAUDE.md` tells it to work on a branch, build, open a pull request, and then stop. You either merge the pull request yourself or tell Claude Code to merge it.
+- `.claude/settings.json` makes every merge command ask you for permission first, so Claude Code can't merge without your OK. It also blocks auto-merge, merging past failed checks with `--admin`, pushing to `main`, force-pushing, and changing rulesets or repo settings. These rules also apply in auto mode.
 
 To change the rules, edit the ruleset on GitHub under Settings → Rules → Rulesets → `main`, and edit `.claude/settings.json`. Personal overrides go in `.claude/settings.local.json`, which git ignores.
 
