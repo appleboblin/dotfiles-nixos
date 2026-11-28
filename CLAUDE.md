@@ -8,7 +8,7 @@ This is a NixOS and Home Manager flake with three hosts: `desktop`, `framework`,
 
 1. Make a branch from the latest `main` with `git switch -c <short-topic> origin/main`. Never commit to `main`.
 2. Write clear commit messages. Put unrelated changes in separate pull requests.
-3. Before pushing, run `nix fmt` and build every host the change affects.
+3. Before pushing, run `nix fmt` and build every host the change affects. Documentation-only changes (`.md` files, `docs/`, `.claude/`, `.gitignore`) don't need a build, and CI skips the builds for them.
 4. Push with `git push -u origin <branch>` and open a pull request with `gh pr create`. Write the title and description in the format below.
 5. Stop there. The owner reviews the pull request and either merges it or tells you to merge it.
 6. Only merge when the owner has said so for that specific pull request, and only once the required checks pass. Use `gh pr merge <N> --squash`. Each merge asks the owner for permission. Never use `--auto` or `--admin`, and never change rulesets or repo settings.

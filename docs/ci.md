@@ -8,10 +8,13 @@ There are two GitHub Actions workflows in `.github/workflows/`.
 
 | Job     | When it runs                                | What it does                                              |
 | ------- | ------------------------------------------- | --------------------------------------------------------- |
-| `fmt`   | On pull requests, pushes to `main`, and by hand | Fails if any `.nix` file isn't formatted              |
-| `build` | On pull requests and by hand                | Builds `desktop`, `framework`, and `framework-intel` at the same time |
+| `fmt`     | On pull requests, pushes to `main`, and by hand | Fails if any `.nix` file isn't formatted          |
+| `changes` | On pull requests and by hand                | Checks whether the pull request only changes documentation |
+| `build`   | On pull requests and by hand                | Builds `desktop`, `framework`, and `framework-intel` at the same time |
 
 The build job clears space on the runner first. It also pulls Noctalia, Umbriel, and Catppuccin from their binary caches, so CI doesn't have to compile them.
+
+Pull requests that only change documentation skip the builds. That means every changed file is a `.md` file, something in `docs/` or `.claude/`, or `.gitignore`. The build jobs still run, but they pass within seconds, so only `fmt` really has to finish. Any other change, including changes to the workflows, builds every host as usual. The jobs can't just be skipped, because GitHub would keep waiting for the required build checks.
 
 ## update.yml
 
