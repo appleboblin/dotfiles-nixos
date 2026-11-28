@@ -15,7 +15,10 @@ let
   ];
 in
 {
-  imports = [ ./pcloud.nix ];
+  imports = [
+    ./pcloud.nix
+    ./present.nix
+  ];
 
   # font size
   gtk.font.size = 21;
