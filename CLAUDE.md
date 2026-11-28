@@ -11,7 +11,15 @@ This is a NixOS and Home Manager flake with three hosts: `desktop`, `framework`,
 3. Before pushing, run `nix fmt` and build every host the change affects.
 4. Push with `git push -u origin <branch>` and open a pull request with `gh pr create`.
 5. Stop there. The owner reviews the pull request and either merges it or tells you to merge it.
-6. Only merge when the owner has said so for that specific pull request, and only once the required checks pass. Use `gh pr merge <number> --squash`. Each merge asks the owner for permission. Never use `--auto` or `--admin`, and never change rulesets or repo settings.
+6. Only merge when the owner has said so for that specific pull request, and only once the required checks pass. Each merge asks the owner for permission. Never use `--auto` or `--admin`, and never change rulesets or repo settings.
+7. The squash commit summarizes the pull request: a title of the form "<summary> (#N)" with the pull request number, and a short bullet body. End it with the `Co-Authored-By` line. Pass both explicitly, so GitHub doesn't paste in every commit message:
+
+   ```sh
+   gh pr merge <N> --squash --subject "<summary> (#N)" --body "- <change>
+   - <change>
+
+   Co-Authored-By: Claude …"
+   ```
 
 ## Checking a change
 
