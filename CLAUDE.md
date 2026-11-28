@@ -19,6 +19,7 @@ The repo squash-merges with the pull request title and description as the commit
 
 - Title: a short summary in plain words, like "Drop the LocalSend zlib wrapper". No `type:` prefix.
 - Description: summary bullets first, then a `## Testing` section. Add a `## Notes` section only when something needs explaining. If the pull request changes, update the description to match.
+- No diff blocks in PR descriptions or PR comments. GitHub already shows the changes.
 - Don't put a `Co-Authored-By` line or a "Generated with Claude Code" line in the description. Commits keep their `Co-Authored-By` line, and GitHub copies it into the squash commit by itself, so writing it here would add it twice.
 
 ```
