@@ -57,6 +57,7 @@
 
   systemd = {
     services = {
+      # the fingerprint reader stops responding after suspend until fprintd restarts
       restart-fprintd-after-resume = {
         description = "Restart fprintd after resume";
         wantedBy = [

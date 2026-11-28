@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(gh pr merge*)",
+      "Bash(gh api *pulls/*/merge*)"
+    ],
+    "deny": [
+      "Bash(git push * main)",
+      "Bash(git push * main:*)",
+      "Bash(git push * HEAD:main)",
+      "Bash(git push * +*)",
+      "Bash(git push --force*)",
+      "Bash(git push * --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * -f*)",
+      "Bash(gh pr merge *--admin*)",
+      "Bash(gh pr merge *--auto*)",
+      "Bash(gh api *rulesets*)",
+      "Bash(gh api *protection*)",
+      "Bash(gh api -X PATCH repos/appleboblin/dotfiles-nixos*)",
+      "Bash(gh api --method PATCH repos/appleboblin/dotfiles-nixos*)",
+      "Bash(gh repo edit*)",
+      "Bash(gh ruleset *)"
+    ]
+  }
+}

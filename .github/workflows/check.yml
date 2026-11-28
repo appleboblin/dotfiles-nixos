@@ -13,22 +13,59 @@ jobs:
       - uses: DeterminateSystems/determinate-nix-action@v3
       - run: nix fmt -- --ci
 
-  build:
+  # Docs-only pull requests skip the builds. The build jobs still run and pass,
+  # because required checks that never report would block the merge.
+  changes:
     if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    outputs:
+      build: ${{ steps.diff.outputs.build }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - id: diff
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if [ "$EVENT" != pull_request ]; then
+            echo build=true >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git diff --name-only "$BASE...$HEAD" > changed.txt
+          cat changed.txt
+          # anything that isn't documentation needs a build
+          if grep -qvE '\.md$|^docs/|^\.claude/|^\.gitignore$' changed.txt; then
+            echo build=true >> "$GITHUB_OUTPUT"
+          else
+            echo "Only documentation changed, skipping the builds."
+            echo build=false >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    needs: changes
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         host: [desktop, framework, framework-intel]
     steps:
-      - uses: actions/checkout@v6
-      - uses: wimpysworld/nothing-but-nix@b2574ec1cf1462bee0a34de0fb6ff11ad3c43cb2 # v12
+      - if: needs.changes.outputs.build != 'true'
+        run: echo "Only documentation changed, nothing to build."
+      - if: needs.changes.outputs.build == 'true'
+        uses: actions/checkout@v6
+      - if: needs.changes.outputs.build == 'true'
+        uses: wimpysworld/nothing-but-nix@b2574ec1cf1462bee0a34de0fb6ff11ad3c43cb2 # v12
         with:
           hatchet-protocol: rampage
           witness-carnage: true
-      - uses: DeterminateSystems/determinate-nix-action@v3
+      - if: needs.changes.outputs.build == 'true'
+        uses: DeterminateSystems/determinate-nix-action@v3
         with:
           extra-conf: |
             extra-substituters = https://noctalia.cachix.org https://umbriel.cachix.org https://catppuccin.cachix.org
             extra-trusted-public-keys = noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= umbriel.cachix.org-1:JfNq/2yg2S6D6z4Z2dVSZrZlDPQTKtexB6GAVLD98nw= catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU=
-      - run: nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --print-build-logs
+      - if: needs.changes.outputs.build == 'true'
+        run: nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --print-build-logs
