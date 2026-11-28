@@ -23,13 +23,14 @@ let
           fi
           ;;
         restore)
-          [ "$(cat "$state" 2>/dev/null)" = off ] || exit 0
-          # wait for bluetoothd to register the adapter
+          want=$(cat "$state" 2>/dev/null || echo on)
+          # bluetoothd no longer auto-powers, so we set it; retry while the adapter comes up
           for _ in $(seq 20); do
-            bluetoothctl show >/dev/null 2>&1 && break
+            bluetoothctl power "$want" >/dev/null 2>&1 && exit 0
             sleep 0.5
           done
-          bluetoothctl power off
+          echo "failed to set bluetooth power $want" >&2
+          exit 1
           ;;
       esac
     '';

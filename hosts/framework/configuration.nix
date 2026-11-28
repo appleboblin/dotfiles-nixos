@@ -19,7 +19,7 @@
   hardware = {
     bluetooth = {
       enable = true;
-      # powerOnBoot = lib.mkForce false;
+      powerOnBoot = false;
     };
     # rawDeviceName is set per board by the nixos-hardware module
     framework.laptop13.audioEnhancement.enable = true;
